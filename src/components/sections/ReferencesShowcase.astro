@@ -3,6 +3,7 @@ import Container from '../Container.astro';
 import SectionHeading from '../SectionHeading.astro';
 import { defaultLang } from '../../i18n/languages';
 import { getCopy } from '../../i18n/copy';
+import { getRoutePath } from '../../i18n/routes';
 import { site } from '../../data/site';
 
 const { lang = defaultLang } = Astro.props;
@@ -126,7 +127,13 @@ const reviewEmail = reviewEmailCopy[lang] ?? reviewEmailCopy.en;
         <h3 class="font-display text-2xl">{references.reviews.modalAdd.title}</h3>
         <p class="text-sm text-mist">{references.reviews.modalAdd.subtitle}</p>
       </div>
-      <form class="mt-8 grid gap-4" name="review-add" method="POST" data-netlify="true">
+      <form
+        class="mt-8 grid gap-4"
+        name="review-add"
+        method="POST"
+        data-netlify="true"
+        action={`${getRoutePath('thankYou', lang)}/index.html`}
+      >
         <input type="hidden" name="form-name" value="review-add" />
         <input type="hidden" name="recipient" value={site.email} />
         <input type="hidden" name="submission_type" value="review_pending" />

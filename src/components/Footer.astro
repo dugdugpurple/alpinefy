@@ -136,7 +136,13 @@ const contactNote = contactNoteCopy[lang] ?? contactNoteCopy.en;
         <div class="card rounded-2xl p-4">
           <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/90">{newsletter.title}</p>
           <p class="mt-2 text-xs text-mist">{newsletter.subtitle}</p>
-          <form class="mt-3 grid gap-2 sm:grid-cols-[1fr_auto]" name="newsletter" method="POST" data-netlify="true">
+          <form
+            class="mt-3 grid gap-2 sm:grid-cols-[1fr_auto]"
+            name="newsletter"
+            method="POST"
+            data-netlify="true"
+            action={`${getRoutePath('thankYou', lang)}/index.html`}
+          >
             <input type="hidden" name="form-name" value="newsletter" />
             <input type="hidden" name="recipient" value={site.email} />
             <input type="hidden" name="subject" value="New newsletter subscription" />
