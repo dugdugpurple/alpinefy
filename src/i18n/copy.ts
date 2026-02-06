@@ -389,7 +389,7 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'How much does a corporate website cost?',
             answer:
-              'Depends on scope. Typically 2,500–12,000 EUR. We send a precise quote after the intro call.',
+              'Pricing is individual and depends on scope. After the intro call, we send a precise private quote.',
           },
           {
             question: 'How fast can you deliver?',
@@ -906,7 +906,7 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'Was kostet eine Unternehmenswebsite?',
             answer:
-              'Je nach Umfang. Typisch 2.500–12.000 EUR. Nach dem Erstgespräch senden wir ein Angebot.',
+              'Die Preise sind individuell und hängen vom Umfang ab. Nach dem Erstgespräch senden wir ein präzises, privates Angebot.',
           },
           {
             question: 'Wie schnell liefert ihr?',
@@ -1416,7 +1416,7 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'Ile kosztuje strona firmowa?',
             answer:
-              'Zależy od zakresu. Zwykle 2 500–12 000 EUR. Po callu wysyłamy ofertę.',
+              'Cena jest ustalana indywidualnie i zależy od zakresu. Po callu wysyłamy precyzyjną, prywatną ofertę.',
           },
           {
             question: 'Jak szybko możecie dostarczyć?',
@@ -1927,7 +1927,7 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'Kolik stojí firemní web?',
             answer:
-              'Záleží na rozsahu. Typicky 2 500–12 000 EUR. Po callu pošleme nabídku.',
+              'Cena je individuální a závisí na rozsahu. Po úvodním callu pošleme přesnou, neveřejnou nabídku.',
           },
           {
             question: 'Jak rychle dodáte web?',
@@ -2438,7 +2438,7 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'Koľko stojí firemný web?',
             answer:
-              'Závisí od rozsahu. Typicky 2 500 – 12 000 EUR. Po úvodnom call-e posielame ponuku.',
+              'Cena je individuálna a závisí od rozsahu. Po úvodnom call-e posielame presnú, neverejnú ponuku.',
           },
           {
             question: 'Ako rýchlo viete web dodať?',
