@@ -1,0 +1,224 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+import { languages, defaultLang, getLangTag } from '../i18n/languages';
+import { getCopy } from '../i18n/copy';
+import { localizePath, normalizePath } from '../i18n/utils';
+
+const {
+  title,
+  description,
+  canonical,
+  image = '/og.svg',
+  lang = defaultLang,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  keywords,
+  noindex = false,
+  structuredData,
+} = Astro.props;
+
+const copy = getCopy(lang);
+const pageTitle = title ? `${title} | ${site.name}` : `${copy.site.tagline} | ${site.name}`;
+const metaDescription = description ?? copy.site.description;
+const basePath = normalizePath(Astro.url.pathname);
+const canonicalUrl = canonical
+  ? canonical.startsWith('http')
+    ? canonical
+    : `${site.url}${canonical}`
+  : `${site.url}${localizePath(basePath, lang)}`;
+const ogImage = image.startsWith('http') ? image : `${site.url}${image}`;
+const langTag = getLangTag(lang);
+const alternates = languages.map((item) => ({
+  href: `${site.url}${localizePath(basePath, item.code)}`,
+  hreflang: item.hreflang,
+}));
+const xDefault = `${site.url}${localizePath(basePath, defaultLang)}`;
+const robotsContent = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+
+const defaultKeywords: Record<string, string> = {
+  en: 'web development, shopify e-commerce, seo optimization, performance websites, dach web agency',
+  de: 'webentwicklung, shopify e-commerce, seo optimierung, performance websites, dach webagentur',
+  pl: 'tworzenie stron, shopify e-commerce, seo, wydajne strony, agencja dla dach',
+  cz: 'tvorba webu, shopify e-commerce, seo optimalizace, vykonne weby, dach agentura',
+  sk: 'tvorba webu, shopify e-commerce, seo optimalizacia, vykonne weby, dach agentura',
+};
+
+const keywordContent = Array.isArray(keywords)
+  ? keywords.filter(Boolean).join(', ')
+  : typeof keywords === 'string' && keywords.trim()
+    ? keywords
+    : defaultKeywords[lang] ?? defaultKeywords.en;
+
+const ogLocaleMap: Record<string, string> = {
+  en: 'en_US',
+  de: 'de_DE',
+  pl: 'pl_PL',
+  cz: 'cs_CZ',
+  sk: 'sk_SK',
+};
+const ogLocale = ogLocaleMap[lang] ?? 'en_US';
+const ogAlternateLocales = [
+  ...new Set(
+    languages
+      .map((item) => ogLocaleMap[item.code])
+      .filter((locale) => locale && locale !== ogLocale)
+  ),
+];
+
+const geoRegionMap: Record<string, string> = {
+  en: 'EU',
+  de: 'DE',
+  pl: 'PL',
+  cz: 'CZ',
+  sk: 'SK',
+};
+const geoRegion = geoRegionMap[lang] ?? 'EU';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: site.url,
+  email: site.email,
+  telephone: site.phone,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.address,
+  },
+  sameAs: site.socials.map((social) => social.href),
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  url: site.url,
+  inLanguage: langTag,
+};
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': type === 'article' ? 'Article' : 'WebPage',
+  name: pageTitle,
+  description: metaDescription,
+  url: canonicalUrl,
+  inLanguage: langTag,
+  ...(publishedTime ? { datePublished: publishedTime } : {}),
+  ...(modifiedTime ? { dateModified: modifiedTime } : {}),
+  ...(type === 'article'
+    ? {
+        author: { '@type': 'Organization', name: site.name },
+        publisher: { '@type': 'Organization', name: site.name },
+      }
+    : {}),
+};
+
+const externalSchema = structuredData
+  ? (Array.isArray(structuredData) ? structuredData : [structuredData])
+  : [];
+const allStructuredData = [organizationSchema, websiteSchema, pageSchema, ...externalSchema];
+---
+
+<!doctype html>
+<html lang={langTag}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem('theme');
+        const theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+    <meta name="description" content={metaDescription} />
+    <meta name="keywords" content={keywordContent} />
+    <meta name="author" content={site.name} />
+    <meta name="robots" content={robotsContent} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no, email=no, address=no" />
+    <meta name="distribution" content="global" />
+    <meta name="geo.region" content={geoRegion} />
+    <meta name="geo.placename" content={site.address} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" type="application/xml" href={`${site.url}/sitemap-index.xml`} />
+    <meta name="theme-color" content="#040E1B" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:type" content={type === 'article' ? 'article' : 'website'} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={site.name} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={ogLocale} />
+    {ogAlternateLocales.map((locale) => (
+      <meta property="og:locale:alternate" content={locale} />
+    ))}
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {(modifiedTime ?? publishedTime) && (
+      <meta property="article:modified_time" content={modifiedTime ?? publishedTime} />
+    )}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:url" content={canonicalUrl} />
+    {allStructuredData.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body class="bg-night text-ice antialiased">
+    <a class="skip-link" href="#content">{copy.accessibility.skipToContent}</a>
+    <div class="min-h-screen bg-radial-glow">
+      <Header lang={lang} />
+      <main id="content">
+        <slot />
+      </main>
+      <Footer lang={lang} />
+    </div>
+    <script is:inline>
+      const initThemeToggle = () => {
+        const root = document.documentElement;
+        if (root.dataset.themeToggleReady === 'true') return;
+        root.dataset.themeToggleReady = 'true';
+
+        document.addEventListener('click', (event) => {
+          const button = event.target.closest('[data-theme-toggle]');
+          if (!button) return;
+          const current = root.dataset.theme === 'light' ? 'light' : 'dark';
+          const next = current === 'light' ? 'dark' : 'light';
+          root.dataset.theme = next;
+          localStorage.setItem('theme', next);
+        });
+      };
+
+      const initBase = () => {
+        initThemeToggle();
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initBase);
+      } else {
+        initBase();
+      }
+
+      document.addEventListener('astro:page-load', initBase);
+    </script>
+  </body>
+</html>

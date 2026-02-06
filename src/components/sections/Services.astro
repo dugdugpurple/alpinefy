@@ -1,0 +1,48 @@
+---
+import Container from '../Container.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+
+const { lang = defaultLang } = Astro.props;
+const { sections } = getCopy(lang);
+
+const serviceIcons = [
+  'M3 10l9-7 9 7v10H3V10z',
+  'M4 4h16v16H4z',
+  'M6 8V7a6 6 0 0 1 12 0v1M4 8h16l-1 12H5L4 8z',
+  'M7 7h10M7 11h10M7 15h6',
+];
+---
+
+<section class="py-20 sm:py-24" id="sluzby">
+  <Container class="space-y-12">
+    <SectionHeading
+      eyebrow={sections.services.eyebrow}
+      title={sections.services.title}
+      subtitle={sections.services.subtitle}
+    />
+    <div class="grid gap-5 md:grid-cols-2">
+      {sections.services.items.map((service, index) => (
+        <article class="card card-3d h-full">
+          <div class="flex items-start gap-4">
+            <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/8 text-aqua">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d={serviceIcons[index]}></path>
+              </svg>
+            </span>
+            <div>
+              <h3 class="font-display text-2xl">{service.title}</h3>
+              <p class="mt-3 text-sm text-mist">{service.description}</p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-2">
+            {service.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

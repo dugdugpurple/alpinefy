@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Process from '../components/sections/Process.astro';
+import Faq from '../components/sections/Faq.astro';
+import Cta from '../components/sections/Cta.astro';
+import { defaultLang } from '../i18n/languages';
+import { getCopy } from '../i18n/copy';
+import { getRoutePath } from '../i18n/routes';
+const lang = defaultLang;
+const copy = getCopy(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title={copy.pages.process.meta.title}
+  description={copy.pages.process.meta.description}
+>
+  <Hero
+    lang={lang}
+    eyebrow={copy.pages.process.hero.eyebrow}
+    title={copy.pages.process.hero.title}
+    subtitle={copy.pages.process.hero.subtitle}
+    primaryLabel={copy.pages.process.hero.primaryLabel}
+    primaryHref={getRoutePath('contact', lang)}
+    secondaryLabel={copy.pages.process.hero.secondaryLabel}
+    secondaryHref={getRoutePath('services', lang)}
+  />
+  <Process lang={lang} />
+  <Faq lang={lang} />
+  <Cta lang={lang} />
+</BaseLayout>

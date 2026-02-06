@@ -1,0 +1,189 @@
+---
+import Container from './Container.astro';
+import Logo from './Logo.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import SocialIcons from './SocialIcons.astro';
+import { site } from '../data/site';
+import { defaultLang } from '../i18n/languages';
+import { getCopy, navItems } from '../i18n/copy';
+import { getRoutePath } from '../i18n/routes';
+
+const { lang = defaultLang } = Astro.props;
+const currentPath = Astro.url.pathname;
+const normalizedPath =
+  currentPath !== '/' && currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+const copy = getCopy(lang);
+---
+
+<header id="site-header" class="site-header fixed inset-x-0 top-0 z-50" data-scrolled="false">
+  <div class="header-shell">
+    <Container class="flex items-center justify-between py-4">
+      <a href={getRoutePath('home', lang)} class="group flex items-center gap-3">
+        <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-aqua shadow-glow transition group-hover:rotate-[-6deg]">
+          <Logo class="h-5 w-5" />
+        </span>
+        <div class="leading-tight">
+          <p class="font-display text-lg font-semibold">{site.name}</p>
+          <p class="text-[11px] uppercase tracking-[0.25em] text-mist/80">Web3 Studio</p>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-7 md:flex">
+        {navItems.map((link) => {
+          const href = getRoutePath(link.route, lang);
+          return (
+            <a href={href} class={`nav-link ${normalizedPath === href ? 'is-active' : ''}`}>
+              {copy.nav[link.key]}
+            </a>
+          );
+        })}
+      </nav>
+
+      <div class="hidden items-center gap-3 md:flex">
+        <LanguageSwitcher lang={lang} />
+        <ThemeToggle />
+        <a class="btn-primary" href={getRoutePath('contact', lang)}>
+          {copy.sections.cta.primaryLabel}
+        </a>
+      </div>
+
+      <div class="relative md:hidden">
+        <button
+          id="menu-open"
+          type="button"
+          class="menu-button relative z-[80] inline-flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border border-white/20 bg-coal/75 text-ice/80 transition hover:text-ice"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          data-menu-open
+        >
+          <span class="sr-only">{copy.menu.openLabel}</span>
+          <span class="menu-line block h-0.5 w-5 bg-ice" data-line="1"></span>
+          <span class="menu-line block h-0.5 w-5 bg-ice" data-line="2"></span>
+          <span class="menu-line block h-0.5 w-5 bg-ice" data-line="3"></span>
+        </button>
+      </div>
+    </Container>
+  </div>
+
+  <div class="md:hidden">
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[70]" data-open="false" aria-hidden="true" inert>
+      <div class="absolute inset-0 bg-night/88 backdrop-blur-sm" data-menu-close></div>
+      <div class="mobile-menu-panel absolute inset-4 flex h-[calc(100%-2rem)] w-[calc(100%-2rem)] flex-col gap-6 overflow-y-auto rounded-3xl border border-white/15 bg-gradient-to-b from-graphite/95 via-coal/95 to-night/95 p-6 pb-8 shadow-2xl transition duration-300">
+        <div class="flex items-center justify-between">
+          <a href={getRoutePath('home', lang)} class="flex items-center gap-3" data-menu-close>
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-aqua">
+              <Logo class="h-5 w-5" />
+            </span>
+            <span class="font-display text-lg">{site.name}</span>
+          </a>
+          <button
+            type="button"
+            class="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-mist transition hover:text-ice"
+            data-menu-close
+          >
+            {copy.menu.closeLabel}
+          </button>
+        </div>
+
+        <nav class="grid gap-2 text-base">
+          {navItems.map((link) => (
+            <a
+              href={getRoutePath(link.route, lang)}
+              class="rounded-2xl border border-transparent px-4 py-3 text-ice/85 transition hover:border-white/15 hover:bg-white/5 hover:text-ice"
+              data-menu-close
+            >
+              {copy.nav[link.key]}
+            </a>
+          ))}
+        </nav>
+
+        <div class="mt-auto space-y-4 text-sm text-mist">
+          <div class="flex items-center justify-between">
+            <LanguageSwitcher lang={lang} direction="up" mobile={true} />
+            <ThemeToggle />
+          </div>
+          <a class="btn-primary w-full" href={getRoutePath('contact', lang)} data-menu-close>
+            {copy.sections.cta.primaryLabel}
+          </a>
+          <p class="text-xs">{copy.sections.cta.note}</p>
+          <SocialIcons class="pt-2" />
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      const initMobileMenu = () => {
+        const menu = document.getElementById('mobile-menu');
+        const openButton = document.querySelector('[data-menu-open]');
+        if (!menu || !openButton || menu.dataset.ready === 'true') return;
+        menu.dataset.ready = 'true';
+
+        const closeButtons = menu.querySelectorAll('[data-menu-close]');
+
+        const setMenuOpen = (isOpen) => {
+          menu.setAttribute('data-open', String(isOpen));
+          menu.setAttribute('aria-hidden', String(!isOpen));
+          if (isOpen) {
+            menu.removeAttribute('inert');
+          } else {
+            menu.setAttribute('inert', '');
+          }
+          openButton.setAttribute('aria-expanded', String(isOpen));
+          openButton.classList.toggle('is-open', isOpen);
+          openButton.classList.toggle('opacity-0', isOpen);
+          openButton.classList.toggle('pointer-events-none', isOpen);
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        };
+
+        openButton.addEventListener('click', () => setMenuOpen(true));
+        closeButtons.forEach((button) => button.addEventListener('click', () => setMenuOpen(false)));
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') setMenuOpen(false);
+        });
+      };
+
+      const initHeaderScroll = () => {
+        const header = document.getElementById('site-header');
+        if (!header) return;
+
+        const syncHeaderState = () => {
+          header.setAttribute('data-scrolled', window.scrollY > 10 ? 'true' : 'false');
+        };
+
+        syncHeaderState();
+        if (header.dataset.scrollReady === 'true') return;
+        header.dataset.scrollReady = 'true';
+
+        let ticking = false;
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+              syncHeaderState();
+              ticking = false;
+            });
+          },
+          { passive: true }
+        );
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          initMobileMenu();
+          initHeaderScroll();
+        });
+      } else {
+        initMobileMenu();
+        initHeaderScroll();
+      }
+
+      document.addEventListener('astro:page-load', () => {
+        initMobileMenu();
+        initHeaderScroll();
+      });
+    </script>
+  </div>
+</header>

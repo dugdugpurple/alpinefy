@@ -1,0 +1,166 @@
+---
+import Container from './Container.astro';
+import Logo from './Logo.astro';
+import SocialIcons from './SocialIcons.astro';
+import { site } from '../data/site';
+import { defaultLang } from '../i18n/languages';
+import { getCopy, navItems } from '../i18n/copy';
+import { getRoutePath } from '../i18n/routes';
+
+const year = new Date().getFullYear();
+const { lang = defaultLang } = Astro.props;
+const copy = getCopy(lang);
+
+const stacks = ['Web strategy', 'SEO', 'Performance', 'Analytics', 'Automation'];
+
+const newsletterCopy = {
+  en: {
+    title: 'Newsletter',
+    subtitle: 'Practical web growth insights. No spam.',
+    placeholder: 'Your email',
+    cta: 'Subscribe',
+    consent: '1-2 emails monthly.',
+  },
+  de: {
+    title: 'Newsletter',
+    subtitle: 'Praktische Web-Growth Insights. Kein Spam.',
+    placeholder: 'Ihre E-Mail',
+    cta: 'Abonnieren',
+    consent: '1-2 E-Mails pro Monat.',
+  },
+  pl: {
+    title: 'Newsletter',
+    subtitle: 'Praktyczne wskazówki growth. Bez spamu.',
+    placeholder: 'Twój e-mail',
+    cta: 'Subskrybuj',
+    consent: '1-2 maile miesięcznie.',
+  },
+  cz: {
+    title: 'Newsletter',
+    subtitle: 'Praktické growth tipy. Bez spamu.',
+    placeholder: 'Váš e-mail',
+    cta: 'Odebírat',
+    consent: '1-2 e-maily měsíčně.',
+  },
+  sk: {
+    title: 'Newsletter',
+    subtitle: 'Praktické tipy pre rast webu. Bez spamu.',
+    placeholder: 'Váš e-mail',
+    cta: 'Odoberať',
+    consent: '1-2 e-maily mesačne.',
+  },
+};
+
+const contactNoteCopy = {
+  en: 'Response within 24 hours on business days.',
+  de: 'Antwort innerhalb von 24 Stunden an Werktagen.',
+  pl: 'Odpowiedź w ciągu 24 godzin w dni robocze.',
+  cz: 'Odpověď do 24 hodin v pracovních dnech.',
+  sk: 'Odpoveď do 24 hodín v pracovných dňoch.',
+};
+
+const newsletter = newsletterCopy[lang] ?? newsletterCopy.en;
+const contactNote = contactNoteCopy[lang] ?? contactNoteCopy.en;
+---
+
+<footer class="relative border-t border-white/10 bg-coal/55">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-aqua/55 to-transparent"></div>
+  <Container class="relative py-14 sm:py-16">
+    <div class="grid items-start gap-12 xl:grid-cols-[1.25fr_0.75fr_1fr] xl:gap-10">
+      <div class="space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-aqua shadow-glow">
+            <Logo class="h-5 w-5" />
+          </span>
+          <div>
+            <p class="font-display text-xl">{site.name}</p>
+            <p class="text-[11px] uppercase tracking-[0.25em] text-mist/85">Digital studio | Web3-ready</p>
+          </div>
+        </div>
+
+        <p class="max-w-md text-sm text-mist">{copy.site.description}</p>
+
+        <div class="flex flex-wrap gap-2">
+          {stacks.map((item) => (
+            <span class="tag">{item}</span>
+          ))}
+        </div>
+
+        <div class="space-y-3 text-sm text-mist">
+          <div class="grid gap-3 sm:grid-cols-2">
+            <a
+              class="group inline-flex items-center gap-2.5 rounded-2xl border border-white/12 bg-white/5 px-4 py-3 text-ice/90 transition hover:border-aqua/35 hover:bg-white/8 hover:text-ice"
+              href={`tel:${site.phone.replace(/\s/g, '')}`}
+            >
+              <svg viewBox="0 0 24 24" class="h-4 w-4 text-aqua/85" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.9 19.9 0 0 1-8.7-3.1A19.6 19.6 0 0 1 5 12.9a19.9 19.9 0 0 1-3.1-8.7A2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2l-1.3 1.3a16 16 0 0 0 6.3 6.3l1.3-1.3a2 2 0 0 1 2-.4c.9.3 1.8.5 2.7.6A2 2 0 0 1 22 16.9z"></path>
+              </svg>
+              <span class="font-medium text-ice/95">{site.phone}</span>
+            </a>
+            <a
+              class="group inline-flex items-center gap-2.5 rounded-2xl border border-white/12 bg-white/5 px-4 py-3 text-ice/90 transition hover:border-aqua/35 hover:bg-white/8 hover:text-ice"
+              href={`mailto:${site.email}`}
+            >
+              <svg viewBox="0 0 24 24" class="h-4 w-4 text-aqua/85" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="m4 8 8 6 8-6"></path>
+              </svg>
+              <span class="font-medium text-ice/95">{site.email}</span>
+            </a>
+          </div>
+          <p class="inline-flex items-center gap-2.5">
+            <svg viewBox="0 0 24 24" class="h-4 w-4 text-aqua/85" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path>
+              <circle cx="12" cy="10" r="2.5"></circle>
+            </svg>
+            {site.address}
+          </p>
+          <p class="text-xs text-mist/80">{contactNote}</p>
+        </div>
+      </div>
+
+      <nav class="space-y-4 text-sm xl:justify-self-center xl:self-center xl:text-center" aria-label={copy.footer.navigation}>
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-aqua/90">{copy.footer.navigation}</p>
+        <div class="grid gap-2 xl:justify-items-center">
+          {navItems.map((link) => (
+            <a class="text-mist transition hover:text-ice" href={getRoutePath(link.route, lang)}>
+              {copy.nav[link.key]}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <div class="space-y-4 text-sm xl:justify-self-end xl:max-w-sm">
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-aqua/90">{copy.footer.socials}</p>
+        <SocialIcons />
+        <div class="card rounded-2xl p-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/90">{newsletter.title}</p>
+          <p class="mt-2 text-xs text-mist">{newsletter.subtitle}</p>
+          <form class="mt-3 grid gap-2 sm:grid-cols-[1fr_auto]" name="newsletter" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="newsletter" />
+            <input type="hidden" name="recipient" value={site.email} />
+            <input type="hidden" name="subject" value="New newsletter subscription" />
+            <label class="sr-only" for={`newsletter-email-${lang}`}>{newsletter.title}</label>
+            <input
+              id={`newsletter-email-${lang}`}
+              class="input-field min-h-10 py-2.5 text-xs"
+              name="email"
+              type="email"
+              placeholder={newsletter.placeholder}
+              required
+            />
+            <button class="btn-primary min-h-10 px-4 py-2 text-xs" type="submit">{newsletter.cta}</button>
+          </form>
+          <p class="mt-2 text-[11px] text-mist/80">{newsletter.consent}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-mist/75 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {site.name}. {copy.footer.rights}</p>
+      <a class="text-mist/75 transition hover:text-ice" href={getRoutePath('contact', lang)}>
+        {copy.nav.contact}
+      </a>
+    </div>
+  </Container>
+</footer>

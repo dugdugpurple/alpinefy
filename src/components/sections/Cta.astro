@@ -1,0 +1,29 @@
+---
+import Container from '../Container.astro';
+import { site } from '../../data/site';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+import { getRoutePath } from '../../i18n/routes';
+
+const { lang = defaultLang } = Astro.props;
+const { sections } = getCopy(lang);
+---
+
+<section class="py-20 sm:py-24">
+  <Container>
+    <div class="glass-card overflow-hidden rounded-3xl p-8 sm:p-10 lg:p-12">
+      <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/90">{sections.cta.eyebrow}</p>
+          <h2 class="mt-4 font-display text-3xl sm:text-4xl">{sections.cta.title}</h2>
+          <p class="mt-4 max-w-2xl text-base text-mist">{sections.cta.subtitle}</p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <a class="btn-primary" href={getRoutePath('contact', lang)}>{sections.cta.primaryLabel}</a>
+          <a class="btn-secondary" href={`mailto:${site.email}`}>{sections.cta.secondaryLabel} {site.email}</a>
+          <p class="text-xs text-mist">{sections.cta.note}</p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

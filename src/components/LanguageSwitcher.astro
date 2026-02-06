@@ -1,0 +1,123 @@
+---
+import { languages, defaultLang } from '../i18n/languages';
+import { localizePath } from '../i18n/utils';
+
+const { lang = defaultLang, direction = 'down', mobile = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+const current = languages.find((item) => item.code === lang) ?? languages[0];
+const panelPosition =
+  direction === 'up' ? 'bottom-full mb-3 origin-bottom-left' : 'top-full mt-3 origin-top-right';
+const panelLayout = mobile ? 'w-56 left-0 right-auto' : 'w-52 right-0';
+---
+
+<div class="lang-switcher relative shrink-0" data-lang-switcher data-open="false">
+  <button
+    type="button"
+    class="flex cursor-pointer items-center gap-2 rounded-full border border-white/15 bg-coal/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ice/80 transition hover:border-aqua/40 hover:text-ice"
+    data-lang-trigger
+    aria-haspopup="menu"
+    aria-expanded="false"
+  >
+    <span class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/20 bg-white/10">
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18Z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c3 3.5 3 14 0 18"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-3 3.5-3 14 0 18"></path>
+      </svg>
+    </span>
+    <span>{current.label}</span>
+    <span class="text-base transition" data-lang-arrow>▾</span>
+  </button>
+  <div
+    class={`absolute z-50 rounded-2xl border border-white/15 bg-coal/95 p-2 shadow-2xl backdrop-blur ${panelLayout} ${panelPosition}`}
+    data-lang-panel
+    hidden
+  >
+    <ul class="flex flex-col gap-1 text-sm">
+      {languages.map((item) => (
+        <li>
+          <a
+            class={`block rounded-xl px-3 py-2 transition hover:bg-white/8 ${item.code === lang ? 'bg-white/10 text-ice' : 'text-ice/75'}`}
+            href={localizePath(currentPath, item.code)}
+            aria-current={item.code === lang ? 'page' : undefined}
+          >
+            {item.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const setLangSwitcherOpen = (switcher, isOpen) => {
+      const trigger = switcher.querySelector('[data-lang-trigger]');
+      const panel = switcher.querySelector('[data-lang-panel]');
+      const arrow = switcher.querySelector('[data-lang-arrow]');
+      if (!trigger || !panel) return;
+      switcher.dataset.open = String(isOpen);
+      trigger.setAttribute('aria-expanded', String(isOpen));
+      if (arrow) {
+        arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
+      if (isOpen) {
+        panel.removeAttribute('hidden');
+      } else {
+        panel.setAttribute('hidden', '');
+      }
+    };
+
+    const closeAllLangSwitchers = () => {
+      document
+        .querySelectorAll('[data-lang-switcher]')
+        .forEach((switcher) => setLangSwitcherOpen(switcher, false));
+    };
+
+    const initLangSwitchers = () => {
+      document.querySelectorAll('[data-lang-switcher]').forEach((switcher) => {
+        if (switcher.dataset.ready === 'true') return;
+        switcher.dataset.ready = 'true';
+        const trigger = switcher.querySelector('[data-lang-trigger]');
+        if (!trigger) return;
+
+        trigger.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          const isOpen = switcher.dataset.open === 'true';
+          closeAllLangSwitchers();
+          setLangSwitcherOpen(switcher, !isOpen);
+        });
+
+        switcher.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => setLangSwitcherOpen(switcher, false));
+        });
+      });
+
+      if (window.__langSwitcherGlobalReady) return;
+      window.__langSwitcherGlobalReady = true;
+
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.closest('[data-lang-switcher]')) return;
+        closeAllLangSwitchers();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeAllLangSwitchers();
+        }
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLangSwitchers);
+    } else {
+      initLangSwitchers();
+    }
+
+    document.addEventListener('astro:page-load', initLangSwitchers);
+  })();
+</script>

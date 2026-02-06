@@ -1,0 +1,268 @@
+---
+import Container from '../Container.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+import { site } from '../../data/site';
+
+const { lang = defaultLang } = Astro.props;
+const copy = getCopy(lang);
+const { references } = copy.pages;
+const reviews = references.reviews.items;
+const moreReviews = references.reviews.moreItems;
+const allReviews = [...reviews, ...moreReviews];
+const reviewsInitialVisible = 6;
+const reviewsBatchSize = 3;
+
+const starPath =
+  'M12 17.3l-5.4 3 1.4-6.1-4.7-4 6.2-.6L12 4l2.5 5.6 6.2.6-4.7 4 1.4 6.1z';
+
+const reviewApprovalNote = {
+  en: 'The review is sent for approval and published manually after verification.',
+  de: 'Bewertungen werden zur Freigabe gesendet und nach Prüfung manuell veröffentlicht.',
+  pl: 'Opinia trafia do akceptacji i jest publikowana ręcznie po weryfikacji.',
+  cz: 'Recenze se odešle ke schválení a po ověření ji zveřejníme ručně.',
+  sk: 'Recenzia sa odošle na schválenie a po overení ju zverejníme ručne.',
+};
+
+const reviewEmailCopy = {
+  en: { label: 'Email', placeholder: 'your@email.com' },
+  de: { label: 'E-Mail', placeholder: 'sie@email.de' },
+  pl: { label: 'Email', placeholder: 'twoj@email.pl' },
+  cz: { label: 'Email', placeholder: 'vas@email.cz' },
+  sk: { label: 'Email', placeholder: 'vas@email.sk' },
+};
+
+const approvalNote = reviewApprovalNote[lang] ?? reviewApprovalNote.en;
+const reviewEmail = reviewEmailCopy[lang] ?? reviewEmailCopy.en;
+---
+
+<div
+  class="space-y-20"
+  data-reviews-root
+  data-initial-visible={String(reviewsInitialVisible)}
+  data-reveal-step={String(reviewsBatchSize)}
+>
+  <section class="py-20 sm:py-24">
+    <Container class="space-y-12">
+      <SectionHeading
+        eyebrow={references.caseStudiesHeading.eyebrow}
+        title={references.caseStudiesHeading.title}
+        subtitle={references.caseStudiesHeading.subtitle}
+      />
+      <div class="grid gap-6 md:grid-cols-3">
+        {references.caseStudies.map((study) => (
+          <div class="card card-3d">
+            <p class="text-xs uppercase tracking-[0.3em] text-aqua/80">{study.name}</p>
+            <h3 class="mt-3 font-display text-xl">{study.summary}</h3>
+            <p class="mt-4 text-sm text-mist">{study.result}</p>
+            <p class="mt-4 text-xs text-mist">Stack: {study.stack}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-16 sm:py-20">
+    <Container class="space-y-10">
+      <SectionHeading
+        eyebrow={references.reviews.eyebrow}
+        title={references.reviews.title}
+        subtitle={references.reviews.subtitle}
+      />
+      <div class="grid gap-6 md:grid-cols-3" data-reviews-grid>
+        {allReviews.map((review, index) => (
+          <article
+            class={`review-card flex h-full flex-col ${index >= reviewsInitialVisible ? 'hidden' : ''}`}
+            data-review-item
+            aria-hidden={index >= reviewsInitialVisible ? 'true' : 'false'}
+          >
+            <div class="flex items-center gap-1 text-lime/90">
+              {Array.from({ length: 5 }).map(() => (
+                <span class="glass-star" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-current" aria-hidden="true">
+                    <path d={starPath}></path>
+                  </svg>
+                </span>
+              ))}
+            </div>
+            <p class="mt-3 text-sm text-ice/92">"{review.quote}"</p>
+            <div class="mt-5">
+              <p class="font-semibold text-ice">{review.name}</p>
+              <p class="text-xs text-mist">{review.role}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <button class="btn-secondary" type="button" data-review-load-more>
+          {references.reviews.actions.more}
+        </button>
+        <button class="btn-primary" type="button" data-modal-open="reviews-add">
+          {references.reviews.actions.add}
+        </button>
+      </div>
+    </Container>
+  </section>
+
+  <div
+    class="modal fixed inset-0 z-[80] flex items-center justify-center px-4"
+    data-modal="reviews-add"
+    data-open="false"
+    aria-hidden="true"
+  >
+    <div class="absolute inset-0 bg-night/80 backdrop-blur-sm" data-modal-close></div>
+    <div class="modal-panel relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl border border-white/10 bg-coal/90 p-8 shadow-2xl">
+      <button
+        class="modal-close-btn absolute right-5 top-5 h-10 w-10"
+        type="button"
+        data-modal-close
+        aria-label={copy.menu.closeLabel}
+      >
+        <span class="close-icon text-xl leading-none">×</span>
+      </button>
+      <div class="space-y-3">
+        <p class="badge">{references.reviews.eyebrow}</p>
+        <h3 class="font-display text-2xl">{references.reviews.modalAdd.title}</h3>
+        <p class="text-sm text-mist">{references.reviews.modalAdd.subtitle}</p>
+      </div>
+      <form class="mt-8 grid gap-4" name="review-add" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="review-add" />
+        <input type="hidden" name="recipient" value={site.email} />
+        <input type="hidden" name="submission_type" value="review_pending" />
+        <input type="hidden" name="subject" value="New review pending approval" />
+        <label class="grid gap-2 text-sm text-mist">
+          {references.reviews.form.name}
+          <input
+            class="input-field"
+            name="name"
+            placeholder={references.reviews.form.namePlaceholder}
+            required
+          />
+        </label>
+        <label class="grid gap-2 text-sm text-mist">
+          {reviewEmail.label}
+          <input
+            class="input-field"
+            name="email"
+            type="email"
+            placeholder={reviewEmail.placeholder}
+            required
+          />
+        </label>
+        <label class="grid gap-2 text-sm text-mist">
+          {references.reviews.form.company}
+          <input
+            class="input-field"
+            name="company"
+            placeholder={references.reviews.form.companyPlaceholder}
+            required
+          />
+        </label>
+        <label class="grid gap-2 text-sm text-mist">
+          {references.reviews.form.rating}
+          <select
+            class="input-field"
+            name="rating"
+            required
+          >
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+        </label>
+        <label class="grid gap-2 text-sm text-mist">
+          {references.reviews.form.message}
+          <textarea
+            class="input-field min-h-[120px]"
+            name="message"
+            placeholder={references.reviews.form.messagePlaceholder}
+            required
+          ></textarea>
+        </label>
+        <button class="btn-primary w-full sm:w-auto" type="submit">
+          {references.reviews.form.submit}
+        </button>
+        <p class="text-xs text-mist">{references.reviews.form.consent}</p>
+        <p class="text-xs text-mist/80">{approvalNote}</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const initReviews = () => {
+    const root = document.querySelector('[data-reviews-root]');
+    if (!root || root.dataset.ready === 'true') return;
+    root.dataset.ready = 'true';
+
+    const reviewItems = Array.from(root.querySelectorAll('[data-review-item]'));
+    const loadMoreButton = root.querySelector('[data-review-load-more]');
+    const revealStep = Number(root.dataset.revealStep || '3');
+
+    const revealNextReviews = () => {
+      const hiddenReviews = reviewItems.filter((item) => item.classList.contains('hidden'));
+      hiddenReviews.slice(0, revealStep).forEach((item) => {
+        item.classList.remove('hidden');
+        item.setAttribute('aria-hidden', 'false');
+      });
+      if (hiddenReviews.length <= revealStep && loadMoreButton) {
+        loadMoreButton.classList.add('hidden');
+      }
+    };
+
+    if (loadMoreButton) {
+      const hasHiddenReviews = reviewItems.some((item) => item.classList.contains('hidden'));
+      if (!hasHiddenReviews) {
+        loadMoreButton.classList.add('hidden');
+      } else {
+        loadMoreButton.addEventListener('click', revealNextReviews);
+      }
+    }
+
+    const modals = root.querySelectorAll('[data-modal]');
+    const openButtons = root.querySelectorAll('[data-modal-open]');
+
+    const openModal = (name) => {
+      const modal = root.querySelector(`[data-modal="${name}"]`);
+      if (!modal) return;
+      modal.dataset.open = 'true';
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = (modal) => {
+      modal.dataset.open = 'false';
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    openButtons.forEach((button) => {
+      button.addEventListener('click', () => openModal(button.dataset.modalOpen));
+    });
+
+    modals.forEach((modal) => {
+      modal.querySelectorAll('[data-modal-close]').forEach((button) => {
+        button.addEventListener('click', () => closeModal(modal));
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      modals.forEach((modal) => {
+        if (modal.dataset.open === 'true') closeModal(modal);
+      });
+    });
+
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReviews);
+  } else {
+    initReviews();
+  }
+
+  document.addEventListener('astro:page-load', initReviews);
+</script>

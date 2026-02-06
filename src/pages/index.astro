@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import TrustBadges from '../components/sections/TrustBadges.astro';
+import ValueProps from '../components/sections/ValueProps.astro';
+import Services from '../components/sections/Services.astro';
+import Pricing from '../components/sections/Pricing.astro';
+import Capabilities from '../components/sections/Capabilities.astro';
+import Process from '../components/sections/Process.astro';
+import SocialProof from '../components/sections/SocialProof.astro';
+import Faq from '../components/sections/Faq.astro';
+import Cta from '../components/sections/Cta.astro';
+import Partners from '../components/sections/Partners.astro';
+import { defaultLang } from '../i18n/languages';
+import { getCopy } from '../i18n/copy';
+import { getRoutePath } from '../i18n/routes';
+const lang = defaultLang;
+const copy = getCopy(lang);
+---
+
+<BaseLayout lang={lang} title={copy.pages.home.meta.title} description={copy.pages.home.meta.description}>
+  <Hero
+    lang={lang}
+    eyebrow={copy.pages.home.hero.eyebrow}
+    title={copy.pages.home.hero.title}
+    subtitle={copy.pages.home.hero.subtitle}
+    primaryLabel={copy.pages.home.hero.primaryLabel}
+    primaryHref={getRoutePath('contact', lang)}
+    secondaryLabel={copy.pages.home.hero.secondaryLabel}
+    secondaryHref={getRoutePath('services', lang)}
+    stats={copy.sections.heroStats}
+  />
+  <TrustBadges lang={lang} />
+  <ValueProps lang={lang} />
+  <Services lang={lang} />
+  <Partners lang={lang} />
+  <Capabilities lang={lang} />
+  <Pricing lang={lang} />
+  <Process lang={lang} />
+  <SocialProof lang={lang} />
+  <Faq lang={lang} />
+  <Cta lang={lang} />
+</BaseLayout>

@@ -1,0 +1,29 @@
+---
+const { class: className = '' } = Astro.props;
+---
+
+<button
+  type="button"
+  class={`theme-toggle ${className}`}
+  aria-label="Toggle theme"
+  data-theme-toggle
+>
+  <svg viewBox="0 0 24 24" class="icon-moon h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"
+    ></path>
+  </svg>
+  <svg viewBox="0 0 24 24" class="icon-sun h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v2"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 20v2"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.93 4.93l1.41 1.41"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M17.66 17.66l1.41 1.41"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M2 12h2"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M20 12h2"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.93 19.07l1.41-1.41"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M17.66 6.34l1.41-1.41"></path>
+  </svg>
+</button>

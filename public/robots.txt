@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Host: alpinefy.com
+
+Sitemap: https://alpinefy.com/sitemap-index.xml

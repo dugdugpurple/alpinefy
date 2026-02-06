@@ -1,0 +1,82 @@
+---
+import Container from '../Container.astro';
+import SectionHeading from '../SectionHeading.astro';
+import {
+  siAstro,
+  siTailwindcss,
+  siNetlify,
+  siNextdotjs,
+  siReact,
+  siTypescript,
+  siGoogleanalytics,
+  siGoogletagmanager,
+  siGooglesearchconsole,
+  siShopify,
+  siMeta,
+  siGoogleads,
+  siCloudflare,
+  siFigma,
+  siGithub,
+  siVercel,
+} from 'simple-icons';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+
+const { lang = defaultLang } = Astro.props;
+const { sections } = getCopy(lang);
+
+const partnerLogos = [
+  { name: 'Astro', icon: siAstro, type: 'stack' },
+  { name: 'Tailwind CSS', icon: siTailwindcss, type: 'stack' },
+  { name: 'Netlify', icon: siNetlify, type: 'stack' },
+  { name: 'Next.js', icon: siNextdotjs, type: 'stack' },
+  { name: 'React', icon: siReact, type: 'stack' },
+  { name: 'TypeScript', icon: siTypescript, type: 'stack' },
+  { name: 'Shopify', icon: siShopify, type: 'stack' },
+  { name: 'Google Analytics', icon: siGoogleanalytics, type: 'analytics' },
+  { name: 'Google Tag Manager', icon: siGoogletagmanager, type: 'analytics' },
+  { name: 'Search Console', icon: siGooglesearchconsole, type: 'analytics' },
+  { name: 'Meta Ads', icon: siMeta, type: 'analytics' },
+  { name: 'Google Ads', icon: siGoogleads, type: 'analytics' },
+  { name: 'Cloudflare', icon: siCloudflare, type: 'delivery' },
+  { name: 'GitHub', icon: siGithub, type: 'delivery' },
+  { name: 'Vercel', icon: siVercel, type: 'delivery' },
+  { name: 'Figma', icon: siFigma, type: 'delivery' },
+];
+
+const typeLabels = {
+  en: { stack: 'Stack', analytics: 'Analytics', delivery: 'Delivery' },
+  de: { stack: 'Stack', analytics: 'Analytics', delivery: 'Delivery' },
+  pl: { stack: 'Stack', analytics: 'Analityka', delivery: 'Delivery' },
+  cz: { stack: 'Stack', analytics: 'Analytika', delivery: 'Delivery' },
+  sk: { stack: 'Stack', analytics: 'Analytika', delivery: 'Delivery' },
+};
+
+const labels = typeLabels[lang] ?? typeLabels.en;
+---
+
+<section class="py-16 sm:py-20">
+  <Container class="space-y-10">
+    <SectionHeading
+      eyebrow={sections.partners.eyebrow}
+      title={sections.partners.title}
+      subtitle={sections.partners.subtitle}
+    />
+
+    <div class="rounded-3xl border border-white/12 bg-coal/55 p-4 sm:p-5">
+      <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+        {partnerLogos.map((partner) => (
+          <article class="logo-card card-3d" style={`--brand:#${partner.icon.hex}`}>
+            <svg viewBox="0 0 24 24" role="img" aria-label={partner.name} class="h-8 w-8" fill="currentColor">
+              <path d={partner.icon.path}></path>
+            </svg>
+            <div class="mt-3 text-center">
+              <p class="text-sm font-semibold text-ice/88">{partner.name}</p>
+              <p class="logo-type">{labels[partner.type]}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>

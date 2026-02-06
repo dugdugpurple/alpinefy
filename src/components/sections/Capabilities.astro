@@ -1,0 +1,29 @@
+---
+import Container from '../Container.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+
+const { lang = defaultLang } = Astro.props;
+const { sections } = getCopy(lang);
+---
+
+<section class="py-16 sm:py-20">
+  <Container class="space-y-10">
+    <SectionHeading
+      eyebrow={sections.capabilities.eyebrow}
+      title={sections.capabilities.title}
+      subtitle={sections.capabilities.subtitle}
+    />
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {sections.capabilities.items.map((item) => (
+        <span class="tag min-h-11 justify-start gap-2 px-4 py-2 text-sm">
+          <svg viewBox="0 0 20 20" class="h-4 w-4 text-aqua" fill="currentColor" aria-hidden="true">
+            <path d="M7.5 13.5 4.5 10.5 3 12l4.5 4.5L17 7.5 15.5 6l-8 7.5z"></path>
+          </svg>
+          {item}
+        </span>
+      ))}
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,177 @@
+---
+import Container from '../Container.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { defaultLang } from '../../i18n/languages';
+
+const { lang = defaultLang } = Astro.props;
+
+const content = {
+  en: {
+    eyebrow: 'Pricing',
+    title: 'Clear starting budgets',
+    subtitle: 'Premium execution with pricing designed to stay attractive for DACH companies.',
+    note: 'Final quote depends on scope. We stay lean, premium and usually below typical DACH agency rates.',
+    plans: [
+      {
+        name: 'Lead website',
+        price: '1,200 €',
+        description: 'Conversion-ready website with analytics setup and clean structure.',
+      },
+      {
+        name: 'Business website',
+        price: '2,200 €',
+        description: 'Multi-section company website focused on trust, SEO and speed.',
+      },
+      {
+        name: 'E-shop (Shopify)',
+        price: '3,400 €',
+        description: 'Shopify store setup, payment flows, basic invoicing setup, analytics and CRO-ready structure.',
+        highlight: true,
+      },
+      {
+        name: 'Custom app',
+        price: '5,500 €+',
+        description: 'Web or mobile app with product logic, API integrations and long-term scaling.',
+      },
+    ],
+  },
+  de: {
+    eyebrow: 'Preise',
+    title: 'Klare Startbudgets',
+    subtitle: 'Premium-Ausführung mit Preisen, die für DACH-Unternehmen attraktiv bleiben.',
+    note: 'Das finale Angebot hängt vom Umfang ab. Premium, effizient und meist unter klassischen DACH-Agenturpreisen.',
+    plans: [
+      {
+        name: 'Lead-Website',
+        price: '1.200 €',
+        description: 'Conversion-starke Website mit Analytics-Basis.',
+      },
+      {
+        name: 'Business-Website',
+        price: '2.200 €',
+        description: 'Firmenwebsite mit Fokus auf Vertrauen, SEO und Geschwindigkeit.',
+      },
+      {
+        name: 'E-Shop (Shopify)',
+        price: '3.400 €',
+        description: 'Shopify-Setup inkl. Payments, Basis-Fakturierung, Tracking und Conversion-Struktur.',
+        highlight: true,
+      },
+      {
+        name: 'Custom App',
+        price: '5.500 €+',
+        description: 'Web- oder Mobile-App mit API-Integrationen und skalierbarer Architektur.',
+      },
+    ],
+  },
+  pl: {
+    eyebrow: 'Cennik',
+    title: 'Jasne progi startowe',
+    subtitle: 'Premium realizacja z cenami atrakcyjnymi dla firm z regionu DACH.',
+    note: 'Finalna wycena zależy od zakresu. Premium, ale zwykle poniżej typowych stawek agencji DACH.',
+    plans: [
+      {
+        name: 'Lead website',
+        price: '1 200 €',
+        description: 'Strona gotowa na konwersje z podstawową analityką.',
+      },
+      {
+        name: 'Business website',
+        price: '2 200 €',
+        description: 'Strona firmowa pod zaufanie, SEO i szybkość.',
+      },
+      {
+        name: 'E-shop (Shopify)',
+        price: '3 400 €',
+        description: 'Sklep Shopify z płatnościami, podstawową fakturacją, analityką i strukturą pod konwersję.',
+        highlight: true,
+      },
+      {
+        name: 'Własna aplikacja',
+        price: '5 500 €+',
+        description: 'Aplikacja webowa lub mobilna z integracjami API i planem skalowania.',
+      },
+    ],
+  },
+  cz: {
+    eyebrow: 'Ceník',
+    title: 'Jasné startovní rozpočty',
+    subtitle: 'Prémiové zpracování za ceny, které dávají smysl i pro DACH klienty.',
+    note: 'Konečná cena závisí na rozsahu. Držíme prémiový standard, ale často pod běžnými DACH sazbami.',
+    plans: [
+      {
+        name: 'Launch web',
+        price: '1 200 €',
+        description: 'Konverzní web se základní analytikou a jasnou strukturou.',
+      },
+      {
+        name: 'Business web',
+        price: '2 200 €',
+        description: 'Firemní web s důrazem na důvěru, SEO a rychlost.',
+      },
+      {
+        name: 'E-shop (Shopify)',
+        price: '3 400 €',
+        description: 'Shopify e-shop včetně plateb, základní fakturace, analytiky a struktury pro konverze.',
+        highlight: true,
+      },
+      {
+        name: 'Vlastní appka',
+        price: '5 500 €+',
+        description: 'Webová nebo mobilní aplikace s API integracemi a škálovatelným základem.',
+      },
+    ],
+  },
+  sk: {
+    eyebrow: 'Cenník',
+    title: 'Jasné štartové rozpočty',
+    subtitle: 'Prémiové spracovanie s jasnými štartovacími balíkmi.',
+    note: 'Finálna cena závisí od rozsahu. Držíme prémiový štandard, no zvyčajne nižšie ako bežné DACH agentúry.',
+    plans: [
+      {
+        name: 'Lead web',
+        price: '1 200 €',
+        description: 'Konverzný web so základnou analytikou a jasnou štruktúrou.',
+      },
+      {
+        name: 'Business web',
+        price: '2 200 €',
+        description: 'Firemný web s dôrazom na dôveru, SEO a rýchlosť.',
+      },
+      {
+        name: 'E-shop (Shopify)',
+        price: '3 400 €',
+        description: 'Shopify e-shop vrátane platobných tokov, základnej fakturácie, analytiky a konverznej štruktúry.',
+        highlight: true,
+      },
+      {
+        name: 'Vlastná appka',
+        price: '5 500 €+',
+        description: 'Webová alebo mobilná aplikácia s API prepojeniami a plánom škálovania.',
+      },
+    ],
+  },
+};
+
+const copy = content[lang] ?? content.en;
+---
+
+<section class="py-16 sm:py-20" id="pricing">
+  <Container class="space-y-10">
+    <SectionHeading eyebrow={copy.eyebrow} title={copy.title} subtitle={copy.subtitle} />
+
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      {copy.plans.map((plan) => (
+        <article class={`pricing-card card card-3d h-full ${plan.highlight ? 'pricing-card-featured' : ''}`}>
+          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-mist">{plan.name}</p>
+          <p class="mt-3 font-display text-4xl">{plan.price}</p>
+          <p class="mt-4 text-sm text-mist">{plan.description}</p>
+        </article>
+      ))}
+    </div>
+
+    <p class="rounded-2xl border border-white/12 bg-coal/60 px-4 py-3 text-xs text-mist sm:text-sm">
+      {copy.note}
+    </p>
+  </Container>
+</section>
