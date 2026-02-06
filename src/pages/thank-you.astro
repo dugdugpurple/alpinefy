@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+---
+
+<BaseLayout
+  title="Ďakujeme"
+  description="Formulár bol úspešne odoslaný."
+  noindex={true}
+>
+  <section class="py-28 sm:py-32">
+    <Container>
+      <div class="mx-auto max-w-2xl rounded-3xl border border-white/12 bg-coal/60 p-8 text-center sm:p-10">
+        <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/90">Thank you</p>
+        <h1 class="mt-4 font-display text-3xl sm:text-4xl">Ďakujeme, správu sme prijali.</h1>
+        <p class="mt-4 text-sm text-mist sm:text-base">
+          Ozveme sa čo najskôr. Ak je to urgentné, napíš priamo na
+          <a class="text-aqua/95 hover:text-aqua" href="mailto:hello@alpinefy.com">hello@alpinefy.com</a>.
+        </p>
+        <div class="mt-7 flex flex-wrap justify-center gap-3">
+          <a class="btn-primary" href="/sk">Späť na web</a>
+          <a class="btn-secondary" href="/contact">Back to contact</a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
