@@ -132,7 +132,7 @@ const reviewEmail = reviewEmailCopy[lang] ?? reviewEmailCopy.en;
         name="review-add"
         method="POST"
         data-netlify="true"
-        action={`${getRoutePath('thankYou', lang)}/index.html`}
+        action={`${getRoutePath('thankYou', lang)}/`}
       >
         <input type="hidden" name="form-name" value="review-add" />
         <input type="hidden" name="recipient" value={site.email} />

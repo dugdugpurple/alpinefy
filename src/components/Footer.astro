@@ -141,7 +141,7 @@ const contactNote = contactNoteCopy[lang] ?? contactNoteCopy.en;
             name="newsletter"
             method="POST"
             data-netlify="true"
-            action={`${getRoutePath('thankYou', lang)}/index.html`}
+            action={`${getRoutePath('thankYou', lang)}/`}
           >
             <input type="hidden" name="form-name" value="newsletter" />
             <input type="hidden" name="recipient" value={site.email} />
