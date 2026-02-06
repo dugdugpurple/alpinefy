@@ -187,7 +187,13 @@ const meta = metaMap[routeKey];
               title={copy.pages.contact.formHeading.title}
               subtitle={copy.pages.contact.formHeading.subtitle}
             />
-            <form class="grid gap-4" name="kontakt" method="POST" data-netlify="true">
+            <form
+              class="grid gap-4"
+              name="kontakt"
+              method="POST"
+              data-netlify="true"
+              action={`${getRoutePath('contact', lang)}/index.html`}
+            >
               <input type="hidden" name="form-name" value="kontakt" />
               <input type="hidden" name="recipient" value={site.email} />
               <input type="hidden" name="subject" value="New contact inquiry" />
