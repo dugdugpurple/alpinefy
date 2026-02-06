@@ -7,7 +7,8 @@ export type RouteKey =
   | 'references'
   | 'about'
   | 'blog'
-  | 'contact';
+  | 'contact'
+  | 'thankYou';
 
 export const routeMap: Record<string, Record<RouteKey, string>> = {
   en: {
@@ -18,6 +19,7 @@ export const routeMap: Record<string, Record<RouteKey, string>> = {
     about: '/about',
     blog: '/blog',
     contact: '/contact',
+    thankYou: '/thank-you',
   },
   de: {
     home: '/de',
@@ -27,6 +29,7 @@ export const routeMap: Record<string, Record<RouteKey, string>> = {
     about: '/de/ueber-uns',
     blog: '/de/blog',
     contact: '/de/kontakt',
+    thankYou: '/de/danke',
   },
   pl: {
     home: '/pl',
@@ -36,6 +39,7 @@ export const routeMap: Record<string, Record<RouteKey, string>> = {
     about: '/pl/o-nas',
     blog: '/pl/blog',
     contact: '/pl/kontakt',
+    thankYou: '/pl/dziekujemy',
   },
   cz: {
     home: '/cz',
@@ -45,6 +49,7 @@ export const routeMap: Record<string, Record<RouteKey, string>> = {
     about: '/cz/o-nas',
     blog: '/cz/blog',
     contact: '/cz/kontakt',
+    thankYou: '/cz/dekujeme',
   },
   sk: {
     home: '/sk',
@@ -54,6 +59,7 @@ export const routeMap: Record<string, Record<RouteKey, string>> = {
     about: '/sk/o-nas',
     blog: '/sk/blog',
     contact: '/sk/kontakt',
+    thankYou: '/sk/dakujeme',
   },
 };
 

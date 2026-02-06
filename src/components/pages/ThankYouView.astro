@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import { site } from '../../data/site';
+import { defaultLang } from '../../i18n/languages';
+import { getRoutePath } from '../../i18n/routes';
+
+const { lang = defaultLang } = Astro.props;
+
+const copyByLang = {
+  en: {
+    metaTitle: 'Thank You',
+    metaDescription: 'Your message has been sent successfully.',
+    eyebrow: 'Thank you',
+    title: 'Thanks, we received your message.',
+    bodyPrefix: 'We will get back shortly. If urgent, email',
+    primaryLabel: 'Back to home',
+    secondaryLabel: 'Back to contact',
+  },
+  de: {
+    metaTitle: 'Danke',
+    metaDescription: 'Ihre Nachricht wurde erfolgreich gesendet.',
+    eyebrow: 'Danke',
+    title: 'Danke, wir haben Ihre Nachricht erhalten.',
+    bodyPrefix: 'Wir melden uns so schnell wie möglich. Wenn es dringend ist, schreiben Sie an',
+    primaryLabel: 'Zur Startseite',
+    secondaryLabel: 'Zurück zum Kontakt',
+  },
+  pl: {
+    metaTitle: 'Dziękujemy',
+    metaDescription: 'Twoja wiadomość została pomyślnie wysłana.',
+    eyebrow: 'Dziękujemy',
+    title: 'Dziękujemy, otrzymaliśmy Twoją wiadomość.',
+    bodyPrefix: 'Odezwiemy się najszybciej jak to możliwe. Jeśli sprawa jest pilna, napisz na',
+    primaryLabel: 'Powrót na stronę główną',
+    secondaryLabel: 'Powrót do kontaktu',
+  },
+  cz: {
+    metaTitle: 'Děkujeme',
+    metaDescription: 'Vaše zpráva byla úspěšně odeslána.',
+    eyebrow: 'Děkujeme',
+    title: 'Děkujeme, zprávu jsme přijali.',
+    bodyPrefix: 'Ozveme se co nejdříve. Pokud je to urgentní, napište na',
+    primaryLabel: 'Zpět na web',
+    secondaryLabel: 'Zpět na kontakt',
+  },
+  sk: {
+    metaTitle: 'Ďakujeme',
+    metaDescription: 'Vaša správa bola úspešne odoslaná.',
+    eyebrow: 'Ďakujeme',
+    title: 'Ďakujeme, správu sme prijali.',
+    bodyPrefix: 'Ozveme sa čo najskôr. Ak je to urgentné, napíšte na',
+    primaryLabel: 'Späť na web',
+    secondaryLabel: 'Späť na kontakt',
+  },
+};
+
+const copy = copyByLang[lang] ?? copyByLang.en;
+---
+
+<BaseLayout
+  lang={lang}
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  noindex={true}
+>
+  <section class="py-28 sm:py-32">
+    <Container>
+      <div class="mx-auto max-w-2xl rounded-3xl border border-white/12 bg-coal/60 p-8 text-center sm:p-10">
+        <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/90">{copy.eyebrow}</p>
+        <h1 class="mt-4 font-display text-3xl sm:text-4xl">{copy.title}</h1>
+        <p class="mt-4 text-sm text-mist sm:text-base">
+          {copy.bodyPrefix}{' '}
+          <a class="text-aqua/95 hover:text-aqua" href={`mailto:${site.email}`}>{site.email}</a>.
+        </p>
+        <div class="mt-7 flex flex-wrap justify-center gap-3">
+          <a class="btn-primary" href={getRoutePath('home', lang)}>{copy.primaryLabel}</a>
+          <a class="btn-secondary" href={getRoutePath('contact', lang)}>{copy.secondaryLabel}</a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

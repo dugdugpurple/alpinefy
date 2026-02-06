@@ -192,7 +192,7 @@ const meta = metaMap[routeKey];
               name="kontakt"
               method="POST"
               data-netlify="true"
-              action="/thank-you/"
+              action={`${getRoutePath('thankYou', lang)}/`}
             >
               <input type="hidden" name="form-name" value="kontakt" />
               <input type="hidden" name="recipient" value={site.email} />
