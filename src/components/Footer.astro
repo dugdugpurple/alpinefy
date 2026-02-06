@@ -20,6 +20,8 @@ const newsletterCopy = {
     placeholder: 'Your email',
     cta: 'Subscribe',
     consent: '1-2 emails monthly.',
+    success: 'Subscribed. First update will arrive soon.',
+    error: 'Subscription failed. Please try again.',
   },
   de: {
     title: 'Newsletter',
@@ -27,6 +29,8 @@ const newsletterCopy = {
     placeholder: 'Ihre E-Mail',
     cta: 'Abonnieren',
     consent: '1-2 E-Mails pro Monat.',
+    success: 'Abonniert. Das erste Update kommt bald.',
+    error: 'Anmeldung fehlgeschlagen. Bitte erneut versuchen.',
   },
   pl: {
     title: 'Newsletter',
@@ -34,6 +38,8 @@ const newsletterCopy = {
     placeholder: 'Twój e-mail',
     cta: 'Subskrybuj',
     consent: '1-2 maile miesięcznie.',
+    success: 'Subskrypcja aktywna. Pierwszy e-mail wkrótce.',
+    error: 'Nie udało się zapisać. Spróbuj ponownie.',
   },
   cz: {
     title: 'Newsletter',
@@ -41,6 +47,8 @@ const newsletterCopy = {
     placeholder: 'Váš e-mail',
     cta: 'Odebírat',
     consent: '1-2 e-maily měsíčně.',
+    success: 'Odběr potvrzen. První e-mail dorazí brzy.',
+    error: 'Odeslání se nepodařilo. Zkuste to znovu.',
   },
   sk: {
     title: 'Newsletter',
@@ -48,6 +56,8 @@ const newsletterCopy = {
     placeholder: 'Váš e-mail',
     cta: 'Odoberať',
     consent: '1-2 e-maily mesačne.',
+    success: 'Odber je aktívny. Prvý e-mail príde čoskoro.',
+    error: 'Nepodarilo sa odoslať. Skúste to znova.',
   },
 };
 
@@ -61,6 +71,7 @@ const contactNoteCopy = {
 
 const newsletter = newsletterCopy[lang] ?? newsletterCopy.en;
 const contactNote = contactNoteCopy[lang] ?? contactNoteCopy.en;
+const newsletterFormName = `newsletter-${lang}`;
 ---
 
 <footer class="relative border-t border-white/10 bg-coal/55">
@@ -133,18 +144,22 @@ const contactNote = contactNoteCopy[lang] ?? contactNoteCopy.en;
       <div class="space-y-4 text-sm xl:justify-self-end xl:max-w-sm">
         <p class="text-xs font-semibold uppercase tracking-[0.25em] text-aqua/90">{copy.footer.socials}</p>
         <SocialIcons />
-        <div class="card rounded-2xl p-4">
+        <div class="card rounded-2xl p-4" data-newsletter-card>
           <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/90">{newsletter.title}</p>
           <p class="mt-2 text-xs text-mist">{newsletter.subtitle}</p>
           <form
             class="mt-3 grid gap-2 sm:grid-cols-[1fr_auto]"
-            name="newsletter"
+            name={newsletterFormName}
             method="POST"
             netlify
             data-netlify="true"
-            action={`${getRoutePath('thankYou', lang)}/`}
+            data-newsletter-form
+            data-endpoint="/"
+            data-success={newsletter.success}
+            data-error={newsletter.error}
+            action={getRoutePath('thankYou', lang)}
           >
-            <input type="hidden" name="form-name" value="newsletter" />
+            <input type="hidden" name="form-name" value={newsletterFormName} />
             <input type="hidden" name="recipient" value={site.email} />
             <input type="hidden" name="subject" value="New newsletter subscription" />
             <label class="sr-only" for={`newsletter-email-${lang}`}>{newsletter.title}</label>
@@ -158,6 +173,12 @@ const contactNote = contactNoteCopy[lang] ?? contactNoteCopy.en;
             />
             <button class="btn-primary min-h-10 px-4 py-2 text-xs" type="submit">{newsletter.cta}</button>
           </form>
+          <p
+            class="mt-2 hidden rounded-xl border border-aqua/35 bg-aqua/10 px-3 py-2 text-xs text-aqua"
+            data-newsletter-popup
+            role="status"
+            aria-live="polite"
+          ></p>
           <p class="mt-2 text-[11px] text-mist/80">{newsletter.consent}</p>
         </div>
       </div>
@@ -171,3 +192,82 @@ const contactNote = contactNoteCopy[lang] ?? contactNoteCopy.en;
     </div>
   </Container>
 </footer>
+
+<script is:inline>
+  const initNewsletterForms = () => {
+    const forms = document.querySelectorAll('[data-newsletter-form]');
+
+    forms.forEach((form) => {
+      if (form.dataset.ready === 'true') return;
+      form.dataset.ready = 'true';
+
+      const card = form.closest('[data-newsletter-card]');
+      const popup = card?.querySelector('[data-newsletter-popup]');
+      const submitButton = form.querySelector('button[type="submit"]');
+      let popupTimeout;
+
+      const showPopup = (message, isError = false) => {
+        if (!popup) return;
+        popup.textContent = message;
+        popup.classList.remove('hidden', 'border-red-300/40', 'bg-red-500/10', 'text-red-100');
+        if (isError) {
+          popup.classList.add('border-red-300/40', 'bg-red-500/10', 'text-red-100');
+        }
+
+        if (popupTimeout) clearTimeout(popupTimeout);
+        popupTimeout = window.setTimeout(() => {
+          popup.classList.add('hidden');
+        }, 4600);
+      };
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const endpoint = form.dataset.endpoint || '/';
+        const successMessage = form.dataset.success || 'Done.';
+        const errorMessage = form.dataset.error || 'Try again.';
+        const formData = new FormData(form);
+        const body = new URLSearchParams();
+
+        formData.forEach((value, key) => {
+          if (typeof value === 'string') body.append(key, value);
+        });
+
+        const originalLabel = submitButton?.textContent ?? '';
+        if (submitButton) {
+          submitButton.setAttribute('disabled', 'true');
+          submitButton.textContent = '...';
+        }
+
+        try {
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: body.toString(),
+          });
+
+          if (!response.ok) throw new Error(`Newsletter submit failed: ${response.status}`);
+
+          form.reset();
+          showPopup(successMessage);
+        } catch (error) {
+          console.error(error);
+          showPopup(errorMessage, true);
+        } finally {
+          if (submitButton) {
+            submitButton.removeAttribute('disabled');
+            submitButton.textContent = originalLabel;
+          }
+        }
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNewsletterForms);
+  } else {
+    initNewsletterForms();
+  }
+
+  document.addEventListener('astro:page-load', initNewsletterForms);
+</script>

@@ -53,6 +53,7 @@ const metaMap = {
 };
 
 const meta = metaMap[routeKey];
+const contactFormName = `kontakt-${lang}`;
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description}>
@@ -189,13 +190,13 @@ const meta = metaMap[routeKey];
             />
             <form
               class="grid gap-4"
-              name="kontakt"
+              name={contactFormName}
               method="POST"
               netlify
               data-netlify="true"
-              action={`${getRoutePath('thankYou', lang)}/`}
+              action={getRoutePath('thankYou', lang)}
             >
-              <input type="hidden" name="form-name" value="kontakt" />
+              <input type="hidden" name="form-name" value={contactFormName} />
               <input type="hidden" name="recipient" value={site.email} />
               <input type="hidden" name="subject" value="New contact inquiry" />
               <label class="grid gap-2 text-sm text-mist">

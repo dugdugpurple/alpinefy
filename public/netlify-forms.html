@@ -7,32 +7,22 @@
   </head>
   <body>
     <!-- Static fallback so Netlify always detects all forms during build. -->
-    <form name="kontakt" netlify data-netlify="true" method="POST" action="/thank-you/" hidden>
-      <input type="hidden" name="form-name" value="kontakt" />
-      <input type="text" name="meno" />
-      <input type="email" name="email" />
-      <textarea name="sprava"></textarea>
-      <input type="text" name="recipient" />
-      <input type="text" name="subject" />
-    </form>
+    <form name="kontakt-en" netlify data-netlify="true" method="POST" action="/thank-you" hidden><input type="hidden" name="form-name" value="kontakt-en" /><input type="text" name="meno" /><input type="email" name="email" /><textarea name="sprava"></textarea><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="kontakt-de" netlify data-netlify="true" method="POST" action="/de/danke" hidden><input type="hidden" name="form-name" value="kontakt-de" /><input type="text" name="meno" /><input type="email" name="email" /><textarea name="sprava"></textarea><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="kontakt-pl" netlify data-netlify="true" method="POST" action="/pl/dziekujemy" hidden><input type="hidden" name="form-name" value="kontakt-pl" /><input type="text" name="meno" /><input type="email" name="email" /><textarea name="sprava"></textarea><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="kontakt-cz" netlify data-netlify="true" method="POST" action="/cz/dekujeme" hidden><input type="hidden" name="form-name" value="kontakt-cz" /><input type="text" name="meno" /><input type="email" name="email" /><textarea name="sprava"></textarea><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="kontakt-sk" netlify data-netlify="true" method="POST" action="/sk/dakujeme" hidden><input type="hidden" name="form-name" value="kontakt-sk" /><input type="text" name="meno" /><input type="email" name="email" /><textarea name="sprava"></textarea><input type="text" name="recipient" /><input type="text" name="subject" /></form>
 
-    <form name="newsletter" netlify data-netlify="true" method="POST" action="/thank-you/" hidden>
-      <input type="hidden" name="form-name" value="newsletter" />
-      <input type="email" name="email" />
-      <input type="text" name="recipient" />
-      <input type="text" name="subject" />
-    </form>
+    <form name="newsletter-en" netlify data-netlify="true" method="POST" action="/thank-you" hidden><input type="hidden" name="form-name" value="newsletter-en" /><input type="email" name="email" /><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="newsletter-de" netlify data-netlify="true" method="POST" action="/de/danke" hidden><input type="hidden" name="form-name" value="newsletter-de" /><input type="email" name="email" /><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="newsletter-pl" netlify data-netlify="true" method="POST" action="/pl/dziekujemy" hidden><input type="hidden" name="form-name" value="newsletter-pl" /><input type="email" name="email" /><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="newsletter-cz" netlify data-netlify="true" method="POST" action="/cz/dekujeme" hidden><input type="hidden" name="form-name" value="newsletter-cz" /><input type="email" name="email" /><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="newsletter-sk" netlify data-netlify="true" method="POST" action="/sk/dakujeme" hidden><input type="hidden" name="form-name" value="newsletter-sk" /><input type="email" name="email" /><input type="text" name="recipient" /><input type="text" name="subject" /></form>
 
-    <form name="review-add" netlify data-netlify="true" method="POST" action="/thank-you/" hidden>
-      <input type="hidden" name="form-name" value="review-add" />
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <input type="text" name="company" />
-      <input type="number" name="rating" />
-      <textarea name="message"></textarea>
-      <input type="text" name="submission_type" />
-      <input type="text" name="recipient" />
-      <input type="text" name="subject" />
-    </form>
+    <form name="review-add-en" netlify data-netlify="true" method="POST" action="/thank-you" hidden><input type="hidden" name="form-name" value="review-add-en" /><input type="text" name="name" /><input type="email" name="email" /><input type="text" name="company" /><input type="number" name="rating" /><textarea name="message"></textarea><input type="text" name="submission_type" /><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="review-add-de" netlify data-netlify="true" method="POST" action="/de/danke" hidden><input type="hidden" name="form-name" value="review-add-de" /><input type="text" name="name" /><input type="email" name="email" /><input type="text" name="company" /><input type="number" name="rating" /><textarea name="message"></textarea><input type="text" name="submission_type" /><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="review-add-pl" netlify data-netlify="true" method="POST" action="/pl/dziekujemy" hidden><input type="hidden" name="form-name" value="review-add-pl" /><input type="text" name="name" /><input type="email" name="email" /><input type="text" name="company" /><input type="number" name="rating" /><textarea name="message"></textarea><input type="text" name="submission_type" /><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="review-add-cz" netlify data-netlify="true" method="POST" action="/cz/dekujeme" hidden><input type="hidden" name="form-name" value="review-add-cz" /><input type="text" name="name" /><input type="email" name="email" /><input type="text" name="company" /><input type="number" name="rating" /><textarea name="message"></textarea><input type="text" name="submission_type" /><input type="text" name="recipient" /><input type="text" name="subject" /></form>
+    <form name="review-add-sk" netlify data-netlify="true" method="POST" action="/sk/dakujeme" hidden><input type="hidden" name="form-name" value="review-add-sk" /><input type="text" name="name" /><input type="email" name="email" /><input type="text" name="company" /><input type="number" name="rating" /><textarea name="message"></textarea><input type="text" name="submission_type" /><input type="text" name="recipient" /><input type="text" name="subject" /></form>
   </body>
 </html>

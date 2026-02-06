@@ -36,6 +36,7 @@ const reviewEmailCopy = {
 
 const approvalNote = reviewApprovalNote[lang] ?? reviewApprovalNote.en;
 const reviewEmail = reviewEmailCopy[lang] ?? reviewEmailCopy.en;
+const reviewFormName = `review-add-${lang}`;
 ---
 
 <div
@@ -129,13 +130,13 @@ const reviewEmail = reviewEmailCopy[lang] ?? reviewEmailCopy.en;
       </div>
       <form
         class="mt-8 grid gap-4"
-        name="review-add"
+        name={reviewFormName}
         method="POST"
         netlify
         data-netlify="true"
-        action={`${getRoutePath('thankYou', lang)}/`}
+        action={getRoutePath('thankYou', lang)}
       >
-        <input type="hidden" name="form-name" value="review-add" />
+        <input type="hidden" name="form-name" value={reviewFormName} />
         <input type="hidden" name="recipient" value={site.email} />
         <input type="hidden" name="submission_type" value="review_pending" />
         <input type="hidden" name="subject" value="New review pending approval" />

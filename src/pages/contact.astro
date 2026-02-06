@@ -9,6 +9,7 @@ import { getCopy } from '../i18n/copy';
 import { getRoutePath } from '../i18n/routes';
 const lang = defaultLang;
 const copy = getCopy(lang);
+const contactFormName = `kontakt-${lang}`;
 ---
 
 <BaseLayout
@@ -37,13 +38,13 @@ const copy = getCopy(lang);
         />
         <form
           class="grid gap-4"
-          name="kontakt"
+          name={contactFormName}
           method="POST"
           netlify
           data-netlify="true"
-          action={`${getRoutePath('thankYou', lang)}/`}
+          action={getRoutePath('thankYou', lang)}
         >
-          <input type="hidden" name="form-name" value="kontakt" />
+          <input type="hidden" name="form-name" value={contactFormName} />
           <input type="hidden" name="recipient" value={site.email} />
           <input type="hidden" name="subject" value="New contact inquiry" />
           <label class="grid gap-2 text-sm text-mist">
