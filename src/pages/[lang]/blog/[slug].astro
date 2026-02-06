@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Container from '../../../components/Container.astro';
-import Cta from '../../../components/sections/Cta.astro';
 import { site } from '../../../data/site';
 import { languages, defaultLang, isSupportedLang } from '../../../i18n/languages';
 import { getBlogPost, getBlogPosts } from '../../../i18n/blog';
@@ -40,6 +39,26 @@ const articleSchema = {
   author: { '@type': 'Organization', name: site.name },
   publisher: { '@type': 'Organization', name: site.name },
 };
+const localeByLang = {
+  en: 'en-US',
+  de: 'de-DE',
+  pl: 'pl-PL',
+  cz: 'cs-CZ',
+  sk: 'sk-SK',
+};
+const publishedLabelByLang = {
+  en: 'Published',
+  de: 'Veröffentlicht',
+  pl: 'Opublikowano',
+  cz: 'Publikováno',
+  sk: 'Publikované',
+};
+const formattedDate = new Intl.DateTimeFormat(localeByLang[lang] ?? 'en-US', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date(post.date));
+const publishedLabel = publishedLabelByLang[lang] ?? publishedLabelByLang.en;
 ---
 
 <BaseLayout
@@ -52,10 +71,10 @@ const articleSchema = {
   keywords={[post.category, 'SEO', 'web performance', 'shopify', 'web agency']}
   structuredData={articleSchema}
 >
-  <section class="py-20 sm:py-24">
-    <Container class="space-y-10">
+  <section class="pt-28 pb-14 sm:pt-32 sm:pb-16">
+    <Container class="max-w-[1120px]">
       <a
-        class="mb-2 inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-aqua/85 transition hover:text-ice"
+        class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-aqua/85 transition hover:text-ice"
         href={localizePath('/blog', lang)}
       >
         <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
@@ -63,35 +82,43 @@ const articleSchema = {
         </svg>
         {copy.pages.blog.backLabel}
       </a>
-      <div class="space-y-4 rounded-3xl border border-white/12 bg-coal/55 p-6 sm:p-8">
-        <div class="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.24em] text-mist">
-          <span class="badge">{post.category}</span>
-          <span>{post.readingTime}</span>
-          <span>{post.date}</span>
+      <div class="mt-10 max-w-4xl space-y-6 sm:space-y-7">
+        <div class="text-[11px] uppercase tracking-[0.24em] text-aqua/82">
+          {post.category}
         </div>
-        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl">{post.title}</h1>
-        <p class="max-w-2xl text-base text-mist">{post.excerpt}</p>
+        <h1 class="font-display text-4xl leading-[1.03] sm:text-5xl lg:text-6xl">{post.title}</h1>
+        <p class="max-w-2xl text-base text-mist sm:text-lg">{post.excerpt}</p>
+        <p class="text-sm text-mist/80">
+          {publishedLabel}: {formattedDate} · {post.readingTime}
+        </p>
       </div>
+    </Container>
+  </section>
 
-      <div class="space-y-6">
+  <div class="border-t border-white/10"></div>
+
+  <section class="py-14 sm:py-16">
+    <Container class="max-w-[1120px]">
+      <article class="max-w-3xl space-y-12 sm:space-y-14">
         {post.sections.map((section) => (
-          <section class="card space-y-4 rounded-3xl">
-            <h2 class="font-display text-2xl">{section.heading}</h2>
+          <section class="space-y-5">
+            <h2 class="font-display text-3xl sm:text-4xl">{section.heading}</h2>
             {section.paragraphs?.map((paragraph) => (
-              <p class="text-sm text-mist sm:text-base">{paragraph}</p>
+              <p class="text-base leading-relaxed text-mist">{paragraph}</p>
             ))}
             {section.list && (
-              <ul class="list-disc space-y-2 pl-5 text-sm text-mist sm:text-base">
+              <ul class="space-y-3">
                 {section.list.map((item) => (
-                  <li>{item}</li>
+                  <li class="flex items-start gap-3 text-base leading-relaxed text-mist">
+                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-aqua/90"></span>
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
             )}
           </section>
         ))}
-      </div>
+      </article>
     </Container>
   </section>
-
-  <Cta lang={lang} />
 </BaseLayout>
