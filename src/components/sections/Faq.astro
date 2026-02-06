@@ -21,8 +21,20 @@ const { sections } = getCopy(lang);
           <summary class="cursor-pointer list-none text-base font-semibold text-ice">
             <span class="flex items-center justify-between gap-5">
               {item.question}
-              <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-aqua transition group-open:rotate-45">
-                +
+              <span
+                class="faq-toggle-icon inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/15 text-aqua"
+                aria-hidden="true"
+              >
+                <svg
+                  viewBox="0 0 20 20"
+                  class="h-3.5 w-3.5 transition-transform duration-200 ease-out group-open:rotate-45"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path stroke-linecap="round" d="M10 4v12"></path>
+                  <path stroke-linecap="round" d="M4 10h12"></path>
+                </svg>
               </span>
             </span>
           </summary>

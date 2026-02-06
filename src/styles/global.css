@@ -328,6 +328,10 @@
     display: none;
   }
 
+  .faq-toggle-icon svg {
+    transform-origin: center;
+  }
+
   :root[data-theme='light'] .theme-toggle .icon-sun {
     display: block;
   }
