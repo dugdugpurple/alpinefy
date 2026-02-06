@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify Forms Detection</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <!-- Static fallback so Netlify always detects all forms during build. -->
+    <form name="kontakt" netlify data-netlify="true" method="POST" action="/thank-you/" hidden>
+      <input type="hidden" name="form-name" value="kontakt" />
+      <input type="text" name="meno" />
+      <input type="email" name="email" />
+      <textarea name="sprava"></textarea>
+      <input type="text" name="recipient" />
+      <input type="text" name="subject" />
+    </form>
+
+    <form name="newsletter" netlify data-netlify="true" method="POST" action="/thank-you/" hidden>
+      <input type="hidden" name="form-name" value="newsletter" />
+      <input type="email" name="email" />
+      <input type="text" name="recipient" />
+      <input type="text" name="subject" />
+    </form>
+
+    <form name="review-add" netlify data-netlify="true" method="POST" action="/thank-you/" hidden>
+      <input type="hidden" name="form-name" value="review-add" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <input type="number" name="rating" />
+      <textarea name="message"></textarea>
+      <input type="text" name="submission_type" />
+      <input type="text" name="recipient" />
+      <input type="text" name="subject" />
+    </form>
+  </body>
+</html>

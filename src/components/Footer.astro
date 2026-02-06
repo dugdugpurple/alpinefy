@@ -140,6 +140,7 @@ const contactNote = contactNoteCopy[lang] ?? contactNoteCopy.en;
             class="mt-3 grid gap-2 sm:grid-cols-[1fr_auto]"
             name="newsletter"
             method="POST"
+            netlify
             data-netlify="true"
             action={`${getRoutePath('thankYou', lang)}/`}
           >
