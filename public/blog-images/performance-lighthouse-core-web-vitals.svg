@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Performance and Lighthouse optimization</title>
+  <desc id="desc">Illustration for fast website delivery, Core Web Vitals and Lighthouse results.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#04142E" />
+      <stop offset="100%" stop-color="#091C3A" />
+    </linearGradient>
+    <radialGradient id="glow" cx="85%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="#3BD9FF" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#3BD9FF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <rect x="72" y="72" width="1056" height="486" rx="34" fill="#061A36" fill-opacity="0.82" stroke="#2C4B73" />
+  <circle cx="290" cy="315" r="122" fill="#0F274B" stroke="#4F77A8" />
+  <circle cx="290" cy="315" r="84" fill="none" stroke="#57E3FF" stroke-width="12" stroke-dasharray="290 240" stroke-linecap="round" />
+  <line x1="290" y1="315" x2="350" y2="262" stroke="#57E3FF" stroke-width="10" stroke-linecap="round" />
+  <text x="445" y="242" fill="#35CFFF" font-size="32" font-family="Arial, Helvetica, sans-serif" letter-spacing="5">PERFORMANCE</text>
+  <text x="445" y="312" fill="#EAF3FF" font-size="62" font-weight="700" font-family="Arial, Helvetica, sans-serif">Lighthouse 95+</text>
+  <text x="445" y="362" fill="#A9C0DE" font-size="30" font-family="Arial, Helvetica, sans-serif">Core Web Vitals and fast Astro delivery</text>
+  <g fill="#1B304E" stroke="#4D6F99">
+    <rect x="445" y="404" width="210" height="52" rx="26" />
+    <rect x="672" y="404" width="196" height="52" rx="26" />
+    <rect x="885" y="404" width="178" height="52" rx="26" />
+  </g>
+  <g fill="#CBE2FF" font-size="23" font-family="Arial, Helvetica, sans-serif">
+    <text x="495" y="438">LCP</text>
+    <text x="733" y="438">CLS</text>
+    <text x="939" y="438">INP</text>
+  </g>
+</svg>

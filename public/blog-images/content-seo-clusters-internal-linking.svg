@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Content SEO clusters and internal linking</title>
+  <desc id="desc">Illustration for content clusters, internal links and topic authority growth.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#061329" />
+      <stop offset="100%" stop-color="#0A1E3E" />
+    </linearGradient>
+    <radialGradient id="glow" cx="22%" cy="80%" r="58%">
+      <stop offset="0%" stop-color="#37D4FF" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#37D4FF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <rect x="72" y="72" width="1056" height="486" rx="34" fill="#081D3A" fill-opacity="0.84" stroke="#2B4B72" />
+  <text x="150" y="140" fill="#35D0FF" font-size="30" font-family="Arial, Helvetica, sans-serif" letter-spacing="5">CONTENT SEO</text>
+  <text x="150" y="216" fill="#EAF3FF" font-size="58" font-weight="700" font-family="Arial, Helvetica, sans-serif">Topic clusters that build authority</text>
+  <g fill="#193151" stroke="#4E759F" stroke-width="2">
+    <circle cx="280" cy="356" r="68" />
+    <circle cx="470" cy="300" r="58" />
+    <circle cx="470" cy="416" r="58" />
+    <circle cx="660" cy="356" r="58" />
+    <circle cx="850" cy="300" r="58" />
+    <circle cx="850" cy="416" r="58" />
+  </g>
+  <g fill="none" stroke="#4DE9D8" stroke-width="4" stroke-linecap="round">
+    <path d="M347 340 417 316" />
+    <path d="M347 372 417 400" />
+    <path d="M528 300 602 342" />
+    <path d="M528 416 602 370" />
+    <path d="M718 342 792 306" />
+    <path d="M718 370 792 410" />
+  </g>
+  <g fill="#EAF3FF" font-size="21" font-family="Arial, Helvetica, sans-serif" font-weight="700">
+    <text x="230" y="362">Pillar</text>
+    <text x="438" y="306">SEO</text>
+    <text x="434" y="422">Performance</text>
+    <text x="625" y="362">Service</text>
+    <text x="818" y="306">Case</text>
+    <text x="821" y="422">Guide</text>
+  </g>
+  <text x="150" y="512" fill="#A8C0DE" font-size="29" font-family="Arial, Helvetica, sans-serif">Internal links to services, references and supporting articles</text>
+</svg>

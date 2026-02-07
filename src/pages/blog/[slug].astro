@@ -5,6 +5,7 @@ import BlogCategoryPill from '../../components/blog/BlogCategoryPill.astro';
 import { site } from '../../data/site';
 import { defaultLang } from '../../i18n/languages';
 import { getBlogPost, getBlogPosts } from '../../i18n/blog';
+import { getBlogImageMeta } from '../../i18n/blogImages';
 import { getBlogCtaTarget, getBlogServicesLabel } from '../../i18n/blogCta';
 import { getCopy } from '../../i18n/copy';
 import { localizePath } from '../../i18n/utils';
@@ -23,6 +24,10 @@ if (!post) {
 }
 
 const articleUrl = `${site.url}${localizePath(`/blog/${post.slug}`, lang)}`;
+const blogImage = getBlogImageMeta(post.id);
+const blogImageUrl = blogImage.src.startsWith('http') ? blogImage.src : `${site.url}${blogImage.src}`;
+const blogImageAlt = `Illustration for ${post.title}. Topic: ${post.category}.`;
+const blogImageCaption = `Topic: ${post.category}`;
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -32,6 +37,14 @@ const articleSchema = {
   dateModified: post.date,
   inLanguage: lang,
   mainEntityOfPage: articleUrl,
+  image: {
+    '@type': 'ImageObject',
+    url: blogImageUrl,
+    width: blogImage.width,
+    height: blogImage.height,
+    caption: blogImageAlt,
+  },
+  thumbnailUrl: blogImageUrl,
   author: { '@type': 'Organization', name: site.name },
   publisher: { '@type': 'Organization', name: site.name },
 };
@@ -82,6 +95,11 @@ const nextStepLabel = 'Recommended next step';
   lang={lang}
   title={post.title}
   description={post.excerpt}
+  image={blogImage.src}
+  imageAlt={blogImageAlt}
+  imageWidth={blogImage.width}
+  imageHeight={blogImage.height}
+  imageType={blogImage.type}
   type="article"
   publishedTime={post.date}
   modifiedTime={post.date}
@@ -106,6 +124,21 @@ const nextStepLabel = 'Recommended next step';
         <p class="text-sm text-mist/80">
           {publishedLabel}: {formattedDate} · {post.readingTime}
         </p>
+        <figure class="overflow-hidden rounded-3xl border border-white/10 bg-midnight/70">
+          <img
+            src={blogImage.src}
+            alt={blogImageAlt}
+            width={blogImage.width}
+            height={blogImage.height}
+            class="h-auto w-full object-cover"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <figcaption class="border-t border-white/10 px-4 py-3 text-xs text-mist/75 sm:px-5">
+            {blogImageCaption}
+          </figcaption>
+        </figure>
       </div>
     </Container>
   </section>
