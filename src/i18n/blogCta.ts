@@ -1,4 +1,12 @@
-export type BlogCtaTopic = 'performance' | 'seo' | 'design' | 'shopify' | 'apps' | 'general';
+export type BlogCtaTopic =
+  | 'performance'
+  | 'seo'
+  | 'content'
+  | 'ai'
+  | 'design'
+  | 'shopify'
+  | 'apps'
+  | 'general';
 
 type BlogCtaInput = {
   category?: string;
@@ -9,6 +17,8 @@ type BlogCtaInput = {
 const topicAnchors: Record<BlogCtaTopic, string> = {
   performance: '#focus-performance',
   seo: '#focus-seo',
+  content: '#focus-seo',
+  ai: '#focus-apps',
   design: '#focus-design',
   shopify: '#focus-shopify',
   apps: '#focus-apps',
@@ -26,12 +36,12 @@ const includesAny = (haystack: string, needles: string[]) => needles.some((needl
 const categoryToTopic = (rawCategory: string): BlogCtaTopic | null => {
   const category = normalizeText(rawCategory);
   if (!category) return null;
+  if (includesAny(category, ['content seo', 'content'])) return 'content';
+  if (includesAny(category, ['ai seo', 'ai-seo'])) return 'ai';
   if (includesAny(category, ['shopify', 'e-shop', 'eshop', 'e-commerce'])) return 'shopify';
   if (includesAny(category, ['design', 'dizajn', 'typografi'])) return 'design';
-  if (category.includes('ai seo') || (category.includes('ai') && category.includes('seo'))) return 'apps';
-  if (category.includes('content seo')) return 'seo';
   if (category.includes('seo')) return 'seo';
-  if (includesAny(category, ['performance', 'vykon', 'wydajnosc'])) return 'performance';
+  if (includesAny(category, ['performance', 'vykon', 'wydajnosc', 'vydajnost'])) return 'performance';
   if (includesAny(category, ['app', 'aplikac'])) return 'apps';
   return null;
 };
@@ -40,9 +50,14 @@ const bodyToTopic = (rawBody: string): BlogCtaTopic => {
   const body = normalizeText(rawBody);
   if (!body) return 'general';
 
+  if (includesAny(body, ['content seo', 'content cluster', 'obsahove klastre', 'klastry tresci'])) return 'content';
+  if (includesAny(body, ['ai seo', 'ai-ready', 'llm', 'artificial intelligence', 'ai odpoved', 'ai answers'])) {
+    return 'ai';
+  }
   if (includesAny(body, ['shopify', 'e-shop', 'eshop', 'e-commerce', 'sklep'])) return 'shopify';
-  if (includesAny(body, ['ai seo', 'ai-ready', 'llm', 'artificial intelligence'])) return 'apps';
-  if (includesAny(body, ['performance', 'core web vitals', 'lighthouse', 'speed', 'rychlost', 'vykon', 'wydajnosc'])) {
+  if (
+    includesAny(body, ['performance', 'core web vitals', 'lighthouse', 'speed', 'rychlost', 'vykon', 'wydajnosc', 'vydajnost'])
+  ) {
     return 'performance';
   }
   if (includesAny(body, ['seo', 'hreflang', 'schema', 'indexac', 'indexierung', 'crawl', 'on-page'])) return 'seo';
@@ -65,6 +80,8 @@ const servicesLabelByLang: Record<string, Record<BlogCtaTopic, string>> = {
   en: {
     performance: 'Performance setup',
     seo: 'Technical SEO',
+    content: 'Content + SEO strategy',
+    ai: 'AI + SEO setup',
     design: 'Lead websites',
     shopify: 'Shopify e-shops',
     apps: 'Web & mobile apps',
@@ -73,6 +90,8 @@ const servicesLabelByLang: Record<string, Record<BlogCtaTopic, string>> = {
   de: {
     performance: 'Performance',
     seo: 'Technisches SEO',
+    content: 'Content + SEO Strategie',
+    ai: 'AI + SEO Setup',
     design: 'Lead-Websites',
     shopify: 'Shopify-Shops',
     apps: 'Applikationen',
@@ -81,6 +100,8 @@ const servicesLabelByLang: Record<string, Record<BlogCtaTopic, string>> = {
   pl: {
     performance: 'Wydajność',
     seo: 'SEO techniczne',
+    content: 'Content + SEO',
+    ai: 'AI + SEO',
     design: 'Strony leadowe',
     shopify: 'Sklepy Shopify',
     apps: 'Aplikacje',
@@ -89,6 +110,8 @@ const servicesLabelByLang: Record<string, Record<BlogCtaTopic, string>> = {
   cz: {
     performance: 'Výkon',
     seo: 'Technické SEO',
+    content: 'Content + SEO',
+    ai: 'AI + SEO',
     design: 'Lead weby',
     shopify: 'Shopify e-shopy',
     apps: 'Aplikace',
@@ -97,6 +120,8 @@ const servicesLabelByLang: Record<string, Record<BlogCtaTopic, string>> = {
   sk: {
     performance: 'Výkon',
     seo: 'Technické SEO',
+    content: 'Content + SEO',
+    ai: 'AI + SEO',
     design: 'Lead weby',
     shopify: 'Shopify e-shopy',
     apps: 'Aplikácie',

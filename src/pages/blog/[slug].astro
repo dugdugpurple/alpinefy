@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
+import BlogCategoryPill from '../../components/blog/BlogCategoryPill.astro';
 import { site } from '../../data/site';
 import { defaultLang } from '../../i18n/languages';
 import { getBlogPost, getBlogPosts } from '../../i18n/blog';
@@ -98,9 +99,7 @@ const focusLine = `Recommended focus: ${servicesLabel}`;
         {copy.pages.blog.backLabel}
       </a>
       <div class="mt-10 max-w-4xl space-y-6 sm:space-y-7">
-        <div class="text-[11px] uppercase tracking-[0.24em] text-aqua/82">
-          {post.category}
-        </div>
+        <BlogCategoryPill category={post.category} topic={ctaTarget.topic} />
         <h1 class="font-display text-4xl leading-[1.03] sm:text-5xl lg:text-6xl">{post.title}</h1>
         <p class="max-w-2xl text-base text-mist sm:text-lg">{post.excerpt}</p>
         <p class="text-sm text-mist/80">

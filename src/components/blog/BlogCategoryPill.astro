@@ -1,0 +1,77 @@
+---
+import { siShopify } from 'simple-icons';
+import type { BlogCtaTopic } from '../../i18n/blogCta';
+
+type Props = {
+  category: string;
+  topic?: BlogCtaTopic;
+};
+
+const { category, topic = 'general' } = Astro.props as Props;
+
+const iconLabelByTopic: Record<BlogCtaTopic, string> = {
+  performance: 'Performance',
+  seo: 'SEO',
+  content: 'Content SEO',
+  ai: 'AI SEO',
+  design: 'Design',
+  shopify: 'Shopify',
+  apps: 'Applications',
+  general: 'Category',
+};
+
+const iconLabel = iconLabelByTopic[topic] ?? iconLabelByTopic.general;
+---
+
+<div class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-aqua/85">
+  <span class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/12 bg-coal/60">
+    {topic === 'shopify' ? (
+      <svg
+        viewBox="0 0 24 24"
+        class="h-3.5 w-3.5"
+        fill="currentColor"
+        aria-label={iconLabel}
+        style={`color:#${siShopify.hex}`}
+      >
+        <path d={siShopify.path}></path>
+      </svg>
+    ) : topic === 'performance' ? (
+      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-aqua" fill="none" stroke="currentColor" stroke-width="1.9" aria-label={iconLabel}>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 14a8 8 0 1 1 16 0"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 14 17 9"></path>
+      </svg>
+    ) : topic === 'seo' ? (
+      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-aqua" fill="none" stroke="currentColor" stroke-width="1.9" aria-label={iconLabel}>
+        <circle cx="11" cy="11" r="6"></circle>
+        <path stroke-linecap="round" stroke-linejoin="round" d="m20 20-4.2-4.2"></path>
+      </svg>
+    ) : topic === 'content' ? (
+      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-aqua" fill="none" stroke="currentColor" stroke-width="1.9" aria-label={iconLabel}>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7 4h8l4 4v12H7z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 4v4h4"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 13h6M10 17h5"></path>
+      </svg>
+    ) : topic === 'ai' ? (
+      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-aqua" fill="none" stroke="currentColor" stroke-width="1.9" aria-label={iconLabel}>
+        <path stroke-linecap="round" stroke-linejoin="round" d="m12 3 1.6 3.2L17 7.8l-2.4 2.4.6 3.4L12 12l-3.2 1.6.6-3.4L7 7.8l3.4-.6L12 3z"></path>
+        <circle cx="12" cy="16.5" r="2"></circle>
+      </svg>
+    ) : topic === 'design' ? (
+      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-aqua" fill="none" stroke="currentColor" stroke-width="1.9" aria-label={iconLabel}>
+        <path stroke-linecap="round" stroke-linejoin="round" d="m3 21 3.6-1 10.8-10.8a2.3 2.3 0 0 0-3.2-3.2L3.4 16.8 3 21z"></path>
+      </svg>
+    ) : topic === 'apps' ? (
+      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-aqua" fill="none" stroke="currentColor" stroke-width="1.9" aria-label={iconLabel}>
+        <rect x="4" y="4" width="7" height="7" rx="1.5"></rect>
+        <rect x="13" y="4" width="7" height="7" rx="1.5"></rect>
+        <rect x="4" y="13" width="7" height="7" rx="1.5"></rect>
+        <rect x="13" y="13" width="7" height="7" rx="1.5"></rect>
+      </svg>
+    ) : (
+      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-aqua" fill="none" stroke="currentColor" stroke-width="1.9" aria-label={iconLabel}>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h10v10H7z"></path>
+      </svg>
+    )}
+  </span>
+  <span>{category}</span>
+</div>
