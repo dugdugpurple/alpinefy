@@ -59,6 +59,80 @@ const formattedDate = new Intl.DateTimeFormat(localeByLang[lang] ?? 'en-US', {
   year: 'numeric',
 }).format(new Date(post.date));
 const publishedLabel = publishedLabelByLang[lang] ?? publishedLabelByLang.en;
+const relatedHeadingByLang = {
+  en: 'Related SEO insights',
+  de: 'Ähnliche SEO-Themen',
+  pl: 'Powiązane artykuły SEO',
+  cz: 'Související SEO články',
+  sk: 'Súvisiace SEO články',
+};
+const relatedIntroByLang = {
+  en: 'Continue with practical topics that connect performance, technical SEO and growth.',
+  de: 'Vertiefen Sie das Thema mit praktischen Beiträgen, die Performance, technisches SEO und Wachstum verbinden.',
+  pl: 'Przejdź na kolejne praktyczne tematy łączące wydajność, SEO techniczne i wzrost.',
+  cz: 'Pokračujte praktickými tématy, která propojují výkon, technické SEO a růst.',
+  sk: 'Pokračujte praktickými témami, ktoré prepájajú výkon, technické SEO a rast.',
+};
+const implementationTitleByLang = {
+  en: 'Want this implemented on your website?',
+  de: 'Möchten Sie das auf Ihrer Website umsetzen?',
+  pl: 'Chcesz wdrożyć to na swojej stronie?',
+  cz: 'Chcete to nasadit na svém webu?',
+  sk: 'Chcete to nasadiť na svoj web?',
+};
+const implementationTextByLang = {
+  en: 'We can turn these recommendations into concrete changes on your pages, templates and analytics setup.',
+  de: 'Diese Empfehlungen setzen wir in konkrete Änderungen an Seiten, Templates und Analytics um.',
+  pl: 'Możemy zamienić te rekomendacje na konkretne zmiany w stronach, szablonach i analityce.',
+  cz: 'Doporučení umíme převést do konkrétních úprav stránek, šablon a analytiky.',
+  sk: 'Tieto odporúčania vieme premeniť na konkrétne úpravy stránok, šablón a analytiky.',
+};
+const servicesLabelByLang = {
+  en: 'View services',
+  de: 'Leistungen',
+  pl: 'Usługi',
+  cz: 'Služby',
+  sk: 'Služby',
+};
+const contactLabelByLang = {
+  en: 'Book a consultation',
+  de: 'Beratung buchen',
+  pl: 'Umów konsultację',
+  cz: 'Rezervovat konzultaci',
+  sk: 'Rezervovať konzultáciu',
+};
+const readArticleLabelByLang = {
+  en: 'Read article',
+  de: 'Artikel lesen',
+  pl: 'Czytaj artykuł',
+  cz: 'Číst článek',
+  sk: 'Čítať článok',
+};
+const internalLinkingLabelByLang = {
+  en: 'Internal linking',
+  de: 'Internes Linking',
+  pl: 'Linkowanie wewnętrzne',
+  cz: 'Interní prolinkování',
+  sk: 'Interné prelinkovanie',
+};
+const relatedPosts = getBlogPosts(lang)
+  .filter((item) => item.id !== post.id)
+  .sort((a, b) => {
+    const categoryScore = Number(b.category === post.category) - Number(a.category === post.category);
+    if (categoryScore !== 0) return categoryScore;
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  })
+  .slice(0, 3);
+const servicesHref = localizePath('/services', lang);
+const contactHref = localizePath('/contact', lang);
+const relatedHeading = relatedHeadingByLang[lang] ?? relatedHeadingByLang.en;
+const relatedIntro = relatedIntroByLang[lang] ?? relatedIntroByLang.en;
+const implementationTitle = implementationTitleByLang[lang] ?? implementationTitleByLang.en;
+const implementationText = implementationTextByLang[lang] ?? implementationTextByLang.en;
+const servicesLabel = servicesLabelByLang[lang] ?? servicesLabelByLang.en;
+const contactLabel = contactLabelByLang[lang] ?? contactLabelByLang.en;
+const readArticleLabel = readArticleLabelByLang[lang] ?? readArticleLabelByLang.en;
+const internalLinkingLabel = internalLinkingLabelByLang[lang] ?? internalLinkingLabelByLang.en;
 ---
 
 <BaseLayout
@@ -119,6 +193,50 @@ const publishedLabel = publishedLabelByLang[lang] ?? publishedLabelByLang.en;
           </section>
         ))}
       </article>
+    </Container>
+  </section>
+
+  <div class="border-t border-white/10"></div>
+
+  <section class="py-12 sm:py-14">
+    <Container class="max-w-[1120px]">
+      <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+        <div class="space-y-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/85">{relatedHeading}</p>
+          <p class="max-w-2xl text-sm text-mist sm:text-base">{relatedIntro}</p>
+          <div class="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/4">
+            {relatedPosts.map((related) => (
+              <article class="p-4 sm:p-5">
+                <p class="text-[11px] uppercase tracking-[0.2em] text-aqua/80">
+                  {related.category} · {related.readingTime}
+                </p>
+                <h3 class="mt-2 font-display text-xl">
+                  <a class="transition hover:text-aqua" href={`${localizePath('/blog', lang)}/${related.slug}`}>
+                    {related.title}
+                  </a>
+                </h3>
+                <p class="mt-2 text-sm text-mist">{related.excerpt}</p>
+                <a
+                  class="mt-3 inline-flex text-sm font-semibold text-aqua transition hover:text-ice"
+                  href={`${localizePath('/blog', lang)}/${related.slug}`}
+                >
+                  {readArticleLabel} →
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <aside class="card h-fit space-y-4 rounded-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/85">{internalLinkingLabel}</p>
+          <h3 class="font-display text-2xl">{implementationTitle}</h3>
+          <p class="text-sm text-mist sm:text-base">{implementationText}</p>
+          <div class="flex flex-wrap gap-3">
+            <a class="btn-primary" href={contactHref}>{contactLabel}</a>
+            <a class="btn-secondary" href={servicesHref}>{servicesLabel}</a>
+          </div>
+        </aside>
+      </div>
     </Container>
   </section>
 </BaseLayout>
