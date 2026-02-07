@@ -4,6 +4,7 @@ import Container from '../../../components/Container.astro';
 import { site } from '../../../data/site';
 import { languages, defaultLang, isSupportedLang } from '../../../i18n/languages';
 import { getBlogPost, getBlogPosts } from '../../../i18n/blog';
+import { getBlogCtaTarget, getBlogServicesLabel } from '../../../i18n/blogCta';
 import { getCopy } from '../../../i18n/copy';
 import { localizePath } from '../../../i18n/utils';
 
@@ -115,6 +116,13 @@ const internalLinkingLabelByLang = {
   cz: 'Interní prolinkování',
   sk: 'Interné prelinkovanie',
 };
+const focusPrefixByLang = {
+  en: 'Recommended focus',
+  de: 'Empfohlener Fokus',
+  pl: 'Rekomendowany fokus',
+  cz: 'Doporučený fokus',
+  sk: 'Odporúčaný fokus',
+};
 const relatedPosts = getBlogPosts(lang)
   .filter((item) => item.id !== post.id)
   .sort((a, b) => {
@@ -123,16 +131,20 @@ const relatedPosts = getBlogPosts(lang)
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   })
   .slice(0, 3);
-const servicesHref = localizePath('/services', lang);
+const ctaTarget = getBlogCtaTarget(post);
+const servicesHref = `${localizePath('/services', lang)}${ctaTarget.anchor}`;
 const contactHref = localizePath('/contact', lang);
 const relatedHeading = relatedHeadingByLang[lang] ?? relatedHeadingByLang.en;
 const relatedIntro = relatedIntroByLang[lang] ?? relatedIntroByLang.en;
 const implementationTitle = implementationTitleByLang[lang] ?? implementationTitleByLang.en;
 const implementationText = implementationTextByLang[lang] ?? implementationTextByLang.en;
-const servicesLabel = servicesLabelByLang[lang] ?? servicesLabelByLang.en;
+const defaultServicesLabel = servicesLabelByLang[lang] ?? servicesLabelByLang.en;
+const servicesLabel = getBlogServicesLabel(lang, ctaTarget.topic) || defaultServicesLabel;
 const contactLabel = contactLabelByLang[lang] ?? contactLabelByLang.en;
 const readArticleLabel = readArticleLabelByLang[lang] ?? readArticleLabelByLang.en;
 const internalLinkingLabel = internalLinkingLabelByLang[lang] ?? internalLinkingLabelByLang.en;
+const focusPrefix = focusPrefixByLang[lang] ?? focusPrefixByLang.en;
+const focusLine = `${focusPrefix}: ${servicesLabel}`;
 ---
 
 <BaseLayout
@@ -231,6 +243,7 @@ const internalLinkingLabel = internalLinkingLabelByLang[lang] ?? internalLinking
           <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/85">{internalLinkingLabel}</p>
           <h3 class="font-display text-2xl">{implementationTitle}</h3>
           <p class="text-sm text-mist sm:text-base">{implementationText}</p>
+          <p class="text-sm font-semibold text-aqua/90">{focusLine}</p>
           <div class="flex flex-wrap gap-3">
             <a class="btn-primary" href={contactHref}>{contactLabel}</a>
             <a class="btn-secondary" href={servicesHref}>{servicesLabel}</a>

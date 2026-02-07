@@ -13,6 +13,13 @@ const serviceIcons = [
   'M6 8V7a6 6 0 0 1 12 0v1M4 8h16l-1 12H5L4 8z',
   'M7 7h10M7 11h10M7 15h6',
 ];
+
+const serviceAnchors = [
+  { id: 'service-lead', aliases: ['focus-design'] },
+  { id: 'service-corporate', aliases: ['focus-seo', 'focus-content'] },
+  { id: 'service-shopify', aliases: ['focus-shopify', 'focus-ecommerce'] },
+  { id: 'service-apps', aliases: ['focus-performance', 'focus-ai', 'focus-apps'] },
+];
 ---
 
 <section class="py-20 sm:py-24" id="sluzby">
@@ -23,26 +30,34 @@ const serviceIcons = [
       subtitle={sections.services.subtitle}
     />
     <div class="grid gap-5 md:grid-cols-2">
-      {sections.services.items.map((service, index) => (
-        <article class="card card-3d h-full">
-          <div class="flex items-start gap-4">
-            <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/8 text-aqua">
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d={serviceIcons[index]}></path>
-              </svg>
-            </span>
-            <div>
-              <h3 class="font-display text-2xl">{service.title}</h3>
-              <p class="mt-3 text-sm text-mist">{service.description}</p>
-            </div>
-          </div>
-          <div class="mt-5 flex flex-wrap gap-2">
-            {service.tags.map((tag) => (
-              <span class="tag">{tag}</span>
+      {sections.services.items.map((service, index) => {
+        const anchor = serviceAnchors[index] ?? { id: `service-${index + 1}`, aliases: [] };
+        return (
+          <div class="relative">
+            {anchor.aliases.map((alias) => (
+              <span id={alias} class="pointer-events-none absolute -top-28 block h-0 w-0"></span>
             ))}
+            <article id={anchor.id} class="card card-3d h-full scroll-mt-28">
+              <div class="flex items-start gap-4">
+                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/8 text-aqua">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d={serviceIcons[index]}></path>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="font-display text-2xl">{service.title}</h3>
+                  <p class="mt-3 text-sm text-mist">{service.description}</p>
+                </div>
+              </div>
+              <div class="mt-5 flex flex-wrap gap-2">
+                {service.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </article>
           </div>
-        </article>
-      ))}
+        );
+      })}
     </div>
   </Container>
 </section>
