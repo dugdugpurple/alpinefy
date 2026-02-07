@@ -75,6 +75,7 @@ const servicesLabel = getBlogServicesLabel(lang, ctaTarget.topic);
 const contactLabel = 'Book a consultation';
 const readArticleLabel = 'Read article';
 const focusLine = `Recommended focus: ${servicesLabel}`;
+const nextStepLabel = 'Recommended next step';
 ---
 
 <BaseLayout
@@ -168,7 +169,7 @@ const focusLine = `Recommended focus: ${servicesLabel}`;
         </div>
 
         <aside class="card h-fit space-y-4 rounded-2xl">
-          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/85">Internal linking</p>
+          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/85">{nextStepLabel}</p>
           <h3 class="font-display text-2xl">{implementationTitle}</h3>
           <p class="text-sm text-mist sm:text-base">{implementationText}</p>
           <p class="text-sm font-semibold text-aqua/90">{focusLine}</p>
