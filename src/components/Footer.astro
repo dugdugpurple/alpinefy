@@ -160,7 +160,7 @@ const currentPath = Astro.url.pathname;
             data-endpoint="/"
             data-success={newsletter.success}
             data-error={newsletter.error}
-            action={getRoutePath('thankYou', lang)}
+            action={`${getRoutePath('thankYou', lang)}?src=newsletter`}
           >
             <input type="hidden" name="form-name" value={newsletterFormName} />
             <p class="hidden">
@@ -259,6 +259,13 @@ const currentPath = Astro.url.pathname;
           if (!response.ok) throw new Error(`Newsletter submit failed: ${response.status}`);
 
           form.reset();
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'newsletter_signup_success',
+            form_name: form.getAttribute('name') || 'newsletter-signup',
+            page_path: window.location.pathname,
+            page_language: document.documentElement.lang || 'en',
+          });
           showPopup(successMessage);
         } catch (error) {
           try {

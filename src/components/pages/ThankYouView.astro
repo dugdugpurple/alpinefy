@@ -80,4 +80,33 @@ const copy = copyByLang[lang] ?? copyByLang.en;
       </div>
     </Container>
   </section>
+
+  <script is:inline>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const source = params.get('src');
+
+      if (!source) return;
+
+      const eventNameMap = {
+        contact: 'contact_form_success',
+        newsletter: 'newsletter_signup_success',
+      };
+
+      const eventName = eventNameMap[source];
+      if (!eventName) return;
+
+      const dedupeKey = `lead-event:${eventName}:${window.location.pathname}`;
+      if (sessionStorage.getItem(dedupeKey) === '1') return;
+      sessionStorage.setItem(dedupeKey, '1');
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: eventName,
+        lead_source: source,
+        page_path: window.location.pathname,
+        page_language: document.documentElement.lang || 'en',
+      });
+    })();
+  </script>
 </BaseLayout>

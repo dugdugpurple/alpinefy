@@ -197,7 +197,7 @@ const currentPath = Astro.url.pathname;
               netlify-honeypot="bot-field"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
-              action={getRoutePath('thankYou', lang)}
+              action={`${getRoutePath('thankYou', lang)}?src=contact`}
             >
               <input type="hidden" name="form-name" value={contactFormName} />
               <p class="hidden">
