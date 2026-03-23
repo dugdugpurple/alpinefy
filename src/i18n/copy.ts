@@ -493,7 +493,7 @@ export const copy: Record<Lang, Copy> = {
         meta: {
           title: 'Fast websites that deliver results',
           description:
-            'AI & Web Studio focused on performance, clean design and measurable growth.',
+            'AI & Web Studio that designs and builds fast websites with clean design, technical stability and measurable impact on business growth.',
         },
         hero: {
           eyebrow: 'Alpinefy / AI & Web Studio',
@@ -507,7 +507,8 @@ export const copy: Record<Lang, Copy> = {
       services: {
         meta: {
           title: 'Services',
-          description: 'Lead websites, corporate websites, Shopify e-shops and automation + AI workflows.',
+          description:
+            'We design lead and corporate websites, Shopify stores, analytics, automation and AI workflows so your website generates more inquiries and supports growth.',
         },
         hero: {
           eyebrow: 'Services',
@@ -520,7 +521,8 @@ export const copy: Record<Lang, Copy> = {
       process: {
         meta: {
           title: 'Process',
-          description: 'Transparent steps from analysis to launch and optimization.',
+          description:
+            'From initial analysis through structure design, UI, development and launch to measurement and optimization, we work transparently and without unnecessary delays.',
         },
         hero: {
           eyebrow: 'Process',
@@ -533,7 +535,8 @@ export const copy: Record<Lang, Copy> = {
       references: {
         meta: {
           title: 'References',
-          description: 'Projects, results and measurable impact.',
+          description:
+            'Explore real projects, concrete results and client feedback from teams we helped speed up their websites, improve conversions and work with data more effectively.',
         },
         hero: {
           eyebrow: 'References',
@@ -623,7 +626,8 @@ export const copy: Record<Lang, Copy> = {
       about: {
         meta: {
           title: 'About',
-          description: 'Senior team focused on performance and clean product design.',
+          description:
+            'We are a senior team that combines strategy, design, development and analytics into practical digital solutions for companies that want to grow faster and more efficiently.',
         },
         hero: {
           eyebrow: 'About',
@@ -678,7 +682,8 @@ export const copy: Record<Lang, Copy> = {
       blog: {
         meta: {
           title: 'Blog',
-          description: 'Insights on performance, design, analytics and AI solutions for modern websites.',
+          description:
+            'In our blog, we share practical know-how on web performance, SEO, analytics and AI solutions that help teams make better data-driven decisions.',
         },
         hero: {
           eyebrow: 'Blog',
@@ -698,7 +703,8 @@ export const copy: Record<Lang, Copy> = {
       contact: {
         meta: {
           title: 'Contact',
-          description: 'Write us, schedule a consult and we will propose next steps.',
+          description:
+            'Tell us your goal, project or challenge and we will propose next steps, scope estimate and a solution that makes sense both commercially and technically.',
         },
         hero: {
           eyebrow: 'Contact',
@@ -988,7 +994,8 @@ export const copy: Record<Lang, Copy> = {
       home: {
         meta: {
           title: 'Schnelle Websites, die Ergebnisse liefern',
-          description: 'AI & Web Studio mit Fokus auf Performance, klares Design und messbares Wachstum.',
+          description:
+            'AI & Web Studio, das schnelle Websites mit klarem Design, technischer Stabilität und messbarem Beitrag zum Unternehmenswachstum konzipiert und umsetzt.',
         },
         hero: {
           eyebrow: 'Alpinefy / AI & Web Studio',
@@ -1002,7 +1009,8 @@ export const copy: Record<Lang, Copy> = {
       services: {
         meta: {
           title: 'Leistungen',
-          description: 'Lead‑Websites, Unternehmensseiten, Shopify‑Shops sowie Automatisierung und KI-Workflows.',
+          description:
+            'Wir entwickeln Lead- und Unternehmenswebsites, Shopify-Shops, Analytics, Automatisierungen und KI-Workflows, damit Ihre Website mehr Anfragen bringt und Wachstum unterstützt.',
         },
         hero: {
           eyebrow: 'Leistungen',
@@ -1015,7 +1023,8 @@ export const copy: Record<Lang, Copy> = {
       process: {
         meta: {
           title: 'Prozess',
-          description: 'Transparente Schritte von Analyse bis Launch und Optimierung.',
+          description:
+            'Von der initialen Analyse über Struktur, Design und Entwicklung bis zu Launch, Messung und Optimierung arbeiten wir transparent und ohne unnötige Verzögerungen.',
         },
         hero: {
           eyebrow: 'Prozess',
@@ -1028,7 +1037,8 @@ export const copy: Record<Lang, Copy> = {
       references: {
         meta: {
           title: 'Referenzen',
-          description: 'Projekte, Ergebnisse und messbarer Impact.',
+          description:
+            'Sehen Sie reale Projekte, konkrete Ergebnisse und Kundenfeedback von Teams, denen wir geholfen haben, Websites zu beschleunigen, Conversions zu steigern und datenbasierter zu arbeiten.',
         },
         hero: {
           eyebrow: 'Referenzen',
@@ -1118,7 +1128,8 @@ export const copy: Record<Lang, Copy> = {
       about: {
         meta: {
           title: 'Über uns',
-          description: 'Senior‑Team mit Fokus auf Performance und klares Produktdesign.',
+          description:
+            'Wir sind ein Senior-Team, das Strategie, Design, Entwicklung und Analytics zu funktionalen digitalen Lösungen für Unternehmen verbindet, die schneller und effizienter wachsen wollen.',
         },
         hero: {
           eyebrow: 'Über uns',
@@ -1172,7 +1183,8 @@ export const copy: Record<Lang, Copy> = {
       blog: {
         meta: {
           title: 'Blog',
-          description: 'Insights zu Performance, Design, Analytics und KI-Lösungen für moderne Websites.',
+          description:
+            'Im Blog teilen wir praxisnahes Know-how zu Web-Performance, SEO, Analytics und KI-Lösungen, die bessere Entscheidungen auf Basis von Daten ermöglichen.',
         },
         hero: {
           eyebrow: 'Blog',
@@ -1192,7 +1204,8 @@ export const copy: Record<Lang, Copy> = {
       contact: {
         meta: {
           title: 'Kontakt',
-          description: 'Schreiben Sie uns – wir schlagen die nächsten Schritte vor.',
+          description:
+            'Schreiben Sie uns Ihr Ziel, Projekt oder Problem und wir schlagen die nächsten Schritte, einen realistischen Umfang und eine Lösung vor, die fachlich und wirtschaftlich passt.',
         },
         hero: {
           eyebrow: 'Kontakt',
@@ -1481,7 +1494,8 @@ export const copy: Record<Lang, Copy> = {
       home: {
         meta: {
           title: 'Szybkie strony, które dają wyniki',
-          description: 'AI & Web Studio skoncentrowane na wydajności, czystym designie i mierzalnym wzroście.',
+          description:
+            'AI & Web Studio, które projektuje i tworzy szybkie strony z czystym designem, stabilnością techniczną i mierzalnym wpływem na wzrost biznesu.',
         },
         hero: {
           eyebrow: 'Alpinefy / AI & Web Studio',
@@ -1495,7 +1509,8 @@ export const copy: Record<Lang, Copy> = {
       services: {
         meta: {
           title: 'Usługi',
-          description: 'Strony leadowe, firmowe, sklepy Shopify oraz automatyzacje i workflow AI.',
+          description:
+            'Projektujemy strony leadowe i firmowe, sklepy Shopify, analitykę, automatyzacje i workflow AI tak, aby strona generowała więcej zapytań i realnie wspierała wzrost.',
         },
         hero: {
           eyebrow: 'Usługi',
@@ -1508,7 +1523,8 @@ export const copy: Record<Lang, Copy> = {
       process: {
         meta: {
           title: 'Proces',
-          description: 'Transparentne kroki od analizy po launch i optymalizację.',
+          description:
+            'Od analizy wstępnej przez strukturę, design i development aż po wdrożenie, pomiar i optymalizację działamy transparentnie i bez zbędnych opóźnień.',
         },
         hero: {
           eyebrow: 'Proces',
@@ -1521,7 +1537,8 @@ export const copy: Record<Lang, Copy> = {
       references: {
         meta: {
           title: 'Referencje',
-          description: 'Projekty, wyniki i mierzalny wpływ.',
+          description:
+            'Zobacz realne projekty, konkretne wyniki i opinie klientów, którym pomogliśmy przyspieszyć stronę, poprawić konwersje i lepiej pracować z danymi.',
         },
         hero: {
           eyebrow: 'Referencje',
@@ -1611,7 +1628,8 @@ export const copy: Record<Lang, Copy> = {
       about: {
         meta: {
           title: 'O nas',
-          description: 'Senior team skupiony na wydajności i czystym designie.',
+          description:
+            'Jesteśmy zespołem seniorów, który łączy strategię, design, development i analitykę w skuteczne rozwiązania cyfrowe dla firm chcących rosnąć szybciej i efektywniej.',
         },
         hero: {
           eyebrow: 'O nas',
@@ -1665,7 +1683,8 @@ export const copy: Record<Lang, Copy> = {
       blog: {
         meta: {
           title: 'Blog',
-          description: 'Wskazówki o wydajności, designie, analityce i rozwiązaniach AI dla nowoczesnych stron.',
+          description:
+            'Na blogu dzielimy się praktycznym know-how o wydajności strony, SEO, analityce i rozwiązaniach AI, które pomagają podejmować lepsze decyzje na podstawie danych.',
         },
         hero: {
           eyebrow: 'Blog',
@@ -1685,7 +1704,8 @@ export const copy: Record<Lang, Copy> = {
       contact: {
         meta: {
           title: 'Kontakt',
-          description: 'Napisz do nas, ustalmy konsultację i kolejne kroki.',
+          description:
+            'Napisz nam swój cel, projekt lub problem, a zaproponujemy kolejne kroki, szacowany zakres i rozwiązanie, które ma sens biznesowo i technicznie.',
         },
         hero: {
           eyebrow: 'Kontakt',
@@ -1975,7 +1995,8 @@ export const copy: Record<Lang, Copy> = {
       home: {
         meta: {
           title: 'Rychlé weby, které přinášejí výsledky',
-          description: 'AI & Web Studio zaměřené na výkon, čistý design a měřitelný růst.',
+          description:
+            'AI & Web Studio, které navrhuje a staví rychlé weby s čistým designem, technickou stabilitou a měřitelným dopadem na růst firmy.',
         },
         hero: {
           eyebrow: 'Alpinefy / AI & Web Studio',
@@ -1989,7 +2010,8 @@ export const copy: Record<Lang, Copy> = {
       services: {
         meta: {
           title: 'Služby',
-          description: 'Lead weby, firemní weby, Shopify e-shopy a automatizace a AI workflow.',
+          description:
+            'Navrhujeme lead i firemní weby, Shopify e-shopy, analytiku, automatizace i AI workflow tak, aby web přinášel více poptávek a podporoval růst.',
         },
         hero: {
           eyebrow: 'Služby',
@@ -2002,7 +2024,8 @@ export const copy: Record<Lang, Copy> = {
       process: {
         meta: {
           title: 'Proces',
-          description: 'Transparentní kroky od analýzy po launch a optimalizaci.',
+          description:
+            'Od úvodní analýzy přes návrh struktury, design a vývoj až po nasazení, měření a optimalizaci postupujeme transparentně a bez zbytečných průtahů.',
         },
         hero: {
           eyebrow: 'Proces',
@@ -2015,7 +2038,8 @@ export const copy: Record<Lang, Copy> = {
       references: {
         meta: {
           title: 'Reference',
-          description: 'Projekty, výsledky a měřitelný dopad.',
+          description:
+            'Podívejte se na reálné projekty, konkrétní výsledky a zpětnou vazbu klientů, kterým jsme pomohli zrychlit web, zlepšit konverze a lépe pracovat s daty.',
         },
         hero: {
           eyebrow: 'Reference',
@@ -2105,7 +2129,8 @@ export const copy: Record<Lang, Copy> = {
       about: {
         meta: {
           title: 'O nás',
-          description: 'Senior tým zaměřený na výkon a čistý design.',
+          description:
+            'Jsme seniorní tým, který spojuje strategii, design, vývoj a analytiku do funkčních digitálních řešení pro firmy, které chtějí růst rychleji a efektivněji.',
         },
         hero: {
           eyebrow: 'O nás',
@@ -2159,7 +2184,8 @@ export const copy: Record<Lang, Copy> = {
       blog: {
         meta: {
           title: 'Blog',
-          description: 'Poznatky o výkonu, designu, analytice a AI řešeních pro moderní weby.',
+          description:
+            'Na blogu sdílíme praktické know-how o výkonu webu, SEO, analytice a AI řešeních, která pomáhají dělat lepší rozhodnutí na základě dat.',
         },
         hero: {
           eyebrow: 'Blog',
@@ -2179,7 +2205,8 @@ export const copy: Record<Lang, Copy> = {
       contact: {
         meta: {
           title: 'Kontakt',
-          description: 'Napište nám a domluvme konzultaci.',
+          description:
+            'Napište nám svůj cíl, projekt nebo problém a navrhneme vám další kroky, odhad rozsahu i řešení, které bude dávat smysl obchodně i technicky.',
         },
         hero: {
           eyebrow: 'Kontakt',
@@ -2469,7 +2496,8 @@ export const copy: Record<Lang, Copy> = {
       home: {
         meta: {
           title: 'Rýchle weby, ktoré prinášajú výsledky',
-          description: 'AI & Web Studio zamerané na výkon, čistý dizajn a merateľný rast.',
+          description:
+            'AI & Web Studio, ktoré navrhuje a stavia rýchle weby s čistým dizajnom, technickou stabilitou a merateľným dopadom na rast biznisu.',
         },
         hero: {
           eyebrow: 'Alpinefy / AI & Web Studio',
@@ -2483,7 +2511,8 @@ export const copy: Record<Lang, Copy> = {
       services: {
         meta: {
           title: 'Služby',
-          description: 'Lead weby, firemné weby, Shopify e-shopy a automatizácie a AI workflow.',
+          description:
+            'Navrhujeme lead a firemné weby, Shopify e-shopy, analytiku, automatizácie aj AI workflow tak, aby web prinášal viac dopytov a podporoval rast.',
         },
         hero: {
           eyebrow: 'Služby',
@@ -2496,7 +2525,8 @@ export const copy: Record<Lang, Copy> = {
       process: {
         meta: {
           title: 'Proces',
-          description: 'Transparentný postup od analýzy cez dizajn až po launch.',
+          description:
+            'Od úvodnej analýzy cez návrh štruktúry, dizajn a vývoj až po nasadenie, meranie a optimalizáciu postupujeme transparentne a bez zbytočných prieťahov.',
         },
         hero: {
           eyebrow: 'Proces',
@@ -2509,7 +2539,8 @@ export const copy: Record<Lang, Copy> = {
       references: {
         meta: {
           title: 'Referencie',
-          description: 'Ukážky projektov, výsledky a konkrétne metriky.',
+          description:
+            'Pozrite si reálne projekty, konkrétne výsledky a spätnú väzbu klientov, ktorým sme pomohli zrýchliť web, zlepšiť konverzie a lepšie pracovať s dátami.',
         },
         hero: {
           eyebrow: 'Referencie',
@@ -2599,7 +2630,8 @@ export const copy: Record<Lang, Copy> = {
       about: {
         meta: {
           title: 'O nás',
-          description: 'Seniorný tím zameraný na výkon a čistý produktový dizajn.',
+          description:
+            'Sme seniorný tím, ktorý spája stratégiu, dizajn, vývoj a analytiku do funkčných digitálnych riešení pre firmy, ktoré chcú rásť rýchlejšie a efektívnejšie.',
         },
         hero: {
           eyebrow: 'O nás',
@@ -2653,7 +2685,8 @@ export const copy: Record<Lang, Copy> = {
       blog: {
         meta: {
           title: 'Blog',
-          description: 'Poznatky z výkonu, dizajnu, analytiky a AI riešení pre moderné weby.',
+          description:
+            'V blogu zdieľame praktické know-how o výkone webu, SEO, analytike a AI riešeniach, ktoré pomáhajú robiť lepšie rozhodnutia na základe dát.',
         },
         hero: {
           eyebrow: 'Blog',
@@ -2673,7 +2706,8 @@ export const copy: Record<Lang, Copy> = {
       contact: {
         meta: {
           title: 'Kontakt',
-          description: 'Napíšte nám, dohodnime si konzultáciu.',
+          description:
+            'Napíšte nám svoj cieľ, projekt alebo problém a navrhneme vám najbližšie kroky, odhad rozsahu aj riešenie, ktoré bude dávať zmysel obchodne aj technicky.',
         },
         hero: {
           eyebrow: 'Kontakt',
