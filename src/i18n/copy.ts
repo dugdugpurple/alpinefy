@@ -244,7 +244,7 @@ type Copy = {
 export const copy: Record<Lang, Copy> = {
   en: {
     site: {
-      tagline: 'Premium websites for growth-focused companies',
+      tagline: 'AI & Web Studio for growth-focused companies',
       description:
         'We do not just build websites. We create digital solutions for businesses that want to grow faster, more efficiently and based on data.',
     },
@@ -493,7 +493,7 @@ export const copy: Record<Lang, Copy> = {
         meta: {
           title: 'Fast websites that deliver results',
           description:
-            'Premium agency focused on performance, clean design and sustainable delivery.',
+            'AI & Web Studio focused on performance, clean design and measurable growth.',
         },
         hero: {
           eyebrow: 'Alpinefy / AI & Web Studio',
@@ -678,7 +678,7 @@ export const copy: Record<Lang, Copy> = {
       blog: {
         meta: {
           title: 'Blog',
-          description: 'Insights on performance, design and modern web development.',
+          description: 'Insights on performance, design, analytics and AI solutions for modern websites.',
         },
         hero: {
           eyebrow: 'Blog',
@@ -740,7 +740,7 @@ export const copy: Record<Lang, Copy> = {
   },
   de: {
     site: {
-      tagline: 'Premium-Websites für wachsende Unternehmen',
+      tagline: 'AI & Web Studio für wachsende Unternehmen',
       description:
         'Wir bauen nicht nur Websites. Wir entwickeln digitale Lösungen für Unternehmen, die schneller, effizienter und datenbasiert wachsen wollen.',
     },
@@ -988,7 +988,7 @@ export const copy: Record<Lang, Copy> = {
       home: {
         meta: {
           title: 'Schnelle Websites, die Ergebnisse liefern',
-          description: 'Premium‑Agentur für Performance, Design und nachhaltige Umsetzung.',
+          description: 'AI & Web Studio mit Fokus auf Performance, klares Design und messbares Wachstum.',
         },
         hero: {
           eyebrow: 'Alpinefy / AI & Web Studio',
@@ -1172,7 +1172,7 @@ export const copy: Record<Lang, Copy> = {
       blog: {
         meta: {
           title: 'Blog',
-          description: 'Insights zu Performance, Design und Web‑Entwicklung in Astro.',
+          description: 'Insights zu Performance, Design, Analytics und KI-Lösungen für moderne Websites.',
         },
         hero: {
           eyebrow: 'Blog',
@@ -1233,7 +1233,7 @@ export const copy: Record<Lang, Copy> = {
   },
   pl: {
     site: {
-      tagline: 'Premium strony dla rosnących firm',
+      tagline: 'AI & Web Studio dla rosnących firm',
       description:
         'Nie tworzymy tylko stron. Budujemy cyfrowe rozwiązania dla firm, które chcą rosnąć szybciej, efektywniej i w oparciu o dane.',
     },
@@ -1481,7 +1481,7 @@ export const copy: Record<Lang, Copy> = {
       home: {
         meta: {
           title: 'Szybkie strony, które dają wyniki',
-          description: 'Agencja premium skupiona na wydajności i czystym designie.',
+          description: 'AI & Web Studio skoncentrowane na wydajności, czystym designie i mierzalnym wzroście.',
         },
         hero: {
           eyebrow: 'Alpinefy / AI & Web Studio',
@@ -1665,7 +1665,7 @@ export const copy: Record<Lang, Copy> = {
       blog: {
         meta: {
           title: 'Blog',
-          description: 'Wskazówki o wydajności, designie i web dev w Astro.',
+          description: 'Wskazówki o wydajności, designie, analityce i rozwiązaniach AI dla nowoczesnych stron.',
         },
         hero: {
           eyebrow: 'Blog',
@@ -1727,7 +1727,7 @@ export const copy: Record<Lang, Copy> = {
   },
   cz: {
     site: {
-      tagline: 'Prémiové weby pro rostoucí firmy',
+      tagline: 'AI & Web Studio pro rostoucí firmy',
       description:
         'Nestavíme jen weby. Tvoříme digitální řešení pro firmy, které chtějí růst rychleji, efektivněji a na základě dat.',
     },
@@ -1975,7 +1975,7 @@ export const copy: Record<Lang, Copy> = {
       home: {
         meta: {
           title: 'Rychlé weby, které přinášejí výsledky',
-          description: 'Prémiová agentura se zaměřením na výkon a čistý design.',
+          description: 'AI & Web Studio zaměřené na výkon, čistý design a měřitelný růst.',
         },
         hero: {
           eyebrow: 'Alpinefy / AI & Web Studio',
@@ -2159,7 +2159,7 @@ export const copy: Record<Lang, Copy> = {
       blog: {
         meta: {
           title: 'Blog',
-          description: 'Poznatky z výkonu, designu a vývoje webů v Astro.',
+          description: 'Poznatky o výkonu, designu, analytice a AI řešeních pro moderní weby.',
         },
         hero: {
           eyebrow: 'Blog',
@@ -2221,7 +2221,7 @@ export const copy: Record<Lang, Copy> = {
   },
   sk: {
     site: {
-      tagline: 'Prémiové weby pre rastové firmy',
+      tagline: 'AI & Web Studio pre rastové firmy',
       description:
         'Nestaviame len weby. Tvoríme digitálne riešenia pre biznisy, ktoré chcú rásť rýchlejšie, efektívnejšie a na základe dát.',
     },
@@ -2469,7 +2469,7 @@ export const copy: Record<Lang, Copy> = {
       home: {
         meta: {
           title: 'Rýchle weby, ktoré prinášajú výsledky',
-          description: 'Premium agency zameraná na výkon, dizajn a udržateľné riešenia.',
+          description: 'AI & Web Studio zamerané na výkon, čistý dizajn a merateľný rast.',
         },
         hero: {
           eyebrow: 'Alpinefy / AI & Web Studio',
@@ -2653,7 +2653,7 @@ export const copy: Record<Lang, Copy> = {
       blog: {
         meta: {
           title: 'Blog',
-          description: 'Poznatky z výkonu, dizajnu a moderného vývoja webov.',
+          description: 'Poznatky z výkonu, dizajnu, analytiky a AI riešení pre moderné weby.',
         },
         hero: {
           eyebrow: 'Blog',

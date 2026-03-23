@@ -17,7 +17,7 @@ const buildSocials = (handle: string): SocialLink[] => [
   { label: 'LinkedIn', href: `https://www.linkedin.com/company/${handle}/` },
   { label: 'Threads', href: `https://www.threads.net/@${handle}` },
   { label: 'Instagram', href: `https://www.instagram.com/${handle}/` },
-  { label: 'GitHub', href: `https://github.com/${handle}` },
+  { label: 'GitHub', href: 'https://github.com/alpinefy' },
 ];
 
 export const getSocials = (lang: Lang = defaultLang): SocialLink[] => {
