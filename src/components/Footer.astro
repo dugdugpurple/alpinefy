@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
 const { lang = defaultLang } = Astro.props;
 const copy = getCopy(lang);
 
-const stacks = ['Web strategy', 'SEO', 'Performance', 'Analytics', 'Automation'];
+const stacks = ['Web strategy', 'SEO', 'Performance', 'Analytics', 'Automation & AI'];
 
 const newsletterCopy = {
   en: {
@@ -62,16 +62,17 @@ const newsletterCopy = {
 };
 
 const contactNoteCopy = {
-  en: 'Response within 24 hours on business days.',
-  de: 'Antwort innerhalb von 24 Stunden an Werktagen.',
-  pl: 'Odpowiedź w ciągu 24 godzin w dni robocze.',
-  cz: 'Odpověď do 24 hodin v pracovních dnech.',
-  sk: 'Odpoveď do 24 hodín v pracovných dňoch.',
+  en: 'During business days, we reply within 24 hours.',
+  de: 'An Werktagen antworten wir innerhalb von 24 Stunden.',
+  pl: 'W dni robocze odpowiadamy w ciągu 24 godzin.',
+  cz: 'V pracovních dnech odpovídáme do 24 hodin.',
+  sk: 'Počas pracovných dní odpovedáme do 24 hodín.',
 };
 
 const newsletter = newsletterCopy[lang] ?? newsletterCopy.en;
 const contactNote = contactNoteCopy[lang] ?? contactNoteCopy.en;
-const newsletterFormName = `newsletter-${lang}`;
+const newsletterFormName = 'newsletter-signup';
+const currentPath = Astro.url.pathname;
 ---
 
 <footer class="relative border-t border-white/10 bg-coal/55">
@@ -85,7 +86,7 @@ const newsletterFormName = `newsletter-${lang}`;
           </span>
           <div>
             <p class="font-display text-xl">{site.name}</p>
-            <p class="text-[11px] uppercase tracking-[0.25em] text-mist/85">Digital studio | Web3-ready</p>
+            <p class="text-[11px] uppercase tracking-[0.25em] text-mist/85">AI & Web Studio</p>
           </div>
         </div>
 
@@ -152,7 +153,9 @@ const newsletterFormName = `newsletter-${lang}`;
             name={newsletterFormName}
             method="POST"
             netlify
+            netlify-honeypot="bot-field"
             data-netlify="true"
+            data-netlify-honeypot="bot-field"
             data-newsletter-form
             data-endpoint="/"
             data-success={newsletter.success}
@@ -160,8 +163,15 @@ const newsletterFormName = `newsletter-${lang}`;
             action={getRoutePath('thankYou', lang)}
           >
             <input type="hidden" name="form-name" value={newsletterFormName} />
+            <p class="hidden">
+              <label>
+                Don’t fill this out if you’re human: <input name="bot-field" />
+              </label>
+            </p>
             <input type="hidden" name="recipient" value={site.email} />
             <input type="hidden" name="subject" value="New newsletter subscription" />
+            <input type="hidden" name="locale" value={lang} />
+            <input type="hidden" name="source_page" value={currentPath} />
             <label class="sr-only" for={`newsletter-email-${lang}`}>{newsletter.title}</label>
             <input
               id={`newsletter-email-${lang}`}
@@ -251,8 +261,12 @@ const newsletterFormName = `newsletter-${lang}`;
           form.reset();
           showPopup(successMessage);
         } catch (error) {
-          console.error(error);
-          showPopup(errorMessage, true);
+          try {
+            HTMLFormElement.prototype.submit.call(form);
+            return;
+          } catch {
+            showPopup(errorMessage, true);
+          }
         } finally {
           if (submitButton) {
             submitButton.removeAttribute('disabled');

@@ -53,7 +53,8 @@ const metaMap = {
 };
 
 const meta = metaMap[routeKey];
-const contactFormName = `kontakt-${lang}`;
+const contactFormName = 'contact-inquiry';
+const currentPath = Astro.url.pathname;
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description}>
@@ -182,7 +183,7 @@ const contactFormName = `kontakt-${lang}`;
 
       <section class="py-20 sm:py-24">
         <Container class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-          <div class="space-y-8">
+          <div class="space-y-8" id="kontakt-formular">
             <SectionHeading
               eyebrow={copy.pages.contact.formHeading.eyebrow}
               title={copy.pages.contact.formHeading.title}
@@ -193,12 +194,21 @@ const contactFormName = `kontakt-${lang}`;
               name={contactFormName}
               method="POST"
               netlify
+              netlify-honeypot="bot-field"
               data-netlify="true"
+              data-netlify-honeypot="bot-field"
               action={getRoutePath('thankYou', lang)}
             >
               <input type="hidden" name="form-name" value={contactFormName} />
+              <p class="hidden">
+                <label>
+                  Don’t fill this out if you’re human: <input name="bot-field" />
+                </label>
+              </p>
               <input type="hidden" name="recipient" value={site.email} />
               <input type="hidden" name="subject" value="New contact inquiry" />
+              <input type="hidden" name="locale" value={lang} />
+              <input type="hidden" name="source_page" value={currentPath} />
               <label class="grid gap-2 text-sm text-mist">
                 {copy.pages.contact.formLabels.name}
                 <input

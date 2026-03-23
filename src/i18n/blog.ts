@@ -1,4 +1,4 @@
-type Lang = 'en' | 'de' | 'pl' | 'cz' | 'sk';
+import type { Lang } from './languages';
 
 type BlogSection = {
   heading: string;

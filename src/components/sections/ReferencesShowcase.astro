@@ -14,6 +14,14 @@ const moreReviews = references.reviews.moreItems;
 const allReviews = [...reviews, ...moreReviews];
 const reviewsInitialVisible = 6;
 const reviewsBatchSize = 3;
+const totalReviews = allReviews.length;
+const getInitials = (name: string) =>
+  name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join('');
 
 const starPath =
   'M12 17.3l-5.4 3 1.4-6.1-4.7-4 6.2-.6L12 4l2.5 5.6 6.2.6-4.7 4 1.4 6.1z';
@@ -37,6 +45,14 @@ const reviewEmailCopy = {
 const approvalNote = reviewApprovalNote[lang] ?? reviewApprovalNote.en;
 const reviewEmail = reviewEmailCopy[lang] ?? reviewEmailCopy.en;
 const reviewFormName = `review-add-${lang}`;
+const reviewsCountLabel = {
+  en: 'reviews',
+  de: 'Bewertungen',
+  pl: 'opinii',
+  cz: 'hodnocení',
+  sk: 'hodnotení',
+};
+const reviewsLabel = reviewsCountLabel[lang] ?? reviewsCountLabel.en;
 ---
 
 <div
@@ -45,26 +61,6 @@ const reviewFormName = `review-add-${lang}`;
   data-initial-visible={String(reviewsInitialVisible)}
   data-reveal-step={String(reviewsBatchSize)}
 >
-  <section class="py-20 sm:py-24">
-    <Container class="space-y-12">
-      <SectionHeading
-        eyebrow={references.caseStudiesHeading.eyebrow}
-        title={references.caseStudiesHeading.title}
-        subtitle={references.caseStudiesHeading.subtitle}
-      />
-      <div class="grid gap-6 md:grid-cols-3">
-        {references.caseStudies.map((study) => (
-          <div class="card card-3d">
-            <p class="text-xs uppercase tracking-[0.3em] text-aqua/80">{study.name}</p>
-            <h3 class="mt-3 font-display text-xl">{study.summary}</h3>
-            <p class="mt-4 text-sm text-mist">{study.result}</p>
-            <p class="mt-4 text-xs text-mist">Stack: {study.stack}</p>
-          </div>
-        ))}
-      </div>
-    </Container>
-  </section>
-
   <section class="py-16 sm:py-20">
     <Container class="space-y-10">
       <SectionHeading
@@ -72,26 +68,45 @@ const reviewFormName = `review-add-${lang}`;
         title={references.reviews.title}
         subtitle={references.reviews.subtitle}
       />
+      <div class="review-summary">
+        <p class="review-summary-score">5.0</p>
+        <div class="review-stars" aria-hidden="true">
+          {Array.from({ length: 5 }).map(() => (
+            <span class="glass-star review-star">
+              <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-current" aria-hidden="true">
+                <path d={starPath}></path>
+              </svg>
+            </span>
+          ))}
+        </div>
+        <p class="review-summary-count">{totalReviews}+ {reviewsLabel}</p>
+      </div>
       <div class="grid gap-6 md:grid-cols-3" data-reviews-grid>
         {allReviews.map((review, index) => (
           <article
-            class={`review-card flex h-full flex-col ${index >= reviewsInitialVisible ? 'hidden' : ''}`}
+            class={`review-card review-card-brand review-card-interactive flex h-full flex-col ${index === 0 ? 'md:col-span-2 md:min-h-[280px]' : ''} ${index >= reviewsInitialVisible ? 'hidden' : ''}`}
             data-review-item
             aria-hidden={index >= reviewsInitialVisible ? 'true' : 'false'}
           >
-            <div class="flex items-center gap-1 text-lime/90">
+            <div class="flex items-center justify-between gap-3">
+              <div class="review-stars">
               {Array.from({ length: 5 }).map(() => (
-                <span class="glass-star" aria-hidden="true">
+                <span class="glass-star review-star" aria-hidden="true">
                   <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-current" aria-hidden="true">
                     <path d={starPath}></path>
                   </svg>
                 </span>
               ))}
+              </div>
+              <span class="review-chip">{references.reviews.eyebrow}</span>
             </div>
-            <p class="mt-3 text-sm text-ice/92">"{review.quote}"</p>
-            <div class="mt-5">
-              <p class="font-semibold text-ice">{review.name}</p>
-              <p class="text-xs text-mist">{review.role}</p>
+            <p class={`mt-3 text-ice/92 ${index === 0 ? 'text-base leading-relaxed' : 'text-sm'}`}>{review.quote}</p>
+            <div class="mt-5 flex items-center gap-3">
+              <span class="review-avatar" aria-hidden="true">{getInitials(review.name)}</span>
+              <div>
+                <p class="font-semibold text-ice">{review.name}</p>
+                <p class="text-xs text-mist">{review.role}</p>
+              </div>
             </div>
           </article>
         ))}
@@ -216,6 +231,8 @@ const reviewFormName = `review-add-${lang}`;
       hiddenReviews.slice(0, revealStep).forEach((item) => {
         item.classList.remove('hidden');
         item.setAttribute('aria-hidden', 'false');
+        item.classList.add('review-item-enter');
+        window.setTimeout(() => item.classList.remove('review-item-enter'), 380);
       });
       if (hiddenReviews.length <= revealStep && loadMoreButton) {
         loadMoreButton.classList.add('hidden');

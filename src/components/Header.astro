@@ -14,6 +14,7 @@ const currentPath = Astro.url.pathname;
 const normalizedPath =
   currentPath !== '/' && currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
 const copy = getCopy(lang);
+const consultationHref = `${getRoutePath('contact', lang)}#kontakt-formular`;
 ---
 
 <header id="site-header" class="site-header fixed inset-x-0 top-0 z-50" data-scrolled="false">
@@ -25,7 +26,7 @@ const copy = getCopy(lang);
         </span>
         <div class="leading-tight">
           <p class="font-display text-lg font-semibold">{site.name}</p>
-          <p class="text-[11px] uppercase tracking-[0.25em] text-mist/80">Web3 Studio</p>
+          <p class="text-[11px] uppercase tracking-[0.25em] text-mist/80">AI & Web Studio</p>
         </div>
       </a>
 
@@ -43,7 +44,7 @@ const copy = getCopy(lang);
       <div class="hidden items-center gap-3 md:flex">
         <LanguageSwitcher lang={lang} />
         <ThemeToggle />
-        <a class="btn-primary" href={getRoutePath('contact', lang)}>
+        <a class="btn-primary" href={consultationHref}>
           {copy.sections.cta.primaryLabel}
         </a>
       </div>
@@ -103,7 +104,7 @@ const copy = getCopy(lang);
             <LanguageSwitcher lang={lang} direction="up" mobile={true} />
             <ThemeToggle />
           </div>
-          <a class="btn-primary w-full" href={getRoutePath('contact', lang)} data-menu-close>
+          <a class="btn-primary w-full" href={consultationHref} data-menu-close>
             {copy.sections.cta.primaryLabel}
           </a>
           <p class="text-xs">{copy.sections.cta.note}</p>

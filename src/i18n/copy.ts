@@ -1,4 +1,4 @@
-import type { languages } from './languages';
+import type { Lang } from './languages';
 
 export const navItems = [
   { key: 'services', route: 'services' },
@@ -8,8 +8,6 @@ export const navItems = [
   { key: 'blog', route: 'blog' },
   { key: 'contact', route: 'contact' },
 ];
-
-type Lang = 'en' | 'de' | 'pl' | 'cz' | 'sk';
 
 type Copy = {
   site: { tagline: string; description: string };
@@ -248,7 +246,7 @@ export const copy: Record<Lang, Copy> = {
     site: {
       tagline: 'Premium websites for growth-focused companies',
       description:
-        'We build fast corporate and lead websites with measurable performance, SEO and clean design.',
+        'We do not just build websites. We create digital solutions for businesses that want to grow faster, more efficiently and based on data.',
     },
     nav: {
       services: 'Services',
@@ -312,7 +310,7 @@ export const copy: Record<Lang, Copy> = {
       services: {
         eyebrow: 'Services',
         title: 'Solutions that work in practice',
-        subtitle: 'From lead pages to corporate websites, Shopify e-shops and custom apps.',
+        subtitle: 'From lead pages to corporate websites, Shopify e-shops and automation + AI workflows.',
         items: [
           {
             title: 'Lead websites',
@@ -330,9 +328,9 @@ export const copy: Record<Lang, Copy> = {
             tags: ['Shopify', 'E-commerce', 'Payments'],
           },
           {
-            title: 'Applications',
-            description: 'Web and mobile applications, dashboards and product interfaces with SEO and performance support.',
-            tags: ['Web apps', 'Mobile apps', 'SEO + AI + performance'],
+            title: 'Automation & AI workflows',
+            description: 'Business automation, AI workflows, dashboards and product interfaces with SEO and performance support.',
+            tags: ['Automation', 'AI workflows', 'SEO + AI + performance'],
           },
         ],
       },
@@ -365,19 +363,24 @@ export const copy: Record<Lang, Copy> = {
         subtitle: 'Short testimonials from teams that wanted speed and clarity.',
         testimonials: [
           {
-            quote: 'Alpinefy pushed our Lighthouse from 48 to 96 and conversions grew by 22%.',
-            name: 'Marek Kováč',
-            role: 'CEO, Brightline Logistics',
+            quote: 'Alpinefy helped me build a fast and beautiful website that actively supports my business.',
+            name: 'Ondro',
+            role: 'Founder, Tresoro GmbH',
           },
           {
-            quote: 'Straightforward collaboration. We got a site we can expand without friction.',
-            name: 'Lucia Vargová',
-            role: 'Marketing Lead, NovaCare',
+            quote: 'They helped us migrate from our old and inefficient solution. We value the long-term cooperation, language support and SEO help.',
+            name: 'NEBBIA Team',
+            role: 'NEBBIA',
           },
           {
-            quote: 'Technical approach, zero bloat. Netlify deploy was done in a day.',
-            name: 'Tomáš Hronec',
-            role: 'Product Manager, Polar Analytics',
+            quote: 'I wanted a clean and trustworthy website for my studio. The result is clear, fast and easy to manage.',
+            name: 'Oľga Chochúľová',
+            role: 'PedikuraOlga.cz',
+          },
+          {
+            quote: 'Whenever we could not find the right technical approach, we turned to Alpinefy and always got a strong solution.',
+            name: 'Peter Kováčik',
+            role: 'SOELWE SOLUTIONS',
           },
         ],
       },
@@ -389,27 +392,32 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'How much does a corporate website cost?',
             answer:
-              'Pricing is individual and depends on scope. After the intro call, we send a precise private quote.',
+              'The price of a corporate website is always individual and depends on project scope. After the intro call, we prepare a precise, transparent and private quote.',
           },
           {
-            question: 'How fast can you deliver?',
+            question: 'How quickly can you deliver a website?',
             answer:
-              'Standard sites in 4–8 weeks. Lead sites can be delivered in 2 weeks.',
+              'Lead and marketing websites can be delivered within a few days to one week. We are highly efficient because we use modern delivery methods and technologies that let us shorten timelines to the minimum practical range. For more complex work, timing depends mainly on feature scope, number of integrations and how ready the source materials are.',
           },
           {
             question: 'Can I edit the content myself?',
             answer:
-              'Yes. We prepare Decap CMS or a simple Git-based workflow.',
+              'Yes. The websites we deliver are fully customizable, and you get a simple admin interface plus a short guide. At the start, we define together what should be editable so you have full control without touching code. You can update text, headings, subheadings, images, banners, icons and meta SEO settings without a developer. The goal is simple management with technical speed, stability and performance.',
           },
           {
-            question: 'Why this modern stack instead of a WordPress template?',
+            question: 'Why your technologies instead of a WordPress template?',
             answer:
-              'Because we prioritize speed, security and long-term maintainability over plugin-heavy setups.',
+              'The technologies we use give us better performance, security and control over the final result than template-based setups. We build around your goals, so the website avoids unnecessary code and plugin bloat that slows pages and causes update issues later. You get a faster website, better SEO, more stable operations and a solution that scales cleanly without becoming overloaded and inefficient over time.',
           },
           {
             question: 'Can you take over an existing website?',
             answer:
-              'Yes. We start with an audit, propose migration and deliver without downtime.',
+              'Yes. We can fully take over your existing website, run a technical and content audit, and prepare a safe migration plan step by step. We handle the process so you do not lose SEO rankings, data or traffic, and we launch with minimal downtime risk. After launch, we fine-tune based on real data to keep the transition smooth for your team.',
+          },
+          {
+            question: 'Can you set up measurement, analytics and AI solutions for us?',
+            answer:
+              'Yes. We can set up your website so you have precise data and practical AI solutions in one place. We typically connect GA4 and Microsoft Clarity, so you can see traffic, user behavior and conversions clearly. Based on that data, we then design and deploy AI solutions aligned with your project goals, so the website is not only visually strong but also more effective and performance-driven in practice.',
           },
         ],
       },
@@ -419,7 +427,7 @@ export const copy: Record<Lang, Copy> = {
         subtitle: 'No long presentations. 30‑minute call and a clear next step proposal.',
         primaryLabel: 'Book a consultation',
         secondaryLabel: 'Email us',
-        note: 'We reply within 24 hours on business days.',
+        note: 'During business days, we reply within 24 hours.',
       },
       trustBadges: {
         items: [
@@ -455,7 +463,7 @@ export const copy: Record<Lang, Copy> = {
           astro: 'SSG/SSR',
           tailwind: 'UI system',
           netlify: 'Deploy',
-          next: 'Apps',
+          next: 'Automation',
           react: 'Islands',
           figma: 'Design',
           ga: 'Analytics',
@@ -488,7 +496,7 @@ export const copy: Record<Lang, Copy> = {
             'Premium agency focused on performance, clean design and sustainable delivery.',
         },
         hero: {
-          eyebrow: 'Alpinefy / Web Agency',
+          eyebrow: 'Alpinefy / AI & Web Studio',
           title: 'Fast websites that deliver results',
           subtitle:
             'Premium agency focused on performance, clean design and sustainable solutions. We build corporate and lead websites with a modern stack.',
@@ -499,7 +507,7 @@ export const copy: Record<Lang, Copy> = {
       services: {
         meta: {
           title: 'Services',
-          description: 'Lead websites, corporate websites, Shopify e-shops and custom apps.',
+          description: 'Lead websites, corporate websites, Shopify e-shops and automation + AI workflows.',
         },
         hero: {
           eyebrow: 'Services',
@@ -565,58 +573,27 @@ export const copy: Record<Lang, Copy> = {
           subtitle: 'Short feedback from teams that needed speed and clarity.',
           items: [
             {
-              quote: 'Launch went smooth and the site is finally fast on mobile.',
-              name: 'Anna Weiss',
-              role: 'Marketing Manager, Northwind',
+              quote: 'Alpinefy helped me build a fast and beautiful website that actively supports my business.',
+              name: 'Ondro',
+              role: 'Founder, Tresoro GmbH',
             },
             {
-              quote: 'Performance jumped above 95 and the CMS handoff was clean.',
-              name: 'Filip Novotny',
-              role: 'Head of Growth, Helio',
+              quote: 'They helped us migrate from our old and inefficient solution. We value the long-term cooperation, language support and SEO help.',
+              name: 'NEBBIA Team',
+              role: 'NEBBIA',
             },
             {
-              quote: 'Clear process, no chaos. Exactly what a B2B brand needs.',
-              name: 'Sarah Klein',
-              role: 'COO, Matrix Labs',
+              quote: 'I wanted a clean and trustworthy website for my studio. The result is clear, fast and easy to manage.',
+              name: 'Oľga Chochúľová',
+              role: 'PedikuraOlga.cz',
             },
             {
-              quote: 'We got a scalable design system we can expand internally.',
-              name: 'Martin Polak',
-              role: 'Product Lead, Qube',
-            },
-            {
-              quote: 'SEO and analytics were ready on day one.',
-              name: 'Elena Roth',
-              role: 'CMO, NovaCare',
-            },
-            {
-              quote: 'Fast, precise, no unnecessary JS. That was the brief.',
-              name: 'Jakub Horak',
-              role: 'CTO, Brightline',
+              quote: 'Whenever we could not find the right technical approach, we turned to Alpinefy and always got a strong solution.',
+              name: 'Peter Kováčik',
+              role: 'SOELWE SOLUTIONS',
             },
           ],
-          moreItems: [
-            {
-              quote: 'Great collaboration and realistic timelines.',
-              name: 'Peter Lang',
-              role: 'CEO, Axion',
-            },
-            {
-              quote: 'The team optimized our legacy site without downtime.',
-              name: 'Mila Petrova',
-              role: 'Operations, Synapse',
-            },
-            {
-              quote: 'Our organic and direct traffic finally lands on pages that convert.',
-              name: 'Nina Grof',
-              role: 'Performance Lead, Lumen',
-            },
-            {
-              quote: 'The site is fast, clean and easy to maintain.',
-              name: 'Daniel Ortiz',
-              role: 'Founder, ClearPath',
-            },
-          ],
+          moreItems: [],
           actions: {
             more: 'Show more',
             add: 'Add review',
@@ -765,7 +742,7 @@ export const copy: Record<Lang, Copy> = {
     site: {
       tagline: 'Premium-Websites für wachsende Unternehmen',
       description:
-        'Wir bauen schnelle Unternehmens- und Lead-Websites in Astro. Fokus auf Performance, SEO und klares Design ohne unnötiges JavaScript.',
+        'Wir bauen nicht nur Websites. Wir entwickeln digitale Lösungen für Unternehmen, die schneller, effizienter und datenbasiert wachsen wollen.',
     },
     nav: {
       services: 'Leistungen',
@@ -794,7 +771,7 @@ export const copy: Record<Lang, Copy> = {
         { value: '0', label: 'Unnötiges JS' },
       ],
       heroSide: {
-        eyebrow: 'Premium Agency Vibe',
+        eyebrow: 'Premium Agentur',
         title: 'Astro. Tailwind. Netlify.',
         subtitle: 'Stack mit Sinn: Speed, Stabilität, einfacher Deploy.',
         badges: ['SEO-ready', 'SSR/SSG', 'Minimal JS'],
@@ -829,7 +806,7 @@ export const copy: Record<Lang, Copy> = {
       services: {
         eyebrow: 'Leistungen',
         title: 'Lösungen, die in der Praxis funktionieren',
-        subtitle: 'Von Lead-Seiten bis zu Unternehmenswebsites, Shopify-Shops und individuellen Apps.',
+        subtitle: 'Von Lead-Seiten bis zu Unternehmenswebsites, Shopify-Shops sowie Automatisierung und KI-Workflows.',
         items: [
           {
             title: 'Lead-Websites',
@@ -847,9 +824,9 @@ export const copy: Record<Lang, Copy> = {
             tags: ['Shopify', 'E-Commerce', 'Payments'],
           },
           {
-            title: 'Applikationen',
-            description: 'Web- und Mobile-Apps, Dashboards und Produkt-Interfaces inkl. SEO- und Performance-Support.',
-            tags: ['Web-Apps', 'Mobile-Apps', 'SEO + AI + Performance'],
+            title: 'Automatisierung & KI-Workflows',
+            description: 'Prozessautomatisierung, KI-Workflows, Dashboards und Produkt-Interfaces inkl. SEO- und Performance-Support.',
+            tags: ['Automatisierung', 'KI-Workflows', 'SEO + AI + Performance'],
           },
         ],
       },
@@ -882,19 +859,24 @@ export const copy: Record<Lang, Copy> = {
         subtitle: 'Kurzfeedback von Teams, die Geschwindigkeit und Klarheit wollten.',
         testimonials: [
           {
-            quote: 'Lighthouse von 48 auf 96 und +22 % Conversions.',
-            name: 'Marek Kováč',
-            role: 'CEO, Brightline Logistics',
+            quote: 'Alpinefy hat mir geholfen, eine schnelle und schöne Website zu bauen, die mein Business aktiv unterstützt.',
+            name: 'Ondro',
+            role: 'Founder, Tresoro GmbH',
           },
           {
-            quote: 'Direkte Zusammenarbeit. Website, die wir einfach erweitern können.',
-            name: 'Lucia Vargová',
-            role: 'Marketing Lead, NovaCare',
+            quote: 'Sie haben uns bei der Migration von unserer alten, ineffizienten Lösung geholfen. Wir schätzen die langfristige Zusammenarbeit, Sprachunterstützung und SEO-Hilfe.',
+            name: 'NEBBIA Team',
+            role: 'NEBBIA',
           },
           {
-            quote: 'Technisch sauber, kein Ballast. Netlify‑Deploy in einem Tag.',
-            name: 'Tomáš Hronec',
-            role: 'Product Manager, Polar Analytics',
+            quote: 'Ich wollte eine saubere und vertrauenswürdige Website für mein Studio. Das Ergebnis ist klar, schnell und leicht zu verwalten.',
+            name: 'Oľga Chochúľová',
+            role: 'PedikuraOlga.cz',
+          },
+          {
+            quote: 'Wenn wir keinen passenden technischen Weg gefunden haben, haben wir uns an Alpinefy gewandt und immer eine starke Lösung bekommen.',
+            name: 'Peter Kováčik',
+            role: 'SOELWE SOLUTIONS',
           },
         ],
       },
@@ -906,23 +888,32 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'Was kostet eine Unternehmenswebsite?',
             answer:
-              'Die Preise sind individuell und hängen vom Umfang ab. Nach dem Erstgespräch senden wir ein präzises, privates Angebot.',
+              'Der Preis für eine Unternehmenswebsite ist immer individuell und hängt vom Projektumfang ab. Nach dem Erstgespräch erstellen wir ein präzises, transparentes und nicht öffentliches Angebot.',
           },
           {
-            question: 'Wie schnell liefert ihr?',
-            answer: 'Standard 4–8 Wochen. Lead-Seiten auch in 2 Wochen möglich.',
+            question: 'Wie schnell könnt ihr eine Website liefern?',
+            answer:
+              'Lead- und Marketing-Websites liefern wir in wenigen Tagen bis etwa einer Woche. Wir arbeiten sehr effizient, weil wir moderne Vorgehensweisen und Technologien nutzen, mit denen wir die Lieferzeit auf das sinnvoll mögliche Minimum verkürzen. Bei komplexeren Projekten hängt der Termin vor allem vom Funktionsumfang, der Zahl der Integrationen und der Qualität der gelieferten Unterlagen ab.',
           },
           {
             question: 'Kann ich Inhalte selbst bearbeiten?',
-            answer: 'Ja. Wir bereiten Decap CMS oder Git‑Workflow vor.',
+            answer:
+              'Ja. Unsere Websites sind vollständig anpassbar, und Sie erhalten eine einfache Admin-Oberfläche plus eine kurze Anleitung. Zu Beginn definieren wir gemeinsam, welche Bereiche bearbeitbar sein sollen, damit Sie in der Praxis volle Kontrolle ohne Code-Eingriffe haben. Texte, Überschriften, Untertitel, Bilder, Banner, Icons und Meta-SEO-Einstellungen können Sie ohne Entwickler anpassen. Ziel ist eine einfache Pflege bei gleichzeitig hoher technischer Performance und Stabilität.',
           },
           {
-            question: 'Warum Astro statt WordPress?',
-            answer: 'Astro ist schnell, sicher und mit minimalem JS – ideal für SEO.',
+            question: 'Warum eure Technologien statt eines WordPress-Templates?',
+            answer:
+              'Die Technologien, die wir einsetzen, liefern deutlich bessere Performance, Sicherheit und Kontrolle als Template-Lösungen. Wir bauen zielorientiert statt mit Ballast, dadurch vermeiden wir unnötigen Code und Plugin-Overhead, der Websites ausbremst und bei Updates Probleme verursacht. Sie erhalten eine schnellere Website, bessere SEO, stabileren Betrieb und eine Lösung, die sauber weiterwächst, ohne mit der Zeit überladen und ineffizient zu werden.',
           },
           {
             question: 'Übernehmt ihr bestehende Websites?',
-            answer: 'Ja. Audit, Migrationsplan und Launch ohne Downtime.',
+            answer:
+              'Ja. Wir übernehmen bestehende Websites vollständig, führen einen technischen und inhaltlichen Audit durch und erstellen einen sicheren Migrationsplan Schritt für Schritt. Dabei achten wir darauf, dass Sie keine SEO-Sichtbarkeit, Daten oder Traffic verlieren, und launchen mit minimalem Ausfallrisiko. Nach dem Go-live optimieren wir auf Basis realer Daten weiter, damit der Übergang für Ihr Team reibungslos bleibt.',
+          },
+          {
+            question: 'Könnt ihr für uns Tracking, Analytics und AI-Lösungen einrichten?',
+            answer:
+              'Ja. Wir richten Ihre Website so ein, dass Sie präzise Daten und praxistaugliche AI-Lösungen an einem Ort haben. Standardmäßig binden wir GA4 und Microsoft Clarity an, damit Sie Traffic, Nutzerverhalten und Conversions klar sehen. Auf dieser Datengrundlage entwerfen und implementieren wir anschließend AI-Lösungen passend zu Ihren Zielen, damit die Website nicht nur visuell stark ist, sondern in der Praxis auch effizienter und leistungsfähiger arbeitet.',
           },
         ],
       },
@@ -932,7 +923,7 @@ export const copy: Record<Lang, Copy> = {
         subtitle: '30‑Minuten‑Call und ein klarer Vorschlag für die nächsten Schritte.',
         primaryLabel: 'Beratung buchen',
         secondaryLabel: 'E‑Mail schreiben',
-        note: 'Antwort innerhalb von 24 Stunden an Werktagen.',
+        note: 'An Werktagen antworten wir innerhalb von 24 Stunden.',
       },
       trustBadges: {
         items: [
@@ -968,7 +959,7 @@ export const copy: Record<Lang, Copy> = {
           astro: 'SSG/SSR',
           tailwind: 'UI‑System',
           netlify: 'Deploy',
-          next: 'Apps',
+          next: 'Automatisierung',
           react: 'Islands',
           figma: 'Design',
           ga: 'Analytics',
@@ -976,7 +967,7 @@ export const copy: Record<Lang, Copy> = {
         },
       },
       capabilities: {
-        eyebrow: 'Capabilities',
+        eyebrow: 'Kompetenzen',
         title: 'Vom Web bis zum technischen Wachstum',
         subtitle: 'Wir bauen die Web‑Basis und optimieren Sichtbarkeit in Google und AI‑Systemen.',
         items: [
@@ -1000,7 +991,7 @@ export const copy: Record<Lang, Copy> = {
           description: 'Premium‑Agentur für Performance, Design und nachhaltige Umsetzung.',
         },
         hero: {
-          eyebrow: 'Alpinefy / Webagentur',
+          eyebrow: 'Alpinefy / AI & Web Studio',
           title: 'Schnelle Websites, die Ergebnisse liefern',
           subtitle:
             'Premium‑Agentur für Performance, klares Design und nachhaltige Lösungen in Astro und Next.js.',
@@ -1011,7 +1002,7 @@ export const copy: Record<Lang, Copy> = {
       services: {
         meta: {
           title: 'Leistungen',
-          description: 'Lead‑Websites, Unternehmensseiten, Shopify‑Shops und individuelle Apps.',
+          description: 'Lead‑Websites, Unternehmensseiten, Shopify‑Shops sowie Automatisierung und KI-Workflows.',
         },
         hero: {
           eyebrow: 'Leistungen',
@@ -1077,58 +1068,27 @@ export const copy: Record<Lang, Copy> = {
           subtitle: 'Kurzfeedback von Teams, die Tempo und Klarheit wollten.',
           items: [
             {
-              quote: 'Launch lief sauber und die Seite ist endlich schnell auf Mobile.',
-              name: 'Anna Weiss',
-              role: 'Marketing Managerin, Northwind',
+              quote: 'Alpinefy hat mir geholfen, eine schnelle und schöne Website zu bauen, die mein Business aktiv unterstützt.',
+              name: 'Ondro',
+              role: 'Founder, Tresoro GmbH',
             },
             {
-              quote: 'Performance sprang über 95 und die CMS‑Übergabe war sauber.',
-              name: 'Filip Novotny',
-              role: 'Head of Growth, Helio',
+              quote: 'Sie haben uns bei der Migration von unserer alten, ineffizienten Lösung geholfen. Wir schätzen die langfristige Zusammenarbeit, Sprachunterstützung und SEO-Hilfe.',
+              name: 'NEBBIA Team',
+              role: 'NEBBIA',
             },
             {
-              quote: 'Klarer Prozess, kein Chaos. Genau das, was eine B2B‑Marke braucht.',
-              name: 'Sarah Klein',
-              role: 'COO, Matrix Labs',
+              quote: 'Ich wollte eine saubere und vertrauenswürdige Website für mein Studio. Das Ergebnis ist klar, schnell und leicht zu verwalten.',
+              name: 'Oľga Chochúľová',
+              role: 'PedikuraOlga.cz',
             },
             {
-              quote: 'Wir haben ein skalierbares Designsystem, das wir intern erweitern.',
-              name: 'Martin Polak',
-              role: 'Product Lead, Qube',
-            },
-            {
-              quote: 'SEO und Analytics waren ab Tag eins bereit.',
-              name: 'Elena Roth',
-              role: 'CMO, NovaCare',
-            },
-            {
-              quote: 'Schnell, präzise, kein unnötiges JS. Genau das Briefing.',
-              name: 'Jakub Horak',
-              role: 'CTO, Brightline',
+              quote: 'Wenn wir keinen passenden technischen Weg gefunden haben, haben wir uns an Alpinefy gewandt und immer eine starke Lösung bekommen.',
+              name: 'Peter Kováčik',
+              role: 'SOELWE SOLUTIONS',
             },
           ],
-          moreItems: [
-            {
-              quote: 'Starke Zusammenarbeit und realistische Timelines.',
-              name: 'Peter Lang',
-              role: 'CEO, Axion',
-            },
-            {
-              quote: 'Team hat unsere Legacy‑Seite ohne Downtime optimiert.',
-              name: 'Mila Petrova',
-              role: 'Operations, Synapse',
-            },
-            {
-              quote: 'Unsere Paid‑Kampagnen haben endlich Landingpages, die konvertieren.',
-              name: 'Nina Grof',
-              role: 'Performance Lead, Lumen',
-            },
-            {
-              quote: 'Die Seite ist schnell, clean und leicht zu warten.',
-              name: 'Daniel Ortiz',
-              role: 'Founder, ClearPath',
-            },
-          ],
+          moreItems: [],
           actions: {
             more: 'Mehr anzeigen',
             add: 'Bewertung hinzufügen',
@@ -1265,7 +1225,7 @@ export const copy: Record<Lang, Copy> = {
           email: 'E‑Mail',
           phone: 'Telefon',
           location: 'Standort',
-          scope: 'Scope',
+          scope: 'Umfang',
           scopeText: 'Minimum: einfache Firmenwebsite oder Lead‑Seite. Größere Projekte nach Absprache.',
         },
       },
@@ -1275,7 +1235,7 @@ export const copy: Record<Lang, Copy> = {
     site: {
       tagline: 'Premium strony dla rosnących firm',
       description:
-        'Tworzymy szybkie strony firmowe i leady w Astro. Wydajność, SEO i czysty design bez zbędnego JS.',
+        'Nie tworzymy tylko stron. Budujemy cyfrowe rozwiązania dla firm, które chcą rosnąć szybciej, efektywniej i w oparciu o dane.',
     },
     nav: {
       services: 'Usługi',
@@ -1304,7 +1264,7 @@ export const copy: Record<Lang, Copy> = {
         { value: '0', label: 'Zbędny JS' },
       ],
       heroSide: {
-        eyebrow: 'Premium agency vibe',
+        eyebrow: 'Premium agencja',
         title: 'Astro. Tailwind. Netlify.',
         subtitle: 'Stack, który ma sens: szybkość, stabilność, prosty deploy.',
         badges: ['SEO-ready', 'SSR/SSG', 'Minimal JS'],
@@ -1339,7 +1299,7 @@ export const copy: Record<Lang, Copy> = {
       services: {
         eyebrow: 'Usługi',
         title: 'Rozwiązania, które działają w praktyce',
-        subtitle: 'Od leadów po strony firmowe, sklepy Shopify i aplikacje.',
+        subtitle: 'Od leadów po strony firmowe, sklepy Shopify oraz automatyzacje i workflow AI.',
         items: [
           {
             title: 'Strony leadowe',
@@ -1357,9 +1317,9 @@ export const copy: Record<Lang, Copy> = {
             tags: ['Shopify', 'E-commerce', 'Płatności'],
           },
           {
-            title: 'Aplikacje',
-            description: 'Aplikacje webowe i mobilne, dashboardy i interfejsy produktowe ze wsparciem SEO i wydajności.',
-            tags: ['Web apps', 'Mobile apps', 'SEO + AI + wydajność'],
+            title: 'Automatyzacje i workflow AI',
+            description: 'Automatyzacje procesów, workflow AI, dashboardy i interfejsy produktowe ze wsparciem SEO i wydajności.',
+            tags: ['Automatyzacje', 'Workflow AI', 'SEO + AI + wydajność'],
           },
         ],
       },
@@ -1392,19 +1352,24 @@ export const copy: Record<Lang, Copy> = {
         subtitle: 'Krótkie opinie zespołów, które chciały szybkości i jasności.',
         testimonials: [
           {
-            quote: 'Lighthouse z 48 na 96 i +22% konwersji.',
-            name: 'Marek Kováč',
-            role: 'CEO, Brightline Logistics',
+            quote: 'Alpinefy pomogli mi stworzyć szybki i estetyczny web, który realnie wspiera mój biznes.',
+            name: 'Ondro',
+            role: 'Founder, Tresoro GmbH',
           },
           {
-            quote: 'Bezpośrednia współpraca. Strona, którą łatwo rozbudować.',
-            name: 'Lucia Vargová',
-            role: 'Marketing Lead, NovaCare',
+            quote: 'Pomogli nam w migracji ze starego i nieefektywnego rozwiązania. Doceniamy długofalową współpracę, wsparcie językowe i SEO.',
+            name: 'NEBBIA Team',
+            role: 'NEBBIA',
           },
           {
-            quote: 'Techniczne podejście, zero balastu. Deploy w jeden dzień.',
-            name: 'Tomáš Hronec',
-            role: 'Product Manager, Polar Analytics',
+            quote: 'Chciałam czystej i wiarygodnej strony dla mojego studia. Efekt jest przejrzysty, szybki i łatwy w obsłudze.',
+            name: 'Oľga Chochúľová',
+            role: 'PedikuraOlga.cz',
+          },
+          {
+            quote: 'Zawsze zwracaliśmy się do Alpinefy, gdy brakowało nam dobrego rozwiązania technicznego i zawsze dostawaliśmy mocne wsparcie.',
+            name: 'Peter Kováčik',
+            role: 'SOELWE SOLUTIONS',
           },
         ],
       },
@@ -1416,23 +1381,32 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'Ile kosztuje strona firmowa?',
             answer:
-              'Cena jest ustalana indywidualnie i zależy od zakresu. Po callu wysyłamy precyzyjną, prywatną ofertę.',
+              'Cena strony firmowej jest zawsze ustalana indywidualnie i zależy od zakresu projektu. Po callu przygotowujemy precyzyjną, transparentną i prywatną ofertę.',
           },
           {
-            question: 'Jak szybko możecie dostarczyć?',
-            answer: 'Standard 4–8 tygodni. Lead strony nawet 2 tygodnie.',
+            question: 'Jak szybko możecie dostarczyć stronę?',
+            answer:
+              'Strony leadowe i marketingowe możemy dostarczyć w kilka dni do około tygodnia. Działamy bardzo efektywnie, bo korzystamy z nowoczesnych procesów i technologii, które skracają czas realizacji do praktycznego minimum. Przy bardziej złożonych projektach termin zależy głównie od zakresu funkcji, liczby integracji i gotowości materiałów.',
           },
           {
             question: 'Czy mogę edytować treści?',
-            answer: 'Tak. Przygotowujemy Decap CMS lub prosty workflow Git.',
+            answer:
+              'Tak. Strony, które realizujemy, są w pełni konfigurowalne, a klient otrzymuje proste panelowe środowisko i krótki instruktaż. Na starcie wspólnie definiujemy, które elementy mają być edytowalne, aby mieć pełną kontrolę nad stroną bez ingerencji w kod. Możesz samodzielnie zmieniać teksty, nagłówki, podnagłówki, zdjęcia, bannery, ikony oraz ustawienia meta SEO. Efekt: łatwe zarządzanie i jednocześnie wysoka wydajność oraz stabilność.',
           },
           {
-            question: 'Dlaczego Astro zamiast WordPress?',
-            answer: 'Astro jest szybkie, bezpieczne i minimalne w JS. Idealne dla SEO.',
+            question: 'Dlaczego wasze technologie zamiast szablonu WordPress?',
+            answer:
+              'Technologie, których używamy, dają wyraźnie lepszą wydajność, bezpieczeństwo i kontrolę nad efektem końcowym niż rozwiązania szablonowe. Budujemy pod konkretne cele, więc strona nie jest obciążona zbędnym kodem i nadmiarem wtyczek, które spowalniają działanie i zwiększają ryzyko problemów po aktualizacjach. Dostajesz szybszą stronę, lepsze SEO, stabilniejsze działanie i rozwiązanie, które można czysto rozwijać bez tego, by projekt z czasem stał się przeładowany i nieefektywny.',
           },
           {
             question: 'Czy przejmujecie istniejące strony?',
-            answer: 'Tak. Audyt, plan migracji i wdrożenie bez przerwy.',
+            answer:
+              'Tak. Możemy kompleksowo przejąć istniejącą stronę, wykonać audyt techniczny i contentowy oraz przygotować bezpieczny plan migracji krok po kroku. Prowadzimy proces tak, aby nie stracić pozycji SEO, danych ani ruchu, a wdrożenie robimy z minimalnym ryzykiem przestoju. Po uruchomieniu dopracowujemy detale na podstawie realnych danych, aby przejście było płynne dla Twojego zespołu.',
+          },
+          {
+            question: 'Czy możecie ustawić dla nas pomiar, analitykę i rozwiązania AI?',
+            answer:
+              'Tak. Stronę możemy skonfigurować tak, aby mieć precyzyjne dane i praktyczne rozwiązania AI w jednym miejscu. Standardowo podpinamy GA4 i Microsoft Clarity, dzięki czemu widzisz ruch, zachowanie użytkowników i konwersje. Na podstawie tych danych projektujemy i wdrażamy rozwiązania AI dopasowane do celów projektu, aby strona była nie tylko atrakcyjna wizualnie, ale też skuteczniejsza i bardziej wydajna w praktyce.',
           },
         ],
       },
@@ -1442,7 +1416,7 @@ export const copy: Record<Lang, Copy> = {
         subtitle: '30‑min call i jasny plan kolejnych kroków.',
         primaryLabel: 'Umów konsultację',
         secondaryLabel: 'Napisz do nas',
-        note: 'Odpowiadamy w 24h w dni robocze.',
+        note: 'W dni robocze odpowiadamy w ciągu 24 godzin.',
       },
       trustBadges: {
         items: [
@@ -1478,7 +1452,7 @@ export const copy: Record<Lang, Copy> = {
           astro: 'SSG/SSR',
           tailwind: 'System UI',
           netlify: 'Deploy',
-          next: 'Aplikacje',
+          next: 'Automatyzacje',
           react: 'Islands',
           figma: 'Design',
           ga: 'Analityka',
@@ -1486,7 +1460,7 @@ export const copy: Record<Lang, Copy> = {
         },
       },
       capabilities: {
-        eyebrow: 'Capabilities',
+        eyebrow: 'Możliwości',
         title: 'Od webu po wzrost techniczny',
         subtitle: 'Budujemy bazę strony i poprawiamy widoczność w Google oraz odpowiedziach AI.',
         items: [
@@ -1510,7 +1484,7 @@ export const copy: Record<Lang, Copy> = {
           description: 'Agencja premium skupiona na wydajności i czystym designie.',
         },
         hero: {
-          eyebrow: 'Alpinefy / Web Agency',
+          eyebrow: 'Alpinefy / AI & Web Studio',
           title: 'Szybkie strony, które dają wyniki',
           subtitle:
             'Agencja premium skupiona na wydajności, czystym designie i trwałych rozwiązaniach.',
@@ -1521,7 +1495,7 @@ export const copy: Record<Lang, Copy> = {
       services: {
         meta: {
           title: 'Usługi',
-          description: 'Strony leadowe, firmowe, sklepy Shopify i aplikacje.',
+          description: 'Strony leadowe, firmowe, sklepy Shopify oraz automatyzacje i workflow AI.',
         },
         hero: {
           eyebrow: 'Usługi',
@@ -1587,58 +1561,27 @@ export const copy: Record<Lang, Copy> = {
           subtitle: 'Krótkie feedbacki od zespołów, które chciały szybkości i jasności.',
           items: [
             {
-              quote: 'Start przebiegł sprawnie, a strona w końcu jest szybka na mobile.',
-              name: 'Anna Weiss',
-              role: 'Marketing Manager, Northwind',
+              quote: 'Alpinefy pomogli mi stworzyć szybki i estetyczny web, który realnie wspiera mój biznes.',
+              name: 'Ondro',
+              role: 'Founder, Tresoro GmbH',
             },
             {
-              quote: 'Wydajność skoczyła powyżej 95, a przekazanie CMS było bezproblemowe.',
-              name: 'Filip Novotny',
-              role: 'Head of Growth, Helio',
+              quote: 'Pomogli nam w migracji ze starego i nieefektywnego rozwiązania. Doceniamy długofalową współpracę, wsparcie językowe i SEO.',
+              name: 'NEBBIA Team',
+              role: 'NEBBIA',
             },
             {
-              quote: 'Jasny proces, zero chaosu. Dokładnie tego potrzebuje B2B.',
-              name: 'Sarah Klein',
-              role: 'COO, Matrix Labs',
+              quote: 'Chciałam czystej i wiarygodnej strony dla mojego studia. Efekt jest przejrzysty, szybki i łatwy w obsłudze.',
+              name: 'Oľga Chochúľová',
+              role: 'PedikuraOlga.cz',
             },
             {
-              quote: 'Dostaliśmy skalowalny system designu do dalszej rozbudowy.',
-              name: 'Martin Polak',
-              role: 'Product Lead, Qube',
-            },
-            {
-              quote: 'SEO i analityka były gotowe od pierwszego dnia.',
-              name: 'Elena Roth',
-              role: 'CMO, NovaCare',
-            },
-            {
-              quote: 'Szybko, precyzyjnie, bez zbędnego JS. Taki był brief.',
-              name: 'Jakub Horak',
-              role: 'CTO, Brightline',
+              quote: 'Zawsze zwracaliśmy się do Alpinefy, gdy brakowało nam dobrego rozwiązania technicznego i zawsze dostawaliśmy mocne wsparcie.',
+              name: 'Peter Kováčik',
+              role: 'SOELWE SOLUTIONS',
             },
           ],
-          moreItems: [
-            {
-              quote: 'Świetna współpraca i realistyczne terminy.',
-              name: 'Peter Lang',
-              role: 'CEO, Axion',
-            },
-            {
-              quote: 'Zoptymalizowali naszą starą stronę bez downtime.',
-              name: 'Mila Petrova',
-              role: 'Operations, Synapse',
-            },
-            {
-              quote: 'Kampanie płatne wreszcie mają landing pages, które konwertują.',
-              name: 'Nina Grof',
-              role: 'Performance Lead, Lumen',
-            },
-            {
-              quote: 'Strona jest szybka, czysta i łatwa w utrzymaniu.',
-              name: 'Daniel Ortiz',
-              role: 'Founder, ClearPath',
-            },
-          ],
+          moreItems: [],
           actions: {
             more: 'Zobacz więcej',
             add: 'Dodaj opinię',
@@ -1786,7 +1729,7 @@ export const copy: Record<Lang, Copy> = {
     site: {
       tagline: 'Prémiové weby pro rostoucí firmy',
       description:
-        'Stavíme rychlé firemní a lead weby v Astro. Výkon, SEO a čistý design bez zbytečného JS.',
+        'Nestavíme jen weby. Tvoříme digitální řešení pro firmy, které chtějí růst rychleji, efektivněji a na základě dat.',
     },
     nav: {
       services: 'Služby',
@@ -1815,7 +1758,7 @@ export const copy: Record<Lang, Copy> = {
         { value: '0', label: 'Zbytečný JS' },
       ],
       heroSide: {
-        eyebrow: 'Premium agency vibe',
+        eyebrow: 'Prémiová agentura',
         title: 'Astro. Tailwind. Netlify.',
         subtitle: 'Stack, který dává smysl: rychlost, stabilita, jednoduchý deploy.',
         badges: ['SEO-ready', 'SSR/SSG', 'Minimal JS'],
@@ -1850,7 +1793,7 @@ export const copy: Record<Lang, Copy> = {
       services: {
         eyebrow: 'Služby',
         title: 'Řešení, která fungují v praxi',
-        subtitle: 'Od lead webů po firemní weby, Shopify e-shopy a vlastní appky.',
+        subtitle: 'Od lead webů po firemní weby, Shopify e-shopy a automatizace a AI workflow.',
         items: [
           {
             title: 'Lead weby',
@@ -1868,9 +1811,9 @@ export const copy: Record<Lang, Copy> = {
             tags: ['Shopify', 'E-commerce', 'Platby'],
           },
           {
-            title: 'Aplikace',
-            description: 'Webové i mobilní aplikace, dashboardy a produktová rozhraní s SEO a výkonnostní podporou.',
-            tags: ['Web apps', 'Mobile apps', 'SEO + AI + výkon'],
+            title: 'Automatizace a AI workflow',
+            description: 'Procesní automatizace, AI workflow, dashboardy a produktová rozhraní s SEO a výkonnostní podporou.',
+            tags: ['Automatizace', 'AI workflow', 'SEO + AI + výkon'],
           },
         ],
       },
@@ -1903,19 +1846,24 @@ export const copy: Record<Lang, Copy> = {
         subtitle: 'Krátké reference od týmů, které chtěly rychlost a jasno.',
         testimonials: [
           {
-            quote: 'Lighthouse z 48 na 96 a +22 % konverzí.',
-            name: 'Marek Kováč',
-            role: 'CEO, Brightline Logistics',
+            quote: 'Alpinefy mi pomohli vytvořit rychlý a krásný web, který reálně podporuje moje podnikání.',
+            name: 'Ondro',
+            role: 'Founder, Tresoro GmbH',
           },
           {
-            quote: 'Přímá spolupráce. Web, který umíme rozvíjet bez složitostí.',
-            name: 'Lucia Vargová',
-            role: 'Marketing Lead, NovaCare',
+            quote: 'Pomohli nám s migrací ze starého a neefektivního řešení. Oceňujeme dlouhodobou spolupráci, pomoc s jazykovými překlady i SEO.',
+            name: 'NEBBIA Team',
+            role: 'NEBBIA',
           },
           {
-            quote: 'Technický přístup, žádné zbytečnosti. Deploy za den.',
-            name: 'Tomáš Hronec',
-            role: 'Product Manager, Polar Analytics',
+            quote: 'Chtěla jsem čistý a důvěryhodný web pro své studio. Výsledek je přehledný, rychlý a snadno spravovatelný.',
+            name: 'Oľga Chochúľová',
+            role: 'PedikuraOlga.cz',
+          },
+          {
+            quote: 'Kdykoliv jsme nevěděli najít správné řešení, obrátili jsme se na Alpinefy a vždy nám výrazně pomohli.',
+            name: 'Peter Kováčik',
+            role: 'SOELWE SOLUTIONS',
           },
         ],
       },
@@ -1931,19 +1879,28 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             question: 'Jak rychle dodáte web?',
-            answer: 'Standard 4–8 týdnů. Lead weby i do 2 týdnů.',
+            answer:
+              'Lead a marketing weby umíme dodat v horizontu několika dnů až jednoho týdne. Jsme velmi efektivní, protože používáme moderní postupy a technologie, které nám umožňují zkrátit dodání na nejkratší rozumný čas. U komplexnějších projektů termín závisí hlavně na rozsahu funkcionality, počtu integrací a připravenosti podkladů.',
           },
           {
             question: 'Budu si umět upravovat obsah?',
-            answer: 'Ano. Připravíme Decap CMS nebo Git workflow.',
+            answer:
+              'Ano. Weby, které děláme, jsou plně přizpůsobitelné a klient dostane jednoduché administrační rozhraní i krátký návod. Na začátku si společně definujeme, které části mají být upravitelné, abyste měli v praxi plnou kontrolu nad webem i bez zásahu do kódu. Bez developera si můžete upravovat texty, nadpisy, podnadpisy, fotky, bannery, ikony i meta SEO nastavení. Cíl je jednoduchá správa při zachování vysoké rychlosti, stability a výkonu.',
           },
           {
-            question: 'Proč Astro místo WordPressu?',
-            answer: 'Astro je extrémně rychlé a bezpečné. Ideální pro výkon a SEO.',
+            question: 'Proč vaše technologie místo WordPress šablony?',
+            answer:
+              'Technologie, které používáme, nám dávají výrazně lepší výkon, bezpečnost a kontrolu nad výsledkem než šablonová řešení. Web stavíme na míru vašim cílům, takže netahá zbytečný kód ani pluginový balast, který zpomaluje načítání a zvyšuje riziko problémů po aktualizacích. Získáte rychlejší web, lepší SEO, stabilnější provoz a řešení, které jde čistě rozšiřovat bez toho, aby byl projekt časem zahlcený a neefektivní.',
           },
           {
             question: 'Převezmete existující web?',
-            answer: 'Ano. Audit, plán migrace a nasazení bez výpadků.',
+            answer:
+              'Ano. Existující web umíme kompletně převzít, udělat technický i obsahový audit a připravit bezpečný plán migrace krok za krokem. Postupujeme tak, abyste nepřišli o SEO pozice, data ani návštěvnost, a nový web nasazujeme s minimálním rizikem výpadku. Po spuštění ještě doladíme detaily podle reálných dat, aby byl přechod plynulý i pro váš tým.',
+          },
+          {
+            question: 'Umíte nám nastavit měření, analytiku a AI řešení?',
+            answer:
+              'Ano. Web umíme nastavit tak, abyste měli přesná data i praktická AI řešení na jednom místě. Standardně napojujeme GA4 a Microsoft Clarity, takže vidíte návštěvnost, chování uživatelů i konverze. Na základě dat potom navrhujeme a nasazujeme AI řešení podle cílů projektu, aby web nebyl jen vizuálně kvalitní, ale i výkonnější a efektivnější v praxi.',
           },
         ],
       },
@@ -1953,7 +1910,7 @@ export const copy: Record<Lang, Copy> = {
         subtitle: '30min call a jasný návrh dalších kroků.',
         primaryLabel: 'Rezervovat konzultaci',
         secondaryLabel: 'Napsat email',
-        note: 'Odpovídáme do 24 hodin v pracovních dnech.',
+        note: 'V pracovních dnech odpovídáme do 24 hodin.',
       },
       trustBadges: {
         items: [
@@ -1989,7 +1946,7 @@ export const copy: Record<Lang, Copy> = {
           astro: 'SSG/SSR',
           tailwind: 'UI systém',
           netlify: 'Deploy',
-          next: 'Apps',
+          next: 'Automatizace',
           react: 'Islands',
           figma: 'Design',
           ga: 'Analytika',
@@ -1997,7 +1954,7 @@ export const copy: Record<Lang, Copy> = {
         },
       },
       capabilities: {
-        eyebrow: 'Capabilities',
+        eyebrow: 'Možnosti',
         title: 'Kompletní pokrytí od webu po technický růst',
         subtitle: 'Stavíme webový základ a zvyšujeme viditelnost v Google i AI systémech.',
         items: [
@@ -2021,7 +1978,7 @@ export const copy: Record<Lang, Copy> = {
           description: 'Prémiová agentura se zaměřením na výkon a čistý design.',
         },
         hero: {
-          eyebrow: 'Alpinefy / Web Agency',
+          eyebrow: 'Alpinefy / AI & Web Studio',
           title: 'Rychlé weby, které přinášejí výsledky',
           subtitle:
             'Prémiová agentura zaměřená na výkon, čistý design a udržitelná řešení.',
@@ -2032,7 +1989,7 @@ export const copy: Record<Lang, Copy> = {
       services: {
         meta: {
           title: 'Služby',
-          description: 'Lead weby, firemní weby, Shopify e-shopy a vlastní appky.',
+          description: 'Lead weby, firemní weby, Shopify e-shopy a automatizace a AI workflow.',
         },
         hero: {
           eyebrow: 'Služby',
@@ -2098,58 +2055,27 @@ export const copy: Record<Lang, Copy> = {
           subtitle: 'Krátké feedbacky od týmů, které chtěly rychlost a jasnost.',
           items: [
             {
-              quote: 'Launch proběhl hladce a web je konečně rychlý na mobile.',
-              name: 'Anna Weiss',
-              role: 'Marketing Manager, Northwind',
+              quote: 'Alpinefy mi pomohli vytvořit rychlý a krásný web, který reálně podporuje moje podnikání.',
+              name: 'Ondro',
+              role: 'Founder, Tresoro GmbH',
             },
             {
-              quote: 'Výkon skočil nad 95 a předání CMS bylo čisté.',
-              name: 'Filip Novotny',
-              role: 'Head of Growth, Helio',
+              quote: 'Pomohli nám s migrací ze starého a neefektivního řešení. Oceňujeme dlouhodobou spolupráci, pomoc s jazykovými překlady i SEO.',
+              name: 'NEBBIA Team',
+              role: 'NEBBIA',
             },
             {
-              quote: 'Jasný proces, žádný chaos. Přesně to, co B2B značka potřebuje.',
-              name: 'Sarah Klein',
-              role: 'COO, Matrix Labs',
+              quote: 'Chtěla jsem čistý a důvěryhodný web pro své studio. Výsledek je přehledný, rychlý a snadno spravovatelný.',
+              name: 'Oľga Chochúľová',
+              role: 'PedikuraOlga.cz',
             },
             {
-              quote: 'Dostali jsme škálovatelný design systém, který můžeme dál rozvíjet.',
-              name: 'Martin Polak',
-              role: 'Product Lead, Qube',
-            },
-            {
-              quote: 'SEO i analytika byly připravené od prvního dne.',
-              name: 'Elena Roth',
-              role: 'CMO, NovaCare',
-            },
-            {
-              quote: 'Rychle, přesně, bez zbytečného JS. To byl brief.',
-              name: 'Jakub Horak',
-              role: 'CTO, Brightline',
+              quote: 'Kdykoliv jsme nevěděli najít správné řešení, obrátili jsme se na Alpinefy a vždy nám výrazně pomohli.',
+              name: 'Peter Kováčik',
+              role: 'SOELWE SOLUTIONS',
             },
           ],
-          moreItems: [
-            {
-              quote: 'Skvělá spolupráce a realistické termíny.',
-              name: 'Peter Lang',
-              role: 'CEO, Axion',
-            },
-            {
-              quote: 'Tým optimalizoval náš legacy web bez výpadků.',
-              name: 'Mila Petrova',
-              role: 'Operations, Synapse',
-            },
-            {
-              quote: 'Náš organický i přímý traffic konečně chodí na landing pages, které konvertují.',
-              name: 'Nina Grof',
-              role: 'Performance Lead, Lumen',
-            },
-            {
-              quote: 'Web je rychlý, čistý a snadno udržitelný.',
-              name: 'Daniel Ortiz',
-              role: 'Founder, ClearPath',
-            },
-          ],
+          moreItems: [],
           actions: {
             more: 'Zobrazit více',
             add: 'Přidat recenzi',
@@ -2286,7 +2212,7 @@ export const copy: Record<Lang, Copy> = {
           email: 'Email',
           phone: 'Telefon',
           location: 'Lokalita',
-          scope: 'Scope',
+          scope: 'Rozsah',
           scopeText:
             'Min. rozsah: jednoduchý firemní web nebo lead stránka. Větší projekty dle zadání.',
         },
@@ -2297,7 +2223,7 @@ export const copy: Record<Lang, Copy> = {
     site: {
       tagline: 'Prémiové weby pre rastové firmy',
       description:
-        'Staviame rýchle firemné a lead weby s dôrazom na výkon, SEO a čistý dizajn.',
+        'Nestaviame len weby. Tvoríme digitálne riešenia pre biznisy, ktoré chcú rásť rýchlejšie, efektívnejšie a na základe dát.',
     },
     nav: {
       services: 'Služby',
@@ -2326,8 +2252,8 @@ export const copy: Record<Lang, Copy> = {
         { value: '0', label: 'Zbytočný JS' },
       ],
       heroSide: {
-        eyebrow: 'Premium agency vibe',
-        title: 'Moderný stack. Rýchle doručenie.',
+        eyebrow: 'Prémiová agentúra',
+        title: 'Moderné technológie. Rýchle doručenie.',
         subtitle: 'Stabilné riešenie postavené na rýchlosti, kvalite a jednoduchej správe.',
         badges: ['SEO-ready', 'SSR/SSG', 'Minimal JS'],
         cards: [
@@ -2361,7 +2287,7 @@ export const copy: Record<Lang, Copy> = {
       services: {
         eyebrow: 'Služby',
         title: 'Riešenia, ktoré fungujú v praxi',
-        subtitle: 'Od lead webov po firemné weby, Shopify e-shopy a vlastné appky.',
+        subtitle: 'Od lead webov po firemné weby, Shopify e-shopy a automatizácie a AI workflow.',
         items: [
           {
             title: 'Lead weby',
@@ -2379,9 +2305,9 @@ export const copy: Record<Lang, Copy> = {
             tags: ['Shopify', 'E-commerce', 'Platby'],
           },
           {
-            title: 'Aplikácie',
-            description: 'Webové aj mobilné aplikácie, dashboardy a produktové rozhrania s SEO a výkonovou podporou.',
-            tags: ['Web apps', 'Mobile apps', 'SEO + AI + výkon'],
+            title: 'Automatizácie a AI workflow',
+            description: 'Procesné automatizácie, AI workflow, dashboardy a produktové rozhrania s SEO a výkonovou podporou.',
+            tags: ['Automatizácie', 'AI workflow', 'SEO + AI + výkon'],
           },
         ],
       },
@@ -2414,19 +2340,24 @@ export const copy: Record<Lang, Copy> = {
         subtitle: 'Krátke referencie od tímov, ktoré chceli rýchlosť a jasný proces.',
         testimonials: [
           {
-            quote: 'Alpinefy nám zrýchlilo web z 48 na 96 a konverzie narástli o 22 %.',
-            name: 'Marek Kováč',
-            role: 'CEO, Brightline Logistics',
+            quote: 'Alpinefy mi pomohli vytvoriť rýchly a krásny web, ktorý mi pomáha s mojím podnikaním.',
+            name: 'Ondro',
+            role: 'Founder, Tresoro GmbH',
           },
           {
-            quote: 'Spolupráca bola priamočiara. Web vieme rozširovať bez zložitostí.',
-            name: 'Lucia Vargová',
-            role: 'Marketing Lead, NovaCare',
+            quote: 'Pomohli nám s migráciou zo starého a neefektívneho riešenia. Oceňujeme dlhodobú spoluprácu, pomoc s jazykovými prekladmi aj SEO.',
+            name: 'NEBBIA Team',
+            role: 'NEBBIA',
           },
           {
-            quote: 'Technický prístup, nulové zbytočnosti. Deploy na Netlify bol hotový za deň.',
-            name: 'Tomáš Hronec',
-            role: 'Product Manager, Polar Analytics',
+            quote: 'Chcela som čistý a dôveryhodný web pre svoje štúdio. Výsledok je prehľadný, rýchly a ľahko spravovateľný.',
+            name: 'Oľga Chochúľová',
+            role: 'PedikuraOlga.cz',
+          },
+          {
+            quote: 'Vždy keď sme nevedeli nájsť správne riešenie, obrátili sme sa na Alpinefy a výrazne nám pomohli.',
+            name: 'Peter Kováčik',
+            role: 'SOELWE SOLUTIONS',
           },
         ],
       },
@@ -2441,21 +2372,29 @@ export const copy: Record<Lang, Copy> = {
               'Cena je individuálna a závisí od rozsahu. Po úvodnom call-e posielame presnú, neverejnú ponuku.',
           },
           {
-            question: 'Ako rýchlo viete web dodať?',
+            question: 'Ako rýchlo viete dodať web?',
             answer:
-              'Štandardný web doručíme za 4 – 8 týždňov. Lead weby vieme dodať aj do 2 týždňov.',
+              'Lead a marketing weby vieme dodať v priebehu pár dní až jedného týždňa. Sme extrémne efektívni, pretože používame moderné postupy a technológie, čo nám umožňuje skrátiť dodanie na najkratší možný čas. Pri komplexnejších zadaniach termín závisí najmä od rozsahu funkcionality, počtu integrácií a pripravenosti podkladov.',
           },
           {
             question: 'Budem si vedieť upravovať obsah?',
-            answer: 'Áno. Pripravujeme Decap CMS alebo Git-based workflow.',
+            answer:
+              'Áno. Weby, ktoré robíme, sú plne customizovateľné a klient dostane jednoduché administračné rozhranie aj krátky návod. Na začiatku si spolu vždy definujeme, ktoré časti majú byť upravovateľné, aby ste mali v praxi plnú kontrolu nad webstránkou aj bez zásahu do kódu. Bez developera si viete upravovať texty, nadpisy, podnadpisy, fotky, bannery, ikony aj meta SEO nastavenia. Cieľ je, aby správa bola pre vás jednoduchá, ale technicky stále rýchla, stabilná a výkonná.',
           },
           {
-            question: 'Prečo moderný stack namiesto WordPress šablóny?',
-            answer: 'Preferujeme rýchlosť, bezpečnosť a dlhodobú udržateľnosť bez pluginového balastu.',
+            question: 'Prečo technológie, ktoré používame, namiesto WordPress šablóny?',
+            answer:
+              'Technológie, ktoré používame, nám dávajú výrazne lepší výkon, bezpečnosť a kontrolu nad výsledkom ako šablónové riešenia. Web staviame na mieru vašim cieľom, takže neťahá zbytočný kód ani pluginový balast, ktorý spomaľuje načítanie a zvyšuje riziko problémov po aktualizáciách. Získate rýchlejší web, lepšie SEO, stabilnejšiu prevádzku a riešenie, ktoré sa dá čisto rozširovať aj o nové funkcie bez toho, aby bol projekt časom zahltený a neefektívny.',
           },
           {
             question: 'Viete prebrať existujúci web?',
-            answer: 'Áno. Audit, postup migrácie a nový web bez výpadkov.',
+            answer:
+              'Áno. Existujúci web vieme kompletne prebrať, spraviť technický a obsahový audit a pripraviť bezpečný plán migrácie krok za krokom. Postupujeme tak, aby ste neprišli o SEO pozície, dáta ani návštevnosť, a nový web nasadzujeme s minimálnym rizikom výpadku. Po spustení ešte doladíme detaily podľa reálnych dát, aby bol prechod plynulý aj pre váš tím.',
+          },
+          {
+            question: 'Viete nám nastaviť meranie, analytiku a AI riešenia?',
+            answer:
+              'Áno. Web vieme nastaviť tak, aby ste mali presné dáta aj praktické AI riešenia na jednom mieste. Štandardne prepájame GA4 a Microsoft Clarity, takže vidíte návštevnosť, správanie používateľov aj konverzie. Na základe dát potom navrhujeme a nasadzujeme AI riešenia podľa cieľov projektu, aby web nebol len vizuálne kvalitný, ale aj výkonnejší a efektívnejší v praxi.',
           },
         ],
       },
@@ -2465,7 +2404,7 @@ export const copy: Record<Lang, Copy> = {
         subtitle: '30-minútový call a rýchly návrh ďalších krokov.',
         primaryLabel: 'Rezervovať konzultáciu',
         secondaryLabel: 'Napísať email',
-        note: 'Odpovedáme do 24 hodín v pracovné dni.',
+        note: 'Počas pracovných dní odpovedáme do 24 hodín.',
       },
       trustBadges: {
         items: [
@@ -2501,7 +2440,7 @@ export const copy: Record<Lang, Copy> = {
           astro: 'SSG/SSR',
           tailwind: 'UI systém',
           netlify: 'Deploy',
-          next: 'Apps',
+          next: 'Automatizácie',
           react: 'Islands',
           figma: 'Dizajn',
           ga: 'Analytika',
@@ -2509,14 +2448,14 @@ export const copy: Record<Lang, Copy> = {
         },
       },
       capabilities: {
-        eyebrow: 'Capabilities',
-        title: 'Kompletné pokrytie od webu po technický rast',
-        subtitle: 'Budujeme webový základ a zvyšujeme viditeľnosť v Google aj AI odpovediach.',
+        eyebrow: 'Možnosti',
+        title: 'Digitálne riešenia pre rast vášho biznisu',
+        subtitle: 'Spájame web, dáta, analytiku a AI do jedného systému, ktorý prináša merateľné výsledky.',
         items: [
           'Webová stratégia a štruktúra',
           'Dizajn a vývoj webstránok',
           'Technické SEO (crawlovanie, indexácia, on-page)',
-          'AI discoverability optimalizácia (LLM/AI odpovede)',
+          'AI riešenia a automatizácie pre marketing, obchod a podporu',
           'Štruktúrované dáta (Schema.org)',
           'Analytika a meranie konverzií',
           'Core Web Vitals a optimalizácia rýchlosti',
@@ -2533,7 +2472,7 @@ export const copy: Record<Lang, Copy> = {
           description: 'Premium agency zameraná na výkon, dizajn a udržateľné riešenia.',
         },
         hero: {
-          eyebrow: 'Alpinefy / Web Agency',
+          eyebrow: 'Alpinefy / AI & Web Studio',
           title: 'Rýchle weby, ktoré prinášajú výsledky',
           subtitle:
             'Premium agency zameraná na výkon, čistý dizajn a technicky udržateľné riešenia.',
@@ -2544,7 +2483,7 @@ export const copy: Record<Lang, Copy> = {
       services: {
         meta: {
           title: 'Služby',
-          description: 'Lead weby, firemné weby, Shopify e-shopy a vlastné appky.',
+          description: 'Lead weby, firemné weby, Shopify e-shopy a automatizácie a AI workflow.',
         },
         hero: {
           eyebrow: 'Služby',
@@ -2610,58 +2549,27 @@ export const copy: Record<Lang, Copy> = {
           subtitle: 'Krátke feedbacky od tímov, ktoré chceli rýchlosť a jasnosť.',
           items: [
             {
-              quote: 'Launch prebehol hladko a web je konečne rýchly na mobile.',
-              name: 'Anna Weiss',
-              role: 'Marketing Manager, Northwind',
+              quote: 'Alpinefy mi pomohli vytvoriť rýchly a krásny web, ktorý mi pomáha s mojím podnikaním.',
+              name: 'Ondro',
+              role: 'Founder, Tresoro GmbH',
             },
             {
-              quote: 'Výkon vyskočil nad 95 a odovzdanie CMS bolo čisté.',
-              name: 'Filip Novotny',
-              role: 'Head of Growth, Helio',
+              quote: 'Pomohli nám s migráciou zo starého a neefektívneho riešenia. Oceňujeme dlhodobú spoluprácu, pomoc s jazykovými prekladmi aj SEO.',
+              name: 'NEBBIA Team',
+              role: 'NEBBIA',
             },
             {
-              quote: 'Jasný proces, žiadny chaos. Presne to, čo B2B značka potrebuje.',
-              name: 'Sarah Klein',
-              role: 'COO, Matrix Labs',
+              quote: 'Chcela som čistý a dôveryhodný web pre svoje štúdio. Výsledok je prehľadný, rýchly a ľahko spravovateľný.',
+              name: 'Oľga Chochúľová',
+              role: 'PedikuraOlga.cz',
             },
             {
-              quote: 'Dostali sme škálovateľný dizajn systém, ktorý vieme ďalej rozvíjať.',
-              name: 'Martin Polak',
-              role: 'Product Lead, Qube',
-            },
-            {
-              quote: 'SEO aj analytika boli pripravené od prvého dňa.',
-              name: 'Elena Roth',
-              role: 'CMO, NovaCare',
-            },
-            {
-              quote: 'Rýchlo, presne, bez zbytočného JS. Taký bol brief.',
-              name: 'Jakub Horak',
-              role: 'CTO, Brightline',
+              quote: 'Vždy keď sme nevedeli nájsť správne riešenie, obrátili sme sa na Alpinefy a výrazne nám pomohli.',
+              name: 'Peter Kováčik',
+              role: 'SOELWE SOLUTIONS',
             },
           ],
-          moreItems: [
-            {
-              quote: 'Skvelá spolupráca a realistické termíny.',
-              name: 'Peter Lang',
-              role: 'CEO, Axion',
-            },
-            {
-              quote: 'Tím optimalizoval náš legacy web bez výpadku.',
-              name: 'Mila Petrova',
-              role: 'Operations, Synapse',
-            },
-            {
-              quote: 'Náš organický aj priamy traffic konečne smeruje na landingy, ktoré konvertujú.',
-              name: 'Nina Grof',
-              role: 'Performance Lead, Lumen',
-            },
-            {
-              quote: 'Web je rýchly, čistý a ľahko udržiavateľný.',
-              name: 'Daniel Ortiz',
-              role: 'Founder, ClearPath',
-            },
-          ],
+          moreItems: [],
           actions: {
             more: 'Zobraziť viac',
             add: 'Pridať recenziu',
@@ -2798,7 +2706,7 @@ export const copy: Record<Lang, Copy> = {
           email: 'Email',
           phone: 'Telefón',
           location: 'Lokalita',
-          scope: 'Scope',
+          scope: 'Rozsah',
           scopeText:
             'Min. rozsah: jednoduchý firemný web alebo lead stránka. Väčšie projekty podľa zadania.',
         },

@@ -12,8 +12,7 @@ import {
   siGoogletagmanager,
   siGooglesearchconsole,
   siShopify,
-  siMeta,
-  siGoogleads,
+  siCursor,
   siCloudflare,
   siFigma,
   siGithub,
@@ -24,6 +23,10 @@ import { getCopy } from '../../i18n/copy';
 
 const { lang = defaultLang } = Astro.props;
 const { sections } = getCopy(lang);
+const msClarityIcon = {
+  hex: '00A4EF',
+  path: 'M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z',
+};
 
 const partnerLogos = [
   { name: 'Astro', icon: siAstro, type: 'stack' },
@@ -36,20 +39,20 @@ const partnerLogos = [
   { name: 'Google Analytics', icon: siGoogleanalytics, type: 'analytics' },
   { name: 'Google Tag Manager', icon: siGoogletagmanager, type: 'analytics' },
   { name: 'Search Console', icon: siGooglesearchconsole, type: 'analytics' },
-  { name: 'Meta Ads', icon: siMeta, type: 'analytics' },
-  { name: 'Google Ads', icon: siGoogleads, type: 'analytics' },
-  { name: 'Cloudflare', icon: siCloudflare, type: 'delivery' },
-  { name: 'GitHub', icon: siGithub, type: 'delivery' },
-  { name: 'Vercel', icon: siVercel, type: 'delivery' },
-  { name: 'Figma', icon: siFigma, type: 'delivery' },
+  { name: 'Microsoft Clarity', icon: msClarityIcon, type: 'analytics' },
+  { name: 'Cursor', icon: siCursor, type: 'tools' },
+  { name: 'Cloudflare', icon: siCloudflare, type: 'tools' },
+  { name: 'GitHub', icon: siGithub, type: 'tools' },
+  { name: 'Vercel', icon: siVercel, type: 'tools' },
+  { name: 'Figma', icon: siFigma, type: 'tools' },
 ];
 
 const typeLabels = {
-  en: { stack: 'Stack', analytics: 'Analytics', delivery: 'Delivery' },
-  de: { stack: 'Stack', analytics: 'Analytics', delivery: 'Delivery' },
-  pl: { stack: 'Stack', analytics: 'Analityka', delivery: 'Delivery' },
-  cz: { stack: 'Stack', analytics: 'Analytika', delivery: 'Delivery' },
-  sk: { stack: 'Stack', analytics: 'Analytika', delivery: 'Delivery' },
+  en: { stack: 'Stack', analytics: 'Analytics', tools: 'Tools' },
+  de: { stack: 'Stack', analytics: 'Analytics', tools: 'Tools' },
+  pl: { stack: 'Stack', analytics: 'Analityka', tools: 'Narzędzia' },
+  cz: { stack: 'Stack', analytics: 'Analytika', tools: 'Nástroje' },
+  sk: { stack: 'Stack', analytics: 'Analytika', tools: 'Nástroje' },
 };
 
 const labels = typeLabels[lang] ?? typeLabels.en;

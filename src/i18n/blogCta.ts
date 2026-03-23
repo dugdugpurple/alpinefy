@@ -84,7 +84,7 @@ const servicesLabelByLang: Record<string, Record<BlogCtaTopic, string>> = {
     ai: 'AI + SEO setup',
     design: 'Lead websites',
     shopify: 'Shopify e-shops',
-    apps: 'Web & mobile apps',
+    apps: 'Automation & AI workflows',
     general: 'View services',
   },
   de: {
@@ -94,7 +94,7 @@ const servicesLabelByLang: Record<string, Record<BlogCtaTopic, string>> = {
     ai: 'AI + SEO Setup',
     design: 'Lead-Websites',
     shopify: 'Shopify-Shops',
-    apps: 'Applikationen',
+    apps: 'Automatisierung & KI-Workflows',
     general: 'Leistungen',
   },
   pl: {
@@ -104,7 +104,7 @@ const servicesLabelByLang: Record<string, Record<BlogCtaTopic, string>> = {
     ai: 'AI + SEO',
     design: 'Strony leadowe',
     shopify: 'Sklepy Shopify',
-    apps: 'Aplikacje',
+    apps: 'Automatyzacje i workflow AI',
     general: 'Usługi',
   },
   cz: {
@@ -114,7 +114,7 @@ const servicesLabelByLang: Record<string, Record<BlogCtaTopic, string>> = {
     ai: 'AI + SEO',
     design: 'Lead weby',
     shopify: 'Shopify e-shopy',
-    apps: 'Aplikace',
+    apps: 'Automatizace a AI workflow',
     general: 'Služby',
   },
   sk: {
@@ -124,7 +124,7 @@ const servicesLabelByLang: Record<string, Record<BlogCtaTopic, string>> = {
     ai: 'AI + SEO',
     design: 'Lead weby',
     shopify: 'Shopify e-shopy',
-    apps: 'Aplikácie',
+    apps: 'Automatizácie a AI workflow',
     general: 'Služby',
   },
 };

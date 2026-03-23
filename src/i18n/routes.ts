@@ -1,4 +1,4 @@
-import { defaultLang, languages } from './languages';
+import { defaultLang, languages, type Lang } from './languages';
 
 export type RouteKey =
   | 'home'
@@ -10,7 +10,7 @@ export type RouteKey =
   | 'contact'
   | 'thankYou';
 
-export const routeMap: Record<string, Record<RouteKey, string>> = {
+export const routeMap: Record<Lang, Record<RouteKey, string>> = {
   en: {
     home: '/',
     services: '/services',
@@ -80,7 +80,7 @@ Object.values(routeMap).forEach((map) => {
   });
 });
 
-export const getRoutePath = (key: RouteKey, lang: string) => {
+export const getRoutePath = (key: RouteKey, lang: Lang) => {
   const map = routeMap[lang] ?? routeMap[defaultLang];
   return map?.[key] ?? routeMap[defaultLang][key];
 };
@@ -93,10 +93,10 @@ export const getBlogPathInfo = (pathname: string) => {
   for (const language of languages) {
     const prefix = normalizePath(routeMap[language.code]?.blog ?? '/blog');
     if (normalized === prefix) {
-      return { lang: language.code, slugPath: '' };
+      return { lang: language.code as Lang, slugPath: '' };
     }
     if (normalized.startsWith(`${prefix}/`)) {
-      return { lang: language.code, slugPath: normalized.slice(prefix.length) };
+      return { lang: language.code as Lang, slugPath: normalized.slice(prefix.length) };
     }
   }
   return null;

@@ -1,4 +1,4 @@
-import { languages, defaultLang } from './languages';
+import { languages, defaultLang, type Lang } from './languages';
 import { getBlogIdBySlug, getBlogSlugForLang } from './blog';
 import {
   getBlogPathInfo,
@@ -7,7 +7,7 @@ import {
   normalizePath,
 } from './routes';
 
-const langCodes = new Set(languages.map((lang) => lang.code));
+const langCodes = new Set<string>(languages.map((lang) => lang.code));
 
 export { normalizePath } from './routes';
 
@@ -22,13 +22,13 @@ export const stripLangPrefix = (pathname: string) => {
   return normalized;
 };
 
-export const localizePath = (pathname: string, lang: string) => {
+export const localizePath = (pathname: string, lang: Lang) => {
   const normalized = normalizePath(pathname);
   if (normalized === '' || normalized === '/') {
     return getRoutePath('home', lang);
   }
 
-  const resolveBlogPath = (sourceLang: string, slugPath: string) => {
+  const resolveBlogPath = (sourceLang: Lang, slugPath: string) => {
     const base = getRoutePath('blog', lang);
     if (!slugPath) return base;
     const slug = slugPath.replace(/^\//, '');
@@ -66,6 +66,6 @@ export const getLangFromPath = (pathname: string) => {
   const normalized = normalizePath(pathname);
   const segments = normalized.split('/').filter(Boolean);
   const [first] = segments;
-  if (first && langCodes.has(first)) return first;
+  if (first && langCodes.has(first)) return first as Lang;
   return defaultLang;
 };

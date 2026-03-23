@@ -18,27 +18,28 @@ const stars = Array.from({ length: 5 });
       subtitle={sections.socialProof.subtitle}
     />
 
-    <div class="relative overflow-hidden rounded-3xl border border-white/12 bg-coal/55 p-5 sm:p-6 mask-fade">
-      <div class="marquee-track motion-safe:animate-marquee">
+    <div class="relative overflow-hidden rounded-3xl border border-white/12 bg-coal/55 p-5 sm:p-6 mask-fade review-marquee-shell">
+      <div class="marquee-track marquee-track-interactive motion-safe:animate-marquee">
         {loopItems.map((item, index) => (
           <article
-            class="review-card min-w-[270px] max-w-sm"
+            class="review-card review-card-brand review-card-marquee marquee-hover-card min-w-[270px] max-w-sm"
             aria-hidden={index >= sections.socialProof.testimonials.length ? 'true' : 'false'}
           >
-            <div class="flex items-center gap-1 text-lime/88">
+            <div class="review-stars">
               {stars.map((_, starIndex) => (
-                <svg
-                  key={starIndex}
-                  viewBox="0 0 20 20"
-                  class="h-4 w-4"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M9.049 2.927a1 1 0 0 1 1.902 0l1.286 3.95a1 1 0 0 0 .95.69h4.153a1 1 0 0 1 .592 1.806l-3.36 2.442a1 1 0 0 0-.364 1.118l1.286 3.95a1 1 0 0 1-1.538 1.118l-3.36-2.442a1 1 0 0 0-1.176 0l-3.36 2.442a1 1 0 0 1-1.538-1.118l1.286-3.95a1 1 0 0 0-.364-1.118L2.07 9.373a1 1 0 0 1 .592-1.806h4.153a1 1 0 0 0 .95-.69l1.286-3.95Z"></path>
-                </svg>
+                <span class="glass-star review-star" aria-hidden="true">
+                  <svg
+                    key={starIndex}
+                    viewBox="0 0 20 20"
+                    class="h-3.5 w-3.5 fill-current"
+                    aria-hidden="true"
+                  >
+                    <path d="M9.049 2.927a1 1 0 0 1 1.902 0l1.286 3.95a1 1 0 0 0 .95.69h4.153a1 1 0 0 1 .592 1.806l-3.36 2.442a1 1 0 0 0-.364 1.118l1.286 3.95a1 1 0 0 1-1.538 1.118l-3.36-2.442a1 1 0 0 0-1.176 0l-3.36 2.442a1 1 0 0 1-1.538-1.118l1.286-3.95a1 1 0 0 0-.364-1.118L2.07 9.373a1 1 0 0 1 .592-1.806h4.153a1 1 0 0 0 .95-.69l1.286-3.95Z"></path>
+                  </svg>
+                </span>
               ))}
             </div>
-            <p class="mt-3 text-sm text-ice/92">"{item.quote}"</p>
+            <p class="mt-3 text-sm text-ice/92">{item.quote}</p>
             <div class="mt-5">
               <p class="font-semibold text-ice">{item.name}</p>
               <p class="text-xs text-mist">{item.role}</p>
