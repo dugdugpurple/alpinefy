@@ -132,6 +132,20 @@ const allStructuredData = [organizationSchema, websiteSchema, pageSchema, ...ext
 <!doctype html>
 <html lang={langTag}>
   <head>
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-PMG86FBV');
+    </script>
+    <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
@@ -192,6 +206,16 @@ const allStructuredData = [organizationSchema, websiteSchema, pageSchema, ...ext
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260323" />
   </head>
   <body class="bg-night text-ice antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PMG86FBV"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <a class="skip-link" href="#content">{copy.accessibility.skipToContent}</a>
     <div class="min-h-screen bg-radial-glow">
       <Header lang={lang} />
