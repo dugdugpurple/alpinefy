@@ -144,7 +144,7 @@ const currentPath = Astro.url.pathname;
 
       <div class="space-y-4 text-sm xl:justify-self-end xl:max-w-sm">
         <p class="text-xs font-semibold uppercase tracking-[0.25em] text-aqua/90">{copy.footer.socials}</p>
-        <SocialIcons />
+        <SocialIcons lang={lang} />
         <div class="card rounded-2xl p-4" data-newsletter-card>
           <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/90">{newsletter.title}</p>
           <p class="mt-2 text-xs text-mist">{newsletter.subtitle}</p>
