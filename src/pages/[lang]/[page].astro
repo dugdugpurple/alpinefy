@@ -13,7 +13,7 @@ import ReferencesShowcase from '../../components/sections/ReferencesShowcase.ast
 import LegalContent from '../../components/pages/LegalContent.astro';
 import Container from '../../components/Container.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
-import { site } from '../../data/site';
+import { getDisplayPhone, getPhoneDialValue, site } from '../../data/site';
 import { languages, defaultLang, isSupportedLang } from '../../i18n/languages';
 import { getCopy } from '../../i18n/copy';
 import { getLegalCopy } from '../../i18n/legal';
@@ -69,6 +69,8 @@ if (!meta) {
 }
 const contactFormName = 'contact-inquiry';
 const currentPath = Astro.url.pathname;
+const phoneLabel = getDisplayPhone(lang);
+const phoneDial = getPhoneDialValue();
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description}>
@@ -211,7 +213,7 @@ const currentPath = Astro.url.pathname;
               netlify-honeypot="bot-field"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
-              action={`${getRoutePath('thankYou', lang)}?src=contact`}
+              action={`${getRoutePath('thankYou', lang)}?src=contact&lang=${lang}`}
             >
               <input type="hidden" name="form-name" value={contactFormName} />
               <p class="hidden">
@@ -271,8 +273,8 @@ const currentPath = Astro.url.pathname;
               </div>
               <div>
                 <p class="text-xs uppercase tracking-[0.3em] text-aqua/80">{copy.pages.contact.directLabels.phone}</p>
-                <a class="mt-2 block text-lg text-ice" href={`tel:${site.phone.replace(/\s/g, '')}`}>
-                  {site.phone}
+                <a class="mt-2 block text-lg text-ice" href={`tel:${phoneDial}`}>
+                  {phoneLabel}
                 </a>
               </div>
               <div>

@@ -704,6 +704,11 @@
   .cookie-banner-dock-btn[data-state='visible'] {
     animation: cookieDockButtonIn 280ms ease-out both;
   }
+
+  .thank-you-card {
+    animation: thankYouCardIn 620ms cubic-bezier(0.2, 0.86, 0.2, 1) both;
+    will-change: transform, opacity, filter;
+  }
 }
 
 @keyframes heroGridDrift {
@@ -838,6 +843,24 @@
   }
 }
 
+@keyframes thankYouCardIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0) scale(0.985);
+    filter: blur(6px);
+  }
+  65% {
+    opacity: 1;
+    transform: translate3d(0, -3px, 0) scale(1.002);
+    filter: blur(0.4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-grid-overlay::before,
   .hero-scan::after,
@@ -847,7 +870,8 @@
 
   .cookie-banner-panel,
   .cookie-banner-panel::before,
-  .cookie-banner-dock-btn {
+  .cookie-banner-dock-btn,
+  .thank-you-card {
     animation: none !important;
     transform: none !important;
     filter: none !important;

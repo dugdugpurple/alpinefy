@@ -149,7 +149,7 @@ const reviewsLabel = reviewsCountLabel[lang] ?? reviewsCountLabel.en;
         method="POST"
         netlify
         data-netlify="true"
-        action={getRoutePath('thankYou', lang)}
+        action={`${getRoutePath('thankYou', lang)}?src=review&lang=${lang}`}
       >
         <input type="hidden" name="form-name" value={reviewFormName} />
         <input type="hidden" name="recipient" value={site.email} />

@@ -25,11 +25,22 @@ export const getSocials = (lang: Lang = defaultLang): SocialLink[] => {
   return buildSocials(handle);
 };
 
+const phoneLocal = '0903 473 335';
+const phoneInternational = '+421 903 473 335';
+const phoneDialValue = '+421903473335';
+
+export const getDisplayPhone = (lang: Lang = defaultLang) =>
+  lang === 'sk' ? phoneLocal : phoneInternational;
+
+export const getPhoneDialValue = () => phoneDialValue;
+
 export const site = {
   name: 'Alpinefy',
   url: 'https://alpinefy.com',
   email: 'hello@alpinefy.com',
-  phone: '0903 473 335',
+  phone: phoneLocal,
+  phoneIntl: phoneInternational,
+  phoneDial: phoneDialValue,
   address: 'Žilina, Slovensko',
   socials: getSocials(defaultLang),
 };

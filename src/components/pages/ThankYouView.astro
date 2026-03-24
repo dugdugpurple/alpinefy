@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import { site } from '../../data/site';
-import { defaultLang } from '../../i18n/languages';
+import { defaultLang, languages } from '../../i18n/languages';
 import { getRoutePath } from '../../i18n/routes';
 
 const { lang = defaultLang } = Astro.props;
@@ -56,6 +56,9 @@ const copyByLang = {
 };
 
 const copy = copyByLang[lang] ?? copyByLang.en;
+const thankYouPathsByLang = Object.fromEntries(
+  languages.map((item) => [item.code, getRoutePath('thankYou', item.code)])
+);
 ---
 
 <BaseLayout
@@ -66,7 +69,7 @@ const copy = copyByLang[lang] ?? copyByLang.en;
 >
   <section class="py-28 sm:py-32">
     <Container>
-      <div class="mx-auto max-w-2xl rounded-3xl border border-white/12 bg-coal/60 p-8 text-center sm:p-10">
+      <div class="thank-you-card mx-auto max-w-2xl rounded-3xl border border-white/12 bg-coal/60 p-8 text-center sm:p-10">
         <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/90">{copy.eyebrow}</p>
         <h1 class="mt-4 font-display text-3xl sm:text-4xl">{copy.title}</h1>
         <p class="mt-4 text-sm text-mist sm:text-base">
@@ -81,10 +84,66 @@ const copy = copyByLang[lang] ?? copyByLang.en;
     </Container>
   </section>
 
-  <script is:inline>
+  <script is:inline define:vars={{ thankYouPathsByLang }}>
     (() => {
+      const THANK_YOU_PATHS = thankYouPathsByLang;
+      const SUPPORTED = Object.keys(THANK_YOU_PATHS);
+      const normalizePath = (pathname) => {
+        if (!pathname) return '/';
+        const clean = pathname.split('?')[0].split('#')[0] || '/';
+        if (clean === '/') return '/';
+        const withLeading = clean.startsWith('/') ? clean : `/${clean}`;
+        return withLeading.endsWith('/') ? withLeading.slice(0, -1) : withLeading;
+      };
+      const inferLangFromPath = (pathname) => {
+        const normalized = normalizePath(pathname);
+        const firstSegment = normalized.split('/').filter(Boolean)[0] || '';
+        return SUPPORTED.includes(firstSegment) ? firstSegment : 'en';
+      };
+      const buildUrl = (path, params) => {
+        const query = params.toString();
+        return query ? `${path}?${query}` : path;
+      };
+
       const params = new URLSearchParams(window.location.search);
       const source = params.get('src');
+      const forcedLangParam = params.get('lang');
+      const forcedLang = SUPPORTED.includes(forcedLangParam) ? forcedLangParam : null;
+      const currentPath = normalizePath(window.location.pathname);
+      const currentLang = inferLangFromPath(currentPath);
+
+      let desiredLang = forcedLang ?? currentLang;
+
+      if (!forcedLang && currentLang === 'en' && document.referrer) {
+        try {
+          const ref = new URL(document.referrer);
+          if (ref.origin === window.location.origin) {
+            const refLang = inferLangFromPath(ref.pathname);
+            if (refLang !== 'en') desiredLang = refLang;
+          }
+        } catch {
+          // no-op
+        }
+      }
+
+      const desiredPath = normalizePath(THANK_YOU_PATHS[desiredLang] || THANK_YOU_PATHS.en);
+      if (currentPath !== desiredPath) {
+        params.set('lang', desiredLang);
+        window.location.replace(buildUrl(desiredPath, params));
+        return;
+      }
+
+      const htmlLang = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+      const langFixKey = `thankyou-langfix:${desiredLang}:${desiredPath}`;
+      if (htmlLang !== desiredLang) {
+        if (sessionStorage.getItem(langFixKey) !== '1') {
+          sessionStorage.setItem(langFixKey, '1');
+          window.location.replace(buildUrl(desiredPath, params));
+          return;
+        }
+      } else {
+        sessionStorage.removeItem(langFixKey);
+      }
 
       if (!source) return;
 
