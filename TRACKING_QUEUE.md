@@ -8,6 +8,9 @@ Aktualizované: 24. 03. 2026
 - GA4 base tag beží cez GTM.
 - Microsoft Clarity beží cez GTM.
 - Search Console property overená + sitemap odoslaná.
+- Kontakt formulár rozšírený o kvalifikačné polia (`service_interest`, `budget_range`, `timeline_preference`).
+- Lead atribúcia pripravená v formulároch (`utm_*`, `gclid`, `fbclid`, `msclkid`, `landing_page`, `referrer`).
+- Event do dataLayer pri odoslaní kvalifikovaného formulára: `contact_form_intent_submit`.
 
 ## Najbližšie kroky (zajtra)
 

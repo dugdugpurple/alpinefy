@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/sections/Hero.astro';
 import Container from '../components/Container.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import { attributionFieldNames, getContactIntakeCopy } from '../data/contact-intake';
 import { getDisplayPhone, getPhoneDialValue, site } from '../data/site';
 import { defaultLang } from '../i18n/languages';
 import { getCopy } from '../i18n/copy';
@@ -13,6 +14,7 @@ const contactFormName = 'contact-inquiry';
 const currentPath = Astro.url.pathname;
 const phoneLabel = getDisplayPhone(lang);
 const phoneDial = getPhoneDialValue();
+const intake = getContactIntakeCopy(lang);
 ---
 
 <BaseLayout
@@ -47,6 +49,7 @@ const phoneDial = getPhoneDialValue();
           netlify-honeypot="bot-field"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
+          data-capture-attribution="true"
           action={`${getRoutePath('thankYou', lang)}?src=contact&lang=${lang}`}
         >
           <input type="hidden" name="form-name" value={contactFormName} />
@@ -56,9 +59,12 @@ const phoneDial = getPhoneDialValue();
             </label>
           </p>
           <input type="hidden" name="recipient" value={site.email} />
-          <input type="hidden" name="subject" value="New contact inquiry" />
+          <input type="hidden" name="subject" value="New qualified contact inquiry" />
           <input type="hidden" name="locale" value={lang} />
           <input type="hidden" name="source_page" value={currentPath} />
+          {attributionFieldNames.map((field) => (
+            <input type="hidden" name={field} value="" data-attribution-field={field} />
+          ))}
           <label class="grid gap-2 text-sm text-mist">
             {copy.pages.contact.formLabels.name}
             <input
@@ -76,6 +82,45 @@ const phoneDial = getPhoneDialValue();
               type="email"
               placeholder={copy.pages.contact.formLabels.emailPlaceholder}
               required
+            />
+          </label>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="grid gap-2 text-sm text-mist">
+              {intake.serviceLabel}
+              <select class="input-field" name="service_interest" required>
+                <option value="" selected disabled>{intake.servicePlaceholder}</option>
+                {intake.serviceOptions.map((option) => (
+                  <option value={option.value}>{option.label}</option>
+                ))}
+              </select>
+            </label>
+            <label class="grid gap-2 text-sm text-mist">
+              {intake.budgetLabel}
+              <select class="input-field" name="budget_range" required>
+                <option value="" selected disabled>{intake.budgetPlaceholder}</option>
+                {intake.budgetOptions.map((option) => (
+                  <option value={option.value}>{option.label}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <label class="grid gap-2 text-sm text-mist">
+            {intake.timelineLabel}
+            <select class="input-field" name="timeline_preference" required>
+              <option value="" selected disabled>{intake.timelinePlaceholder}</option>
+              {intake.timelineOptions.map((option) => (
+                <option value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          </label>
+          <label class="grid gap-2 text-sm text-mist">
+            {intake.websiteLabel}
+            <input
+              class="input-field"
+              name="current_website"
+              type="url"
+              inputmode="url"
+              placeholder={intake.websitePlaceholder}
             />
           </label>
           <label class="grid gap-2 text-sm text-mist">

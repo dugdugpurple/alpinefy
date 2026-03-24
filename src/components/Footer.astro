@@ -2,6 +2,7 @@
 import Container from './Container.astro';
 import Logo from './Logo.astro';
 import SocialIcons from './SocialIcons.astro';
+import { attributionFieldNames } from '../data/contact-intake';
 import { getDisplayPhone, getPhoneDialValue, site } from '../data/site';
 import { defaultLang } from '../i18n/languages';
 import { getCopy, navItems } from '../i18n/copy';
@@ -161,6 +162,7 @@ const phoneDial = getPhoneDialValue();
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             data-newsletter-form
+            data-capture-attribution="true"
             data-endpoint="/"
             data-success={newsletter.success}
             data-error={newsletter.error}
@@ -176,6 +178,9 @@ const phoneDial = getPhoneDialValue();
             <input type="hidden" name="subject" value="New newsletter subscription" />
             <input type="hidden" name="locale" value={lang} />
             <input type="hidden" name="source_page" value={currentPath} />
+            {attributionFieldNames.map((field) => (
+              <input type="hidden" name={field} value="" data-attribution-field={field} />
+            ))}
             <label class="sr-only" for={`newsletter-email-${lang}`}>{newsletter.title}</label>
             <input
               id={`newsletter-email-${lang}`}

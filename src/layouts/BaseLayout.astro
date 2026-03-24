@@ -315,8 +315,108 @@ const allStructuredData = [organizationSchema, websiteSchema, pageSchema, ...ext
         });
       };
 
+      const initAttributionCapture = () => {
+        const forms = document.querySelectorAll('form[data-capture-attribution="true"]');
+        if (!forms.length) return;
+
+        const SESSION_KEY = 'alpinefy_attribution_v1';
+        const params = new URLSearchParams(window.location.search);
+        const paramValue = (key) => (params.get(key) || '').trim();
+        const hasNewAttribution =
+          Boolean(paramValue('utm_source')) ||
+          Boolean(paramValue('utm_medium')) ||
+          Boolean(paramValue('utm_campaign')) ||
+          Boolean(paramValue('utm_term')) ||
+          Boolean(paramValue('utm_content')) ||
+          Boolean(paramValue('gclid')) ||
+          Boolean(paramValue('fbclid')) ||
+          Boolean(paramValue('msclkid'));
+
+        const currentAttribution = {
+          utm_source: paramValue('utm_source'),
+          utm_medium: paramValue('utm_medium'),
+          utm_campaign: paramValue('utm_campaign'),
+          utm_term: paramValue('utm_term'),
+          utm_content: paramValue('utm_content'),
+          gclid: paramValue('gclid'),
+          fbclid: paramValue('fbclid'),
+          msclkid: paramValue('msclkid'),
+          landing_page: `${window.location.pathname}${window.location.search}`,
+          referrer: document.referrer || '',
+        };
+
+        let stored = null;
+        try {
+          const raw = sessionStorage.getItem(SESSION_KEY);
+          stored = raw ? JSON.parse(raw) : null;
+        } catch {
+          stored = null;
+        }
+
+        let resolved = stored && typeof stored === 'object' ? { ...stored } : null;
+
+        if (!resolved || hasNewAttribution) {
+          resolved = {
+            ...(resolved || {}),
+            ...currentAttribution,
+            referrer: currentAttribution.referrer || resolved?.referrer || '',
+            landing_page: resolved?.landing_page || currentAttribution.landing_page,
+          };
+          try {
+            sessionStorage.setItem(SESSION_KEY, JSON.stringify(resolved));
+          } catch {
+            // no-op
+          }
+        }
+
+        const finalValues = resolved || currentAttribution;
+
+        forms.forEach((form) => {
+          Object.entries(finalValues).forEach(([key, value]) => {
+            const input = form.querySelector(`[data-attribution-field="${key}"]`);
+            if (!(input instanceof HTMLInputElement)) return;
+            if (input.value) return;
+            input.value = typeof value === 'string' ? value : '';
+          });
+        });
+      };
+
+      const initContactIntentTracking = () => {
+        const forms = document.querySelectorAll('form[name="contact-inquiry"]');
+        if (!forms.length) return;
+
+        forms.forEach((form) => {
+          if (!(form instanceof HTMLFormElement)) return;
+          if (form.dataset.intentTrackingReady === 'true') return;
+          form.dataset.intentTrackingReady = 'true';
+
+          form.addEventListener('submit', () => {
+            const getValue = (field) => {
+              const input = form.elements.namedItem(field);
+              if (!input) return '';
+              if (input instanceof HTMLInputElement || input instanceof HTMLSelectElement) {
+                return (input.value || '').trim();
+              }
+              return '';
+            };
+
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'contact_form_intent_submit',
+              page_path: window.location.pathname,
+              page_language: document.documentElement.lang || 'en',
+              service_interest: getValue('service_interest'),
+              budget_range: getValue('budget_range'),
+              timeline_preference: getValue('timeline_preference'),
+            });
+          });
+        });
+      };
+
       const initBase = () => {
         initThemeToggle();
+        initAttributionCapture();
+        initContactIntentTracking();
       };
 
       if (document.readyState === 'loading') {
