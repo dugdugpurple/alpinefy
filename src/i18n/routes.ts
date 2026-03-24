@@ -8,6 +8,8 @@ export type RouteKey =
   | 'about'
   | 'blog'
   | 'contact'
+  | 'privacy'
+  | 'cookies'
   | 'thankYou';
 
 export const routeMap: Record<Lang, Record<RouteKey, string>> = {
@@ -19,6 +21,8 @@ export const routeMap: Record<Lang, Record<RouteKey, string>> = {
     about: '/about',
     blog: '/blog',
     contact: '/contact',
+    privacy: '/privacy-policy',
+    cookies: '/cookie-policy',
     thankYou: '/thank-you',
   },
   de: {
@@ -29,6 +33,8 @@ export const routeMap: Record<Lang, Record<RouteKey, string>> = {
     about: '/de/ueber-uns',
     blog: '/de/blog',
     contact: '/de/kontakt',
+    privacy: '/de/datenschutz',
+    cookies: '/de/cookie-richtlinie',
     thankYou: '/de/danke',
   },
   pl: {
@@ -39,6 +45,8 @@ export const routeMap: Record<Lang, Record<RouteKey, string>> = {
     about: '/pl/o-nas',
     blog: '/pl/blog',
     contact: '/pl/kontakt',
+    privacy: '/pl/polityka-prywatnosci',
+    cookies: '/pl/polityka-cookies',
     thankYou: '/pl/dziekujemy',
   },
   cz: {
@@ -49,6 +57,8 @@ export const routeMap: Record<Lang, Record<RouteKey, string>> = {
     about: '/cz/o-nas',
     blog: '/cz/blog',
     contact: '/cz/kontakt',
+    privacy: '/cz/zasady-ochrany-soukromi',
+    cookies: '/cz/zasady-cookies',
     thankYou: '/cz/dekujeme',
   },
   sk: {
@@ -59,11 +69,21 @@ export const routeMap: Record<Lang, Record<RouteKey, string>> = {
     about: '/sk/o-nas',
     blog: '/sk/blog',
     contact: '/sk/kontakt',
+    privacy: '/sk/ochrana-sukromia',
+    cookies: '/sk/zasady-cookies',
     thankYou: '/sk/dakujeme',
   },
 };
 
-export const pageKeys: RouteKey[] = ['services', 'process', 'references', 'about', 'contact'];
+export const pageKeys: RouteKey[] = [
+  'services',
+  'process',
+  'references',
+  'about',
+  'contact',
+  'privacy',
+  'cookies',
+];
 
 export const normalizePath = (pathname: string) => {
   if (!pathname) return '/';

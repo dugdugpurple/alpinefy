@@ -10,11 +10,13 @@ import Process from '../../components/sections/Process.astro';
 import Faq from '../../components/sections/Faq.astro';
 import Cta from '../../components/sections/Cta.astro';
 import ReferencesShowcase from '../../components/sections/ReferencesShowcase.astro';
+import LegalContent from '../../components/pages/LegalContent.astro';
 import Container from '../../components/Container.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import { site } from '../../data/site';
 import { languages, defaultLang, isSupportedLang } from '../../i18n/languages';
 import { getCopy } from '../../i18n/copy';
+import { getLegalCopy } from '../../i18n/legal';
 import { getRoutePath, getRouteKeyFromPath, pageKeys } from '../../i18n/routes';
 
 export function getStaticPaths() {
@@ -39,20 +41,32 @@ if (!lang || !isSupportedLang(lang) || lang === defaultLang) {
 }
 
 const routeKey = Astro.props.routeKey ?? getRouteKeyFromPath(`/${lang}/${page}`);
-if (!routeKey || routeKey === 'home' || routeKey === 'blog') {
+if (!routeKey || routeKey === 'home' || routeKey === 'blog' || routeKey === 'thankYou') {
   throw new Error('Unknown page');
 }
 
 const copy = getCopy(lang);
-const metaMap = {
-  services: copy.pages.services.meta,
-  process: copy.pages.process.meta,
-  references: copy.pages.references.meta,
-  about: copy.pages.about.meta,
-  contact: copy.pages.contact.meta,
-};
+const legal = getLegalCopy(lang);
+const meta =
+  routeKey === 'services'
+    ? copy.pages.services.meta
+    : routeKey === 'process'
+      ? copy.pages.process.meta
+      : routeKey === 'references'
+        ? copy.pages.references.meta
+        : routeKey === 'about'
+          ? copy.pages.about.meta
+          : routeKey === 'contact'
+            ? copy.pages.contact.meta
+            : routeKey === 'privacy'
+              ? legal.privacy.meta
+              : routeKey === 'cookies'
+                ? legal.cookies.meta
+                : null;
 
-const meta = metaMap[routeKey];
+if (!meta) {
+  throw new Error('Unknown page');
+}
 const contactFormName = 'contact-inquiry';
 const currentPath = Astro.url.pathname;
 ---
@@ -275,4 +289,8 @@ const currentPath = Astro.url.pathname;
       </section>
     </>
   )}
+
+  {routeKey === 'privacy' && <LegalContent content={legal.privacy} />}
+
+  {routeKey === 'cookies' && <LegalContent content={legal.cookies} />}
 </BaseLayout>

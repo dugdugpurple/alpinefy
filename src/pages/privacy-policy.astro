@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalContent from '../components/pages/LegalContent.astro';
+import { defaultLang } from '../i18n/languages';
+import { getLegalCopy } from '../i18n/legal';
+
+const lang = defaultLang;
+const legal = getLegalCopy(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title={legal.privacy.meta.title}
+  description={legal.privacy.meta.description}
+>
+  <LegalContent content={legal.privacy} />
+</BaseLayout>

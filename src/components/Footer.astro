@@ -5,11 +5,13 @@ import SocialIcons from './SocialIcons.astro';
 import { site } from '../data/site';
 import { defaultLang } from '../i18n/languages';
 import { getCopy, navItems } from '../i18n/copy';
+import { getLegalCopy } from '../i18n/legal';
 import { getRoutePath } from '../i18n/routes';
 
 const year = new Date().getFullYear();
 const { lang = defaultLang } = Astro.props;
 const copy = getCopy(lang);
+const legal = getLegalCopy(lang);
 
 const stacks = ['Web strategy', 'SEO', 'Performance', 'Analytics', 'Automation & AI'];
 
@@ -196,9 +198,17 @@ const currentPath = Astro.url.pathname;
 
     <div class="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-mist/75 sm:flex-row sm:items-center sm:justify-between">
       <p>© {year} {site.name}. {copy.footer.rights}</p>
-      <a class="text-mist/75 transition hover:text-ice" href={getRoutePath('contact', lang)}>
-        {copy.nav.contact}
-      </a>
+      <div class="flex flex-wrap items-center gap-4">
+        <a class="text-mist/75 transition hover:text-ice" href={getRoutePath('contact', lang)}>
+          {copy.nav.contact}
+        </a>
+        <a class="text-mist/75 transition hover:text-ice" href={getRoutePath('privacy', lang)}>
+          {legal.footer.privacy}
+        </a>
+        <a class="text-mist/75 transition hover:text-ice" href={getRoutePath('cookies', lang)}>
+          {legal.footer.cookies}
+        </a>
+      </div>
     </div>
   </Container>
 </footer>

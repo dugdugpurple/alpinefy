@@ -650,6 +650,66 @@
   .modal-close-btn:active {
     transform: translateY(0) scale(0.95);
   }
+
+  .cookie-banner-root {
+    pointer-events: none;
+  }
+
+  .cookie-banner-root[data-state='opening'],
+  .cookie-banner-root[data-state='assembling'],
+  .cookie-banner-root[data-state='open'],
+  .cookie-banner-root[data-state='closing'] {
+    pointer-events: auto;
+  }
+
+  .cookie-banner-panel {
+    position: relative;
+    transform-origin: left bottom;
+    will-change: transform, opacity, filter;
+  }
+
+  .cookie-banner-panel::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(1.05);
+    background-image:
+      repeating-linear-gradient(90deg, rgba(var(--color-aqua) / 0.2) 0 2px, transparent 2px 8px),
+      repeating-linear-gradient(0deg, rgba(var(--color-lime) / 0.16) 0 2px, transparent 2px 8px),
+      radial-gradient(700px circle at 0% 10%, rgba(var(--color-aqua) / 0.16), transparent 58%);
+    mix-blend-mode: screen;
+  }
+
+  .cookie-banner-root[data-state='assembling'] .cookie-banner-panel {
+    animation: cookieAssemble 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .cookie-banner-root[data-state='opening'] .cookie-banner-panel {
+    animation: cookieDockOpen 460ms cubic-bezier(0.22, 0.82, 0.2, 1) both;
+  }
+
+  .cookie-banner-root[data-state='closing'] .cookie-banner-panel {
+    animation: cookieDockClose 430ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .cookie-banner-root[data-state='assembling'] .cookie-banner-panel::before {
+    animation: cookiePixelsIn 620ms steps(14, end) both;
+  }
+
+  .cookie-banner-root[data-state='opening'] .cookie-banner-panel::before {
+    animation: cookiePixelsOpen 460ms steps(10, end) both;
+  }
+
+  .cookie-banner-root[data-state='closing'] .cookie-banner-panel::before {
+    animation: cookiePixelsOut 420ms steps(10, end) both;
+  }
+
+  .cookie-banner-dock-btn[data-state='visible'] {
+    animation: cookieDockButtonIn 280ms ease-out both;
+  }
 }
 
 @keyframes heroGridDrift {
@@ -686,11 +746,117 @@
   }
 }
 
+@keyframes cookieAssemble {
+  0% {
+    opacity: 0;
+    transform: translateY(26px) scale(0.94);
+    filter: blur(9px) saturate(0.72);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.01);
+    filter: blur(0.6px) saturate(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: none;
+  }
+}
+
+@keyframes cookieDockClose {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: none;
+  }
+  70% {
+    opacity: 0.95;
+    transform: translate3d(-20vw, 12vh, 0) scale(0.62);
+    filter: blur(1.4px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-44vw, 26vh, 0) scale(0.16);
+    filter: blur(4px);
+  }
+}
+
+@keyframes cookieDockOpen {
+  0% {
+    opacity: 0;
+    transform: translate3d(-44vw, 26vh, 0) scale(0.16);
+    filter: blur(4px);
+  }
+  55% {
+    opacity: 1;
+    transform: translate3d(-14vw, 6vh, 0) scale(0.86);
+    filter: blur(0.8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: none;
+  }
+}
+
+@keyframes cookiePixelsIn {
+  0% {
+    opacity: 0.95;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes cookiePixelsOpen {
+  0% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes cookiePixelsOut {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes cookieDockButtonIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.86);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-grid-overlay::before,
   .hero-scan::after,
   .marquee-track {
     animation: none !important;
+  }
+
+  .cookie-banner-panel,
+  .cookie-banner-panel::before,
+  .cookie-banner-dock-btn {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
   }
 
   .card,
