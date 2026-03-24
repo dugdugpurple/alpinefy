@@ -95,7 +95,7 @@ const copy = cookieCopy[lang] ?? cookieCopy.en;
 
 <button
   type="button"
-  class="cookie-banner-dock-btn fixed bottom-4 left-4 z-[115] hidden rounded-full border border-white/20 bg-coal/85 px-4 py-2 text-xs font-semibold text-ice shadow-panel backdrop-blur transition hover:border-aqua/40 hover:text-aqua"
+  class="cookie-banner-dock-btn fixed bottom-4 left-1/2 z-[115] hidden -translate-x-1/2 rounded-full border border-white/20 bg-coal/85 px-4 py-2 text-xs font-semibold text-ice shadow-panel backdrop-blur transition hover:border-aqua/40 hover:text-aqua"
   data-cookie-open
 >
   {copy.reopen}
@@ -184,6 +184,11 @@ const copy = cookieCopy[lang] ?? cookieCopy.en;
     const rejectButton = root.querySelector('[data-cookie-reject]');
     const saveButton = root.querySelector('[data-cookie-save]');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ANIM_MS = {
+      assemble: 760,
+      open: 560,
+      close: 520,
+    };
     let bannerStateToken = 0;
 
     const setBannerOpen = (open, mode = 'standard') => {
@@ -204,7 +209,7 @@ const copy = cookieCopy[lang] ?? cookieCopy.en;
             if (bannerStateToken !== token) return;
             root.dataset.state = 'open';
           },
-          mode === 'assemble' ? 620 : 460
+          mode === 'assemble' ? ANIM_MS.assemble : ANIM_MS.open
         );
         return;
       }
@@ -223,7 +228,7 @@ const copy = cookieCopy[lang] ?? cookieCopy.en;
         if (bannerStateToken !== token) return;
         root.classList.add('hidden');
         root.dataset.state = 'hidden';
-      }, 430);
+      }, ANIM_MS.close);
     };
 
     const setDetailsOpen = (open) => {
@@ -308,12 +313,12 @@ const copy = cookieCopy[lang] ?? cookieCopy.en;
       setBannerOpen(false, 'dock');
       window.setTimeout(() => {
         showOpenButton();
-      }, prefersReducedMotion ? 0 : 420);
+      }, prefersReducedMotion ? 0 : ANIM_MS.close);
 
       if (previous?.analytics === true && analyticsGranted === false) {
         window.setTimeout(() => {
           window.location.reload();
-        }, prefersReducedMotion ? 120 : 520);
+        }, prefersReducedMotion ? 120 : ANIM_MS.close + 100);
       }
     };
 

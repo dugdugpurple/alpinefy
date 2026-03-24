@@ -664,7 +664,7 @@
 
   .cookie-banner-panel {
     position: relative;
-    transform-origin: left bottom;
+    transform-origin: center bottom;
     will-change: transform, opacity, filter;
   }
 
@@ -684,27 +684,27 @@
   }
 
   .cookie-banner-root[data-state='assembling'] .cookie-banner-panel {
-    animation: cookieAssemble 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation: cookieAssemble 760ms cubic-bezier(0.18, 0.88, 0.3, 1) both;
   }
 
   .cookie-banner-root[data-state='opening'] .cookie-banner-panel {
-    animation: cookieDockOpen 460ms cubic-bezier(0.22, 0.82, 0.2, 1) both;
+    animation: cookieDockOpen 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .cookie-banner-root[data-state='closing'] .cookie-banner-panel {
-    animation: cookieDockClose 430ms cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation: cookieDockClose 520ms cubic-bezier(0.4, 0, 0.95, 1) both;
   }
 
   .cookie-banner-root[data-state='assembling'] .cookie-banner-panel::before {
-    animation: cookiePixelsIn 620ms steps(14, end) both;
+    animation: cookiePixelsIn 760ms steps(14, end) both;
   }
 
   .cookie-banner-root[data-state='opening'] .cookie-banner-panel::before {
-    animation: cookiePixelsOpen 460ms steps(10, end) both;
+    animation: cookiePixelsOpen 560ms steps(10, end) both;
   }
 
   .cookie-banner-root[data-state='closing'] .cookie-banner-panel::before {
-    animation: cookiePixelsOut 420ms steps(10, end) both;
+    animation: cookiePixelsOut 520ms steps(10, end) both;
   }
 
   .cookie-banner-dock-btn[data-state='visible'] {
@@ -749,17 +749,17 @@
 @keyframes cookieAssemble {
   0% {
     opacity: 0;
-    transform: translateY(26px) scale(0.94);
-    filter: blur(9px) saturate(0.72);
+    transform: translate3d(0, calc(100% + 56px), 0) scale(0.82);
+    filter: blur(10px) saturate(0.72);
   }
-  60% {
+  68% {
     opacity: 1;
-    transform: translateY(-4px) scale(1.01);
-    filter: blur(0.6px) saturate(1.08);
+    transform: translate3d(0, -10px, 0) scale(1.015);
+    filter: blur(0.45px) saturate(1.08);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
     filter: none;
   }
 }
@@ -770,28 +770,28 @@
     transform: translate3d(0, 0, 0) scale(1);
     filter: none;
   }
-  70% {
+  42% {
     opacity: 0.95;
-    transform: translate3d(-20vw, 12vh, 0) scale(0.62);
-    filter: blur(1.4px);
+    transform: translate3d(0, 6px, 0) scale(0.99);
+    filter: blur(0.2px);
   }
   100% {
     opacity: 0;
-    transform: translate3d(-44vw, 26vh, 0) scale(0.16);
-    filter: blur(4px);
+    transform: translate3d(0, calc(100% + 56px), 0) scale(0.82);
+    filter: blur(3px);
   }
 }
 
 @keyframes cookieDockOpen {
   0% {
     opacity: 0;
-    transform: translate3d(-44vw, 26vh, 0) scale(0.16);
-    filter: blur(4px);
+    transform: translate3d(0, calc(100% + 56px), 0) scale(0.82);
+    filter: blur(3px);
   }
-  55% {
+  68% {
     opacity: 1;
-    transform: translate3d(-14vw, 6vh, 0) scale(0.86);
-    filter: blur(0.8px);
+    transform: translate3d(0, -8px, 0) scale(1.01);
+    filter: blur(0.6px);
   }
   100% {
     opacity: 1;
@@ -836,11 +836,11 @@
 @keyframes cookieDockButtonIn {
   0% {
     opacity: 0;
-    transform: translateY(8px) scale(0.86);
+    transform: translate3d(-50%, 8px, 0) scale(0.86);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translate3d(-50%, 0, 0) scale(1);
   }
 }
 
