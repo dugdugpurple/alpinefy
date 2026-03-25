@@ -304,6 +304,18 @@
     box-shadow: 0 0 0 3px rgba(var(--color-aqua) / 0.15);
   }
 
+  select.input-field {
+    min-height: 3.15rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='rgba(235,247,255,0.88)' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.95rem;
+  }
+
   #kontakt-formular {
     scroll-margin-top: 7.5rem;
   }
@@ -502,6 +514,16 @@
     border-color: rgba(var(--color-aqua) / 0.34);
     filter: grayscale(0);
     transform: translateY(-4px);
+  }
+
+  .logo-card-link:focus-visible {
+    border-color: rgba(var(--color-aqua) / 0.5);
+    box-shadow:
+      0 0 0 1px rgba(var(--color-aqua) / 0.35),
+      0 0 0 4px rgba(var(--color-aqua) / 0.2),
+      0 16px 38px rgba(3, 11, 23, 0.4);
+    filter: grayscale(0);
+    color: var(--brand);
   }
 
   .logo-type {

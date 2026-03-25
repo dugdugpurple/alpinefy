@@ -1,0 +1,18 @@
+---
+import ServiceInquiryView from '../../components/pages/ServiceInquiryView.astro';
+import { defaultLang } from '../../i18n/languages';
+import { isServiceKey, serviceOrder } from '../../data/services-funnel';
+
+export function getStaticPaths() {
+  return serviceOrder.map((service) => ({
+    params: { service },
+  }));
+}
+
+const { service } = Astro.params;
+if (!service || !isServiceKey(service)) {
+  throw new Error('Unknown service');
+}
+---
+
+<ServiceInquiryView lang={defaultLang} service={service} />

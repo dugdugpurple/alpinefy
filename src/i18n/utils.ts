@@ -28,6 +28,13 @@ export const localizePath = (pathname: string, lang: Lang) => {
     return getRoutePath('home', lang);
   }
 
+  const localizeUnknownPath = (path: string) => {
+    const clean = normalizePath(path);
+    if (clean === '/' || clean === '') return getRoutePath('home', lang);
+    if (lang === defaultLang) return clean;
+    return normalizePath(`/${lang}${clean}`);
+  };
+
   const resolveBlogPath = (sourceLang: Lang, slugPath: string) => {
     const base = getRoutePath('blog', lang);
     if (!slugPath) return base;
@@ -57,9 +64,10 @@ export const localizePath = (pathname: string, lang: Lang) => {
     if (strippedKey) {
       return getRoutePath(strippedKey, lang);
     }
+    return localizeUnknownPath(stripped);
   }
 
-  return normalized;
+  return localizeUnknownPath(normalized);
 };
 
 export const getLangFromPath = (pathname: string) => {

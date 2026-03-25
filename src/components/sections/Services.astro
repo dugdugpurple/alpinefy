@@ -1,11 +1,20 @@
 ---
 import Container from '../Container.astro';
 import SectionHeading from '../SectionHeading.astro';
-import { defaultLang } from '../../i18n/languages';
+import { defaultLang, type Lang } from '../../i18n/languages';
 import { getCopy } from '../../i18n/copy';
+import { getRoutePath } from '../../i18n/routes';
+import {
+  getServiceAnchor,
+  getServiceFunnelCopy,
+  getServiceInquiryPath,
+  getServiceKeyByIndex,
+} from '../../data/services-funnel';
 
-const { lang = defaultLang } = Astro.props;
+const { lang = defaultLang, mode = 'home' } = Astro.props as { lang?: Lang; mode?: 'home' | 'services' };
 const { sections } = getCopy(lang);
+const funnelCopy = getServiceFunnelCopy(lang);
+const isServicesMode = mode === 'services';
 
 const serviceIcons = [
   'M3 10l9-7 9 7v10H3V10z',
@@ -14,12 +23,6 @@ const serviceIcons = [
   'M7 7h10M7 11h10M7 15h6',
 ];
 
-const serviceAnchors = [
-  { id: 'service-lead', aliases: ['focus-design'] },
-  { id: 'service-corporate', aliases: ['focus-seo', 'focus-content'] },
-  { id: 'service-shopify', aliases: ['focus-shopify', 'focus-ecommerce'] },
-  { id: 'service-apps', aliases: ['focus-performance', 'focus-ai', 'focus-apps'] },
-];
 ---
 
 <section class="py-20 sm:py-24" id="sluzby">
@@ -31,7 +34,11 @@ const serviceAnchors = [
     />
     <div class="grid gap-5 md:grid-cols-2">
       {sections.services.items.map((service, index) => {
-        const anchor = serviceAnchors[index] ?? { id: `service-${index + 1}`, aliases: [] };
+        const serviceKey = getServiceKeyByIndex(index);
+        const anchor = getServiceAnchor(serviceKey);
+        const highlights = funnelCopy.highlights[serviceKey] ?? [];
+        const homeCtaHref = `${getRoutePath('services', lang)}#${anchor.id}`;
+        const inquiryHref = getServiceInquiryPath(lang, serviceKey);
         return (
           <div class="relative">
             {anchor.aliases.map((alias) => (
@@ -53,6 +60,24 @@ const serviceAnchors = [
                 {service.tags.map((tag) => (
                   <span class="tag">{tag}</span>
                 ))}
+              </div>
+              {isServicesMode && highlights.length > 0 && (
+                <ul class="mt-5 space-y-2 text-sm text-mist">
+                  {highlights.map((item) => (
+                    <li class="flex items-start gap-2">
+                      <span class="mt-1.5 inline-flex h-1.5 w-1.5 shrink-0 rounded-full bg-aqua/90"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div class="mt-6">
+                <a
+                  class={isServicesMode ? 'btn-primary w-full sm:w-auto' : 'btn-secondary w-full sm:w-auto'}
+                  href={isServicesMode ? inquiryHref : homeCtaHref}
+                >
+                  {isServicesMode ? funnelCopy.servicesCardCta : funnelCopy.homeCardCta}
+                </a>
               </div>
             </article>
           </div>

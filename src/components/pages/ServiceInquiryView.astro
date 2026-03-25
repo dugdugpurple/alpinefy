@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import { attributionFieldNames, getContactIntakeCopy } from '../../data/contact-intake';
+import {
+  type ServiceKey,
+  getServiceAnchor,
+  getServiceFunnelCopy,
+  getServiceIndexByKey,
+} from '../../data/services-funnel';
+import { site } from '../../data/site';
+import { defaultLang, type Lang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+import { getRoutePath } from '../../i18n/routes';
+
+const { lang = defaultLang, service } = Astro.props as { lang?: Lang; service: ServiceKey };
+const copy = getCopy(lang);
+const intake = getContactIntakeCopy(lang);
+const funnel = getServiceFunnelCopy(lang);
+
+const serviceIndex = getServiceIndexByKey(service);
+const serviceItem = copy.sections.services.items[serviceIndex] ?? copy.sections.services.items[0];
+const serviceHighlights = funnel.highlights[service] ?? [];
+const questionConfig = funnel.inquiry.serviceQuestion[service];
+const backHref = `${getRoutePath('services', lang)}#${getServiceAnchor(service).id}`;
+const formName = 'service-interest';
+const currentPath = Astro.url.pathname;
+const pageTitle = `${funnel.inquiry.metaTitle}: ${serviceItem.title}`;
+---
+
+<BaseLayout
+  lang={lang}
+  title={pageTitle}
+  description={funnel.inquiry.metaDescription}
+  noindex={true}
+>
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <article class="h-fit space-y-5 rounded-3xl border border-white/12 bg-gradient-to-br from-white/8 to-white/[0.02] p-6 shadow-panel backdrop-blur">
+        <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/90">{funnel.inquiry.eyebrow}</p>
+        <h1 class="font-display text-3xl leading-tight sm:text-4xl">
+          {funnel.inquiry.titlePrefix}: {serviceItem.title}
+        </h1>
+        <p class="text-sm text-mist sm:text-base">{funnel.inquiry.subtitle}</p>
+
+        <div class="rounded-2xl border border-white/12 bg-white/5 p-4">
+          <p class="text-xs uppercase tracking-[0.22em] text-aqua/85">{funnel.inquiry.serviceSummaryLabel}</p>
+          <p class="mt-3 text-sm text-mist">{serviceItem.description}</p>
+          {serviceHighlights.length > 0 && (
+            <ul class="mt-4 space-y-2 text-sm text-mist">
+              {serviceHighlights.map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="mt-1.5 inline-flex h-1.5 w-1.5 shrink-0 rounded-full bg-aqua/90"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <a class="btn-secondary w-full sm:w-auto" href={backHref}>{funnel.inquiry.backLabel}</a>
+      </article>
+
+      <article class="rounded-3xl border border-white/12 bg-gradient-to-br from-white/8 to-white/[0.02] p-6 shadow-panel backdrop-blur">
+        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-aqua/90">{funnel.inquiry.formTitle}</p>
+        <p class="mt-2 text-sm text-mist">{funnel.inquiry.formSubtitle}</p>
+
+        <form
+          class="mt-6 grid gap-4"
+          name={formName}
+          method="POST"
+          netlify
+          netlify-honeypot="bot-field"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          data-capture-attribution="true"
+          action={`${getRoutePath('thankYou', lang)}?src=service_interest&lang=${lang}`}
+        >
+          <input type="hidden" name="form-name" value={formName} />
+          <p class="hidden">
+            <label>
+              Don’t fill this out if you’re human: <input name="bot-field" />
+            </label>
+          </p>
+
+          <input type="hidden" name="recipient" value={site.email} />
+          <input type="hidden" name="subject" value={`New service inquiry: ${serviceItem.title}`} />
+          <input type="hidden" name="locale" value={lang} />
+          <input type="hidden" name="source_page" value={currentPath} />
+          <input type="hidden" name="service_key" value={service} />
+          <input type="hidden" name="service_title" value={serviceItem.title} />
+          {attributionFieldNames.map((field) => (
+            <input type="hidden" name={field} value="" data-attribution-field={field} />
+          ))}
+
+          <label class="grid min-w-0 gap-2 text-sm text-mist">
+            {funnel.inquiry.nameLabel}
+            <input class="input-field w-full" name="name" placeholder={funnel.inquiry.namePlaceholder} required />
+          </label>
+
+          <label class="grid min-w-0 gap-2 text-sm text-mist">
+            {funnel.inquiry.emailLabel}
+            <input
+              class="input-field w-full"
+              name="email"
+              type="email"
+              placeholder={funnel.inquiry.emailPlaceholder}
+              required
+            />
+          </label>
+
+          <label class="grid min-w-0 gap-2 text-sm text-mist">
+            {funnel.inquiry.companyLabel}
+            <input class="input-field w-full" name="role_team" placeholder={funnel.inquiry.companyPlaceholder} />
+          </label>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <label class="grid min-w-0 gap-2 text-sm text-mist">
+              {funnel.inquiry.focusLabel}
+              <select class="input-field w-full" name="service_focus" required>
+                <option value="" selected disabled>{questionConfig.placeholder}</option>
+                {questionConfig.options.map((option) => (
+                  <option value={option.value}>{option.label}</option>
+                ))}
+              </select>
+            </label>
+            <label class="grid min-w-0 gap-2 text-sm text-mist">
+              {intake.budgetLabel}
+              <select class="input-field w-full" name="budget_range" required>
+                <option value="" selected disabled>{intake.budgetPlaceholder}</option>
+                {intake.budgetOptions.map((option) => (
+                  <option value={option.value}>{option.label}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <label class="grid min-w-0 gap-2 text-sm text-mist">
+              {questionConfig.label}
+              <select class="input-field w-full" name="service_scope_priority" required>
+                <option value="" selected disabled>{questionConfig.placeholder}</option>
+                {questionConfig.options.map((option) => (
+                  <option value={option.value}>{option.label}</option>
+                ))}
+              </select>
+            </label>
+            <label class="grid min-w-0 gap-2 text-sm text-mist">
+              {intake.timelineLabel}
+              <select class="input-field w-full" name="timeline_preference" required>
+                <option value="" selected disabled>{intake.timelinePlaceholder}</option>
+                {intake.timelineOptions.map((option) => (
+                  <option value={option.value}>{option.label}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <label class="grid min-w-0 gap-2 text-sm text-mist">
+            {funnel.inquiry.websiteLabel}
+            <input
+              class="input-field w-full"
+              name="current_website"
+              type="url"
+              inputmode="url"
+              placeholder={funnel.inquiry.websitePlaceholder}
+            />
+          </label>
+
+          <label class="grid min-w-0 gap-2 text-sm text-mist">
+            {funnel.inquiry.messageLabel}
+            <textarea
+              class="input-field min-h-[130px] w-full"
+              name="message"
+              placeholder={funnel.inquiry.messagePlaceholder}
+              required
+            ></textarea>
+          </label>
+
+          <button class="btn-primary w-full sm:w-auto" type="submit">{funnel.inquiry.submitLabel}</button>
+          <p class="text-xs text-mist">{funnel.inquiry.consent}</p>
+        </form>
+      </article>
+    </Container>
+  </section>
+</BaseLayout>

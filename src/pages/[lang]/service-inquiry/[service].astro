@@ -1,0 +1,26 @@
+---
+import ServiceInquiryView from '../../../components/pages/ServiceInquiryView.astro';
+import { defaultLang, isSupportedLang, languages } from '../../../i18n/languages';
+import { isServiceKey, serviceOrder } from '../../../data/services-funnel';
+
+export function getStaticPaths() {
+  return languages
+    .filter((item) => item.code !== defaultLang)
+    .flatMap((item) =>
+      serviceOrder.map((service) => ({
+        params: { lang: item.code, service },
+      }))
+    );
+}
+
+const { lang, service } = Astro.params;
+if (!lang || !isSupportedLang(lang) || lang === defaultLang) {
+  throw new Error('Unsupported language');
+}
+
+if (!service || !isServiceKey(service)) {
+  throw new Error('Unknown service');
+}
+---
+
+<ServiceInquiryView lang={lang} service={service} />
