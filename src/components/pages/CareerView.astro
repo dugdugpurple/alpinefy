@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../Container.astro';
+import { defaultLang, type Lang } from '../../i18n/languages';
+import { getRoutePath } from '../../i18n/routes';
+
+const { lang = defaultLang } = Astro.props as { lang?: Lang };
+
+const copyByLang = {
+  en: {
+    metaTitle: 'Career',
+    metaDescription:
+      'Open positions at Alpinefy. We are looking for people who care about performance, clean delivery and measurable outcomes.',
+    eyebrow: 'Career',
+    title: 'Join Alpinefy',
+    subtitle:
+      'We are building a lean team focused on web performance, SEO and business outcomes. If this is your mindset, we want to hear from you.',
+    openTitle: 'Open positions',
+    openBody:
+      'We currently do not have a public opening, but we are always open to strong people in web development, technical SEO and automation.',
+    ctaPrimary: 'Send profile',
+    ctaSecondary: 'Back to services',
+    emailHint: 'Send your profile, portfolio or LinkedIn to',
+  },
+  de: {
+    metaTitle: 'Karriere',
+    metaDescription:
+      'Offene Positionen bei Alpinefy. Wir suchen Menschen mit Fokus auf Performance, saubere Umsetzung und messbare Ergebnisse.',
+    eyebrow: 'Karriere',
+    title: 'Werde Teil von Alpinefy',
+    subtitle:
+      'Wir bauen ein fokussiertes Team rund um Web-Performance, SEO und Geschäftsergebnisse. Wenn das zu dir passt, melde dich.',
+    openTitle: 'Offene Positionen',
+    openBody:
+      'Aktuell haben wir keine öffentliche Stelle, sind aber immer offen für starke Profile in Webentwicklung, Technical SEO und Automatisierung.',
+    ctaPrimary: 'Profil senden',
+    ctaSecondary: 'Zurück zu Leistungen',
+    emailHint: 'Sende dein Profil, Portfolio oder LinkedIn an',
+  },
+  pl: {
+    metaTitle: 'Kariera',
+    metaDescription:
+      'Oferty pracy w Alpinefy. Szukamy osób nastawionych na wydajność, jakość realizacji i mierzalne wyniki.',
+    eyebrow: 'Kariera',
+    title: 'Dołącz do Alpinefy',
+    subtitle:
+      'Budujemy zespół skupiony na wydajności stron, SEO i efektach biznesowych. Jeśli tak pracujesz, odezwij się.',
+    openTitle: 'Otwarte role',
+    openBody:
+      'Obecnie nie mamy publicznej rekrutacji, ale jesteśmy otwarci na mocne profile z web developmentu, technicznego SEO i automatyzacji.',
+    ctaPrimary: 'Wyślij profil',
+    ctaSecondary: 'Wróć do usług',
+    emailHint: 'Wyślij profil, portfolio lub LinkedIn na',
+  },
+  cz: {
+    metaTitle: 'Kariéra',
+    metaDescription:
+      'Volné pozice v Alpinefy. Hledáme lidi zaměřené na výkon, kvalitní realizaci a měřitelné výsledky.',
+    eyebrow: 'Kariéra',
+    title: 'Přidejte se k Alpinefy',
+    subtitle:
+      'Budujeme tým orientovaný na výkon webu, SEO a obchodní výsledky. Pokud je to i váš přístup, ozvěte se.',
+    openTitle: 'Otevřené pozice',
+    openBody:
+      'Aktuálně nemáme veřejně otevřenou pozici, ale rádi si poslechneme silné profily z webového vývoje, technického SEO a automatizací.',
+    ctaPrimary: 'Poslat profil',
+    ctaSecondary: 'Zpět na služby',
+    emailHint: 'Pošlete profil, portfolio nebo LinkedIn na',
+  },
+  sk: {
+    metaTitle: 'Kariéra',
+    metaDescription:
+      'Voľné pozície v Alpinefy. Hľadáme ľudí orientovaných na výkon, kvalitnú realizáciu a merateľné výsledky.',
+    eyebrow: 'Kariéra',
+    title: 'Pridaj sa do Alpinefy',
+    subtitle:
+      'Budujeme tím orientovaný na výkon webu, SEO a biznis výsledky. Ak je to aj tvoj prístup, ozvi sa.',
+    openTitle: 'Otvorené pozície',
+    openBody:
+      'Aktuálne nemáme verejne otvorenú konkrétnu pozíciu, ale radi si pozrieme silné profily z web developmentu, technického SEO a automatizácií.',
+    ctaPrimary: 'Poslať profil',
+    ctaSecondary: 'Späť na služby',
+    emailHint: 'Profil, portfólio alebo LinkedIn pošli na',
+  },
+} as const;
+
+const copy = copyByLang[lang] ?? copyByLang.en;
+---
+
+<BaseLayout lang={lang} title={copy.metaTitle} description={copy.metaDescription}>
+  <section class="pb-20 pt-32 sm:pb-24 sm:pt-36">
+    <Container class="space-y-10">
+      <div class="max-w-3xl space-y-5">
+        <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/90">{copy.eyebrow}</p>
+        <h1 class="font-display text-4xl leading-tight sm:text-5xl">{copy.title}</h1>
+        <p class="text-base text-mist sm:text-lg">{copy.subtitle}</p>
+      </div>
+
+      <article class="card max-w-4xl space-y-5 rounded-3xl p-6 sm:p-7">
+        <h2 class="font-display text-2xl sm:text-3xl">{copy.openTitle}</h2>
+        <p class="text-sm text-mist sm:text-base">{copy.openBody}</p>
+        <p class="text-sm text-mist">
+          {copy.emailHint}{' '}
+          <a class="text-aqua transition hover:text-aqua/80" href="mailto:hello@alpinefy.com">hello@alpinefy.com</a>
+        </p>
+        <div class="flex flex-wrap gap-3 pt-1">
+          <a class="btn-primary" href={getRoutePath('careerInquiry', lang)}>{copy.ctaPrimary}</a>
+          <a class="btn-secondary" href={getRoutePath('services', lang)}>{copy.ctaSecondary}</a>
+        </div>
+      </article>
+    </Container>
+  </section>
+</BaseLayout>

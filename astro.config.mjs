@@ -12,7 +12,7 @@ const EXCLUDED_SITEMAP_PATHS = [
   '/cz/dekujeme',
 ];
 
-const EXCLUDED_SITEMAP_PREFIXES = ['/service-inquiry/'];
+const EXCLUDED_SITEMAP_PREFIXES = ['/service-inquiry/', '/career-inquiry'];
 
 const shouldIncludeInSitemap = (pageUrl) => {
   const normalized = String(pageUrl).replace(/\/+$/, '');

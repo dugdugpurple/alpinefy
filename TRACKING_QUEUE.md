@@ -1,6 +1,10 @@
 # Tracking Queue (Alpinefy)
 
-Aktualizované: 24. 03. 2026
+Aktualizované: 27. 03. 2026
+
+## On hold
+
+- Deploy sitemap indexation fixu je dočasne pozastavený (čaká na ďalší pokyn).
 
 ## Hotové
 
@@ -11,6 +15,12 @@ Aktualizované: 24. 03. 2026
 - Kontakt formulár rozšírený o kvalifikačné polia (`service_interest`, `budget_range`, `timeline_preference`).
 - Lead atribúcia pripravená v formulároch (`utm_*`, `gclid`, `fbclid`, `msclkid`, `landing_page`, `referrer`).
 - Event do dataLayer pri odoslaní kvalifikovaného formulára: `contact_form_intent_submit`.
+- Kariéra sekcia nasadená vo všetkých jazykoch (odkaz vo footeri).
+- Vytvorený career inquiry funnel:
+  - samostatná stránka pre záujem o spoluprácu/prácu
+  - formulár s prílohami (CV, motivačný list, voliteľná príloha)
+  - odoslanie na lokalizovanú thank-you stránku
+  - mapovanie `src=career_interest` na event `contact_form_success`
 
 ## Najbližšie kroky (zajtra)
 

@@ -150,13 +150,14 @@ const thankYouPathsByLang = Object.fromEntries(
       const eventNameMap = {
         contact: 'contact_form_success',
         service_interest: 'contact_form_success',
+        career_interest: 'contact_form_success',
         newsletter: 'newsletter_signup_success',
       };
 
       const eventName = eventNameMap[source];
       if (!eventName) return;
 
-      const dedupeKey = `lead-event:${eventName}:${window.location.pathname}`;
+      const dedupeKey = `lead-event:${eventName}:${source || 'unknown'}:${window.location.pathname}`;
       if (sessionStorage.getItem(dedupeKey) === '1') return;
       sessionStorage.setItem(dedupeKey, '1');
 

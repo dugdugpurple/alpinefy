@@ -304,6 +304,33 @@
     box-shadow: 0 0 0 3px rgba(var(--color-aqua) / 0.15);
   }
 
+  .file-input {
+    @apply rounded-2xl border text-sm transition focus:outline-none;
+    border-color: rgba(var(--color-ice) / 0.16);
+    color: rgb(var(--color-mist));
+    background: rgba(var(--color-night) / 0.6);
+    padding: 0.5rem;
+  }
+
+  .file-input:focus {
+    border-color: rgba(var(--color-aqua) / 0.5);
+    box-shadow: 0 0 0 3px rgba(var(--color-aqua) / 0.15);
+  }
+
+  .file-input::file-selector-button {
+    @apply rounded-xl border px-3 py-2 text-xs font-semibold transition;
+    border-color: rgba(var(--color-ice) / 0.18);
+    color: rgba(var(--color-ice) / 0.9);
+    background: rgba(var(--color-ice) / 0.08);
+    margin-right: 0.75rem;
+    cursor: pointer;
+  }
+
+  .file-input:hover::file-selector-button {
+    border-color: rgba(var(--color-aqua) / 0.4);
+    color: rgb(var(--color-ice));
+  }
+
   select.input-field {
     min-height: 3.15rem;
     -webkit-appearance: none;

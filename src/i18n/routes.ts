@@ -8,6 +8,8 @@ export type RouteKey =
   | 'about'
   | 'blog'
   | 'contact'
+  | 'career'
+  | 'careerInquiry'
   | 'privacy'
   | 'cookies'
   | 'thankYou';
@@ -21,6 +23,8 @@ export const routeMap: Record<Lang, Record<RouteKey, string>> = {
     about: '/about',
     blog: '/blog',
     contact: '/contact',
+    career: '/kariera',
+    careerInquiry: '/career-inquiry',
     privacy: '/privacy-policy',
     cookies: '/cookie-policy',
     thankYou: '/thank-you',
@@ -33,6 +37,8 @@ export const routeMap: Record<Lang, Record<RouteKey, string>> = {
     about: '/de/ueber-uns',
     blog: '/de/blog',
     contact: '/de/kontakt',
+    career: '/de/kariera',
+    careerInquiry: '/de/career-inquiry',
     privacy: '/de/datenschutz',
     cookies: '/de/cookie-richtlinie',
     thankYou: '/de/danke',
@@ -45,6 +51,8 @@ export const routeMap: Record<Lang, Record<RouteKey, string>> = {
     about: '/pl/o-nas',
     blog: '/pl/blog',
     contact: '/pl/kontakt',
+    career: '/pl/kariera',
+    careerInquiry: '/pl/career-inquiry',
     privacy: '/pl/polityka-prywatnosci',
     cookies: '/pl/polityka-cookies',
     thankYou: '/pl/dziekujemy',
@@ -57,6 +65,8 @@ export const routeMap: Record<Lang, Record<RouteKey, string>> = {
     about: '/cz/o-nas',
     blog: '/cz/blog',
     contact: '/cz/kontakt',
+    career: '/cz/kariera',
+    careerInquiry: '/cz/career-inquiry',
     privacy: '/cz/zasady-ochrany-soukromi',
     cookies: '/cz/zasady-cookies',
     thankYou: '/cz/dekujeme',
@@ -69,6 +79,8 @@ export const routeMap: Record<Lang, Record<RouteKey, string>> = {
     about: '/sk/o-nas',
     blog: '/sk/blog',
     contact: '/sk/kontakt',
+    career: '/sk/kariera',
+    careerInquiry: '/sk/career-inquiry',
     privacy: '/sk/ochrana-sukromia',
     cookies: '/sk/zasady-cookies',
     thankYou: '/sk/dakujeme',

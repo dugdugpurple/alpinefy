@@ -1,0 +1,19 @@
+---
+import CareerInquiryView from '../../components/pages/CareerInquiryView.astro';
+import { defaultLang, isSupportedLang, languages } from '../../i18n/languages';
+
+export function getStaticPaths() {
+  return languages
+    .filter((item) => item.code !== defaultLang)
+    .map((item) => ({
+      params: { lang: item.code },
+    }));
+}
+
+const { lang } = Astro.params;
+if (!lang || !isSupportedLang(lang) || lang === defaultLang) {
+  throw new Error('Unsupported language');
+}
+---
+
+<CareerInquiryView lang={lang} />

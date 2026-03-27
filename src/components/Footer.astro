@@ -78,6 +78,14 @@ const newsletterFormName = 'newsletter-signup';
 const currentPath = Astro.url.pathname;
 const phoneLabel = getDisplayPhone(lang);
 const phoneDial = getPhoneDialValue();
+const careerLabelByLang = {
+  en: 'Career',
+  de: 'Karriere',
+  pl: 'Kariera',
+  cz: 'Kariéra',
+  sk: 'Kariéra',
+};
+const careerLabel = careerLabelByLang[lang] ?? careerLabelByLang.en;
 ---
 
 <footer class="relative border-t border-white/10 bg-coal/55">
@@ -208,6 +216,9 @@ const phoneDial = getPhoneDialValue();
       <div class="flex flex-wrap items-center gap-4">
         <a class="text-mist/75 transition hover:text-ice" href={getRoutePath('contact', lang)}>
           {copy.nav.contact}
+        </a>
+        <a class="text-mist/75 transition hover:text-ice" href={getRoutePath('career', lang)}>
+          {careerLabel}
         </a>
         <a class="text-mist/75 transition hover:text-ice" href={getRoutePath('privacy', lang)}>
           {legal.footer.privacy}

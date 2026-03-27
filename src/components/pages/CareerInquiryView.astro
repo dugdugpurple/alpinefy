@@ -1,0 +1,352 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../Container.astro';
+import { attributionFieldNames } from '../../data/contact-intake';
+import { site } from '../../data/site';
+import { defaultLang, type Lang } from '../../i18n/languages';
+import { getRoutePath } from '../../i18n/routes';
+
+const { lang = defaultLang } = Astro.props as { lang?: Lang };
+
+const copyByLang = {
+  en: {
+    metaTitle: 'Career Interest',
+    metaDescription: 'Send us your profile and short info. We will review your background and reply with next steps.',
+    eyebrow: 'Quick intake',
+    title: 'Interest in working with Alpinefy',
+    subtitle: 'Share a few practical details and we will come back with clear next steps.',
+    focusLabel: 'What this process focuses on',
+    focusPoints: [
+      'Practical fit for web performance, SEO and automation work.',
+      'How you communicate, ship and take ownership.',
+      'Potential collaboration format and timeline.',
+    ],
+    backLabel: 'Back to career',
+    formTitle: 'Career questionnaire',
+    formSubtitle: 'Short input helps us evaluate fit quickly and respond with relevant next steps.',
+    nameLabel: 'Full name',
+    namePlaceholder: 'Your full name',
+    emailLabel: 'Email',
+    emailPlaceholder: 'you@email.com',
+    phoneLabel: 'Phone',
+    phonePlaceholder: '+421 ...',
+    experienceLabel: 'Experience level',
+    experiencePlaceholder: 'Select experience',
+    experienceOptions: [
+      { value: 'starter', label: 'Starter / junior' },
+      { value: 'medior', label: 'Mid-level' },
+      { value: 'senior', label: 'Senior' },
+      { value: 'lead', label: 'Lead / expert' },
+    ],
+    cvLabel: 'CV (PDF/DOC)',
+    motivationLabel: 'Motivation letter (PDF/DOC)',
+    extraLabel: 'Additional attachment (optional)',
+    messageLabel: 'Short message',
+    messagePlaceholder: 'Write a few sentences about your background and motivation.',
+    consentLabel: 'I agree with processing personal data for recruitment purposes.',
+    submitLabel: 'Send profile',
+    consentNote: 'After submitting, we will reply with next steps.',
+    subject: 'New career interest inquiry',
+  },
+  de: {
+    metaTitle: 'Karriere-Anfrage',
+    metaDescription:
+      'Sende uns dein Profil und kurze Infos. Wir prüfen dein Profil und melden uns mit den nächsten Schritten.',
+    eyebrow: 'Quick intake',
+    title: 'Interesse an Zusammenarbeit mit Alpinefy',
+    subtitle: 'Teile ein paar praktische Infos und wir melden uns mit klaren nächsten Schritten.',
+    focusLabel: 'Worauf wir in diesem Schritt achten',
+    focusPoints: [
+      'Praktischer Fit für Web-Performance, SEO und Automatisierung.',
+      'Wie du kommunizierst, lieferst und Verantwortung übernimmst.',
+      'Mögliche Form der Zusammenarbeit und Timing.',
+    ],
+    backLabel: 'Zurück zu Karriere',
+    formTitle: 'Karriere-Fragebogen',
+    formSubtitle: 'Kurze Eingaben helfen uns, schnell und relevant zu antworten.',
+    nameLabel: 'Name und Nachname',
+    namePlaceholder: 'Dein vollständiger Name',
+    emailLabel: 'E-Mail',
+    emailPlaceholder: 'du@email.de',
+    phoneLabel: 'Telefon',
+    phonePlaceholder: '+49 ...',
+    experienceLabel: 'Erfahrungsniveau',
+    experiencePlaceholder: 'Erfahrung auswählen',
+    experienceOptions: [
+      { value: 'starter', label: 'Einsteiger / Junior' },
+      { value: 'medior', label: 'Mid-Level' },
+      { value: 'senior', label: 'Senior' },
+      { value: 'lead', label: 'Lead / Expert' },
+    ],
+    cvLabel: 'Lebenslauf (PDF/DOC)',
+    motivationLabel: 'Motivationsschreiben (PDF/DOC)',
+    extraLabel: 'Zusätzlicher Anhang (optional)',
+    messageLabel: 'Kurze Nachricht',
+    messagePlaceholder: 'Schreibe kurz etwas über deinen Hintergrund und deine Motivation.',
+    consentLabel: 'Ich stimme der Verarbeitung personenbezogener Daten für Recruiting-Zwecke zu.',
+    submitLabel: 'Profil senden',
+    consentNote: 'Nach dem Absenden melden wir uns mit den nächsten Schritten.',
+    subject: 'Neue Karriere-Anfrage',
+  },
+  pl: {
+    metaTitle: 'Zgłoszenie Kariery',
+    metaDescription:
+      'Wyślij nam swój profil i krótkie informacje. Sprawdzimy dopasowanie i wrócimy z kolejnymi krokami.',
+    eyebrow: 'Quick intake',
+    title: 'Zainteresowanie współpracą z Alpinefy',
+    subtitle: 'Prześlij kilka praktycznych informacji, a wrócimy z jasnymi kolejnymi krokami.',
+    focusLabel: 'Na czym skupia się ten etap',
+    focusPoints: [
+      'Dopasowanie do pracy z wydajnością web, SEO i automatyzacją.',
+      'Sposób komunikacji, dowożenia i odpowiedzialności.',
+      'Możliwy model współpracy i termin startu.',
+    ],
+    backLabel: 'Powrót do kariery',
+    formTitle: 'Kwestionariusz kandydata',
+    formSubtitle: 'Krótki formularz pomaga nam szybko ocenić dopasowanie i odpowiedzieć konkretnie.',
+    nameLabel: 'Imię i nazwisko',
+    namePlaceholder: 'Twoje imię i nazwisko',
+    emailLabel: 'Email',
+    emailPlaceholder: 'you@email.com',
+    phoneLabel: 'Telefon',
+    phonePlaceholder: '+48 ...',
+    experienceLabel: 'Poziom doświadczenia',
+    experiencePlaceholder: 'Wybierz doświadczenie',
+    experienceOptions: [
+      { value: 'starter', label: 'Początkujący / junior' },
+      { value: 'medior', label: 'Mid-level' },
+      { value: 'senior', label: 'Senior' },
+      { value: 'lead', label: 'Lead / ekspert' },
+    ],
+    cvLabel: 'CV (PDF/DOC)',
+    motivationLabel: 'List motywacyjny (PDF/DOC)',
+    extraLabel: 'Dodatkowy załącznik (opcjonalnie)',
+    messageLabel: 'Krótka wiadomość',
+    messagePlaceholder: 'Napisz kilka zdań o swoim doświadczeniu i motywacji.',
+    consentLabel: 'Wyrażam zgodę na przetwarzanie danych osobowych w procesie rekrutacji.',
+    submitLabel: 'Wyślij profil',
+    consentNote: 'Po wysłaniu zgłoszenia wrócimy do Ciebie z kolejnymi krokami.',
+    subject: 'Nowe zgłoszenie kariery',
+  },
+  cz: {
+    metaTitle: 'Zájem o Spolupráci',
+    metaDescription: 'Pošlete nám profil a pár informací. Posoudíme vhodnost a ozveme se s dalšími kroky.',
+    eyebrow: 'Quick intake',
+    title: 'Zájem o spolupráci s Alpinefy',
+    subtitle: 'Pošlete pár praktických informací a vrátíme se s jasnými dalšími kroky.',
+    focusLabel: 'Na co se v této fázi zaměřujeme',
+    focusPoints: [
+      'Praktický fit pro web performance, SEO a automatizace.',
+      'Jak komunikujete, doručujete a přebíráte odpovědnost.',
+      'Možný model spolupráce a časový rámec.',
+    ],
+    backLabel: 'Zpět na kariéru',
+    formTitle: 'Dotazník kandidáta',
+    formSubtitle: 'Krátký formulář nám pomůže rychle vyhodnotit fit a odpovědět věcně.',
+    nameLabel: 'Jméno a příjmení',
+    namePlaceholder: 'Vaše jméno a příjmení',
+    emailLabel: 'Email',
+    emailPlaceholder: 'vy@email.cz',
+    phoneLabel: 'Telefon',
+    phonePlaceholder: '+420 ...',
+    experienceLabel: 'Úroveň zkušeností',
+    experiencePlaceholder: 'Vyberte zkušenosti',
+    experienceOptions: [
+      { value: 'starter', label: 'Začátečník / junior' },
+      { value: 'medior', label: 'Mid-level' },
+      { value: 'senior', label: 'Senior' },
+      { value: 'lead', label: 'Lead / expert' },
+    ],
+    cvLabel: 'CV (PDF/DOC)',
+    motivationLabel: 'Motivační dopis (PDF/DOC)',
+    extraLabel: 'Další příloha (volitelné)',
+    messageLabel: 'Průvodní text',
+    messagePlaceholder: 'Napište pár vět o sobě a své motivaci.',
+    consentLabel: 'Souhlasím se zpracováním osobních údajů pro účely výběrového řízení.',
+    submitLabel: 'Odeslat profil',
+    consentNote: 'Po odeslání se ozveme s dalšími informacemi.',
+    subject: 'Nový kariérní zájem',
+  },
+  sk: {
+    metaTitle: 'Záujem o Spoluprácu',
+    metaDescription: 'Pošlite nám profil a pár informácií. Vyhodnotíme fit a ozveme sa s ďalšími krokmi.',
+    eyebrow: 'Quick intake',
+    title: 'Žiadosť o spoluprácu',
+    subtitle: 'Vyplň základné informácie a pošli nám podklady. Ozveme sa ti s ďalším krokom.',
+    focusLabel: 'Na čo sa v tomto kroku pozeráme',
+    focusPoints: [
+      'Praktický fit pre web performance, SEO a automatizácie.',
+      'Ako komunikuješ, doručuješ a preberáš zodpovednosť.',
+      'Možný formát spolupráce a časový rámec.',
+    ],
+    backLabel: 'Späť na kariéru',
+    formTitle: 'Projektový dotazník',
+    formSubtitle: 'Krátky vstup nám pomôže pripraviť relevantnú odpoveď.',
+    nameLabel: 'Meno a priezvisko',
+    namePlaceholder: 'Vaše meno',
+    emailLabel: 'Email',
+    emailPlaceholder: 'vas@email.sk',
+    phoneLabel: 'Telefón',
+    phonePlaceholder: '+421 ...',
+    experienceLabel: 'Skúsenosti',
+    experiencePlaceholder: 'Vyberte úroveň',
+    experienceOptions: [
+      { value: 'starter', label: 'Začiatočník' },
+      { value: 'medior', label: 'Pokročilý' },
+      { value: 'senior', label: 'Senior' },
+      { value: 'lead', label: 'Lead / expert' },
+    ],
+    cvLabel: 'CV (PDF/DOC)',
+    motivationLabel: 'Motivačný list (PDF/DOC)',
+    extraLabel: 'Ďalšia príloha (voliteľné)',
+    messageLabel: 'Sprievodný text',
+    messagePlaceholder: 'Napíš pár viet o sebe a svojej motivácii.',
+    consentLabel: 'Súhlasím so spracovaním osobných údajov pre účely výberového konania.',
+    submitLabel: 'Odoslať',
+    consentNote: 'Po odoslaní ti príde krátky potvrdzovací email s ďalšími informáciami.',
+    subject: 'Nový kariérny záujem',
+  },
+} as const;
+
+const copy = copyByLang[lang] ?? copyByLang.en;
+const formName = 'career-interest';
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout lang={lang} title={copy.metaTitle} description={copy.metaDescription} noindex={true}>
+  <section class="py-20 sm:py-24">
+    <Container class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <article class="h-fit space-y-5 rounded-3xl border border-white/12 bg-gradient-to-br from-white/8 to-white/[0.02] p-6 shadow-panel backdrop-blur">
+        <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/90">{copy.eyebrow}</p>
+        <h1 class="font-display text-3xl leading-tight sm:text-4xl">{copy.title}</h1>
+        <p class="text-sm text-mist sm:text-base">{copy.subtitle}</p>
+
+        <div class="rounded-2xl border border-white/12 bg-white/5 p-4">
+          <p class="text-xs uppercase tracking-[0.22em] text-aqua/85">{copy.focusLabel}</p>
+          <ul class="mt-3 space-y-2 text-sm text-mist">
+            {copy.focusPoints.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="mt-1.5 inline-flex h-1.5 w-1.5 shrink-0 rounded-full bg-aqua/90"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <a class="btn-secondary w-full sm:w-auto" href={getRoutePath('career', lang)}>{copy.backLabel}</a>
+      </article>
+
+      <article class="rounded-3xl border border-white/12 bg-gradient-to-br from-white/8 to-white/[0.02] p-6 shadow-panel backdrop-blur">
+        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-aqua/90">{copy.formTitle}</p>
+        <p class="mt-2 text-sm text-mist">{copy.formSubtitle}</p>
+
+        <form
+          class="mt-6 grid gap-4"
+          name={formName}
+          method="POST"
+          enctype="multipart/form-data"
+          netlify
+          netlify-honeypot="bot-field"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          data-capture-attribution="true"
+          action={`${getRoutePath('thankYou', lang)}?src=career_interest&lang=${lang}`}
+        >
+          <input type="hidden" name="form-name" value={formName} />
+          <p class="hidden">
+            <label>
+              Don’t fill this out if you’re human: <input name="bot-field" />
+            </label>
+          </p>
+
+          <input type="hidden" name="recipient" value={site.email} />
+          <input type="hidden" name="subject" value={copy.subject} />
+          <input type="hidden" name="locale" value={lang} />
+          <input type="hidden" name="source_page" value={currentPath} />
+          {attributionFieldNames.map((field) => (
+            <input type="hidden" name={field} value="" data-attribution-field={field} />
+          ))}
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="grid min-w-0 gap-2 text-sm text-mist">
+              {copy.nameLabel}
+              <input class="input-field w-full" name="name" placeholder={copy.namePlaceholder} required />
+            </label>
+            <label class="grid min-w-0 gap-2 text-sm text-mist">
+              {copy.emailLabel}
+              <input
+                class="input-field w-full"
+                name="email"
+                type="email"
+                placeholder={copy.emailPlaceholder}
+                required
+              />
+            </label>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="grid min-w-0 gap-2 text-sm text-mist">
+              {copy.phoneLabel}
+              <input class="input-field w-full" name="phone" placeholder={copy.phonePlaceholder} required />
+            </label>
+            <label class="grid min-w-0 gap-2 text-sm text-mist">
+              {copy.experienceLabel}
+              <select class="input-field w-full" name="experience_level" required>
+                <option value="" selected disabled>{copy.experiencePlaceholder}</option>
+                {copy.experienceOptions.map((option) => (
+                  <option value={option.value}>{option.label}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="grid min-w-0 gap-2 text-sm text-mist">
+              {copy.cvLabel}
+              <input class="file-input w-full" name="cv_file" type="file" accept=".pdf,.doc,.docx" required />
+            </label>
+            <label class="grid min-w-0 gap-2 text-sm text-mist">
+              {copy.motivationLabel}
+              <input
+                class="file-input w-full"
+                name="motivation_file"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                required
+              />
+            </label>
+          </div>
+
+          <label class="grid min-w-0 gap-2 text-sm text-mist">
+            {copy.extraLabel}
+            <input class="file-input w-full" name="extra_attachment" type="file" accept=".pdf,.doc,.docx" />
+          </label>
+
+          <label class="grid min-w-0 gap-2 text-sm text-mist">
+            {copy.messageLabel}
+            <textarea
+              class="input-field min-h-[130px] w-full"
+              name="message"
+              placeholder={copy.messagePlaceholder}
+              required
+            ></textarea>
+          </label>
+
+          <label class="flex items-start gap-3 text-xs text-mist">
+            <input
+              class="mt-0.5 h-4 w-4 shrink-0 rounded border border-white/25 bg-night/70 accent-[rgb(var(--color-aqua))]"
+              name="consent"
+              type="checkbox"
+              value="yes"
+              required
+            />
+            <span>{copy.consentLabel}</span>
+          </label>
+
+          <button class="btn-primary w-full sm:w-auto" type="submit">{copy.submitLabel}</button>
+          <p class="text-xs text-mist">{copy.consentNote}</p>
+        </form>
+      </article>
+    </Container>
+  </section>
+</BaseLayout>
