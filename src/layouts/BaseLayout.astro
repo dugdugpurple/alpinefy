@@ -55,6 +55,8 @@ const robotsContent = noindex
   ? 'noindex, nofollow'
   : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
+const ahrefsVerification = import.meta.env.PUBLIC_AHREFS_VERIFICATION?.trim?.() ?? '';
+
 const defaultKeywords: Record<string, string> = {
   en: 'web development, shopify e-commerce, seo optimization, performance websites, dach web agency',
   de: 'webentwicklung, shopify e-commerce, seo optimierung, performance websites, dach webagentur',
@@ -251,6 +253,7 @@ const allStructuredData = [organizationSchema, websiteSchema, pageSchema, ...ext
     <meta name="distribution" content="global" />
     <meta name="geo.region" content={geoRegion} />
     <meta name="geo.placename" content={site.address} />
+    {ahrefsVerification && <meta name="ahrefs-site-verification" content={ahrefsVerification} />}
     <link rel="canonical" href={canonicalUrl} />
     <link rel="sitemap" type="application/xml" href={`${site.url}/sitemap-index.xml`} />
     <meta name="theme-color" content="#040E1B" />

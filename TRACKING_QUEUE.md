@@ -35,3 +35,7 @@ Aktualizované: 24. 03. 2026
 - AI chat bubble výber + nasadenie
   - porovnanie 2-3 nástrojov (cena/funkcie/GDPR/integrácie)
   - eventy pre meranie: otvorenie widgetu, prvá správa, odoslanie leadu z chatu
+- Ahrefs Webmaster Tools (AWT)
+  - overenie domény (meta/DNS)
+  - prepojenie so Search Console
+  - sledovanie technických SEO chýb, keyword opportunities a content gaps

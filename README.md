@@ -42,3 +42,9 @@ All commands are run from the root of the project, from a terminal:
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 # alpinefy
+
+## Environment Variables
+
+- `PUBLIC_AHREFS_VERIFICATION`
+  - Optional.
+  - If set, the site renders `<meta name="ahrefs-site-verification" content="...">` in `<head>` on all pages.
