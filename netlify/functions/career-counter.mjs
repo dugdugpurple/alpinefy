@@ -1,16 +1,10 @@
-const COUNTER_URL = 'https://api.countapi.xyz';
-const NAMESPACE = 'alpinefy.com';
-const KEY = 'career_job_posting_visits';
+const HITS_URL = 'https://hits.sh/alpinefy.com/kariera.svg?label=hits';
 
 export default async (request) => {
-  const url = new URL(request.url);
-  const action = url.searchParams.get('action') === 'hit' ? 'hit' : 'get';
-  const endpoint = `${COUNTER_URL}/${action}/${NAMESPACE}/${KEY}`;
-
   try {
-    const response = await fetch(endpoint, {
+    const response = await fetch(HITS_URL, {
       method: 'GET',
-      headers: { Accept: 'application/json' },
+      headers: { Accept: 'image/svg+xml,text/plain;q=0.9,*/*;q=0.8' },
     });
 
     if (!response.ok) {
@@ -23,8 +17,9 @@ export default async (request) => {
       );
     }
 
-    const payload = await response.json();
-    const value = Number.parseInt(String(payload?.value ?? ''), 10);
+    const svg = await response.text();
+    const match = svg.match(/aria-label="[^"]*:\s*([0-9,]+)"/i) ?? svg.match(/>([0-9,]+)<\/text>/i);
+    const value = Number.parseInt((match?.[1] ?? '').replaceAll(',', ''), 10);
     if (!Number.isFinite(value) || value < 0) {
       return new Response(JSON.stringify({ error: 'Invalid counter value' }), {
         status: 502,

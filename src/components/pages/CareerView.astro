@@ -412,6 +412,7 @@ const jobPostingSchema = {
 
       const sessionKey = 'alpinefy_career_counter_seen_v1';
       const localCounterKey = 'alpinefy_career_counter_local_v1';
+      const prodCacheKey = 'alpinefy_career_counter_cached_v1';
       const counterEndpoint = '/.netlify/functions/career-counter';
       const fallbackValue = counter.textContent?.trim() || '001337';
 
@@ -473,10 +474,24 @@ const jobPostingSchema = {
 
         try {
           const alreadyCounted = sessionStorage.getItem(sessionKey) === '1';
-          const value = await readCounter(!alreadyCounted);
-          if (!alreadyCounted) sessionStorage.setItem(sessionKey, '1');
+          if (alreadyCounted) {
+            const cached = Number.parseInt(localStorage.getItem(prodCacheKey) || '', 10);
+            if (Number.isFinite(cached) && cached >= 0) {
+              writeCounter(cached);
+              return;
+            }
+          }
+
+          const value = await readCounter(true);
+          sessionStorage.setItem(sessionKey, '1');
+          localStorage.setItem(prodCacheKey, String(value));
           writeCounter(value);
         } catch {
+          const cached = Number.parseInt(localStorage.getItem(prodCacheKey) || '', 10);
+          if (Number.isFinite(cached) && cached >= 0) {
+            writeCounter(cached);
+            return;
+          }
           writeCounter(fallbackValue);
         }
       };
