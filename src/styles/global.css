@@ -758,6 +758,249 @@
     animation: thankYouCardIn 620ms cubic-bezier(0.2, 0.86, 0.2, 1) both;
     will-change: transform, opacity, filter;
   }
+
+  .career-position-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+      linear-gradient(175deg, rgba(var(--color-ice) / 0.08), rgba(var(--color-ice) / 0.02) 55%),
+      linear-gradient(125deg, rgba(var(--color-aqua) / 0.07), transparent 46%),
+      rgba(var(--color-coal) / 0.8);
+  }
+
+  .career-position-card::before {
+    content: '';
+    position: absolute;
+    inset: -35%;
+    z-index: 0;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(var(--color-aqua) / 0.26), transparent 32%),
+      radial-gradient(circle at 88% 15%, rgba(var(--color-lime) / 0.2), transparent 35%),
+      radial-gradient(circle at 52% 92%, rgba(var(--color-ember) / 0.16), transparent 38%);
+    filter: blur(34px);
+    opacity: 0.7;
+    animation: careerAmbientShift 16s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  .career-position-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      120deg,
+      rgba(var(--color-aqua) / 0.65),
+      rgba(var(--color-lime) / 0.55),
+      rgba(var(--color-ember) / 0.46),
+      rgba(var(--color-aqua) / 0.65)
+    );
+    background-size: 220% 220%;
+    opacity: 0.28;
+    transition: opacity 260ms ease;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .career-position-card:hover::after {
+    opacity: 0.85;
+    animation: careerBorderDrift 4.5s linear infinite;
+  }
+
+  .career-position-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .career-retro-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        rgba(var(--color-ice) / 0.04) 0 1px,
+        rgba(var(--color-ice) / 0) 1px 3px
+      ),
+      radial-gradient(540px circle at 0% 0%, rgba(var(--color-aqua) / 0.14), transparent 50%);
+    mix-blend-mode: screen;
+    opacity: 0.46;
+    animation: careerScanlineDrift 7s linear infinite;
+  }
+
+  .career-retro-window {
+    @apply flex items-center gap-2 rounded-2xl border px-3 py-2;
+    border-color: rgba(var(--color-ice) / 0.16);
+    background:
+      linear-gradient(180deg, rgba(var(--color-ice) / 0.12), rgba(var(--color-ice) / 0.02)),
+      rgba(var(--color-night) / 0.45);
+  }
+
+  .career-retro-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .career-retro-dot-red {
+    background: #ff5f56;
+  }
+
+  .career-retro-dot-yellow {
+    background: #ffbd2e;
+  }
+
+  .career-retro-dot-green {
+    background: #27c93f;
+  }
+
+  .career-retro-window-label {
+    margin-left: 0.4rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: rgba(var(--color-ice) / 0.82);
+  }
+
+  .career-retro-status {
+    margin-left: auto;
+    padding: 0.22rem 0.62rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    color: rgba(var(--color-lime) / 0.95);
+    border: 1px solid rgba(var(--color-lime) / 0.35);
+    background: rgba(var(--color-lime) / 0.12);
+    animation: careerStatusBlink 2.6s ease-in-out infinite;
+  }
+
+  .career-role-badge {
+    @apply inline-flex items-center rounded-full border px-4 py-2 text-[11px] font-semibold uppercase;
+    letter-spacing: 0.24em;
+    color: rgba(var(--color-aqua) / 0.95);
+    border-color: rgba(var(--color-aqua) / 0.42);
+    background:
+      linear-gradient(145deg, rgba(var(--color-aqua) / 0.18), rgba(var(--color-lime) / 0.08) 68%),
+      rgba(var(--color-coal) / 0.74);
+    box-shadow: 0 10px 24px rgba(var(--color-aqua) / 0.16);
+  }
+
+  .career-meta-tag {
+    animation: careerTagFloat 5.8s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .career-block {
+    @apply rounded-2xl border p-4;
+    border-color: rgba(var(--color-ice) / 0.12);
+    background:
+      linear-gradient(170deg, rgba(var(--color-ice) / 0.08), rgba(var(--color-ice) / 0.02) 52%),
+      rgba(var(--color-night) / 0.38);
+    backdrop-filter: blur(10px);
+  }
+
+  .career-block-title {
+    @apply text-xs font-semibold uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(var(--color-aqua) / 0.9);
+    margin-bottom: 0.75rem;
+  }
+
+  .career-list-item {
+    position: relative;
+    padding-left: 1rem;
+    color: rgba(var(--color-ice) / 0.86);
+    animation: careerItemIn 700ms cubic-bezier(0.2, 0.86, 0.2, 1) both;
+  }
+
+  .career-list-item::before {
+    content: '';
+    position: absolute;
+    top: 0.62rem;
+    left: 0;
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 999px;
+    background: linear-gradient(150deg, rgba(var(--color-aqua) / 0.95), rgba(var(--color-lime) / 0.85));
+    box-shadow: 0 0 10px rgba(var(--color-aqua) / 0.45);
+  }
+
+  .career-reveal {
+    animation: careerCardIn 760ms cubic-bezier(0.2, 0.86, 0.2, 1) both;
+  }
+
+  .career-retro-fun-row {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: minmax(0, 0.34fr) minmax(0, 0.66fr);
+  }
+
+  .career-retro-counter {
+    @apply rounded-2xl border px-3 py-2;
+    border-color: rgba(var(--color-aqua) / 0.28);
+    background:
+      linear-gradient(180deg, rgba(var(--color-aqua) / 0.16), rgba(var(--color-aqua) / 0.02) 64%),
+      rgba(var(--color-night) / 0.5);
+  }
+
+  .career-retro-counter-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(var(--color-mist) / 0.92);
+  }
+
+  .career-retro-counter-value {
+    margin-top: 0.3rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+    font-size: 1.18rem;
+    letter-spacing: 0.2em;
+    color: rgba(var(--color-aqua) / 0.95);
+    text-shadow: 0 0 14px rgba(var(--color-aqua) / 0.42);
+    animation: careerCounterPulse 3.2s ease-in-out infinite;
+  }
+
+  .career-retro-marquee {
+    @apply rounded-2xl border;
+    border-color: rgba(var(--color-ice) / 0.14);
+    background:
+      linear-gradient(180deg, rgba(var(--color-ice) / 0.08), rgba(var(--color-ice) / 0.02)),
+      rgba(var(--color-night) / 0.44);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .career-retro-marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 2rem;
+    align-items: center;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(var(--color-ice) / 0.88);
+    animation: careerTicker 18s linear infinite;
+    will-change: transform;
+  }
+
+  .career-position-card:hover .career-retro-marquee-track {
+    animation-play-state: paused;
+  }
+
+  @media (max-width: 767px) {
+    .career-retro-fun-row {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
 @keyframes heroGridDrift {
@@ -910,10 +1153,107 @@
   }
 }
 
+@keyframes careerAmbientShift {
+  0% {
+    transform: translate3d(-3%, -2%, 0) scale(0.96);
+  }
+  100% {
+    transform: translate3d(4%, 3%, 0) scale(1.04);
+  }
+}
+
+@keyframes careerBorderDrift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes careerTagFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes careerCardIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.992);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes careerItemIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes careerScanlineDrift {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 24px, 0 0;
+  }
+}
+
+@keyframes careerStatusBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+@keyframes careerCounterPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 14px rgba(var(--color-aqua) / 0.42);
+  }
+  50% {
+    text-shadow: 0 0 22px rgba(var(--color-lime) / 0.32);
+  }
+}
+
+@keyframes careerTicker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 1rem));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-grid-overlay::before,
   .hero-scan::after,
-  .marquee-track {
+  .marquee-track,
+  .career-position-card::before,
+  .career-position-card::after,
+  .career-meta-tag,
+  .career-reveal,
+  .career-list-item,
+  .career-retro-overlay,
+  .career-retro-status,
+  .career-retro-counter-value,
+  .career-retro-marquee-track {
     animation: none !important;
   }
 
