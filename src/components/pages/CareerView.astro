@@ -412,9 +412,7 @@ const jobPostingSchema = {
 
       const sessionKey = 'alpinefy_career_counter_seen_v1';
       const localCounterKey = 'alpinefy_career_counter_local_v1';
-      const namespace = 'alpinefy.com';
-      const key = 'career_job_posting_visits';
-      const base = 'https://api.countapi.xyz';
+      const counterEndpoint = '/.netlify/functions/career-counter';
       const fallbackValue = counter.textContent?.trim() || '001337';
 
       const formatCounter = (value) => {
@@ -455,7 +453,8 @@ const jobPostingSchema = {
       };
 
       const readCounter = async (shouldIncrement) => {
-        const endpoint = shouldIncrement ? `${base}/hit/${namespace}/${key}` : `${base}/get/${namespace}/${key}`;
+        const action = shouldIncrement ? 'hit' : 'get';
+        const endpoint = `${counterEndpoint}?action=${action}`;
         const response = await fetch(endpoint, { method: 'GET', mode: 'cors', cache: 'no-store' });
         if (!response.ok) throw new Error(`Counter request failed: ${response.status}`);
         const payload = await response.json();
