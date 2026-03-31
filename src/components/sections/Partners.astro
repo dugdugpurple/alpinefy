@@ -75,6 +75,7 @@ const labels = typeLabels[lang] ?? typeLabels.en;
             href={partner.href}
             target="_blank"
             rel="noopener noreferrer nofollow"
+            data-logo-card-link
           >
             <svg viewBox="0 0 24 24" aria-hidden="true" class="h-8 w-8" fill="currentColor">
               <path d={partner.icon.path}></path>
@@ -88,4 +89,43 @@ const labels = typeLabels[lang] ?? typeLabels.en;
       </div>
     </div>
   </Container>
+
+  <script is:inline>
+    const initPartnerLogoCards = () => {
+      const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+      if (!isTouchDevice) return;
+
+      const links = Array.from(document.querySelectorAll('[data-logo-card-link]'));
+      if (!links.length) return;
+
+      links.forEach((link) => {
+        if (link.dataset.touchReady === 'true') return;
+        link.dataset.touchReady = 'true';
+
+        link.addEventListener('click', (event) => {
+          const active = link.classList.contains('is-touch-active');
+          links.forEach((item) => item.classList.remove('is-touch-active'));
+          if (!active) {
+            event.preventDefault();
+            link.classList.add('is-touch-active');
+          }
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.closest('[data-logo-card-link]')) return;
+        links.forEach((item) => item.classList.remove('is-touch-active'));
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPartnerLogoCards);
+    } else {
+      initPartnerLogoCards();
+    }
+
+    document.addEventListener('astro:page-load', initPartnerLogoCards);
+  </script>
 </section>

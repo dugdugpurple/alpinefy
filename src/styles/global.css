@@ -543,6 +543,13 @@
     transform: translateY(-4px);
   }
 
+  .logo-card.is-touch-active {
+    color: var(--brand);
+    border-color: rgba(var(--color-aqua) / 0.34);
+    filter: grayscale(0);
+    transform: translateY(-4px);
+  }
+
   .logo-card-link:focus-visible {
     border-color: rgba(var(--color-aqua) / 0.5);
     box-shadow:
