@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../Container.astro';
+import { site } from '../../data/site';
 import { defaultLang, type Lang } from '../../i18n/languages';
 import { getRoutePath } from '../../i18n/routes';
 
@@ -10,84 +11,300 @@ const copyByLang = {
   en: {
     metaTitle: 'Career',
     metaDescription:
-      'Open positions at Alpinefy. We are looking for people who care about performance, clean delivery and measurable outcomes.',
+      'Open role at Alpinefy: AI Web Fullstack Developer. Fully remote, startup pace, ownership and clear outcomes.',
     eyebrow: 'Career',
     title: 'Join Alpinefy',
     subtitle:
-      'We are building a lean team focused on web performance, SEO and business outcomes. If this is your mindset, we want to hear from you.',
-    openTitle: 'Open positions',
-    openBody:
-      'We currently do not have a public opening, but we are always open to strong people in web development, technical SEO and automation.',
-    ctaPrimary: 'Send profile',
+      'We are hiring one person who can ship fast websites with our stack, work with AI tools and deliver measurable business results.',
+    roleBadge: 'Now hiring',
+    roleTitle: 'AI Web Fullstack Developer',
+    roleSummary:
+      'You will build and launch production-ready web projects end-to-end. Founder and developer work in one delivery loop with shared ownership and direct code reviews.',
+    roleMeta: ['Full remote', 'Startup mode', 'Flexible schedule', 'Deadline + ownership'],
+    sections: {
+      impact: 'What You Will Do',
+      mustHave: 'Must-Have Skills',
+      stack: 'Stack + Tools',
+      benefits: 'How We Work + Benefits',
+    },
+    impactItems: [
+      'Build lead and company websites quickly with clean architecture and clear conversion goals.',
+      'Own delivery from brief to launch, including QA, deployment and post-launch fixes.',
+      'Set up GA4, GTM, Microsoft Clarity and basic measurement events on every project.',
+      'Collaborate directly with founder in short review cycles focused on speed and quality.',
+    ],
+    mustHaveItems: [
+      'Strong frontend + backend fundamentals, practical fullstack execution.',
+      'Experience shipping modern websites in production, not only prototypes.',
+      'Understanding of technical SEO, Core Web Vitals and page performance.',
+      'Responsibility mindset: deadlines, communication and independent execution.',
+    ],
+    stackItems: [
+      'Astro, Tailwind CSS, TypeScript, React/Next.js where needed.',
+      'Netlify, Cloudflare, GitHub workflow, structured QA before release.',
+      'GA4, GTM, Search Console, Microsoft Clarity.',
+      'Codex + Claude workflows for faster implementation and debugging.',
+    ],
+    benefitsItems: [
+      'Fully remote, work from anywhere.',
+      'Output-first culture: 2 hours or 10 hours is your call, results matter.',
+      'Direct growth path through practical delivery and shared reviews.',
+      'Company AI stack and modern tooling to move faster with quality.',
+    ],
+    ctaPrimary: 'Apply For This Role',
     ctaSecondary: 'Back to services',
-    emailHint: 'Send your profile, portfolio or LinkedIn to',
+    emailHint: 'Prefer direct contact? Send profile, portfolio or LinkedIn to',
+    retroWindowLabel: 'alpinefy-career.exe',
+    retroStatus: 'LIVE',
+    retroCounterLabel: 'Visitor counter',
+    retroCounterValue: '001337',
+    retroTicker:
+      'FULL REMOTE  •  SHIP FAST  •  AI STACK READY  •  DEADLINE + OWNERSHIP  •  REVIEW LOOP  •',
   },
   de: {
     metaTitle: 'Karriere',
     metaDescription:
-      'Offene Positionen bei Alpinefy. Wir suchen Menschen mit Fokus auf Performance, saubere Umsetzung und messbare Ergebnisse.',
+      'Offene Stelle bei Alpinefy: AI Web Fullstack Developer. Vollständig remote, Startup-Tempo, Ownership und klare Ergebnisse.',
     eyebrow: 'Karriere',
     title: 'Werde Teil von Alpinefy',
     subtitle:
-      'Wir bauen ein fokussiertes Team rund um Web-Performance, SEO und Geschäftsergebnisse. Wenn das zu dir passt, melde dich.',
-    openTitle: 'Offene Positionen',
-    openBody:
-      'Aktuell haben wir keine öffentliche Stelle, sind aber immer offen für starke Profile in Webentwicklung, Technical SEO und Automatisierung.',
+      'Wir suchen eine Person, die mit unserem Stack schnell Websites liefert, AI-Tools nutzt und messbare Business-Ergebnisse erzielt.',
+    roleBadge: 'Aktiv gesucht',
+    roleTitle: 'AI Web Fullstack Developer',
+    roleSummary:
+      'Du baust Webprojekte von Briefing bis Launch. Gründer und Entwickler arbeiten in einem Delivery-Loop mit direktem Review und klarer Verantwortung.',
+    roleMeta: ['Voll remote', 'Startup-Modus', 'Flexible Zeiten', 'Deadline + Ownership'],
+    sections: {
+      impact: 'Deine Aufgaben',
+      mustHave: 'Must-Haves',
+      stack: 'Stack + Tools',
+      benefits: 'Arbeitsmodus + Benefits',
+    },
+    impactItems: [
+      'Lead- und Unternehmenswebsites schnell und sauber mit klaren Conversion-Zielen umsetzen.',
+      'Delivery-Endverantwortung vom Briefing über QA bis zum Launch.',
+      'GA4, GTM, Microsoft Clarity und Basis-Tracking pro Projekt einrichten.',
+      'Direkte Zusammenarbeit mit dem Gründer in kurzen Review-Zyklen.',
+    ],
+    mustHaveItems: [
+      'Sichere Frontend- und Backend-Basis, praxisnahe Fullstack-Lieferung.',
+      'Erfahrung mit produktiven Website-Releases, nicht nur Demos.',
+      'Verständnis für Technical SEO, Core Web Vitals und Performance.',
+      'Verlässlichkeit bei Deadlines, Kommunikation und selbstständiger Umsetzung.',
+    ],
+    stackItems: [
+      'Astro, Tailwind CSS, TypeScript, bei Bedarf React/Next.js.',
+      'Netlify, Cloudflare, GitHub-Workflow, strukturierte QA vor Livegang.',
+      'GA4, GTM, Search Console, Microsoft Clarity.',
+      'Codex + Claude Workflows für schnellere Umsetzung und Debugging.',
+    ],
+    benefitsItems: [
+      'Voll remote, Arbeit von überall.',
+      'Output-Fokus: 2 oder 10 Stunden ist egal, Ergebnis zählt.',
+      'Direkter Wachstumspfad über echte Delivery und gemeinsames Review.',
+      'Firmen-AI-Stack und moderne Tools für schnelle, saubere Umsetzung.',
+    ],
     ctaPrimary: 'Profil senden',
     ctaSecondary: 'Zurück zu Leistungen',
-    emailHint: 'Sende dein Profil, Portfolio oder LinkedIn an',
+    emailHint: 'Lieber direkt? Sende Profil, Portfolio oder LinkedIn an',
+    retroWindowLabel: 'alpinefy-karriere.exe',
+    retroStatus: 'LIVE',
+    retroCounterLabel: 'Besucherzähler',
+    retroCounterValue: '001337',
+    retroTicker:
+      'VOLL REMOTE  •  SCHNELL LIEFERN  •  AI STACK READY  •  DEADLINE + OWNERSHIP  •  REVIEW LOOP  •',
   },
   pl: {
     metaTitle: 'Kariera',
     metaDescription:
-      'Oferty pracy w Alpinefy. Szukamy osób nastawionych na wydajność, jakość realizacji i mierzalne wyniki.',
+      'Otwarta rola w Alpinefy: AI Web Fullstack Developer. Full remote, startupowe tempo i odpowiedzialność za wynik.',
     eyebrow: 'Kariera',
     title: 'Dołącz do Alpinefy',
     subtitle:
-      'Budujemy zespół skupiony na wydajności stron, SEO i efektach biznesowych. Jeśli tak pracujesz, odezwij się.',
-    openTitle: 'Otwarte role',
-    openBody:
-      'Obecnie nie mamy publicznej rekrutacji, ale jesteśmy otwarci na mocne profile z web developmentu, technicznego SEO i automatyzacji.',
+      'Szukamy jednej osoby, która szybko dowozi strony w naszym stacku, korzysta z AI i rozumie cele biznesowe.',
+    roleBadge: 'Rekrutujemy',
+    roleTitle: 'AI Web Fullstack Developer',
+    roleSummary:
+      'Będziesz realizować projekty web od briefu do wdrożenia. Pracujesz bezpośrednio z founderem w krótkich pętlach review.',
+    roleMeta: ['Full remote', 'Tryb startup', 'Elastyczny czas', 'Deadline + odpowiedzialność'],
+    sections: {
+      impact: 'Zakres Pracy',
+      mustHave: 'Wymagane Umiejętności',
+      stack: 'Stack + Narzędzia',
+      benefits: 'Tryb Współpracy + Benefity',
+    },
+    impactItems: [
+      'Budowa stron leadowych i firmowych z naciskiem na szybkość i konwersję.',
+      'Pełna odpowiedzialność za delivery: brief, QA, wdrożenie i poprawki po starcie.',
+      'Konfiguracja GA4, GTM, Microsoft Clarity i podstawowego trackingu.',
+      'Stała współpraca z founderem i wzajemne code review.',
+    ],
+    mustHaveItems: [
+      'Mocne podstawy frontend + backend, praktyczny fullstack delivery.',
+      'Doświadczenie we wdrażaniu stron produkcyjnych, nie tylko prototypów.',
+      'Znajomość technical SEO, Core Web Vitals i performance.',
+      'Samodzielność, terminowość i odpowiedzialna komunikacja.',
+    ],
+    stackItems: [
+      'Astro, Tailwind CSS, TypeScript, React/Next.js tam gdzie trzeba.',
+      'Netlify, Cloudflare, GitHub workflow, sensowne QA przed publikacją.',
+      'GA4, GTM, Search Console, Microsoft Clarity.',
+      'Codex + Claude jako akcelerator wdrożeń i debugowania.',
+    ],
+    benefitsItems: [
+      'Pełny remote, pracujesz skądkolwiek.',
+      'Liczy się efekt: 2h czy 10h dziennie nie ma znaczenia.',
+      'Szybki rozwój przez realne projekty i bezpośredni feedback.',
+      'Firmowy AI stack i nowoczesne narzędzia.',
+    ],
     ctaPrimary: 'Wyślij profil',
     ctaSecondary: 'Wróć do usług',
-    emailHint: 'Wyślij profil, portfolio lub LinkedIn na',
+    emailHint: 'Wolisz bezpośrednio? Wyślij profil, portfolio lub LinkedIn na',
+    retroWindowLabel: 'alpinefy-kariera.exe',
+    retroStatus: 'LIVE',
+    retroCounterLabel: 'Licznik odwiedzin',
+    retroCounterValue: '001337',
+    retroTicker:
+      'FULL REMOTE  •  SZYBKIE DOWOŻENIE  •  AI STACK READY  •  DEADLINE + ODPOWIEDZIALNOŚĆ  •  REVIEW LOOP  •',
   },
   cz: {
     metaTitle: 'Kariéra',
     metaDescription:
-      'Volné pozice v Alpinefy. Hledáme lidi zaměřené na výkon, kvalitní realizaci a měřitelné výsledky.',
+      'Otevřená role v Alpinefy: AI Web Fullstack Developer. Full remote, startup tempo a odpovědnost za výsledek.',
     eyebrow: 'Kariéra',
     title: 'Přidejte se k Alpinefy',
     subtitle:
-      'Budujeme tým orientovaný na výkon webu, SEO a obchodní výsledky. Pokud je to i váš přístup, ozvěte se.',
-    openTitle: 'Otevřené pozice',
-    openBody:
-      'Aktuálně nemáme veřejně otevřenou pozici, ale rádi si poslechneme silné profily z webového vývoje, technického SEO a automatizací.',
+      'Hledáme jednoho člověka, který umí rychle dodávat weby v našem stacku, využívat AI nástroje a držet kvalitu.',
+    roleBadge: 'Nabíráme',
+    roleTitle: 'AI Web Fullstack Developer',
+    roleSummary:
+      'Budeš stavět a nasazovat web projekty od briefu po launch. Spolupráce je napřímo s founderem v krátkých review cyklech.',
+    roleMeta: ['Full remote', 'Startup režim', 'Flexibilní čas', 'Deadline + odpovědnost'],
+    sections: {
+      impact: 'Co Budeš Dělat',
+      mustHave: 'Co Potřebujeme',
+      stack: 'Stack + Nástroje',
+      benefits: 'Jak Pracujeme + Benefity',
+    },
+    impactItems: [
+      'Tvorba lead a firemních webů se zaměřením na výkon a konverze.',
+      'End-to-end delivery: brief, QA, nasazení a post-launch úpravy.',
+      'Nastavení GA4, GTM, Microsoft Clarity a základních eventů.',
+      'Přímá spolupráce s founderem, průběžné code review a rychlé iterace.',
+    ],
+    mustHaveItems: [
+      'Silný frontend + backend základ a praktický fullstack delivery.',
+      'Zkušenost s produkčním nasazováním webů.',
+      'Technické SEO, Core Web Vitals a performance mindset.',
+      'Spolehlivost, termíny a odpovědná komunikace.',
+    ],
+    stackItems: [
+      'Astro, Tailwind CSS, TypeScript, podle potřeby React/Next.js.',
+      'Netlify, Cloudflare, GitHub workflow a čisté QA před release.',
+      'GA4, GTM, Search Console, Microsoft Clarity.',
+      'Codex + Claude workflow pro rychlejší vývoj a debugging.',
+    ],
+    benefitsItems: [
+      'Plně remote, práce odkudkoliv.',
+      'Důležitý je výstup: 2 hodiny nebo 10 hodin, podle tebe.',
+      'Růst přes reálné projekty a přímý feedback.',
+      'Firemní AI stack a moderní nástroje.',
+    ],
     ctaPrimary: 'Poslat profil',
     ctaSecondary: 'Zpět na služby',
-    emailHint: 'Pošlete profil, portfolio nebo LinkedIn na',
+    emailHint: 'Chceš psát napřímo? Pošli profil, portfolio nebo LinkedIn na',
+    retroWindowLabel: 'alpinefy-kariera.exe',
+    retroStatus: 'LIVE',
+    retroCounterLabel: 'Počítadlo návštěv',
+    retroCounterValue: '001337',
+    retroTicker:
+      'FULL REMOTE  •  RYCHLÉ DODÁNÍ  •  AI STACK READY  •  DEADLINE + ODPOVĚDNOST  •  REVIEW LOOP  •',
   },
   sk: {
     metaTitle: 'Kariéra',
     metaDescription:
-      'Voľné pozície v Alpinefy. Hľadáme ľudí orientovaných na výkon, kvalitnú realizáciu a merateľné výsledky.',
+      'Otvorená pozícia v Alpinefy: AI Web Fullstack Developer. Full remote, startup tempo a zodpovednosť za výsledok.',
     eyebrow: 'Kariéra',
     title: 'Pridaj sa do Alpinefy',
     subtitle:
-      'Budujeme tím orientovaný na výkon webu, SEO a biznis výsledky. Ak je to aj tvoj prístup, ozvi sa.',
-    openTitle: 'Otvorené pozície',
-    openBody:
-      'Aktuálne nemáme verejne otvorenú konkrétnu pozíciu, ale radi si pozrieme silné profily z web developmentu, technického SEO a automatizácií.',
-    ctaPrimary: 'Poslať profil',
+      'Hľadáme jedného človeka, ktorý vie rýchlo dodávať weby v našom stacku, používať AI nástroje a držať kvalitu výstupu.',
+    roleBadge: 'Aktívne hľadáme',
+    roleTitle: 'AI Web Fullstack Developer',
+    roleSummary:
+      'Budeš robiť weby od briefu po nasadenie. Zakladateľ a developer fungujú v jednom delivery loop-e, s priebežným review a jasnou zodpovednosťou.',
+    roleMeta: ['Full remote', 'Startup režim', 'Flexibilný čas', 'Deadline + zodpovednosť'],
+    sections: {
+      impact: 'Čo Budeš Robiť',
+      mustHave: 'Čo Potrebujeme',
+      stack: 'Stack + Nástroje',
+      benefits: 'Ako Fungujeme + Benefity',
+    },
+    impactItems: [
+      'Stavať lead a firemné weby rýchlo, čisto a s jasným biznis cieľom.',
+      'Viesť delivery od zadania cez QA až po nasadenie a post-launch optimalizáciu.',
+      'Nastavovať GA4, GTM, Microsoft Clarity a základné eventy pre meranie.',
+      'Spolupracovať priamo so zakladateľom, robiť vzájomné code review a iterovať bez zbytočnej byrokracie.',
+    ],
+    mustHaveItems: [
+      'Silný frontend + backend základ a praktický fullstack prístup.',
+      'Skúsenosť s produkčným dodávaním webov, nie len prototypov.',
+      'Rozhľad v technickom SEO, Core Web Vitals a výkonnosti.',
+      'Zodpovednosť za termíny, komunikáciu a kvalitu výsledku.',
+    ],
+    stackItems: [
+      'Astro, Tailwind CSS, TypeScript, podľa potreby React/Next.js.',
+      'Netlify, Cloudflare, GitHub workflow, štruktúrované QA pred release.',
+      'GA4, GTM, Search Console, Microsoft Clarity.',
+      'Codex + Claude workflow pre rýchlejšiu implementáciu a debugging.',
+    ],
+    benefitsItems: [
+      'Plne remote, môžeš pracovať odkiaľkoľvek.',
+      'Output-first: je jedno, či to spravíš za 2 alebo 10 hodín, dôležitý je výsledok.',
+      'Priamy rast cez reálne projekty a každodenný feedback.',
+      'Firemný AI stack a moderné nástroje, ktoré šetria čas.',
+    ],
+    ctaPrimary: 'Mám Záujem O Pozíciu',
     ctaSecondary: 'Späť na služby',
-    emailHint: 'Profil, portfólio alebo LinkedIn pošli na',
+    emailHint: 'Ak preferuješ priamy kontakt, profil, portfólio alebo LinkedIn pošli na',
+    retroWindowLabel: 'alpinefy-kariera.exe',
+    retroStatus: 'LIVE',
+    retroCounterLabel: 'Počítadlo návštev',
+    retroCounterValue: '001337',
+    retroTicker:
+      'FULL REMOTE  •  RÝCHLE DODANIE  •  AI STACK READY  •  DEADLINE + ZODPOVEDNOSŤ  •  REVIEW LOOP  •',
   },
 } as const;
 
 const copy = copyByLang[lang] ?? copyByLang.en;
+const canonicalCareerPath = getRoutePath('career', lang);
+const jobPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'JobPosting',
+  title: copy.roleTitle,
+  description: [copy.roleSummary, ...copy.impactItems, ...copy.mustHaveItems, ...copy.stackItems, ...copy.benefitsItems]
+    .map((item) => `<p>${item}</p>`)
+    .join(''),
+  datePosted: '2026-03-31',
+  employmentType: 'FULL_TIME',
+  hiringOrganization: {
+    '@type': 'Organization',
+    name: site.name,
+    sameAs: site.url,
+    logo: `${site.url}/og-image-en.png`,
+  },
+  jobLocationType: 'TELECOMMUTE',
+  applicantLocationRequirements: [
+    { '@type': 'Country', name: 'Slovakia' },
+    { '@type': 'Country', name: 'Czech Republic' },
+    { '@type': 'Country', name: 'Poland' },
+    { '@type': 'Country', name: 'Germany' },
+  ],
+  url: `${site.url}${canonicalCareerPath}`,
+  directApply: true,
+};
 ---
 
-<BaseLayout lang={lang} title={copy.metaTitle} description={copy.metaDescription}>
+<BaseLayout lang={lang} title={copy.metaTitle} description={copy.metaDescription} structuredData={jobPostingSchema}>
   <section class="pb-20 pt-32 sm:pb-24 sm:pt-36">
     <Container class="space-y-10">
       <div class="max-w-3xl space-y-5">
@@ -96,16 +313,92 @@ const copy = copyByLang[lang] ?? copyByLang.en;
         <p class="text-base text-mist sm:text-lg">{copy.subtitle}</p>
       </div>
 
-      <article class="card max-w-4xl space-y-5 rounded-3xl p-6 sm:p-7">
-        <h2 class="font-display text-2xl sm:text-3xl">{copy.openTitle}</h2>
-        <p class="text-sm text-mist sm:text-base">{copy.openBody}</p>
-        <p class="text-sm text-mist">
-          {copy.emailHint}{' '}
-          <a class="text-aqua transition hover:text-aqua/80" href="mailto:hello@alpinefy.com">hello@alpinefy.com</a>
-        </p>
-        <div class="flex flex-wrap gap-3 pt-1">
-          <a class="btn-primary" href={getRoutePath('careerInquiry', lang)}>{copy.ctaPrimary}</a>
-          <a class="btn-secondary" href={getRoutePath('services', lang)}>{copy.ctaSecondary}</a>
+      <article class="card career-position-card max-w-6xl rounded-3xl p-6 sm:p-7">
+        <div class="career-retro-overlay" aria-hidden="true"></div>
+        <div class="career-position-content space-y-6">
+          <div class="career-retro-window">
+            <span class="career-retro-dot career-retro-dot-red"></span>
+            <span class="career-retro-dot career-retro-dot-yellow"></span>
+            <span class="career-retro-dot career-retro-dot-green"></span>
+            <span class="career-retro-window-label">{copy.retroWindowLabel}</span>
+            <span class="career-retro-status">{copy.retroStatus}</span>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <span class="career-role-badge">{copy.roleBadge}</span>
+            <div class="flex flex-wrap items-center gap-2">
+              {copy.roleMeta.map((item, index) => (
+                <span class="tag career-meta-tag" style={`animation-delay:${index * 110}ms`}>{item}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="career-retro-fun-row">
+            <div class="career-retro-counter">
+              <p class="career-retro-counter-label">{copy.retroCounterLabel}</p>
+              <p class="career-retro-counter-value">{copy.retroCounterValue}</p>
+            </div>
+            <div class="career-retro-marquee">
+              <div class="career-retro-marquee-track">
+                <span>{copy.retroTicker}</span>
+                <span aria-hidden="true">{copy.retroTicker}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <h2 class="font-display text-2xl sm:text-3xl">{copy.roleTitle}</h2>
+            <p class="text-sm text-mist sm:text-base">{copy.roleSummary}</p>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="career-block career-reveal" style="animation-delay: 40ms">
+              <p class="career-block-title">{copy.sections.impact}</p>
+              <ul class="space-y-2">
+                {copy.impactItems.map((item, index) => (
+                  <li class="career-list-item" style={`animation-delay:${140 + index * 80}ms`}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="career-block career-reveal" style="animation-delay: 120ms">
+              <p class="career-block-title">{copy.sections.mustHave}</p>
+              <ul class="space-y-2">
+                {copy.mustHaveItems.map((item, index) => (
+                  <li class="career-list-item" style={`animation-delay:${180 + index * 80}ms`}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="career-block career-reveal" style="animation-delay: 200ms">
+              <p class="career-block-title">{copy.sections.stack}</p>
+              <ul class="space-y-2">
+                {copy.stackItems.map((item, index) => (
+                  <li class="career-list-item" style={`animation-delay:${220 + index * 80}ms`}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="career-block career-reveal" style="animation-delay: 280ms">
+              <p class="career-block-title">{copy.sections.benefits}</p>
+              <ul class="space-y-2">
+                {copy.benefitsItems.map((item, index) => (
+                  <li class="career-list-item" style={`animation-delay:${260 + index * 80}ms`}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-4 border-t border-white/10 pt-6">
+          <div class="flex flex-wrap gap-3 pt-1">
+            <a class="btn-primary" href={getRoutePath('careerInquiry', lang)}>{copy.ctaPrimary}</a>
+            <a class="btn-secondary" href={getRoutePath('services', lang)}>{copy.ctaSecondary}</a>
+          </div>
+          <p class="text-sm text-mist">
+            {copy.emailHint}{' '}
+            <a class="text-aqua transition hover:text-aqua/80" href="mailto:hello@alpinefy.com">hello@alpinefy.com</a>
+          </p>
         </div>
       </article>
     </Container>
