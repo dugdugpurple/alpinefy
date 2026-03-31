@@ -336,7 +336,7 @@ const jobPostingSchema = {
           <div class="career-retro-fun-row">
             <div class="career-retro-counter">
               <p class="career-retro-counter-label">{copy.retroCounterLabel}</p>
-              <p class="career-retro-counter-value">{copy.retroCounterValue}</p>
+              <p class="career-retro-counter-value" data-career-counter>{copy.retroCounterValue}</p>
             </div>
             <div class="career-retro-marquee">
               <div class="career-retro-marquee-track">
@@ -403,4 +403,94 @@ const jobPostingSchema = {
       </article>
     </Container>
   </section>
+
+  <script is:inline>
+    const initCareerCounter = () => {
+      const counter = document.querySelector('[data-career-counter]');
+      if (!counter || counter.dataset.ready === 'true') return;
+      counter.dataset.ready = 'true';
+
+      const sessionKey = 'alpinefy_career_counter_seen_v1';
+      const localCounterKey = 'alpinefy_career_counter_local_v1';
+      const namespace = 'alpinefy.com';
+      const key = 'career_job_posting_visits';
+      const base = 'https://api.countapi.xyz';
+      const fallbackValue = counter.textContent?.trim() || '001337';
+
+      const formatCounter = (value) => {
+        const number = Number.parseInt(String(value ?? ''), 10);
+        if (!Number.isFinite(number) || number < 0) return fallbackValue;
+        if (number > 999999) return String(number);
+        return String(number).padStart(6, '0');
+      };
+
+      const writeCounter = (value) => {
+        counter.textContent = formatCounter(value);
+      };
+
+      const hostname = window.location.hostname;
+      const isLocalEnvironment =
+        hostname === 'localhost' ||
+        hostname === '127.0.0.1' ||
+        hostname === '0.0.0.0' ||
+        hostname === '::1' ||
+        hostname.endsWith('.local');
+      const fallbackBase = Number.parseInt(fallbackValue, 10) || 1337;
+
+      const readLocalAbsolute = () => {
+        const value = Number.parseInt(localStorage.getItem(localCounterKey) || '', 10);
+        if (!Number.isFinite(value) || value < 0) return null;
+        return value;
+      };
+
+      const writeLocalAbsolute = (value) => {
+        localStorage.setItem(localCounterKey, String(value));
+      };
+
+      const incrementLocalFallback = () => {
+        const current = readLocalAbsolute();
+        const next = (current ?? fallbackBase) + 1;
+        writeLocalAbsolute(next);
+        return next;
+      };
+
+      const readCounter = async (shouldIncrement) => {
+        const endpoint = shouldIncrement ? `${base}/hit/${namespace}/${key}` : `${base}/get/${namespace}/${key}`;
+        const response = await fetch(endpoint, { method: 'GET', mode: 'cors', cache: 'no-store' });
+        if (!response.ok) throw new Error(`Counter request failed: ${response.status}`);
+        const payload = await response.json();
+        if (typeof payload?.value !== 'number') throw new Error('Invalid counter payload');
+        return payload.value;
+      };
+
+      const loadCounter = async () => {
+        if (isLocalEnvironment) {
+          const alreadyCounted = sessionStorage.getItem(sessionKey) === '1';
+          const value = alreadyCounted ? (readLocalAbsolute() ?? fallbackBase) : incrementLocalFallback();
+          if (!alreadyCounted) sessionStorage.setItem(sessionKey, '1');
+          writeCounter(value);
+          return;
+        }
+
+        try {
+          const alreadyCounted = sessionStorage.getItem(sessionKey) === '1';
+          const value = await readCounter(!alreadyCounted);
+          if (!alreadyCounted) sessionStorage.setItem(sessionKey, '1');
+          writeCounter(value);
+        } catch {
+          writeCounter(fallbackValue);
+        }
+      };
+
+      loadCounter();
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCareerCounter);
+    } else {
+      initCareerCounter();
+    }
+
+    document.addEventListener('astro:page-load', initCareerCounter);
+  </script>
 </BaseLayout>

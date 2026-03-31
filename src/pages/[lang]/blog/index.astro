@@ -18,6 +18,46 @@ if (!lang || !isSupportedLang(lang) || lang === defaultLang) {
 }
 const copy = getCopy(lang);
 const posts = getBlogPosts(lang);
+const categoryTitleByLang = {
+  en: 'Categories',
+  de: 'Kategorien',
+  pl: 'Kategorie',
+  cz: 'Kategorie',
+  sk: 'Kategórie',
+} as const;
+const allLabelByLang = {
+  en: 'All',
+  de: 'Alle',
+  pl: 'Wszystkie',
+  cz: 'Vše',
+  sk: 'Všetky',
+} as const;
+const emptyByLang = {
+  en: 'No articles in this category yet.',
+  de: 'In dieser Kategorie sind noch keine Artikel.',
+  pl: 'W tej kategorii nie ma jeszcze artykułów.',
+  cz: 'V této kategorii zatím nejsou články.',
+  sk: 'V tejto kategórii zatiaľ nie sú články.',
+} as const;
+const toCategoryKey = (value: string) =>
+  value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+const categoryMap = new Map<string, { key: string; label: string; count: number }>();
+posts.forEach((post) => {
+  const key = toCategoryKey(post.category);
+  const current = categoryMap.get(key);
+  if (current) {
+    current.count += 1;
+    return;
+  }
+  categoryMap.set(key, { key, label: post.category, count: 1 });
+});
+const categories = Array.from(categoryMap.values()).sort((a, b) => a.label.localeCompare(b.label));
 const localeByLang = {
   en: 'en-US',
   de: 'de-DE',
@@ -46,11 +86,42 @@ const formatDate = (date: string) =>
 
   <div class="border-t border-white/10"></div>
 
+  <section class="pt-6 pb-2 sm:pt-8">
+    <Container class="max-w-[1120px]">
+      <div class="space-y-4" data-blog-filter-root>
+        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/85">{categoryTitleByLang[lang]}</p>
+        <div class="flex flex-wrap gap-2">
+          <button
+            type="button"
+            class="tag transition hover:border-aqua/55"
+            data-category-button
+            data-category-key="all"
+          >
+            {allLabelByLang[lang]} ({posts.length})
+          </button>
+          {categories.map((category) => (
+            <button
+              type="button"
+              class="tag transition hover:border-aqua/55"
+              data-category-button
+              data-category-key={category.key}
+            >
+              {category.label} ({category.count})
+            </button>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </section>
+
   <section class="py-4 sm:py-6">
     <Container class="max-w-[1120px]">
-      <div class="divide-y divide-white/10">
+      <div class="divide-y divide-white/10" data-blog-post-list>
         {posts.map((post) => (
-          <article class="group grid gap-5 py-8 md:grid-cols-[1fr_auto] md:items-end">
+          <article
+            class="group grid gap-5 py-8 md:grid-cols-[1fr_auto] md:items-end"
+            data-post-category={toCategoryKey(post.category)}
+          >
             <div class="max-w-3xl space-y-3">
               <p class="text-[11px] uppercase tracking-[0.24em] text-aqua/82">
                 {post.category} · {formatDate(post.date)} · {post.readingTime}
@@ -74,6 +145,74 @@ const formatDate = (date: string) =>
           </article>
         ))}
       </div>
+      <p class="hidden py-8 text-sm text-mist" data-blog-empty>{emptyByLang[lang]}</p>
     </Container>
   </section>
+
+  <script is:inline>
+    const initBlogCategoryFilter = () => {
+      const root = document.querySelector('[data-blog-filter-root]');
+      if (!root || root.dataset.ready === 'true') return;
+      root.dataset.ready = 'true';
+
+      const buttons = Array.from(root.querySelectorAll('[data-category-button]'));
+      const posts = Array.from(document.querySelectorAll('[data-post-category]'));
+      const emptyState = document.querySelector('[data-blog-empty]');
+      if (!buttons.length || !posts.length) return;
+
+      const allowed = new Set(buttons.map((button) => button.getAttribute('data-category-key') || 'all'));
+      const basePath = window.location.pathname;
+      const parseInitialCategory = () => {
+        const fromQuery = new URLSearchParams(window.location.search).get('category') || 'all';
+        return allowed.has(fromQuery) ? fromQuery : 'all';
+      };
+
+      const setCategory = (key, pushToUrl = true) => {
+        buttons.forEach((button) => {
+          const active = (button.getAttribute('data-category-key') || 'all') === key;
+          button.classList.toggle('border-aqua/60', active);
+          button.classList.toggle('bg-aqua', active);
+          button.classList.toggle('text-night', active);
+          button.classList.toggle('text-aqua', !active);
+        });
+
+        let visible = 0;
+        posts.forEach((post) => {
+          const postCategory = post.getAttribute('data-post-category');
+          const show = key === 'all' || postCategory === key;
+          post.classList.toggle('hidden', !show);
+          if (show) visible += 1;
+        });
+
+        if (emptyState) emptyState.classList.toggle('hidden', visible !== 0);
+
+        if (!pushToUrl) return;
+        const url = new URL(window.location.href);
+        if (key === 'all') {
+          url.searchParams.delete('category');
+        } else {
+          url.searchParams.set('category', key);
+        }
+        const query = url.searchParams.toString();
+        history.replaceState({}, '', query ? `${basePath}?${query}` : basePath);
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          setCategory(button.getAttribute('data-category-key') || 'all');
+        });
+      });
+
+      window.addEventListener('popstate', () => setCategory(parseInitialCategory(), false));
+      setCategory(parseInitialCategory(), false);
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBlogCategoryFilter);
+    } else {
+      initBlogCategoryFilter();
+    }
+
+    document.addEventListener('astro:page-load', initBlogCategoryFilter);
+  </script>
 </BaseLayout>
