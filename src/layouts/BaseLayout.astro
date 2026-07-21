@@ -303,56 +303,6 @@ const allStructuredData = [organizationSchema, websiteSchema, pageSchema, ...ext
       <CookieBanner lang={lang} />
     </div>
     <script is:inline>
-      (() => {
-        const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!canHover || reduce) return;
-        const HALF = 180;
-        const initSpotlights = () => {
-          document.querySelectorAll('[data-spotlight]').forEach((card) => {
-            if (card.dataset.spotReady === 'true') return;
-            card.dataset.spotReady = 'true';
-            const mist = card.querySelector('.card-mist');
-            if (!mist) return;
-            let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0, on = false;
-            const setTarget = (e) => {
-              const r = card.getBoundingClientRect();
-              tx = e.clientX - r.left - HALF;
-              ty = e.clientY - r.top - HALF;
-            };
-            const loop = () => {
-              cx += (tx - cx) * 0.16;
-              cy += (ty - cy) * 0.16;
-              mist.style.transform = `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`;
-              if (on) raf = requestAnimationFrame(loop);
-            };
-            card.addEventListener('mouseenter', (e) => {
-              const r = card.getBoundingClientRect();
-              tx = cx = e.clientX - r.left - HALF;
-              ty = cy = e.clientY - r.top - HALF;
-              mist.style.transform = `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`;
-              on = true;
-              card.classList.add('mist-on');
-              cancelAnimationFrame(raf);
-              raf = requestAnimationFrame(loop);
-            });
-            card.addEventListener('mousemove', setTarget);
-            card.addEventListener('mouseleave', () => {
-              on = false;
-              cancelAnimationFrame(raf);
-              card.classList.remove('mist-on');
-            });
-          });
-        };
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initSpotlights);
-        } else {
-          initSpotlights();
-        }
-        document.addEventListener('astro:page-load', initSpotlights);
-      })();
-    </script>
-    <script is:inline>
       const initThemeToggle = () => {
         const root = document.documentElement;
         if (root.dataset.themeToggleReady === 'true') return;

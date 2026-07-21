@@ -28,8 +28,7 @@ const icons = [
     />
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {sections.valueProps.items.map((item, index) => (
-        <div class="card card-3d h-full" data-spotlight>
-          <span class="card-mist" aria-hidden="true"></span>
+        <div class="card card-3d h-full">
           <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white/8 text-aqua">
             <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d={icons[index]}></path>
