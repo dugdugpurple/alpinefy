@@ -1,6 +1,12 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="14" fill="#0E233F" />
-  <path d="M6 52L26 16L38 34L48 22L58 52H6Z" fill="#22D3EE" />
-  <path d="M26 16L31 26L26 24L21 26L26 16Z" fill="#22D3EE" opacity="0.68" />
-  <path d="M48 22L52 30L48 29L44 30L48 22Z" fill="#22D3EE" opacity="0.68" />
+  <defs>
+    <linearGradient id="afg" x1="10" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#26CAFF" />
+      <stop offset="1" stop-color="#47F7B3" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#afg)" />
+  <g transform="translate(32 32) scale(2.4) translate(-16 -16)">
+    <path d="M7 25l9-18 9 18-9-5z" fill="#04122E" />
+  </g>
 </svg>
