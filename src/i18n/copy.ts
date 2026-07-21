@@ -272,47 +272,47 @@ export const copy: Record<Lang, Copy> = {
     },
     sections: {
       heroStats: [
-        { value: '95+', label: 'Lighthouse score' },
-        { value: '< 1.2 s', label: 'First load' },
-        { value: '0', label: 'Unnecessary JS' },
+        { value: '< 1.2 s', label: 'Loads before visitors leave' },
+        { value: '24 h', label: 'We reply within' },
+        { value: 'Days', label: 'To launch — not months' },
       ],
       heroSide: {
-        eyebrow: 'Premium agency vibe',
-        title: 'Modern stack. Fast delivery.',
-        subtitle: 'Built for speed, reliability and smooth handover to your team.',
-        badges: ['SEO-ready', 'SSR/SSG', 'Minimal JS'],
+        eyebrow: 'What you get',
+        title: 'A website that sells for you',
+        subtitle: 'Fast, easy to manage and built to turn visitors into customers — with a smooth handover to your team.',
+        badges: ['Found on Google', 'Loads instantly', 'Easy to edit'],
         cards: [
-          { label: 'Weekly reporting', value: 'Clear KPI' },
-          { label: 'Technical oversight', value: 'Performance monitoring' },
+          { label: 'Clear reporting', value: 'You see what works' },
+          { label: 'Ongoing care', value: 'Fast & always online' },
         ],
       },
       valueProps: {
         eyebrow: 'Why Alpinefy',
-        title: 'Performance, simplicity, long-term sustainability',
-        subtitle: 'We build websites that load fast, communicate clearly and scale with your business.',
+        title: 'Websites that look great and actually sell',
+        subtitle: 'We build sites that load fast, say the right thing and grow with your business.',
         items: [
           {
-            title: 'Speed',
-            description: 'Static generation, optimized assets and minimal JS for instant load.',
+            title: 'Speed that keeps visitors',
+            description: 'Your pages open in about a second, so people stay instead of leaving.',
           },
           {
-            title: 'Performance',
-            description: 'Core Web Vitals above 95 without compromising design or content.',
+            title: 'More inquiries',
+            description: 'Clear structure and strong calls-to-action turn visitors into leads.',
           },
           {
-            title: 'Simplicity',
-            description: 'Clean component system your team can extend quickly.',
+            title: 'Easy to manage',
+            description: 'Update text, images and prices yourself — no developer needed.',
           },
           {
-            title: 'Scalability',
-            description: 'Architecture ready for campaigns, new sections and CMS.',
+            title: 'Room to grow',
+            description: 'Add campaigns, pages and new features as your business grows.',
           },
         ],
       },
       services: {
         eyebrow: 'Services',
-        title: 'Solutions that work in practice',
-        subtitle: 'From lead pages to corporate websites, Shopify e-shops and automation + AI workflows.',
+        title: 'What we build for you',
+        subtitle: 'From landing pages to full websites, Shopify stores and smart automation.',
         items: [
           {
             title: 'Lead websites',
@@ -331,38 +331,38 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             title: 'Automation & AI workflows',
-            description: 'Business automation, AI workflows, dashboards and product interfaces with SEO and performance support.',
-            tags: ['Automation', 'AI workflows', 'SEO + AI + performance'],
+            description: 'Automations, AI assistants and dashboards that save your team time and cut busywork.',
+            tags: ['Automation', 'AI assistants', 'Dashboards'],
           },
         ],
       },
       process: {
         eyebrow: 'Process',
         title: 'Clear steps. Predictable outcome.',
-        subtitle: 'Transparent process that saves time and removes surprises.',
+        subtitle: 'A transparent process that saves you time and removes surprises.',
         steps: [
           {
             title: 'Analysis',
-            description: 'Workshop, goals, competition. We define content, conversions and KPIs.',
+            description: 'We get to know your goals, audience and competitors — and define what success looks like.',
           },
           {
             title: 'Design & build',
-            description: 'Wireframes, visual, prototype. Then component build focused on speed.',
+            description: 'We design, prototype and build — fast, clean and made to convert.',
           },
           {
             title: 'Launch',
-            description: 'Deploy to Netlify, integrations, SEO check, analytics.',
+            description: 'We go live, connect your tools and check SEO and analytics.',
           },
           {
             title: 'Optimization',
-            description: 'Iterate by data: speed, tests and new sections.',
+            description: 'We keep improving with real data: speed, tests and new sections.',
           },
         ],
       },
       socialProof: {
-        eyebrow: 'Trust',
+        eyebrow: 'Client stories',
         title: 'What clients say',
-        subtitle: 'Short testimonials from teams that wanted speed and clarity.',
+        subtitle: 'A few words from teams we have helped grow.',
         testimonials: [
           {
             quote: 'Alpinefy helped me build a fast and beautiful website that actively supports my business.',
@@ -407,9 +407,9 @@ export const copy: Record<Lang, Copy> = {
               'Yes. The websites we deliver are fully customizable, and you get a simple admin interface plus a short guide. At the start, we define together what should be editable so you have full control without touching code. You can update text, headings, subheadings, images, banners, icons and meta SEO settings without a developer. The goal is simple management with technical speed, stability and performance.',
           },
           {
-            question: 'Why your technologies instead of a WordPress template?',
+            question: 'Why not just use a WordPress template?',
             answer:
-              'The technologies we use give us better performance, security and control over the final result than template-based setups. We build around your goals, so the website avoids unnecessary code and plugin bloat that slows pages and causes update issues later. You get a faster website, better SEO, more stable operations and a solution that scales cleanly without becoming overloaded and inefficient over time.',
+              'Templates often come loaded with extra code and plugins that slow your site down and cause update headaches later. We build only what your goals need, so you get a faster, safer website that ranks better on Google and stays easy to run as you grow.',
           },
           {
             question: 'Can you take over an existing website?',
@@ -424,7 +424,7 @@ export const copy: Record<Lang, Copy> = {
         ],
       },
       cta: {
-        eyebrow: 'CTA',
+        eyebrow: 'Next step',
         title: 'Let’s talk about your website',
         subtitle: 'No long presentations. 30‑minute call and a clear next step proposal.',
         primaryLabel: 'Book a consultation',
@@ -434,20 +434,20 @@ export const copy: Record<Lang, Copy> = {
       trustBadges: {
         items: [
           {
-            title: 'Core Web Vitals focus',
-            description: 'Measured performance and stability from day one.',
+            title: 'Fast on every device',
+            description: 'Pages load quickly, so visitors stay instead of leaving.',
           },
           {
-            title: 'SEO-ready structure',
-            description: 'Clean HTML output, meta and optimized content.',
+            title: 'Found on Google',
+            description: 'Built to rank and get discovered by the right people.',
           },
           {
-            title: 'No vendor lock‑in',
-            description: 'Components and infra you can extend freely.',
+            title: 'Yours to keep',
+            description: 'You own the website, content and hosting — no lock-in.',
           },
           {
-            title: 'Transparent process',
-            description: 'Clear milestones, reporting and ownership.',
+            title: 'Clear, no surprises',
+            description: 'Fixed scope, honest updates and one point of contact.',
           },
         ],
       },
@@ -458,50 +458,50 @@ export const copy: Record<Lang, Copy> = {
         note: 'Primary: BTC, ETH, USDT, SOL. Also available on request: other major coins.',
       },
       partners: {
-        eyebrow: 'Partners & Stack',
-        title: 'Tech stack we know deeply',
-        subtitle: 'Main stack, analytics and technical SEO/AI optimization tools we use in production.',
+        eyebrow: 'Built on reliable tools',
+        title: 'Technology you can trust',
+        subtitle: 'Proven tools behind your website — fast, secure and easy to maintain.',
         notes: {
-          astro: 'SSG/SSR',
+          astro: 'Fast pages',
           tailwind: 'UI system',
-          netlify: 'Deploy',
+          netlify: 'Hosting',
           next: 'Automation',
-          react: 'Islands',
+          react: 'Interactive',
           figma: 'Design',
           ga: 'Analytics',
-          vercel: 'Alt hosting',
+          vercel: 'Backup hosting',
         },
       },
       capabilities: {
         eyebrow: 'Capabilities',
-        title: 'Full coverage from web to technical growth',
-        subtitle: 'We build the website foundation, then improve visibility in Google and AI assistants.',
+        title: 'Everything your website needs, in one place',
+        subtitle: 'We build the foundation, then help the right people find you on Google and in AI assistants.',
         items: [
           'Website strategy & structure',
-          'Website design & development',
-          'Technical SEO (crawlability, indexation, on-page)',
-          'AI discoverability optimization (LLM/AI answers)',
-          'Structured data (Schema.org) implementation',
+          'Design & development',
+          'SEO so you rank on Google',
+          'Get found in AI assistants (ChatGPT & co.)',
+          'Rich Google results (structured data)',
           'Analytics & conversion tracking',
-          'Core Web Vitals & speed optimization',
+          'Speed & performance tuning',
           'Forms, CRM and automation',
-          'Payment and invoicing setup (Shopify)',
-          'Hosting, maintenance and support',
+          'Payments & invoicing (Shopify)',
+          'Hosting, maintenance & support',
         ],
       },
     },
     pages: {
       home: {
         meta: {
-          title: 'Fast websites that deliver results',
+          title: 'Websites that turn visitors into customers',
           description:
-            'AI & Web Studio that designs and builds fast websites with clean design, technical stability and measurable impact on business growth.',
+            'Alpinefy is an AI & Web Studio that designs fast, clear websites and online stores built to turn visitors into customers — more inquiries, more sales.',
         },
         hero: {
-          eyebrow: 'Alpinefy / AI & Web Studio',
-          title: 'Fast websites that deliver results',
+          eyebrow: 'Alpinefy — AI & Web Studio',
+          title: 'Websites that turn visitors into customers',
           subtitle:
-            'Premium agency focused on performance, clean design and sustainable solutions. We build corporate and lead websites with a modern stack.',
+            'We design and build fast, clear websites and online stores that bring you more inquiries and sales — from first strategy to launch and beyond.',
           primaryLabel: 'Get a consultation',
           secondaryLabel: 'View services',
         },
@@ -515,7 +515,7 @@ export const copy: Record<Lang, Copy> = {
         hero: {
           eyebrow: 'Services',
           title: 'Solutions for companies that want to grow',
-          subtitle: 'We choose technology by goals: performance, technical SEO and AI visibility.',
+          subtitle: 'We pick the right approach for your goal — more inquiries, more sales and a website that is easy to run.',
           primaryLabel: 'Get a quote',
           secondaryLabel: 'View process',
         },
@@ -775,47 +775,47 @@ export const copy: Record<Lang, Copy> = {
     },
     sections: {
       heroStats: [
-        { value: '95+', label: 'Lighthouse-Score' },
-        { value: '< 1,2 s', label: 'Erstes Laden' },
-        { value: '0', label: 'Unnötiges JS' },
+        { value: '< 1.2 s', label: 'Geladen, bevor Besucher abspringen' },
+        { value: '24 h', label: 'Wir antworten innerhalb von' },
+        { value: 'Tage', label: 'Bis zum Launch — keine Monate' },
       ],
       heroSide: {
-        eyebrow: 'Premium Agentur',
-        title: 'Astro. Tailwind. Netlify.',
-        subtitle: 'Stack mit Sinn: Speed, Stabilität, einfacher Deploy.',
-        badges: ['SEO-ready', 'SSR/SSG', 'Minimal JS'],
+        eyebrow: 'Das bekommen Sie',
+        title: 'Eine Website, die für Sie verkauft',
+        subtitle: 'Schnell, einfach zu pflegen und darauf ausgelegt, aus Besuchern Kunden zu machen — mit reibungsloser Übergabe an Ihr Team.',
+        badges: ['Bei Google gefunden', 'Lädt sofort', 'Einfach zu bearbeiten'],
         cards: [
-          { label: 'Wöchentliches Reporting', value: 'Klare KPI' },
-          { label: 'Technischer Fokus', value: 'Performance-Monitoring' },
+          { label: 'Klares Reporting', value: 'Sie sehen, was funktioniert' },
+          { label: 'Laufende Betreuung', value: 'Schnell & immer online' },
         ],
       },
       valueProps: {
         eyebrow: 'Warum Alpinefy',
-        title: 'Performance, Einfachheit, langfristige Nachhaltigkeit',
-        subtitle: 'Websites, die schnell laden, klar kommunizieren und skalieren.',
+        title: 'Websites, die gut aussehen und wirklich verkaufen',
+        subtitle: 'Wir bauen Websites, die schnell laden, das Richtige sagen und mit Ihrem Unternehmen wachsen.',
         items: [
           {
-            title: 'Speed',
-            description: 'Statische Generierung, optimierte Assets und minimales JS.',
+            title: 'Tempo, das Besucher hält',
+            description: 'Ihre Seiten öffnen in etwa einer Sekunde, damit Besucher bleiben statt abzuspringen.',
           },
           {
-            title: 'Performance',
-            description: 'Core Web Vitals über 95 ohne Design‑Kompromisse.',
+            title: 'Mehr Anfragen',
+            description: 'Klare Struktur und starke Handlungsaufforderungen machen aus Besuchern Anfragen.',
           },
           {
-            title: 'Einfachheit',
-            description: 'Sauberes Komponentensystem, leicht erweiterbar.',
+            title: 'Einfach zu pflegen',
+            description: 'Texte, Bilder und Preise ändern Sie selbst — ganz ohne Entwickler.',
           },
           {
-            title: 'Skalierbarkeit',
-            description: 'Architektur bereit für Kampagnen, neue Sektionen und CMS.',
+            title: 'Raum zum Wachsen',
+            description: 'Ergänzen Sie Kampagnen, Seiten und neue Funktionen, wenn Ihr Unternehmen wächst.',
           },
         ],
       },
       services: {
         eyebrow: 'Leistungen',
-        title: 'Lösungen, die in der Praxis funktionieren',
-        subtitle: 'Von Lead-Seiten bis zu Unternehmenswebsites, Shopify-Shops sowie Automatisierung und KI-Workflows.',
+        title: 'Was wir für Sie bauen',
+        subtitle: 'Von Landingpages über komplette Websites und Shopify-Shops bis zu smarter Automatisierung.',
         items: [
           {
             title: 'Lead-Websites',
@@ -834,38 +834,38 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             title: 'Automatisierung & KI-Workflows',
-            description: 'Prozessautomatisierung, KI-Workflows, Dashboards und Produkt-Interfaces inkl. SEO- und Performance-Support.',
-            tags: ['Automatisierung', 'KI-Workflows', 'SEO + AI + Performance'],
+            description: 'Automatisierungen, KI-Assistenten und Dashboards, die Ihrem Team Zeit sparen und Routinearbeit reduzieren.',
+            tags: ['Automatisierung', 'KI-Assistenten', 'Dashboards'],
           },
         ],
       },
       process: {
         eyebrow: 'Prozess',
         title: 'Klare Schritte. Vorhersehbares Ergebnis.',
-        subtitle: 'Transparenter Ablauf, der Zeit spart und Überraschungen reduziert.',
+        subtitle: 'Ein transparenter Ablauf, der Ihnen Zeit spart und Überraschungen vermeidet.',
         steps: [
           {
             title: 'Analyse',
-            description: 'Workshop, Ziele, Wettbewerb. Wir definieren Inhalte und KPIs.',
+            description: 'Wir lernen Ihre Ziele, Zielgruppe und Wettbewerber kennen — und definieren, wie Erfolg aussieht.',
           },
           {
             title: 'Design & Build',
-            description: 'Wireframes, Visuals, Prototyp. Danach Build in Astro.',
+            description: 'Wir gestalten, prototypen und entwickeln — schnell, sauber und auf Conversion ausgelegt.',
           },
           {
             title: 'Launch',
-            description: 'Deploy auf Netlify, Integrationen, SEO‑Check, Analytics.',
+            description: 'Wir gehen live, verbinden Ihre Tools und prüfen SEO und Analytics.',
           },
           {
             title: 'Optimierung',
-            description: 'Iterationen nach Daten: Speed, Tests, neue Sektionen.',
+            description: 'Wir verbessern kontinuierlich mit echten Daten: Tempo, Tests und neue Sektionen.',
           },
         ],
       },
       socialProof: {
-        eyebrow: 'Vertrauen',
+        eyebrow: 'Kundenstimmen',
         title: 'Was Kunden sagen',
-        subtitle: 'Kurzfeedback von Teams, die Geschwindigkeit und Klarheit wollten.',
+        subtitle: 'Ein paar Worte von Teams, denen wir beim Wachsen geholfen haben.',
         testimonials: [
           {
             quote: 'Alpinefy hat mir geholfen, eine schnelle und schöne Website zu bauen, die mein Business aktiv unterstützt.',
@@ -910,9 +910,9 @@ export const copy: Record<Lang, Copy> = {
               'Ja. Unsere Websites sind vollständig anpassbar, und Sie erhalten eine einfache Admin-Oberfläche plus eine kurze Anleitung. Zu Beginn definieren wir gemeinsam, welche Bereiche bearbeitbar sein sollen, damit Sie in der Praxis volle Kontrolle ohne Code-Eingriffe haben. Texte, Überschriften, Untertitel, Bilder, Banner, Icons und Meta-SEO-Einstellungen können Sie ohne Entwickler anpassen. Ziel ist eine einfache Pflege bei gleichzeitig hoher technischer Performance und Stabilität.',
           },
           {
-            question: 'Warum eure Technologien statt eines WordPress-Templates?',
+            question: 'Warum nicht einfach ein WordPress-Template nutzen?',
             answer:
-              'Die Technologien, die wir einsetzen, liefern deutlich bessere Performance, Sicherheit und Kontrolle als Template-Lösungen. Wir bauen zielorientiert statt mit Ballast, dadurch vermeiden wir unnötigen Code und Plugin-Overhead, der Websites ausbremst und bei Updates Probleme verursacht. Sie erhalten eine schnellere Website, bessere SEO, stabileren Betrieb und eine Lösung, die sauber weiterwächst, ohne mit der Zeit überladen und ineffizient zu werden.',
+              'Templates bringen oft viel zusätzlichen Code und viele Plugins mit, die Ihre Website ausbremsen und später bei Updates Probleme verursachen. Wir bauen nur das, was Ihre Ziele brauchen, damit Sie eine schnellere, sicherere Website erhalten, die bei Google besser rankt und auch beim Wachsen einfach zu betreiben bleibt.',
           },
           {
             question: 'Übernehmt ihr bestehende Websites?',
@@ -927,7 +927,7 @@ export const copy: Record<Lang, Copy> = {
         ],
       },
       cta: {
-        eyebrow: 'CTA',
+        eyebrow: 'Nächster Schritt',
         title: 'Lassen Sie uns über Ihre Website sprechen',
         subtitle: '30‑Minuten‑Call und ein klarer Vorschlag für die nächsten Schritte.',
         primaryLabel: 'Beratung buchen',
@@ -937,20 +937,20 @@ export const copy: Record<Lang, Copy> = {
       trustBadges: {
         items: [
           {
-            title: 'Core Web Vitals Fokus',
-            description: 'Messbare Performance und Stabilität ab Tag 1.',
+            title: 'Schnell auf jedem Gerät',
+            description: 'Seiten laden schnell, damit Besucher bleiben statt abzuspringen.',
           },
           {
-            title: 'SEO‑ready Struktur',
-            description: 'Sauberes HTML, Meta und optimierte Inhalte.',
+            title: 'Bei Google gefunden',
+            description: 'Gebaut, um zu ranken und von den richtigen Menschen gefunden zu werden.',
           },
           {
-            title: 'Kein Vendor‑Lock‑in',
-            description: 'Komponenten und Infrastruktur frei erweiterbar.',
+            title: 'Bleibt Ihr Eigentum',
+            description: 'Website, Inhalte und Hosting gehören Ihnen — kein Lock-in.',
           },
           {
-            title: 'Transparenter Prozess',
-            description: 'Klare Meilensteine, Reporting und Ownership.',
+            title: 'Klar, ohne Überraschungen',
+            description: 'Fester Umfang, ehrliche Updates und ein Ansprechpartner.',
           },
         ],
       },
@@ -961,50 +961,50 @@ export const copy: Record<Lang, Copy> = {
         note: 'Unterstützt: Bitcoin, Ethereum, USDT, Cardano, Solana, Litecoin.',
       },
       partners: {
-        eyebrow: 'Partner & Stack',
-        title: 'Tech‑Stack, den wir beherrschen',
-        subtitle: 'Bewährte Tools für Performance, Design, technisches SEO und AI‑Optimierung.',
+        eyebrow: 'Auf zuverlässigen Tools gebaut',
+        title: 'Technologie, der Sie vertrauen können',
+        subtitle: 'Bewährte Tools hinter Ihrer Website — schnell, sicher und einfach zu pflegen.',
         notes: {
-          astro: 'SSG/SSR',
-          tailwind: 'UI‑System',
-          netlify: 'Deploy',
+          astro: 'Schnelle Seiten',
+          tailwind: 'UI-System',
+          netlify: 'Hosting',
           next: 'Automatisierung',
-          react: 'Islands',
+          react: 'Interaktiv',
           figma: 'Design',
           ga: 'Analytics',
-          vercel: 'Alt Hosting',
+          vercel: 'Backup-Hosting',
         },
       },
       capabilities: {
         eyebrow: 'Kompetenzen',
-        title: 'Vom Web bis zum technischen Wachstum',
-        subtitle: 'Wir bauen die Web‑Basis und optimieren Sichtbarkeit in Google und AI‑Systemen.',
+        title: 'Alles, was Ihre Website braucht, an einem Ort',
+        subtitle: 'Wir bauen das Fundament und sorgen dann dafür, dass die richtigen Menschen Sie bei Google und in KI-Assistenten finden.',
         items: [
-          'Webstrategie & Struktur',
-          'Design und Entwicklung von Websites',
-          'Technisches SEO (Crawlbarkeit, Indexierung, On‑Page)',
-          'AI‑Discoverability‑Optimierung (LLM/AI‑Antworten)',
-          'Strukturierte Daten (Schema.org)',
-          'Analytics und Conversion‑Tracking',
-          'Core Web Vitals und Speed‑Optimierung',
+          'Website-Strategie & Struktur',
+          'Design & Entwicklung',
+          'SEO, damit Sie bei Google ranken',
+          'Gefunden werden in KI-Assistenten (ChatGPT & Co.)',
+          'Rich-Ergebnisse bei Google (strukturierte Daten)',
+          'Analytics & Conversion-Tracking',
+          'Tempo- & Performance-Optimierung',
           'Formulare, CRM und Automatisierung',
-          'Payments und Basis‑Fakturierung (Shopify)',
-          'Hosting, Wartung und Support',
+          'Zahlungen & Rechnungen (Shopify)',
+          'Hosting, Wartung & Support',
         ],
       },
     },
     pages: {
       home: {
         meta: {
-          title: 'Schnelle Websites, die Ergebnisse liefern',
+          title: 'Websites, die Besucher zu Kunden machen',
           description:
-            'AI & Web Studio, das schnelle Websites mit klarem Design, technischer Stabilität und messbarem Beitrag zum Unternehmenswachstum konzipiert und umsetzt.',
+            'Alpinefy ist ein AI & Web Studio, das schnelle, klare Websites und Onlineshops gestaltet, die aus Besuchern Kunden machen — mehr Anfragen, mehr Umsatz.',
         },
         hero: {
-          eyebrow: 'Alpinefy / AI & Web Studio',
-          title: 'Schnelle Websites, die Ergebnisse liefern',
+          eyebrow: 'Alpinefy — AI & Web Studio',
+          title: 'Websites, die Besucher zu Kunden machen',
           subtitle:
-            'Premium‑Agentur für Performance, klares Design und nachhaltige Lösungen in Astro und Next.js.',
+            'Wir gestalten und entwickeln schnelle, klare Websites und Onlineshops, die Ihnen mehr Anfragen und Umsatz bringen — von der ersten Strategie über den Launch hinaus.',
           primaryLabel: 'Beratung anfragen',
           secondaryLabel: 'Leistungen ansehen',
         },
@@ -1276,47 +1276,47 @@ export const copy: Record<Lang, Copy> = {
     },
     sections: {
       heroStats: [
-        { value: '95+', label: 'Wynik Lighthouse' },
-        { value: '< 1,2 s', label: 'Pierwsze ładowanie' },
-        { value: '0', label: 'Zbędny JS' },
+        { value: '< 1.2 s', label: 'Ładuje się, zanim odwiedzający wyjdą' },
+        { value: '24 h', label: 'Odpowiadamy w ciągu' },
+        { value: 'Dni', label: 'Do wdrożenia — nie miesiące' },
       ],
       heroSide: {
-        eyebrow: 'Premium agencja',
-        title: 'Astro. Tailwind. Netlify.',
-        subtitle: 'Stack, który ma sens: szybkość, stabilność, prosty deploy.',
-        badges: ['SEO-ready', 'SSR/SSG', 'Minimal JS'],
+        eyebrow: 'Co otrzymujesz',
+        title: 'Strona, która sprzedaje za Ciebie',
+        subtitle: 'Szybka, łatwa w zarządzaniu i stworzona, by zamieniać odwiedzających w klientów — z płynnym przekazaniem Twojemu zespołowi.',
+        badges: ['Widoczna w Google', 'Ładuje się natychmiast', 'Łatwa w edycji'],
         cards: [
-          { label: 'Tygodniowy reporting', value: 'Jasne KPI' },
-          { label: 'Nadzór techniczny', value: 'Monitoring wydajności' },
+          { label: 'Przejrzyste raporty', value: 'Widzisz, co działa' },
+          { label: 'Stała opieka', value: 'Szybka i zawsze online' },
         ],
       },
       valueProps: {
         eyebrow: 'Dlaczego Alpinefy',
-        title: 'Wydajność, prostota, długoterminowość',
-        subtitle: 'Strony, które ładują się szybko, komunikują jasno i skalują się.',
+        title: 'Strony, które świetnie wyglądają i naprawdę sprzedają',
+        subtitle: 'Budujemy strony, które szybko się ładują, mówią to, co trzeba, i rosną razem z Twoim biznesem.',
         items: [
           {
-            title: 'Szybkość',
-            description: 'Statyczne generowanie, zoptymalizowane zasoby i minimalny JS.',
+            title: 'Szybkość, która zatrzymuje odwiedzających',
+            description: 'Twoje strony otwierają się w około sekundę, więc ludzie zostają, zamiast wychodzić.',
           },
           {
-            title: 'Wydajność',
-            description: 'Core Web Vitals powyżej 95 bez kompromisów.',
+            title: 'Więcej zapytań',
+            description: 'Przejrzysta struktura i mocne wezwania do działania zamieniają odwiedzających w kontakty.',
           },
           {
-            title: 'Prostota',
-            description: 'Czysty system komponentów, łatwy do rozbudowy.',
+            title: 'Łatwe zarządzanie',
+            description: 'Teksty, zdjęcia i ceny zmieniasz samodzielnie — bez programisty.',
           },
           {
-            title: 'Skalowalność',
-            description: 'Architektura gotowa na kampanie i CMS.',
+            title: 'Przestrzeń do wzrostu',
+            description: 'Dodawaj kampanie, strony i nowe funkcje, gdy Twój biznes rośnie.',
           },
         ],
       },
       services: {
         eyebrow: 'Usługi',
-        title: 'Rozwiązania, które działają w praktyce',
-        subtitle: 'Od leadów po strony firmowe, sklepy Shopify oraz automatyzacje i workflow AI.',
+        title: 'Co dla Ciebie budujemy',
+        subtitle: 'Od landing page po pełne strony, sklepy Shopify i inteligentną automatyzację.',
         items: [
           {
             title: 'Strony leadowe',
@@ -1335,38 +1335,38 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             title: 'Automatyzacje i workflow AI',
-            description: 'Automatyzacje procesów, workflow AI, dashboardy i interfejsy produktowe ze wsparciem SEO i wydajności.',
-            tags: ['Automatyzacje', 'Workflow AI', 'SEO + AI + wydajność'],
+            description: 'Automatyzacje, asystenci AI i dashboardy, które oszczędzają czas Twojego zespołu i ograniczają rutynową pracę.',
+            tags: ['Automatyzacja', 'Asystenci AI', 'Dashboardy'],
           },
         ],
       },
       process: {
         eyebrow: 'Proces',
         title: 'Jasne kroki. Przewidywalny efekt.',
-        subtitle: 'Transparentny proces oszczędza czas i eliminuje niespodzianki.',
+        subtitle: 'Przejrzysty proces, który oszczędza Twój czas i eliminuje niespodzianki.',
         steps: [
           {
             title: 'Analiza',
-            description: 'Warsztat, cele, konkurencja. Definiujemy treść i KPI.',
+            description: 'Poznajemy Twoje cele, odbiorców i konkurencję — i ustalamy, jak wygląda sukces.',
           },
           {
             title: 'Design & build',
-            description: 'Wireframy, wizual i prototyp. Potem build w Astro.',
+            description: 'Projektujemy, prototypujemy i budujemy — szybko, czysto i pod konwersję.',
           },
           {
             title: 'Launch',
-            description: 'Deploy na Netlify, integracje, SEO check, analityka.',
+            description: 'Uruchamiamy stronę, podpinamy Twoje narzędzia i sprawdzamy SEO oraz analitykę.',
           },
           {
             title: 'Optymalizacja',
-            description: 'Iteracje na podstawie danych: szybkość, testy, nowe sekcje.',
+            description: 'Stale ulepszamy na podstawie realnych danych: szybkość, testy i nowe sekcje.',
           },
         ],
       },
       socialProof: {
-        eyebrow: 'Zaufanie',
+        eyebrow: 'Historie klientów',
         title: 'Co mówią klienci',
-        subtitle: 'Krótkie opinie zespołów, które chciały szybkości i jasności.',
+        subtitle: 'Kilka słów od zespołów, którym pomogliśmy rosnąć.',
         testimonials: [
           {
             quote: 'Alpinefy pomogli mi stworzyć szybki i estetyczny web, który realnie wspiera mój biznes.',
@@ -1411,9 +1411,9 @@ export const copy: Record<Lang, Copy> = {
               'Tak. Strony, które realizujemy, są w pełni konfigurowalne, a klient otrzymuje proste panelowe środowisko i krótki instruktaż. Na starcie wspólnie definiujemy, które elementy mają być edytowalne, aby mieć pełną kontrolę nad stroną bez ingerencji w kod. Możesz samodzielnie zmieniać teksty, nagłówki, podnagłówki, zdjęcia, bannery, ikony oraz ustawienia meta SEO. Efekt: łatwe zarządzanie i jednocześnie wysoka wydajność oraz stabilność.',
           },
           {
-            question: 'Dlaczego wasze technologie zamiast szablonu WordPress?',
+            question: 'Dlaczego nie użyć po prostu szablonu WordPress?',
             answer:
-              'Technologie, których używamy, dają wyraźnie lepszą wydajność, bezpieczeństwo i kontrolę nad efektem końcowym niż rozwiązania szablonowe. Budujemy pod konkretne cele, więc strona nie jest obciążona zbędnym kodem i nadmiarem wtyczek, które spowalniają działanie i zwiększają ryzyko problemów po aktualizacjach. Dostajesz szybszą stronę, lepsze SEO, stabilniejsze działanie i rozwiązanie, które można czysto rozwijać bez tego, by projekt z czasem stał się przeładowany i nieefektywny.',
+              'Szablony często są przeładowane dodatkowym kodem i wtyczkami, które spowalniają stronę i później powodują problemy przy aktualizacjach. Budujemy tylko to, czego wymagają Twoje cele, więc otrzymujesz szybszą, bezpieczniejszą stronę, która lepiej pozycjonuje się w Google i pozostaje łatwa w obsłudze, gdy rośniesz.',
           },
           {
             question: 'Czy przejmujecie istniejące strony?',
@@ -1428,7 +1428,7 @@ export const copy: Record<Lang, Copy> = {
         ],
       },
       cta: {
-        eyebrow: 'CTA',
+        eyebrow: 'Następny krok',
         title: 'Porozmawiajmy o Twojej stronie',
         subtitle: '30‑min call i jasny plan kolejnych kroków.',
         primaryLabel: 'Umów konsultację',
@@ -1438,20 +1438,20 @@ export const copy: Record<Lang, Copy> = {
       trustBadges: {
         items: [
           {
-            title: 'Fokus na Core Web Vitals',
-            description: 'Mierzalna wydajność i stabilność od startu.',
+            title: 'Szybka na każdym urządzeniu',
+            description: 'Strony ładują się szybko, więc odwiedzający zostają, zamiast wychodzić.',
           },
           {
-            title: 'Struktura SEO‑ready',
-            description: 'Czysty HTML, meta i zoptymalizowana treść.',
+            title: 'Widoczna w Google',
+            description: 'Zbudowana tak, by pozycjonować się i docierać do właściwych osób.',
           },
           {
-            title: 'Bez vendor lock‑in',
-            description: 'Komponenty i infra do swobodnej rozbudowy.',
+            title: 'Zostaje Twoja',
+            description: 'Strona, treści i hosting należą do Ciebie — bez uzależnienia od dostawcy.',
           },
           {
-            title: 'Transparentny proces',
-            description: 'Jasne kamienie milowe, raporty i odpowiedzialność.',
+            title: 'Jasno, bez niespodzianek',
+            description: 'Ustalony zakres, uczciwe aktualizacje i jeden punkt kontaktu.',
           },
         ],
       },
@@ -1462,34 +1462,34 @@ export const copy: Record<Lang, Copy> = {
         note: 'Obsługujemy: Bitcoin, Ethereum, USDT, Cardano, Solana, Litecoin.',
       },
       partners: {
-        eyebrow: 'Partnerzy & Stack',
-        title: 'Stack, który znamy dogłębnie',
-        subtitle: 'Sprawdzone narzędzia dla wydajności, designu, SEO technicznego i optymalizacji AI.',
+        eyebrow: 'Zbudowane na niezawodnych narzędziach',
+        title: 'Technologia, której możesz zaufać',
+        subtitle: 'Sprawdzone narzędzia stojące za Twoją stroną — szybkie, bezpieczne i łatwe w utrzymaniu.',
         notes: {
-          astro: 'SSG/SSR',
+          astro: 'Szybkie strony',
           tailwind: 'System UI',
-          netlify: 'Deploy',
-          next: 'Automatyzacje',
-          react: 'Islands',
+          netlify: 'Hosting',
+          next: 'Automatyzacja',
+          react: 'Interaktywność',
           figma: 'Design',
           ga: 'Analityka',
-          vercel: 'Hosting',
+          vercel: 'Hosting zapasowy',
         },
       },
       capabilities: {
         eyebrow: 'Możliwości',
-        title: 'Od webu po wzrost techniczny',
-        subtitle: 'Budujemy bazę strony i poprawiamy widoczność w Google oraz odpowiedziach AI.',
+        title: 'Wszystko, czego potrzebuje Twoja strona, w jednym miejscu',
+        subtitle: 'Budujemy fundament, a potem pomagamy właściwym osobom znaleźć Cię w Google i w asystentach AI.',
         items: [
           'Strategia i struktura strony',
-          'Projektowanie i development stron',
-          'SEO techniczne (crawlowanie, indeksacja, on-page)',
-          'Optymalizacja pod widoczność AI (LLM/AI answers)',
-          'Dane strukturalne (Schema.org)',
-          'Analityka i pomiar konwersji',
-          'Core Web Vitals i optymalizacja szybkości',
-          'Formularze, CRM i automatyzacje',
-          'Płatności i podstawowa fakturacja (Shopify)',
+          'Projektowanie i development',
+          'SEO, byś był wysoko w Google',
+          'Widoczność w asystentach AI (ChatGPT i inne)',
+          'Rozszerzone wyniki Google (dane strukturalne)',
+          'Analityka i śledzenie konwersji',
+          'Optymalizacja szybkości i wydajności',
+          'Formularze, CRM i automatyzacja',
+          'Płatności i fakturowanie (Shopify)',
           'Hosting, utrzymanie i wsparcie',
         ],
       },
@@ -1497,15 +1497,15 @@ export const copy: Record<Lang, Copy> = {
     pages: {
       home: {
         meta: {
-          title: 'Szybkie strony, które dają wyniki',
+          title: 'Strony, które zamieniają odwiedzających w klientów',
           description:
-            'AI & Web Studio, które projektuje i tworzy szybkie strony z czystym designem, stabilnością techniczną i mierzalnym wpływem na wzrost biznesu.',
+            'Alpinefy to AI & Web Studio, które projektuje szybkie, przejrzyste strony i sklepy internetowe stworzone po to, by zamieniać odwiedzających w klientów — więcej zapytań, więcej sprzedaży.',
         },
         hero: {
-          eyebrow: 'Alpinefy / AI & Web Studio',
-          title: 'Szybkie strony, które dają wyniki',
+          eyebrow: 'Alpinefy — AI & Web Studio',
+          title: 'Strony, które zamieniają odwiedzających w klientów',
           subtitle:
-            'Agencja premium skupiona na wydajności, czystym designie i trwałych rozwiązaniach.',
+            'Projektujemy i budujemy szybkie, przejrzyste strony i sklepy internetowe, które przynoszą Ci więcej zapytań i sprzedaży — od pierwszej strategii po wdrożenie i dalej.',
           primaryLabel: 'Umów konsultację',
           secondaryLabel: 'Zobacz usługi',
         },
@@ -1778,47 +1778,47 @@ export const copy: Record<Lang, Copy> = {
     },
     sections: {
       heroStats: [
-        { value: '95+', label: 'Lighthouse skóre' },
-        { value: '< 1,2 s', label: 'První načtení' },
-        { value: '0', label: 'Zbytečný JS' },
+        { value: '< 1.2 s', label: 'Načte se dřív, než návštěvník odejde' },
+        { value: '24 h', label: 'Odpovídáme do' },
+        { value: 'Dny', label: 'Do spuštění — ne měsíce' },
       ],
       heroSide: {
-        eyebrow: 'Prémiová agentura',
-        title: 'Astro. Tailwind. Netlify.',
-        subtitle: 'Stack, který dává smysl: rychlost, stabilita, jednoduchý deploy.',
-        badges: ['SEO-ready', 'SSR/SSG', 'Minimal JS'],
+        eyebrow: 'Co získáte',
+        title: 'Web, který prodává za vás',
+        subtitle: 'Rychlý, snadno spravovatelný a stavěný tak, aby měnil návštěvníky v zákazníky — s hladkým předáním vašemu týmu.',
+        badges: ['Vidět v Google', 'Načte se okamžitě', 'Snadná úprava'],
         cards: [
-          { label: 'Týdenní reporting', value: 'Jasné KPI' },
-          { label: 'Technický dohled', value: 'Monitoring výkonu' },
+          { label: 'Přehledný reporting', value: 'Vidíte, co funguje' },
+          { label: 'Průběžná péče', value: 'Rychlý a stále online' },
         ],
       },
       valueProps: {
         eyebrow: 'Proč Alpinefy',
-        title: 'Výkon, jednoduchost, dlouhodobá udržitelnost',
-        subtitle: 'Weby, které načítají rychle, komunikují jasně a škálují.',
+        title: 'Weby, které skvěle vypadají a opravdu prodávají',
+        subtitle: 'Stavíme weby, které se rychle načítají, říkají to podstatné a rostou s vaším podnikáním.',
         items: [
           {
-            title: 'Rychlost',
-            description: 'Statické generování, optimalizovaná aktiva a minimum JS.',
+            title: 'Rychlost, která udrží návštěvníky',
+            description: 'Vaše stránky se otevřou přibližně za sekundu, takže lidé zůstanou místo odchodu.',
           },
           {
-            title: 'Výkon',
-            description: 'Core Web Vitals nad 95 bez kompromisů.',
+            title: 'Více poptávek',
+            description: 'Jasná struktura a silné výzvy k akci mění návštěvníky v poptávky.',
           },
           {
-            title: 'Jednoduchost',
-            description: 'Čistý systém komponent, snadno rozšiřitelný.',
+            title: 'Snadná správa',
+            description: 'Texty, obrázky i ceny si upravíte sami — bez developera.',
           },
           {
-            title: 'Škálovatelnost',
-            description: 'Architektura připravená na kampaně a CMS.',
+            title: 'Prostor pro růst',
+            description: 'Přidávejte kampaně, stránky a nové funkce, jak vaše podnikání roste.',
           },
         ],
       },
       services: {
         eyebrow: 'Služby',
-        title: 'Řešení, která fungují v praxi',
-        subtitle: 'Od lead webů po firemní weby, Shopify e-shopy a automatizace a AI workflow.',
+        title: 'Co pro vás stavíme',
+        subtitle: 'Od landing stránek po kompletní weby, Shopify e-shopy a chytrou automatizaci.',
         items: [
           {
             title: 'Lead weby',
@@ -1837,38 +1837,38 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             title: 'Automatizace a AI workflow',
-            description: 'Procesní automatizace, AI workflow, dashboardy a produktová rozhraní s SEO a výkonnostní podporou.',
-            tags: ['Automatizace', 'AI workflow', 'SEO + AI + výkon'],
+            description: 'Automatizace, AI asistenti a dashboardy, které vašemu týmu šetří čas a snižují rutinní práci.',
+            tags: ['Automatizace', 'AI asistenti', 'Dashboardy'],
           },
         ],
       },
       process: {
         eyebrow: 'Proces',
         title: 'Jasné kroky. Předvídatelný výsledek.',
-        subtitle: 'Transparentní postup šetří čas a minimalizuje překvapení.',
+        subtitle: 'Transparentní postup, který vám šetří čas a odstraňuje překvapení.',
         steps: [
           {
             title: 'Analýza',
-            description: 'Workshop, cíle, konkurence. Definujeme obsah a KPI.',
+            description: 'Poznáme vaše cíle, publikum a konkurenci — a určíme, jak vypadá úspěch.',
           },
           {
             title: 'Design & build',
-            description: 'Wireframy, vizuál, prototyp. Poté build v Astro.',
+            description: 'Navrhujeme, prototypujeme a stavíme — rychle, čistě a s cílem konvertovat.',
           },
           {
             title: 'Launch',
-            description: 'Nasazení na Netlify, integrace, SEO kontrola, analytika.',
+            description: 'Spustíme web, propojíme vaše nástroje a zkontrolujeme SEO a analytiku.',
           },
           {
             title: 'Optimalizace',
-            description: 'Iterace podle dat: rychlost, testy, nové sekce.',
+            description: 'Průběžně vylepšujeme podle reálných dat: rychlost, testy a nové sekce.',
           },
         ],
       },
       socialProof: {
-        eyebrow: 'Důvěra',
+        eyebrow: 'Příběhy klientů',
         title: 'Co říkají klienti',
-        subtitle: 'Krátké reference od týmů, které chtěly rychlost a jasno.',
+        subtitle: 'Pár slov od týmů, kterým jsme pomohli růst.',
         testimonials: [
           {
             quote: 'Alpinefy mi pomohli vytvořit rychlý a krásný web, který reálně podporuje moje podnikání.',
@@ -1913,9 +1913,9 @@ export const copy: Record<Lang, Copy> = {
               'Ano. Weby, které děláme, jsou plně přizpůsobitelné a klient dostane jednoduché administrační rozhraní i krátký návod. Na začátku si společně definujeme, které části mají být upravitelné, abyste měli v praxi plnou kontrolu nad webem i bez zásahu do kódu. Bez developera si můžete upravovat texty, nadpisy, podnadpisy, fotky, bannery, ikony i meta SEO nastavení. Cíl je jednoduchá správa při zachování vysoké rychlosti, stability a výkonu.',
           },
           {
-            question: 'Proč vaše technologie místo WordPress šablony?',
+            question: 'Proč nepoužít prostě WordPress šablonu?',
             answer:
-              'Technologie, které používáme, nám dávají výrazně lepší výkon, bezpečnost a kontrolu nad výsledkem než šablonová řešení. Web stavíme na míru vašim cílům, takže netahá zbytečný kód ani pluginový balast, který zpomaluje načítání a zvyšuje riziko problémů po aktualizacích. Získáte rychlejší web, lepší SEO, stabilnější provoz a řešení, které jde čistě rozšiřovat bez toho, aby byl projekt časem zahlcený a neefektivní.',
+              'Šablony často obsahují spoustu kódu navíc a pluginů, které web zpomalují a později dělají problémy při aktualizacích. Stavíme jen to, co vaše cíle potřebují, takže získáte rychlejší a bezpečnější web, který se lépe umísťuje v Google a zůstává snadno spravovatelný, i když rostete.',
           },
           {
             question: 'Převezmete existující web?',
@@ -1930,7 +1930,7 @@ export const copy: Record<Lang, Copy> = {
         ],
       },
       cta: {
-        eyebrow: 'CTA',
+        eyebrow: 'Další krok',
         title: 'Pojďme probrat váš web',
         subtitle: '30min call a jasný návrh dalších kroků.',
         primaryLabel: 'Rezervovat konzultaci',
@@ -1940,20 +1940,20 @@ export const copy: Record<Lang, Copy> = {
       trustBadges: {
         items: [
           {
-            title: 'Core Web Vitals fokus',
-            description: 'Měřitelný výkon a stabilita od začátku.',
+            title: 'Rychlý na každém zařízení',
+            description: 'Stránky se načítají rychle, takže návštěvníci zůstanou místo odchodu.',
           },
           {
-            title: 'SEO‑ready struktura',
-            description: 'Čistý HTML výstup, meta a optimalizovaný obsah.',
+            title: 'Vidět v Google',
+            description: 'Postavený tak, aby se umísťoval a našli ho ti správní lidé.',
           },
           {
-            title: 'Bez vendor lock‑in',
-            description: 'Komponenty a infra, které lze rozšiřovat.',
+            title: 'Zůstává vám',
+            description: 'Web, obsah i hosting patří vám — žádný lock-in.',
           },
           {
-            title: 'Transparentní proces',
-            description: 'Jasné milníky, reporting a zodpovědnosti.',
+            title: 'Jasně, bez překvapení',
+            description: 'Pevný rozsah, poctivé aktualizace a jedno kontaktní místo.',
           },
         ],
       },
@@ -1964,34 +1964,34 @@ export const copy: Record<Lang, Copy> = {
         note: 'Podporujeme: Bitcoin, Ethereum, USDT, Cardano, Solana, Litecoin.',
       },
       partners: {
-        eyebrow: 'Partneři & Stack',
-        title: 'Tech stack, který známe do hloubky',
-        subtitle: 'Ověřené nástroje pro výkon, design, technické SEO a AI optimalizaci.',
+        eyebrow: 'Postaveno na spolehlivých nástrojích',
+        title: 'Technologie, které můžete věřit',
+        subtitle: 'Ověřené nástroje za vaším webem — rychlé, bezpečné a snadno udržovatelné.',
         notes: {
-          astro: 'SSG/SSR',
+          astro: 'Rychlé stránky',
           tailwind: 'UI systém',
-          netlify: 'Deploy',
+          netlify: 'Hosting',
           next: 'Automatizace',
-          react: 'Islands',
+          react: 'Interaktivní',
           figma: 'Design',
           ga: 'Analytika',
-          vercel: 'Hosting',
+          vercel: 'Záložní hosting',
         },
       },
       capabilities: {
         eyebrow: 'Možnosti',
-        title: 'Kompletní pokrytí od webu po technický růst',
-        subtitle: 'Stavíme webový základ a zvyšujeme viditelnost v Google i AI systémech.',
+        title: 'Vše, co váš web potřebuje, na jednom místě',
+        subtitle: 'Postavíme základ a pak pomůžeme, aby vás ti správní lidé našli v Google i v AI asistentech.',
         items: [
           'Webová strategie a struktura',
-          'Design a vývoj webů',
-          'Technické SEO (crawlování, indexace, on-page)',
-          'AI discoverability optimalizace (LLM/AI odpovědi)',
-          'Strukturovaná data (Schema.org)',
+          'Design a vývoj',
+          'SEO, abyste se umísťovali v Google',
+          'Viditelnost v AI asistentech (ChatGPT a spol.)',
+          'Bohaté výsledky v Google (strukturovaná data)',
           'Analytika a měření konverzí',
-          'Core Web Vitals a rychlost',
+          'Ladění rychlosti a výkonu',
           'Formuláře, CRM a automatizace',
-          'Platby a základní fakturace (Shopify)',
+          'Platby a fakturace (Shopify)',
           'Hosting, údržba a podpora',
         ],
       },
@@ -1999,15 +1999,15 @@ export const copy: Record<Lang, Copy> = {
     pages: {
       home: {
         meta: {
-          title: 'Rychlé weby, které přinášejí výsledky',
+          title: 'Weby, které mění návštěvníky v zákazníky',
           description:
-            'AI & Web Studio, které navrhuje a staví rychlé weby s čistým designem, technickou stabilitou a měřitelným dopadem na růst firmy.',
+            'Alpinefy je AI & Web Studio, které navrhuje rychlé a přehledné weby a e-shopy stavěné tak, aby měnily návštěvníky v zákazníky — více poptávek, více prodejů.',
         },
         hero: {
-          eyebrow: 'Alpinefy / AI & Web Studio',
-          title: 'Rychlé weby, které přinášejí výsledky',
+          eyebrow: 'Alpinefy — AI & Web Studio',
+          title: 'Weby, které mění návštěvníky v zákazníky',
           subtitle:
-            'Prémiová agentura zaměřená na výkon, čistý design a udržitelná řešení.',
+            'Navrhujeme a stavíme rychlé a přehledné weby a e-shopy, které vám přinášejí více poptávek a prodejů — od první strategie přes spuštění a dál.',
           primaryLabel: 'Získat konzultaci',
           secondaryLabel: 'Zobrazit služby',
         },
@@ -2280,47 +2280,47 @@ export const copy: Record<Lang, Copy> = {
     },
     sections: {
       heroStats: [
-        { value: '95+', label: 'Lighthouse skóre' },
-        { value: '< 1.2 s', label: 'Prvé načítanie' },
-        { value: '0', label: 'Zbytočný JS' },
+        { value: '< 1.2 s', label: 'Načíta sa skôr, než návštevník odíde' },
+        { value: '24 h', label: 'Odpovedáme do' },
+        { value: 'Dni', label: 'Do spustenia — nie mesiace' },
       ],
       heroSide: {
-        eyebrow: 'Prémiová agentúra',
-        title: 'Moderné technológie. Rýchle doručenie.',
-        subtitle: 'Stabilné riešenie postavené na rýchlosti, kvalite a jednoduchej správe.',
-        badges: ['SEO-ready', 'SSR/SSG', 'Minimal JS'],
+        eyebrow: 'Čo získate',
+        title: 'Web, ktorý predáva za vás',
+        subtitle: 'Rýchly, jednoducho spravovateľný a stavaný tak, aby menil návštevníkov na zákazníkov — s hladkým odovzdaním vášmu tímu.',
+        badges: ['Nájdený v Google', 'Načíta sa okamžite', 'Ľahká úprava'],
         cards: [
-          { label: 'Týždenný reporting', value: 'Jasné KPI' },
-          { label: 'Technický dohľad', value: 'Monitoring výkonu' },
+          { label: 'Prehľadný reporting', value: 'Vidíte, čo funguje' },
+          { label: 'Priebežná starostlivosť', value: 'Rýchly a stále online' },
         ],
       },
       valueProps: {
         eyebrow: 'Prečo Alpinefy',
-        title: 'Výkon, jednoduchosť, dlhodobá udržateľnosť',
-        subtitle: 'Staviame weby, ktoré rýchlo načítajú, jasne komunikujú a vedia rásť.',
+        title: 'Weby, ktoré skvele vyzerajú a naozaj predávajú',
+        subtitle: 'Staviame weby, ktoré sa rýchlo načítajú, povedia to podstatné a rastú s vaším biznisom.',
         items: [
           {
-            title: 'Rýchlosť',
-            description: 'Statické generovanie, optimalizované assets a minimálny JS.',
+            title: 'Rýchlosť, ktorá udrží návštevníkov',
+            description: 'Vaše stránky sa otvoria približne za sekundu, takže ľudia zostanú namiesto odchodu.',
           },
           {
-            title: 'Výkon',
-            description: 'Core Web Vitals držíme nad 95 bez kompromisov.',
+            title: 'Viac dopytov',
+            description: 'Jasná štruktúra a silné výzvy na akciu menia návštevníkov na dopyty.',
           },
           {
-            title: 'Jednoduchosť',
-            description: 'Čistý systém komponentov, ktorý vie tím rýchlo rozširovať.',
+            title: 'Jednoduchá správa',
+            description: 'Texty, obrázky aj ceny si upravíte sami — bez developera.',
           },
           {
-            title: 'Škálovateľnosť',
-            description: 'Architektúra pripravená na kampane, nové sekcie aj CMS.',
+            title: 'Priestor na rast',
+            description: 'Pridávajte kampane, stránky a nové funkcie, ako váš biznis rastie.',
           },
         ],
       },
       services: {
         eyebrow: 'Služby',
-        title: 'Riešenia, ktoré fungujú v praxi',
-        subtitle: 'Od lead webov po firemné weby, Shopify e-shopy a automatizácie a AI workflow.',
+        title: 'Čo pre vás staviame',
+        subtitle: 'Od landing stránok po kompletné weby, Shopify e-shopy a šikovnú automatizáciu.',
         items: [
           {
             title: 'Lead weby',
@@ -2339,38 +2339,38 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             title: 'Automatizácie a AI workflow',
-            description: 'Procesné automatizácie, AI workflow, dashboardy a produktové rozhrania s SEO a výkonovou podporou.',
-            tags: ['Automatizácie', 'AI workflow', 'SEO + AI + výkon'],
+            description: 'Automatizácie, AI asistenti a dashboardy, ktoré vášmu tímu šetria čas a znižujú rutinnú prácu.',
+            tags: ['Automatizácia', 'AI asistenti', 'Dashboardy'],
           },
         ],
       },
       process: {
         eyebrow: 'Proces',
         title: 'Jasné kroky. Predvídateľný výsledok.',
-        subtitle: 'Transparentný postup, ktorý šetrí čas a minimalizuje prekvapenia.',
+        subtitle: 'Transparentný postup, ktorý vám šetrí čas a odstraňuje prekvapenia.',
         steps: [
           {
             title: 'Analýza',
-            description: 'Workshop, ciele, konkurencia. Definujeme obsah a KPI.',
+            description: 'Spoznáme vaše ciele, publikum a konkurenciu — a určíme, ako vyzerá úspech.',
           },
           {
             title: 'Dizajn & build',
-            description: 'Wireframy, vizuál, prototyp. Následne implementácia s dôrazom na výkon.',
+            description: 'Navrhujeme, prototypujeme a staviame — rýchlo, čisto a s cieľom konvertovať.',
           },
           {
             title: 'Launch',
-            description: 'Nasadenie na Netlify, prepojenia, SEO kontrola, analytika.',
+            description: 'Spustíme web, prepojíme vaše nástroje a skontrolujeme SEO a analytiku.',
           },
           {
             title: 'Optimalizácia',
-            description: 'Iterácie podľa dát: rýchlosť, testy a nové sekcie.',
+            description: 'Priebežne vylepšujeme podľa reálnych dát: rýchlosť, testy a nové sekcie.',
           },
         ],
       },
       socialProof: {
-        eyebrow: 'Dôvera',
+        eyebrow: 'Príbehy klientov',
         title: 'Čo hovoria klienti',
-        subtitle: 'Krátke referencie od tímov, ktoré chceli rýchlosť a jasný proces.',
+        subtitle: 'Pár slov od tímov, ktorým sme pomohli rásť.',
         testimonials: [
           {
             quote: 'Alpinefy mi pomohli vytvoriť rýchly a krásny web, ktorý mi pomáha s mojím podnikaním.',
@@ -2415,9 +2415,9 @@ export const copy: Record<Lang, Copy> = {
               'Áno. Weby, ktoré robíme, sú plne customizovateľné a klient dostane jednoduché administračné rozhranie aj krátky návod. Na začiatku si spolu vždy definujeme, ktoré časti majú byť upravovateľné, aby ste mali v praxi plnú kontrolu nad webstránkou aj bez zásahu do kódu. Bez developera si viete upravovať texty, nadpisy, podnadpisy, fotky, bannery, ikony aj meta SEO nastavenia. Cieľ je, aby správa bola pre vás jednoduchá, ale technicky stále rýchla, stabilná a výkonná.',
           },
           {
-            question: 'Prečo technológie, ktoré používame, namiesto WordPress šablóny?',
+            question: 'Prečo nepoužiť jednoducho WordPress šablónu?',
             answer:
-              'Technológie, ktoré používame, nám dávajú výrazne lepší výkon, bezpečnosť a kontrolu nad výsledkom ako šablónové riešenia. Web staviame na mieru vašim cieľom, takže neťahá zbytočný kód ani pluginový balast, ktorý spomaľuje načítanie a zvyšuje riziko problémov po aktualizáciách. Získate rýchlejší web, lepšie SEO, stabilnejšiu prevádzku a riešenie, ktoré sa dá čisto rozširovať aj o nové funkcie bez toho, aby bol projekt časom zahltený a neefektívny.',
+              'Šablóny často obsahujú množstvo kódu navyše a pluginov, ktoré web spomaľujú a neskôr robia problémy pri aktualizáciách. Staviame len to, čo vaše ciele potrebujú, takže získate rýchlejší a bezpečnejší web, ktorý sa lepšie umiestňuje v Google a zostáva jednoducho spravovateľný, aj keď rastiete.',
           },
           {
             question: 'Viete prebrať existujúci web?',
@@ -2432,7 +2432,7 @@ export const copy: Record<Lang, Copy> = {
         ],
       },
       cta: {
-        eyebrow: 'CTA',
+        eyebrow: 'Ďalší krok',
         title: 'Poďme sa porozprávať o vašom webe',
         subtitle: '30-minútový call a rýchly návrh ďalších krokov.',
         primaryLabel: 'Rezervovať konzultáciu',
@@ -2442,20 +2442,20 @@ export const copy: Record<Lang, Copy> = {
       trustBadges: {
         items: [
           {
-            title: 'Core Web Vitals fokus',
-            description: 'Merateľný výkon a stabilita od začiatku.',
+            title: 'Rýchly na každom zariadení',
+            description: 'Stránky sa načítajú rýchlo, takže návštevníci zostanú namiesto odchodu.',
           },
           {
-            title: 'SEO-ready štruktúra',
-            description: 'Čistý HTML výstup, meta a optimalizovaný obsah.',
+            title: 'Nájdený v Google',
+            description: 'Postavený tak, aby sa umiestňoval a našli ho tí správni ľudia.',
           },
           {
-            title: 'Bez vendor lock‑in',
-            description: 'Komponenty a infra na slobodné rozširovanie.',
+            title: 'Zostáva vám',
+            description: 'Web, obsah aj hosting patria vám — žiadny lock-in.',
           },
           {
-            title: 'Transparentný proces',
-            description: 'Jasné míľniky, reporting a zodpovednosti.',
+            title: 'Jasne, bez prekvapení',
+            description: 'Pevný rozsah, poctivé aktualizácie a jedno kontaktné miesto.',
           },
         ],
       },
@@ -2466,34 +2466,34 @@ export const copy: Record<Lang, Copy> = {
         note: 'Primárne: BTC, ETH, USDT, SOL. Vieme spracovať aj ďalšie hlavné meny.',
       },
       partners: {
-        eyebrow: 'Partneri & Stack',
-        title: 'Tech stack, ktorý poznáme do hĺbky',
-        subtitle: 'Hlavný stack, analytika a nástroje pre technické SEO a AI optimalizáciu v produkcii.',
+        eyebrow: 'Postavené na spoľahlivých nástrojoch',
+        title: 'Technológia, ktorej môžete veriť',
+        subtitle: 'Overené nástroje za vaším webom — rýchle, bezpečné a jednoducho udržiavateľné.',
         notes: {
-          astro: 'SSG/SSR',
+          astro: 'Rýchle stránky',
           tailwind: 'UI systém',
-          netlify: 'Deploy',
-          next: 'Automatizácie',
-          react: 'Islands',
+          netlify: 'Hosting',
+          next: 'Automatizácia',
+          react: 'Interaktívne',
           figma: 'Dizajn',
           ga: 'Analytika',
-          vercel: 'Hosting',
+          vercel: 'Záložný hosting',
         },
       },
       capabilities: {
         eyebrow: 'Možnosti',
-        title: 'Digitálne riešenia pre rast vášho biznisu',
-        subtitle: 'Spájame web, dáta, analytiku a AI do jedného systému, ktorý prináša merateľné výsledky.',
+        title: 'Všetko, čo váš web potrebuje, na jednom mieste',
+        subtitle: 'Postavíme základ a potom pomôžeme, aby vás tí správni ľudia našli v Google aj v AI asistentoch.',
         items: [
           'Webová stratégia a štruktúra',
-          'Dizajn a vývoj webstránok',
-          'Technické SEO (crawlovanie, indexácia, on-page)',
-          'AI riešenia a automatizácie pre marketing, obchod a podporu',
-          'Štruktúrované dáta (Schema.org)',
+          'Dizajn a vývoj',
+          'SEO, aby ste sa umiestňovali v Google',
+          'Viditeľnosť v AI asistentoch (ChatGPT a spol.)',
+          'Bohaté výsledky v Google (štruktúrované dáta)',
           'Analytika a meranie konverzií',
-          'Core Web Vitals a optimalizácia rýchlosti',
-          'Formuláre, CRM a automatizácie',
-          'Nastavenie platieb a základnej fakturácie (Shopify)',
+          'Ladenie rýchlosti a výkonu',
+          'Formuláre, CRM a automatizácia',
+          'Platby a fakturácia (Shopify)',
           'Hosting, údržba a podpora',
         ],
       },
@@ -2501,15 +2501,15 @@ export const copy: Record<Lang, Copy> = {
     pages: {
       home: {
         meta: {
-          title: 'Rýchle weby, ktoré prinášajú výsledky',
+          title: 'Weby, ktoré menia návštevníkov na zákazníkov',
           description:
-            'AI & Web Studio, ktoré navrhuje a stavia rýchle weby s čistým dizajnom, technickou stabilitou a merateľným dopadom na rast biznisu.',
+            'Alpinefy je AI & Web Studio, ktoré navrhuje rýchle a prehľadné weby a e-shopy stavané tak, aby menili návštevníkov na zákazníkov — viac dopytov, viac predajov.',
         },
         hero: {
-          eyebrow: 'Alpinefy / AI & Web Studio',
-          title: 'Rýchle weby, ktoré prinášajú výsledky',
+          eyebrow: 'Alpinefy — AI & Web Studio',
+          title: 'Weby, ktoré menia návštevníkov na zákazníkov',
           subtitle:
-            'Premium agency zameraná na výkon, čistý dizajn a technicky udržateľné riešenia.',
+            'Navrhujeme a staviame rýchle a prehľadné weby a e-shopy, ktoré vám prinášajú viac dopytov a predajov — od prvej stratégie cez spustenie a ďalej.',
           primaryLabel: 'Získať konzultáciu',
           secondaryLabel: 'Pozrieť služby',
         },

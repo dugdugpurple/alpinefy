@@ -21,8 +21,8 @@ const consultationHref = `${getRoutePath('contact', lang)}#kontakt-formular`;
   <div class="header-shell">
     <Container class="flex items-center justify-between py-4">
       <a href={getRoutePath('home', lang)} class="group flex items-center gap-3">
-        <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-aqua shadow-glow transition group-hover:rotate-[-6deg]">
-          <Logo class="h-5 w-5" />
+        <span class="logo-mark inline-flex h-11 w-11 items-center justify-center rounded-2xl transition group-hover:rotate-[-6deg]">
+          <Logo class="h-6 w-6" />
         </span>
         <div class="leading-tight">
           <p class="font-display text-lg font-semibold">{site.name}</p>
@@ -73,8 +73,8 @@ const consultationHref = `${getRoutePath('contact', lang)}#kontakt-formular`;
       <div class="mobile-menu-panel absolute inset-4 flex h-[calc(100%-2rem)] w-[calc(100%-2rem)] flex-col gap-6 overflow-y-auto rounded-3xl border border-white/15 bg-gradient-to-b from-graphite/95 via-coal/95 to-night/95 p-6 pb-8 shadow-2xl transition duration-300">
         <div class="flex items-center justify-between">
           <a href={getRoutePath('home', lang)} class="flex items-center gap-3" data-menu-close>
-            <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-aqua">
-              <Logo class="h-5 w-5" />
+            <span class="logo-mark inline-flex h-10 w-10 items-center justify-center rounded-xl">
+              <Logo class="h-6 w-6" />
             </span>
             <span class="font-display text-lg">{site.name}</span>
           </a>

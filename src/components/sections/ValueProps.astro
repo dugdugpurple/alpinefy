@@ -8,10 +8,14 @@ const { lang = defaultLang } = Astro.props;
 const { sections } = getCopy(lang);
 
 const icons = [
-  'M12 3v6l4-2M5 21h14',
-  'M3 17l5-5 4 4 7-9',
-  'M6 6h12M6 12h12M6 18h8',
-  'M4 7h6v12H4zM14 3h6v16h-6z',
+  // Speed — lightning bolt
+  'M13 2 3 14h9l-1 8 10-12h-9l1-8z',
+  // More inquiries — message bubble
+  'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+  // Easy to manage — edit / pencil
+  'M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z',
+  // Room to grow — trending up
+  'M23 6l-9.5 9.5-5-5L1 18M17 6h6v6',
 ];
 ---
 

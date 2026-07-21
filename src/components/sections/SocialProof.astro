@@ -1,16 +1,27 @@
 ---
 import Container from '../Container.astro';
 import SectionHeading from '../SectionHeading.astro';
+import SectionMarks from '../SectionMarks.astro';
 import { defaultLang } from '../../i18n/languages';
 import { getCopy } from '../../i18n/copy';
 
 const { lang = defaultLang } = Astro.props;
 const { sections } = getCopy(lang);
-const loopItems = [...sections.socialProof.testimonials, ...sections.socialProof.testimonials];
+const testimonials = sections.socialProof.testimonials;
 const stars = Array.from({ length: 5 });
+
+const initialsOf = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase();
 ---
 
-<section class="py-20 sm:py-24" id="referencie">
+<section class="relative py-20 sm:py-24" id="referencie">
+  <SectionMarks variant="big-b" />
   <Container class="space-y-12">
     <SectionHeading
       eyebrow={sections.socialProof.eyebrow}
@@ -18,35 +29,30 @@ const stars = Array.from({ length: 5 });
       subtitle={sections.socialProof.subtitle}
     />
 
-    <div class="relative overflow-hidden rounded-3xl border border-white/12 bg-coal/55 p-5 sm:p-6 mask-fade review-marquee-shell">
-      <div class="marquee-track marquee-track-interactive motion-safe:animate-marquee">
-        {loopItems.map((item, index) => (
-          <article
-            class="review-card review-card-brand review-card-marquee marquee-hover-card min-w-[270px] max-w-sm"
-            aria-hidden={index >= sections.socialProof.testimonials.length ? 'true' : 'false'}
-          >
-            <div class="review-stars">
-              {stars.map((_, starIndex) => (
-                <span class="glass-star review-star" aria-hidden="true">
-                  <svg
-                    key={starIndex}
-                    viewBox="0 0 20 20"
-                    class="h-3.5 w-3.5 fill-current"
-                    aria-hidden="true"
-                  >
-                    <path d="M9.049 2.927a1 1 0 0 1 1.902 0l1.286 3.95a1 1 0 0 0 .95.69h4.153a1 1 0 0 1 .592 1.806l-3.36 2.442a1 1 0 0 0-.364 1.118l1.286 3.95a1 1 0 0 1-1.538 1.118l-3.36-2.442a1 1 0 0 0-1.176 0l-3.36 2.442a1 1 0 0 1-1.538-1.118l1.286-3.95a1 1 0 0 0-.364-1.118L2.07 9.373a1 1 0 0 1 .592-1.806h4.153a1 1 0 0 0 .95-.69l1.286-3.95Z"></path>
-                  </svg>
-                </span>
-              ))}
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {testimonials.map((item) => (
+        <article class="glass-card flex h-full flex-col">
+          <div class="flex gap-1 text-aqua" aria-hidden="true">
+            {stars.map(() => (
+              <svg viewBox="0 0 20 20" class="h-4 w-4 fill-current">
+                <path d="M9.049 2.927a1 1 0 0 1 1.902 0l1.286 3.95a1 1 0 0 0 .95.69h4.153a1 1 0 0 1 .592 1.806l-3.36 2.442a1 1 0 0 0-.364 1.118l1.286 3.95a1 1 0 0 1-1.538 1.118l-3.36-2.442a1 1 0 0 0-1.176 0l-3.36 2.442a1 1 0 0 1-1.538-1.118l1.286-3.95a1 1 0 0 0-.364-1.118L2.07 9.373a1 1 0 0 1 .592-1.806h4.153a1 1 0 0 0 .95-.69l1.286-3.95Z"></path>
+              </svg>
+            ))}
+          </div>
+
+          <p class="mt-4 flex-1 text-sm leading-relaxed text-ice/90">&ldquo;{item.quote}&rdquo;</p>
+
+          <div class="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
+            <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-aqua/30 bg-aqua/10 text-sm font-semibold text-aqua">
+              {initialsOf(item.name)}
+            </span>
+            <div class="min-w-0">
+              <p class="truncate font-semibold text-ice">{item.name}</p>
+              <p class="truncate text-xs text-mist">{item.role}</p>
             </div>
-            <p class="mt-3 text-sm text-ice/92">{item.quote}</p>
-            <div class="mt-5">
-              <p class="font-semibold text-ice">{item.name}</p>
-              <p class="text-xs text-mist">{item.role}</p>
-            </div>
-          </article>
-        ))}
-      </div>
+          </div>
+        </article>
+      ))}
     </div>
   </Container>
 </section>

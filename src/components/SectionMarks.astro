@@ -1,0 +1,60 @@
+---
+// Decorative brand-mark ("A") layer.
+// - variants a/b/c  -> sparse tiled pattern (fine texture)
+// - variants big-a/big-b -> a few LARGE marks scattered across the full width
+// Every mark is uniformly scaled + only ROTATED, so the logo is never deformed.
+const { variant = 'a' } = Astro.props as {
+  variant?: 'a' | 'b' | 'c' | 'big-a' | 'big-b';
+};
+const GLYPH = 'M7 25l9-18 9 18-9-5z';
+const isBig = variant.startsWith('big');
+const pid = `alp-marks-${variant}`;
+
+const bigLayouts: Record<string, { l: number; t: number; r: number; s: number }[]> = {
+  'big-a': [
+    { l: 13, t: 34, r: -14, s: 210 },
+    { l: 48, t: 68, r: 13, s: 250 },
+    { l: 82, t: 28, r: -6, s: 200 },
+  ],
+  'big-b': [
+    { l: 16, t: 66, r: 12, s: 220 },
+    { l: 52, t: 30, r: -16, s: 205 },
+    { l: 86, t: 64, r: 8, s: 230 },
+  ],
+};
+const bigMarks = bigLayouts[variant] ?? bigLayouts['big-a'];
+---
+
+{
+  isBig ? (
+    <div class={`section-marks section-marks--${variant}`} aria-hidden="true">
+      {bigMarks.map((m) => (
+        <svg
+          class="bigmark"
+          viewBox="4 4 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          style={`left:${m.l}%;top:${m.t}%;width:${m.s}px;height:${m.s}px;transform:translate(-50%,-50%) rotate(${m.r}deg)`}
+        >
+          <path d={GLYPH} />
+        </svg>
+      ))}
+    </div>
+  ) : (
+    <div class={`section-marks section-marks--${variant}`} aria-hidden="true">
+      <svg class="marks-field" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id={pid} width="176" height="176" patternUnits="userSpaceOnUse">
+            <g fill="currentColor">
+              <path d={GLYPH} transform="translate(6,18) rotate(10) scale(1.15)" />
+              <path d={GLYPH} transform="translate(112,44) rotate(-22) scale(0.95)" />
+              <path d={GLYPH} transform="translate(150,120) rotate(14) scale(1.05)" />
+              <path d={GLYPH} transform="translate(54,110) rotate(30) scale(1.2)" />
+              <path d={GLYPH} transform="translate(96,150) rotate(-8) scale(0.9)" />
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill={`url(#${pid})`} />
+      </svg>
+    </div>
+  )
+}

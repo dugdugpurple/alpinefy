@@ -69,14 +69,7 @@ const labels = typeLabels[lang] ?? typeLabels.en;
     <div class="rounded-3xl border border-white/12 bg-coal/55 p-4 sm:p-5">
       <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
         {partnerLogos.map((partner) => (
-          <a
-            class="logo-card logo-card-link card-3d"
-            style={`--brand:#${partner.icon.hex}`}
-            href={partner.href}
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-            data-logo-card-link
-          >
+          <div class="logo-card card-3d" style={`--brand:#${partner.icon.hex}`}>
             <svg viewBox="0 0 24 24" aria-hidden="true" class="h-8 w-8" fill="currentColor">
               <path d={partner.icon.path}></path>
             </svg>
@@ -84,48 +77,9 @@ const labels = typeLabels[lang] ?? typeLabels.en;
               <p class="text-sm font-semibold text-ice/88">{partner.name}</p>
               <p class="logo-type">{labels[partner.type]}</p>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </div>
   </Container>
-
-  <script is:inline>
-    const initPartnerLogoCards = () => {
-      const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-      if (!isTouchDevice) return;
-
-      const links = Array.from(document.querySelectorAll('[data-logo-card-link]'));
-      if (!links.length) return;
-
-      links.forEach((link) => {
-        if (link.dataset.touchReady === 'true') return;
-        link.dataset.touchReady = 'true';
-
-        link.addEventListener('click', (event) => {
-          const active = link.classList.contains('is-touch-active');
-          links.forEach((item) => item.classList.remove('is-touch-active'));
-          if (!active) {
-            event.preventDefault();
-            link.classList.add('is-touch-active');
-          }
-        });
-      });
-
-      document.addEventListener('click', (event) => {
-        const target = event.target;
-        if (!(target instanceof Element)) return;
-        if (target.closest('[data-logo-card-link]')) return;
-        links.forEach((item) => item.classList.remove('is-touch-active'));
-      });
-    };
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initPartnerLogoCards);
-    } else {
-      initPartnerLogoCards();
-    }
-
-    document.addEventListener('astro:page-load', initPartnerLogoCards);
-  </script>
 </section>

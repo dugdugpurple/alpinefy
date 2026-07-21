@@ -70,24 +70,24 @@ const copyByLang: Record<Lang, ServiceFunnelCopy> = {
     servicesCardCta: 'I am interested',
     highlights: {
       lead: [
-        'Structure and messaging focused on one clear conversion goal.',
-        'Fast launch cycles with measurable campaign iterations.',
-        'Built-in tracking readiness for paid traffic and lead quality.',
+        'One clear goal per page, so visitors know exactly what to do next.',
+        'Launched fast, then improved based on real campaign results.',
+        'Set up to track where your leads come from and which ones convert.',
       ],
       corporate: [
-        'Information architecture that supports trust and sales conversations.',
-        'Scalable page system for services, team and content growth.',
-        'Technical SEO and performance foundation from day one.',
+        'A clear structure that builds trust and guides visitors to contact you.',
+        'Easy to grow — add services, team members and pages any time.',
+        'Built to be found on Google and to load fast from day one.',
       ],
       shopify: [
-        'Catalog and collection structure built for easier product discovery.',
-        'Checkout, payment and shipping flows configured for lower friction.',
-        'Measurement setup for revenue, funnel drop-offs and retention signals.',
+        'A tidy catalog so shoppers find the right product quickly.',
+        'A smooth checkout that removes friction and recovers more sales.',
+        'See exactly where you make money and where shoppers drop off.',
       ],
       automation: [
-        'Automation of repetitive internal and client-facing workflows.',
-        'AI-assisted handling for leads, support and reporting routines.',
-        'Connected dashboards so decisions are based on real-time data.',
+        'Automate repetitive tasks so your team spends time on what matters.',
+        'AI help for leads, support and reporting — less manual work.',
+        'One dashboard with live numbers, so decisions are based on real data.',
       ],
     },
     inquiry: {

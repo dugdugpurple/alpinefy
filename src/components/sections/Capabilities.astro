@@ -1,6 +1,7 @@
 ---
 import Container from '../Container.astro';
 import SectionHeading from '../SectionHeading.astro';
+import SectionMarks from '../SectionMarks.astro';
 import { defaultLang } from '../../i18n/languages';
 import { getCopy } from '../../i18n/copy';
 
@@ -8,7 +9,8 @@ const { lang = defaultLang } = Astro.props;
 const { sections } = getCopy(lang);
 ---
 
-<section class="py-16 sm:py-20">
+<section class="relative py-16 sm:py-20">
+  <SectionMarks variant="big-a" />
   <Container class="space-y-10">
     <SectionHeading
       eyebrow={sections.capabilities.eyebrow}
