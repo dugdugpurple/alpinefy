@@ -1417,6 +1417,10 @@
   /* 1px gradient border via mask (feature cards, bento tiles) */
   .fd26-gborder {
     position: relative;
+    /* Neutralize any underlying solid border (e.g. .card) so the gradient ring
+       is the ONLY border — a second concentric rounded border diverges from the
+       ring at the corners by a subpixel and reads as a doubled/rough corner. */
+    border-color: transparent;
   }
   .fd26-gborder::before {
     content: '';
