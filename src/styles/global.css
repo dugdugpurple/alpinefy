@@ -1431,10 +1431,15 @@
       rgba(var(--color-ice) / 0.05) 62%,
       rgba(var(--color-lime) / 0.45)
     );
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    /* Longhand mask (no `mask` shorthand) so CSS minification can't reset the
+       composite — the shorthand resets mask-composite and in the minified build
+       that made the gradient fill the whole card instead of just the 1px border. */
+    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    -webkit-mask-clip: content-box, border-box;
     -webkit-mask-composite: xor;
+    mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    mask-clip: content-box, border-box;
+    mask-composite: exclude;
     pointer-events: none;
   }
 
