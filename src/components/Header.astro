@@ -17,6 +17,17 @@ const copy = getCopy(lang);
 const consultationHref = `${getRoutePath('contact', lang)}#kontakt-formular`;
 // Career lives only in the footer — keep it out of the header nav.
 const headerNavItems = navItems.filter((link) => link.key !== 'career');
+
+// Cookie-settings label for the mobile menu (mirrors CookieBanner's reopen label);
+// on mobile the floating dock button is hidden and this menu item reopens it.
+const cookieLabelByLang: Record<string, string> = {
+  en: 'Cookie settings',
+  de: 'Cookie-Einstellungen',
+  pl: 'Ustawienia cookies',
+  cz: 'Nastavení cookies',
+  sk: 'Nastavenia cookies',
+};
+const cookieLabel = cookieLabelByLang[lang] ?? cookieLabelByLang.en;
 ---
 
 <header id="site-header" class="site-header fixed inset-x-0 top-0 z-50" data-scrolled="false">
@@ -110,6 +121,18 @@ const headerNavItems = navItems.filter((link) => link.key !== 'career');
             {copy.sections.cta.primaryLabel}
           </a>
           <p class="text-xs">{copy.sections.cta.note}</p>
+          <button
+            type="button"
+            class="inline-flex items-center gap-2 self-start text-xs text-mist transition hover:text-ice"
+            data-menu-close
+            data-cookie-open
+          >
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a9 9 0 1 0 9 9 3.5 3.5 0 0 1-4.5-4.5A3.5 3.5 0 0 1 12 3Z" />
+              <path d="M9.5 12h.01M13 15h.01M15 10.5h.01" />
+            </svg>
+            {cookieLabel}
+          </button>
           <SocialIcons class="pt-2" lang={lang} />
         </div>
       </div>

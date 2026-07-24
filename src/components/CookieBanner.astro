@@ -95,7 +95,7 @@ const copy = cookieCopy[lang] ?? cookieCopy.en;
 
 <button
   type="button"
-  class="cookie-banner-dock-btn fixed bottom-4 left-4 z-[115] hidden rounded-full border border-white/20 bg-coal/85 px-4 py-2 text-xs font-semibold text-ice shadow-panel backdrop-blur transition hover:border-aqua/40 hover:text-aqua"
+  class="cookie-banner-dock-btn fixed bottom-4 left-4 z-[115] hidden max-md:!hidden rounded-full border border-white/20 bg-coal/85 px-4 py-2 text-xs font-semibold text-ice shadow-panel backdrop-blur transition hover:border-aqua/40 hover:text-aqua"
   data-cookie-open
 >
   {copy.reopen}
@@ -176,7 +176,9 @@ const copy = cookieCopy[lang] ?? cookieCopy.en;
     const STORAGE_KEY = 'alpinefy_cookie_consent_v1';
     const CONSENT_EVENT = 'alpinefy:consent:update';
 
-    const openButton = document.querySelector('[data-cookie-open]');
+    // Multiple reopen triggers: the fixed dock button + the mobile-menu item.
+    const openTriggers = document.querySelectorAll('[data-cookie-open]');
+    const openButton = document.querySelector('.cookie-banner-dock-btn');
     const detailsButton = root.querySelector('[data-cookie-details-toggle]');
     const detailsPanel = root.querySelector('[data-cookie-details]');
     const analyticsInput = root.querySelector('[data-cookie-analytics]');
@@ -340,13 +342,15 @@ const copy = cookieCopy[lang] ?? cookieCopy.en;
       setDetailsOpen(!isOpen);
     });
 
-    openButton?.addEventListener('click', () => {
-      const current = readStoredConsent();
-      if (analyticsInput && current) analyticsInput.checked = current.analytics;
-      setBannerOpen(true, 'dock');
-      setDetailsOpen(true);
-      hideOpenButton();
-    });
+    openTriggers.forEach((trigger) =>
+      trigger.addEventListener('click', () => {
+        const current = readStoredConsent();
+        if (analyticsInput && current) analyticsInput.checked = current.analytics;
+        setBannerOpen(true, 'dock');
+        setDetailsOpen(true);
+        hideOpenButton();
+      })
+    );
 
     acceptButton?.addEventListener('click', () => {
       applyConsent(true, 'accept_all');
