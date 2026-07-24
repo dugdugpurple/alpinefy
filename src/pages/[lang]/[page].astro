@@ -23,6 +23,7 @@ import { languages, defaultLang, isSupportedLang } from '../../i18n/languages';
 import { getCopy } from '../../i18n/copy';
 import { getLegalCopy } from '../../i18n/legal';
 import { getRoutePath, getRouteKeyFromPath, pageKeys } from '../../i18n/routes';
+import { buildFaqSchema } from '../../data/faq-schema';
 
 export function getStaticPaths() {
   return languages
@@ -79,7 +80,12 @@ const phoneDial = getPhoneDialValue();
 const intake = getContactIntakeCopy(lang);
 ---
 
-<BaseLayout lang={lang} title={meta.title} description={meta.description}>
+<BaseLayout
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+  structuredData={routeKey === 'process' ? buildFaqSchema(lang) : undefined}
+>
   {routeKey === 'services' && (
     <>
       <FdServicesHero

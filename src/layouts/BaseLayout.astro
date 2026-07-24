@@ -1,5 +1,9 @@
 ---
 import '../styles/global.css';
+// Brand-font latin subsets, preloaded to avoid a visible font swap (latin-ext
+// loads on demand via unicode-range for PL/CZ/SK diacritics).
+import soraWoff2 from '@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url';
+import groteskWoff2 from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
@@ -102,12 +106,15 @@ const organizationSchema = {
   '@type': 'Organization',
   name: site.name,
   url: site.url,
+  logo: `${site.url}/apple-touch-icon.png`,
   email: site.email,
   telephone: site.phoneIntl,
   address: {
     '@type': 'PostalAddress',
     addressLocality: site.address,
+    addressCountry: 'SK',
   },
+  areaServed: ['DE', 'AT', 'CH', 'SK', 'CZ', 'PL'],
   sameAs: getSocials(lang).map((social) => social.href),
 };
 
@@ -290,6 +297,8 @@ const allStructuredData = [organizationSchema, websiteSchema, pageSchema, ...ext
       <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
     ))}
     <link rel="alternate" hreflang="x-default" href={xDefault} />
+    <link rel="preload" href={soraWoff2} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={groteskWoff2} as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260721" />
     <link rel="icon" href="/favicon.ico?v=20260721" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260721" />

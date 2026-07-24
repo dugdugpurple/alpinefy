@@ -13,6 +13,7 @@ import Partners from '../../components/sections/Partners.astro';
 import { languages, defaultLang, isSupportedLang } from '../../i18n/languages';
 import { getCopy } from '../../i18n/copy';
 import { getRoutePath } from '../../i18n/routes';
+import { buildFaqSchema } from '../../data/faq-schema';
 
 export function getStaticPaths() {
   return languages
@@ -27,7 +28,12 @@ if (!lang || !isSupportedLang(lang) || lang === defaultLang) {
 const copy = getCopy(lang);
 ---
 
-<BaseLayout lang={lang} title={copy.pages.home.meta.title} description={copy.pages.home.meta.description}>
+<BaseLayout
+  lang={lang}
+  title={copy.pages.home.meta.title}
+  description={copy.pages.home.meta.description}
+  structuredData={buildFaqSchema(lang)}
+>
   <Hero
     lang={lang}
     eyebrow={copy.pages.home.hero.eyebrow}

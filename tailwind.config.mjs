@@ -15,8 +15,8 @@ export default {
         ember: 'rgb(var(--color-ember) / <alpha-value>)',
       },
       fontFamily: {
-        sans: ['"Space Grotesk"', '"Sora"', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['"Sora"', '"Space Grotesk"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Space Grotesk Variable"', '"Space Grotesk"', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Sora Variable"', '"Sora"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
         glow: '0 0 0 1px rgba(var(--color-aqua) / 0.25), 0 24px 80px rgba(var(--color-aqua) / 0.14)',
