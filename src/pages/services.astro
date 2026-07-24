@@ -1,11 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/sections/Hero.astro';
-import TrustBadges from '../components/sections/TrustBadges.astro';
-import Services from '../components/sections/Services.astro';
-import ValueProps from '../components/sections/ValueProps.astro';
-import Capabilities from '../components/sections/Capabilities.astro';
-import Cta from '../components/sections/Cta.astro';
+import FdServicesHero from '../components/sections/FdServicesHero.astro';
+import FdServicesDetailed from '../components/sections/FdServicesDetailed.astro';
+import PricingCalculator from '../components/sections/PricingCalculator.astro';
+import FdCapabilities from '../components/sections/FdCapabilities.astro';
+import FdCta from '../components/sections/FdCta.astro';
 import { defaultLang } from '../i18n/languages';
 import { getCopy } from '../i18n/copy';
 import { getRoutePath } from '../i18n/routes';
@@ -18,7 +17,7 @@ const copy = getCopy(lang);
   title={copy.pages.services.meta.title}
   description={copy.pages.services.meta.description}
 >
-  <Hero
+  <FdServicesHero
     lang={lang}
     eyebrow={copy.pages.services.hero.eyebrow}
     title={copy.pages.services.hero.title}
@@ -28,9 +27,8 @@ const copy = getCopy(lang);
     secondaryLabel={copy.pages.services.hero.secondaryLabel}
     secondaryHref={getRoutePath('process', lang)}
   />
-  <TrustBadges lang={lang} />
-  <Services lang={lang} mode="services" />
-  <Capabilities lang={lang} />
-  <ValueProps lang={lang} />
-  <Cta lang={lang} />
+  <FdServicesDetailed lang={lang} />
+  <PricingCalculator />
+  <FdCapabilities lang={lang} />
+  <FdCta lang={lang} />
 </BaseLayout>

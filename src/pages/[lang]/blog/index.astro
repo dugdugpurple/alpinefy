@@ -1,9 +1,12 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Container from '../../../components/Container.astro';
+import BlogCategoryPill from '../../../components/blog/BlogCategoryPill.astro';
 import { languages, defaultLang, isSupportedLang } from '../../../i18n/languages';
 import { getCopy } from '../../../i18n/copy';
 import { getBlogPosts } from '../../../i18n/blog';
+import { getBlogImageMeta } from '../../../i18n/blogImages';
+import { getBlogCtaTarget } from '../../../i18n/blogCta';
 import { localizePath } from '../../../i18n/utils';
 
 export function getStaticPaths() {
@@ -74,10 +77,15 @@ const formatDate = (date: string) =>
 ---
 
 <BaseLayout lang={lang} title={copy.pages.blog.meta.title} description={copy.pages.blog.meta.description}>
-  <section class="pt-28 pb-12 sm:pt-32 sm:pb-14">
+  <section class="pt-28 pb-12 sm:pt-32 sm:pb-16">
     <Container class="max-w-[1120px] space-y-6">
-      <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/88">{copy.pages.blog.hero.eyebrow}</p>
-      <h1 class="max-w-4xl font-display text-4xl leading-[1.03] sm:text-5xl lg:text-6xl">
+      <div class="flex items-center gap-2.5">
+        <span class="h-1.5 w-1.5 rounded-full bg-aqua"></span>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.32em] text-mist">
+          {copy.pages.blog.hero.eyebrow}
+        </p>
+      </div>
+      <h1 class="max-w-4xl font-display text-4xl font-bold leading-[1.03] tracking-[-0.035em] sm:text-5xl lg:text-6xl">
         {copy.pages.blog.hero.title}
       </h1>
       <p class="max-w-2xl text-base text-mist sm:text-lg">{copy.pages.blog.hero.subtitle}</p>
@@ -86,14 +94,17 @@ const formatDate = (date: string) =>
 
   <div class="border-t border-white/10"></div>
 
-  <section class="pt-6 pb-2 sm:pt-8">
+  <section class="pt-8 pb-2 sm:pt-10">
     <Container class="max-w-[1120px]">
       <div class="space-y-4" data-blog-filter-root>
-        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/85">{categoryTitleByLang[lang]}</p>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex items-center gap-2.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-lime"></span>
+          <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-mist">{categoryTitleByLang[lang]}</p>
+        </div>
+        <div class="flex flex-wrap gap-2.5">
           <button
             type="button"
-            class="tag transition hover:border-aqua/55"
+            class="tag transition duration-300 hover:border-aqua/55 hover:text-ice"
             data-category-button
             data-category-key="all"
           >
@@ -102,7 +113,7 @@ const formatDate = (date: string) =>
           {categories.map((category) => (
             <button
               type="button"
-              class="tag transition hover:border-aqua/55"
+              class="tag transition duration-300 hover:border-aqua/55 hover:text-ice"
               data-category-button
               data-category-key={category.key}
             >
@@ -114,38 +125,55 @@ const formatDate = (date: string) =>
     </Container>
   </section>
 
-  <section class="py-4 sm:py-6">
+  <section class="pt-8 pb-24 sm:pt-10">
     <Container class="max-w-[1120px]">
-      <div class="divide-y divide-white/10" data-blog-post-list>
-        {posts.map((post) => (
-          <article
-            class="group grid gap-5 py-8 md:grid-cols-[1fr_auto] md:items-end"
-            data-post-category={toCategoryKey(post.category)}
-          >
-            <div class="max-w-3xl space-y-3">
-              <p class="text-[11px] uppercase tracking-[0.24em] text-aqua/82">
-                {post.category} · {formatDate(post.date)} · {post.readingTime}
-              </p>
-              <h2 class="font-display text-2xl leading-tight sm:text-3xl">
-                <a
-                  class="transition group-hover:text-aqua"
-                  href={`${localizePath('/blog', lang)}/${post.slug}`}
-                >
-                  {post.title}
-                </a>
-              </h2>
-              <p class="text-sm text-mist sm:text-base">{post.excerpt}</p>
-            </div>
-            <a
-              class="inline-flex text-sm font-semibold text-aqua transition hover:text-ice"
-              href={`${localizePath('/blog', lang)}/${post.slug}`}
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-blog-post-list>
+        {posts.map((post) => {
+          const image = getBlogImageMeta(post.id);
+          const topic = getBlogCtaTarget(post).topic;
+          const href = `${localizePath('/blog', lang)}/${post.slug}`;
+          return (
+            <article
+              class="card group flex h-full flex-col"
+              data-post-category={toCategoryKey(post.category)}
             >
-              {copy.pages.blog.readMoreLabel} →
-            </a>
-          </article>
-        ))}
+              <a href={href} class="block overflow-hidden rounded-2xl border border-white/10 bg-coal/60">
+                <img
+                  src={image.src}
+                  alt={`Illustration for ${post.title}. Topic: ${post.category}.`}
+                  width={image.width}
+                  height={image.height}
+                  class="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+              <div class="mt-6 flex flex-1 flex-col gap-4">
+                <div class="flex flex-wrap items-center gap-3">
+                  <BlogCategoryPill category={post.category} topic={topic} />
+                </div>
+                <p class="text-[11px] uppercase tracking-[0.22em] text-mist/80">
+                  {formatDate(post.date)} · {post.readingTime}
+                </p>
+                <h2 class="font-display text-xl font-bold leading-snug tracking-[-0.02em] text-ice sm:text-[1.4rem]">
+                  <a class="transition duration-300 group-hover:text-aqua" href={href}>
+                    {post.title}
+                  </a>
+                </h2>
+                <p class="text-sm leading-relaxed text-mist">{post.excerpt}</p>
+                <a
+                  class="mt-auto inline-flex items-center gap-1.5 pt-1 text-sm font-semibold text-aqua transition duration-300 hover:gap-2.5 hover:text-ice"
+                  href={href}
+                >
+                  {copy.pages.blog.readMoreLabel}
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </article>
+          );
+        })}
       </div>
-      <p class="hidden py-8 text-sm text-mist" data-blog-empty>{emptyByLang[lang]}</p>
+      <p class="hidden py-16 text-center text-sm text-mist" data-blog-empty>{emptyByLang[lang]}</p>
     </Container>
   </section>
 

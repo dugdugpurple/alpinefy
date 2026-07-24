@@ -1,0 +1,121 @@
+---
+import Container from '../Container.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  lang = defaultLang,
+} = Astro.props;
+
+const { sections } = getCopy(lang);
+const steps = sections.process.steps;
+
+const howWeWorkLabel = {
+  en: 'How we work',
+  de: 'So arbeiten wir',
+  pl: 'Jak pracujemy',
+  cz: 'Jak pracujeme',
+  sk: 'Ako pracujeme',
+}[lang] ?? 'How we work';
+---
+
+<section class="fd-phero relative overflow-hidden pb-16 pt-32 sm:pb-24 sm:pt-40">
+  <div class="fd-phero-glow" aria-hidden="true"></div>
+  <Container class="relative">
+    <div class="grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:gap-12">
+      <!-- LEFT: process headline + CTA -->
+      <div class="relative z-10">
+        {eyebrow && (
+          <span class="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-mist motion-safe:animate-fadeUp">
+            <span class="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_2px_rgba(38,202,255,0.8)]"></span>
+            {eyebrow}
+          </span>
+        )}
+        <h1
+          class="mt-7 font-display text-5xl font-bold leading-[0.94] tracking-[-0.045em] text-ice sm:text-6xl lg:text-[4.75rem] motion-safe:animate-fadeUp"
+          style="animation-delay: 70ms;"
+        >
+          {title}
+        </h1>
+        <p
+          class="mt-7 max-w-xl text-lg leading-relaxed text-mist motion-safe:animate-fadeUp"
+          style="animation-delay: 140ms;"
+        >
+          {subtitle}
+        </p>
+
+        <div class="mt-9 flex flex-wrap items-center gap-3 motion-safe:animate-fadeUp" style="animation-delay: 210ms;">
+          {primaryLabel && <a class="btn-primary" href={primaryHref}>{primaryLabel}</a>}
+          {secondaryLabel && <a class="btn-secondary" href={secondaryHref}>{secondaryLabel}</a>}
+        </div>
+
+        <!-- step counter chips -->
+        <div class="mt-9 flex flex-wrap gap-2.5 motion-safe:animate-fadeUp" style="animation-delay: 280ms;">
+          {steps.map((step, i) => (
+            <a
+              href="#proces"
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-coal/50 px-3.5 py-1.5 text-xs font-medium text-ice/80 transition hover:border-aqua/45 hover:text-ice"
+            >
+              <span class="bg-gradient-to-br from-aqua to-lime bg-clip-text font-display text-xs font-bold text-transparent">{String(i + 1).padStart(2, '0')}</span>
+              {step.title}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- RIGHT: vertical 01 -> 04 step preview -->
+      <div class="relative motion-safe:animate-fadeUp" style="animation-delay: 200ms;">
+        <div class="fd-phero-panel relative overflow-hidden rounded-[2rem] border border-white/10 p-2.5">
+          <div class="rounded-[1.6rem] border border-white/[0.06] bg-night/70 p-6 sm:p-7">
+            <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-aqua/90">{howWeWorkLabel}</p>
+
+            <ol class="relative mt-6 space-y-6">
+              <!-- vertical connector -->
+              <span class="pointer-events-none absolute bottom-6 left-[1.75rem] top-6 w-px bg-gradient-to-b from-aqua/50 via-lime/40 to-transparent" aria-hidden="true"></span>
+              {steps.map((step, i) => (
+                <li class="relative flex items-start gap-4">
+                  <span class="relative z-10 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-aqua/30 bg-night shadow-[0_0_30px_-8px_rgba(38,202,255,0.6)]">
+                    <span class="bg-gradient-to-br from-aqua to-lime bg-clip-text font-display text-lg font-bold text-transparent">{String(i + 1).padStart(2, '0')}</span>
+                  </span>
+                  <div class="pt-1.5">
+                    <h3 class="font-display text-lg font-bold tracking-[-0.02em] text-ice">{step.title}</h3>
+                    <p class="mt-1.5 text-sm leading-relaxed text-mist">{step.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .fd-phero-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(720px circle at 82% 10%, rgba(var(--color-aqua) / 0.16), transparent 55%),
+      radial-gradient(560px circle at 10% 12%, rgba(var(--color-lime) / 0.08), transparent 60%);
+  }
+
+  .fd-phero-panel {
+    background:
+      linear-gradient(155deg, rgba(var(--color-aqua) / 0.14), transparent 45%),
+      linear-gradient(320deg, rgba(var(--color-lime) / 0.1), transparent 42%),
+      rgba(var(--color-coal) / 0.7);
+    box-shadow:
+      0 0 0 1px rgba(var(--color-aqua) / 0.08),
+      0 40px 120px -40px rgba(0, 0, 0, 0.9),
+      0 0 90px -30px rgba(var(--color-aqua) / 0.4);
+  }
+</style>

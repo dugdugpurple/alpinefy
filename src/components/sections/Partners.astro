@@ -29,33 +29,27 @@ const msClarityIcon = {
 };
 
 const partnerLogos = [
-  { name: 'Astro', icon: siAstro, type: 'stack', href: 'https://astro.build/' },
-  { name: 'Tailwind CSS', icon: siTailwindcss, type: 'stack', href: 'https://tailwindcss.com/' },
-  { name: 'Netlify', icon: siNetlify, type: 'stack', href: 'https://www.netlify.com/' },
-  { name: 'Next.js', icon: siNextdotjs, type: 'stack', href: 'https://nextjs.org/' },
-  { name: 'React', icon: siReact, type: 'stack', href: 'https://react.dev/' },
-  { name: 'TypeScript', icon: siTypescript, type: 'stack', href: 'https://www.typescriptlang.org/' },
-  { name: 'Shopify', icon: siShopify, type: 'stack', href: 'https://www.shopify.com/' },
-  { name: 'Google Analytics', icon: siGoogleanalytics, type: 'analytics', href: 'https://analytics.google.com/' },
-  { name: 'Google Tag Manager', icon: siGoogletagmanager, type: 'analytics', href: 'https://tagmanager.google.com/' },
-  { name: 'Search Console', icon: siGooglesearchconsole, type: 'analytics', href: 'https://search.google.com/search-console' },
-  { name: 'Microsoft Clarity', icon: msClarityIcon, type: 'analytics', href: 'https://clarity.microsoft.com/' },
-  { name: 'Cursor', icon: siCursor, type: 'tools', href: 'https://www.cursor.com/' },
-  { name: 'Cloudflare', icon: siCloudflare, type: 'tools', href: 'https://www.cloudflare.com/' },
-  { name: 'GitHub', icon: siGithub, type: 'tools', href: 'https://github.com/' },
-  { name: 'Vercel', icon: siVercel, type: 'tools', href: 'https://vercel.com/' },
-  { name: 'Figma', icon: siFigma, type: 'tools', href: 'https://www.figma.com/' },
+  { name: 'Astro', icon: siAstro },
+  { name: 'Tailwind CSS', icon: siTailwindcss },
+  { name: 'Netlify', icon: siNetlify },
+  { name: 'Next.js', icon: siNextdotjs },
+  { name: 'React', icon: siReact },
+  { name: 'TypeScript', icon: siTypescript },
+  { name: 'Shopify', icon: siShopify },
+  { name: 'Google Analytics', icon: siGoogleanalytics },
+  { name: 'Google Tag Manager', icon: siGoogletagmanager },
+  { name: 'Search Console', icon: siGooglesearchconsole },
+  { name: 'Microsoft Clarity', icon: msClarityIcon },
+  { name: 'Cursor', icon: siCursor },
+  { name: 'Cloudflare', icon: siCloudflare },
+  { name: 'GitHub', icon: siGithub },
+  { name: 'Vercel', icon: siVercel },
+  { name: 'Figma', icon: siFigma },
 ];
 
-const typeLabels = {
-  en: { stack: 'Stack', analytics: 'Analytics', tools: 'Tools' },
-  de: { stack: 'Stack', analytics: 'Analytics', tools: 'Tools' },
-  pl: { stack: 'Stack', analytics: 'Analityka', tools: 'Narzędzia' },
-  cz: { stack: 'Stack', analytics: 'Analytika', tools: 'Nástroje' },
-  sk: { stack: 'Stack', analytics: 'Analytika', tools: 'Nástroje' },
-};
-
-const labels = typeLabels[lang] ?? typeLabels.en;
+const half = Math.ceil(partnerLogos.length / 2);
+const rowOne = [...partnerLogos.slice(0, half), ...partnerLogos.slice(0, half)];
+const rowTwo = [...partnerLogos.slice(half), ...partnerLogos.slice(half)];
 ---
 
 <section class="py-16 sm:py-20">
@@ -65,21 +59,33 @@ const labels = typeLabels[lang] ?? typeLabels.en;
       title={sections.partners.title}
       subtitle={sections.partners.subtitle}
     />
+  </Container>
 
-    <div class="rounded-3xl border border-white/12 bg-coal/55 p-4 sm:p-5">
-      <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
-        {partnerLogos.map((partner) => (
-          <div class="logo-card card-3d" style={`--brand:#${partner.icon.hex}`}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-8 w-8" fill="currentColor">
+  <div class="mt-10 space-y-5 sm:mt-12 sm:space-y-6">
+    <div class="mask-fade overflow-hidden">
+      <div class="marquee-track marquee-track-interactive motion-safe:animate-marquee py-1">
+        {rowOne.map((partner) => (
+          <div class="group inline-flex select-none items-center gap-2.5 px-6 sm:px-8" style={`--brand:#${partner.icon.hex}`}>
+            <svg viewBox="0 0 24 24" class="h-6 w-6 text-ice/38 transition duration-300 group-hover:text-[var(--brand)]" fill="currentColor" aria-hidden="true">
               <path d={partner.icon.path}></path>
             </svg>
-            <div class="mt-3 text-center">
-              <p class="text-sm font-semibold text-ice/88">{partner.name}</p>
-              <p class="logo-type">{labels[partner.type]}</p>
-            </div>
+            <span class="text-sm font-medium tracking-tight text-ice/40 transition duration-300 group-hover:text-ice">{partner.name}</span>
           </div>
         ))}
       </div>
     </div>
-  </Container>
+
+    <div class="mask-fade overflow-hidden">
+      <div class="marquee-track marquee-track-slower marquee-track-interactive motion-safe:animate-marquee py-1" style="animation-direction: reverse;">
+        {rowTwo.map((partner) => (
+          <div class="group inline-flex select-none items-center gap-2.5 px-6 sm:px-8" style={`--brand:#${partner.icon.hex}`}>
+            <svg viewBox="0 0 24 24" class="h-6 w-6 text-ice/38 transition duration-300 group-hover:text-[var(--brand)]" fill="currentColor" aria-hidden="true">
+              <path d={partner.icon.path}></path>
+            </svg>
+            <span class="text-sm font-medium tracking-tight text-ice/40 transition duration-300 group-hover:text-ice">{partner.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
 </section>

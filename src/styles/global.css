@@ -4,18 +4,18 @@
 @layer base {
   :root {
     color-scheme: dark;
-    --color-night: 4 14 27;
-    --color-coal: 10 24 45;
-    --color-graphite: 16 33 60;
-    --color-steel: 43 71 108;
-    --color-mist: 147 170 198;
-    --color-ice: 235 247 255;
+    --color-night: 9 10 12;
+    --color-coal: 17 18 21;
+    --color-graphite: 26 27 31;
+    --color-steel: 48 50 57;
+    --color-mist: 151 154 162;
+    --color-ice: 244 245 248;
     --color-aqua: 38 202 255;
     --color-lime: 71 247 183;
     --color-ember: 255 168 84;
-    --color-selection-text: 4 14 27;
-    --color-on-accent: 4 14 27;
-    --logo-ink: 4 18 46;
+    --color-selection-text: 9 10 12;
+    --color-on-accent: 6 12 16;
+    --logo-ink: 6 14 22;
   }
 
   :root[data-theme='light'] {
@@ -43,10 +43,9 @@
     font-family: 'Space Grotesk', 'Sora', system-ui, -apple-system, sans-serif;
     background-color: rgb(var(--color-night));
     background-image:
-      radial-gradient(1000px circle at 5% -5%, rgba(var(--color-aqua) / 0.16), transparent 48%),
-      radial-gradient(900px circle at 95% 0%, rgba(var(--color-lime) / 0.12), transparent 50%),
-      radial-gradient(1200px circle at 50% 115%, rgba(var(--color-ember) / 0.08), transparent 62%),
-      linear-gradient(160deg, rgba(var(--color-ice) / 0.03), transparent 45%);
+      radial-gradient(900px circle at 50% -10%, rgba(var(--color-aqua) / 0.1), transparent 55%),
+      radial-gradient(rgba(255, 255, 255, 0.055) 1.1px, transparent 1.3px);
+    background-size: auto, 22px 22px;
     color: rgb(var(--color-ice));
     letter-spacing: 0.005em;
   }
@@ -56,7 +55,8 @@
   h3,
   h4 {
     font-family: 'Sora', 'Space Grotesk', system-ui, -apple-system, sans-serif;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    letter-spacing: -0.035em;
     text-wrap: balance;
   }
 
@@ -121,20 +121,17 @@
   }
 
   .card {
-    @apply rounded-3xl border p-6 shadow-panel transition duration-300;
-    border-color: rgba(var(--color-ice) / 0.12);
-    background:
-      linear-gradient(175deg, rgba(var(--color-ice) / 0.08), rgba(var(--color-ice) / 0.02) 55%),
-      rgba(var(--color-coal) / 0.8);
-    backdrop-filter: blur(18px);
+    @apply rounded-3xl border p-7 transition duration-300;
+    border-color: rgba(var(--color-ice) / 0.09);
+    background: rgba(var(--color-coal) / 0.72);
   }
 
   .card:hover {
     transform: translateY(-4px);
-    border-color: rgba(var(--color-aqua) / 0.35);
+    border-color: rgba(var(--color-aqua) / 0.42);
     box-shadow:
-      0 0 0 1px rgba(var(--color-aqua) / 0.2),
-      0 20px 52px rgba(4, 14, 27, 0.45);
+      0 0 0 1px rgba(var(--color-aqua) / 0.16),
+      0 24px 60px rgba(0, 0, 0, 0.5);
   }
 
   .card-3d {
@@ -487,28 +484,6 @@
       0 8px 22px -8px rgba(var(--color-aqua) / 0.7),
       inset 0 1px 0 rgba(255, 255, 255, 0.22);
   }
-  /* header logo hover: a light sheen sweeps across the tile (nothing moves) */
-  .logo-mark::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    pointer-events: none;
-    background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.8) 50%, transparent 58%);
-    transform: translateX(-130%);
-  }
-  .group:hover .logo-mark::after {
-    animation: logoSheen 1.4s ease;
-  }
-  @keyframes logoSheen {
-    from { transform: translateX(-130%); }
-    to { transform: translateX(130%); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .group:hover .logo-mark::after {
-      animation: none;
-    }
-  }
-
   /* decorative brand-mark ("A") texture — a sparse tiled field of the logo glyph
      (each mark only rotated + uniformly scaled, never stretched) plus a faint
      colour wash, so the page isn't one flat dark band. Purely decorative. */
@@ -571,6 +546,23 @@
   .section-marks--big-b {
     color: rgb(var(--color-aqua));
     opacity: 0.055;
+  }
+
+  /* rotating signature badge (FD-style) */
+  .fd-badge-ring {
+    transform-origin: center;
+  }
+  .fd-badge-text {
+    fill: rgb(var(--color-aqua));
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+  @keyframes fdSpin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .mask-fade {
@@ -1374,5 +1366,158 @@
   .social-icon {
     transition: none !important;
     transform: none !important;
+  }
+}
+
+/* ============================================================
+   FD26 — "CRO profi 2026" design layer (evolution of FD)
+   Aurora atmosphere, gradient text, gradient borders,
+   spotlight hover, sticky mobile CTA. Uses brand tokens only.
+   ============================================================ */
+@layer components {
+  /* living aurora atmosphere (hero / CTA backdrops) */
+  .fd26-aurora {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .fd26-aurora::before,
+  .fd26-aurora::after {
+    content: '';
+    position: absolute;
+    width: 58rem;
+    height: 58rem;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.15;
+  }
+  .fd26-aurora::before {
+    top: -26rem;
+    left: -12rem;
+    background: radial-gradient(circle, rgba(var(--color-aqua) / 0.85), transparent 62%);
+    animation: fd26Drift 26s ease-in-out infinite alternate;
+  }
+  .fd26-aurora::after {
+    top: -18rem;
+    right: -16rem;
+    background: radial-gradient(circle, rgba(var(--color-lime) / 0.7), transparent 62%);
+    animation: fd26Drift 34s ease-in-out infinite alternate-reverse;
+  }
+
+  /* gradient display text (headline highlight word, big numbers) */
+  .text-gradient {
+    background: linear-gradient(105deg, rgb(var(--color-aqua)), rgb(var(--color-lime)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* 1px gradient border via mask (feature cards, bento tiles) */
+  .fd26-gborder {
+    position: relative;
+  }
+  .fd26-gborder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      140deg,
+      rgba(var(--color-aqua) / 0.55),
+      rgba(var(--color-ice) / 0.07) 38%,
+      rgba(var(--color-ice) / 0.05) 62%,
+      rgba(var(--color-lime) / 0.45)
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+  }
+
+  /* cursor spotlight on cards (JS sets --mx/--my) */
+  .fd26-spot {
+    position: relative;
+    overflow: hidden;
+  }
+  .fd26-spot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 300ms ease;
+    background: radial-gradient(
+      320px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(var(--color-aqua) / 0.11),
+      transparent 65%
+    );
+    pointer-events: none;
+  }
+  .fd26-spot:hover::after {
+    opacity: 1;
+  }
+
+  /* hairline gradient divider between sections */
+  .fd26-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--color-aqua) / 0.35) 30%,
+      rgba(var(--color-lime) / 0.3) 70%,
+      transparent
+    );
+  }
+
+  /* sticky mobile CTA bar (CRO) */
+  .fd26-sticky-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    padding: 0.65rem 1rem calc(0.65rem + env(safe-area-inset-bottom));
+    background: rgba(var(--color-night) / 0.88);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(var(--color-ice) / 0.1);
+    transform: translateY(110%);
+    transition: transform 300ms ease;
+  }
+  .fd26-sticky-cta[data-show='true'] {
+    transform: translateY(0);
+  }
+  @media (min-width: 768px) {
+    .fd26-sticky-cta {
+      display: none;
+    }
+  }
+
+  /* trust row under hero CTAs (stars + microcopy) */
+  .fd26-trust-star {
+    width: 0.95rem;
+    height: 0.95rem;
+    fill: rgb(var(--color-aqua));
+  }
+}
+
+@keyframes fd26Drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3.5rem, 2.25rem, 0) scale(1.07);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fd26-aurora::before,
+  .fd26-aurora::after {
+    animation: none !important;
+  }
+  .fd26-sticky-cta {
+    transition: none !important;
   }
 }

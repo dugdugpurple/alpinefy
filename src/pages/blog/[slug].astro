@@ -106,10 +106,15 @@ const nextStepLabel = 'Recommended next step';
   keywords={[post.category, 'SEO', 'web performance', 'shopify', 'web agency']}
   structuredData={articleSchema}
 >
-  <section class="pt-28 pb-14 sm:pt-32 sm:pb-16">
-    <Container class="max-w-[1120px]">
+  <!-- ARTICLE HEADER -->
+  <section class="relative overflow-hidden pt-28 pb-12 sm:pt-32 sm:pb-14">
+    <div
+      class="pointer-events-none absolute left-1/2 top-2 -z-10 h-64 w-[42rem] max-w-full -translate-x-1/2 rounded-full bg-aqua/10 blur-[130px]"
+      aria-hidden="true"
+    ></div>
+    <Container class="relative max-w-[1120px]">
       <a
-        class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-aqua/85 transition hover:text-ice"
+        class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-mist transition hover:text-aqua"
         href={localizePath('/blog', lang)}
       >
         <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
@@ -117,48 +122,53 @@ const nextStepLabel = 'Recommended next step';
         </svg>
         {copy.pages.blog.backLabel}
       </a>
-      <div class="mt-10 max-w-4xl space-y-6 sm:space-y-7">
+      <div class="mt-9 max-w-4xl">
         <BlogCategoryPill category={post.category} topic={ctaTarget.topic} />
-        <h1 class="font-display text-4xl leading-[1.03] sm:text-5xl lg:text-6xl">{post.title}</h1>
-        <p class="max-w-2xl text-base text-mist sm:text-lg">{post.excerpt}</p>
-        <p class="text-sm text-mist/80">
-          {publishedLabel}: {formattedDate} · {post.readingTime}
-        </p>
-        <figure class="overflow-hidden rounded-3xl border border-white/10 bg-midnight/70">
-          <img
-            src={blogImage.src}
-            alt={blogImageAlt}
-            width={blogImage.width}
-            height={blogImage.height}
-            class="h-auto w-full object-cover"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-          />
-          <figcaption class="border-t border-white/10 px-4 py-3 text-xs text-mist/75 sm:px-5">
-            {blogImageCaption}
-          </figcaption>
-        </figure>
+        <h1 class="mt-6 font-display text-4xl font-bold leading-[0.98] tracking-[-0.04em] text-ice sm:text-5xl lg:text-6xl">
+          {post.title}
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-mist">{post.excerpt}</p>
+        <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-mist">
+          <span>{publishedLabel}: {formattedDate}</span>
+          <span class="h-1 w-1 rounded-full bg-aqua/70"></span>
+          <span>{post.readingTime}</span>
+        </div>
       </div>
+      <figure class="mt-10 overflow-hidden rounded-3xl border border-white/10 bg-night/60">
+        <img
+          src={blogImage.src}
+          alt={blogImageAlt}
+          width={blogImage.width}
+          height={blogImage.height}
+          class="h-auto w-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+        <figcaption class="border-t border-white/10 px-4 py-3 text-xs uppercase tracking-[0.2em] text-mist sm:px-5">
+          {blogImageCaption}
+        </figcaption>
+      </figure>
     </Container>
   </section>
 
   <div class="border-t border-white/10"></div>
 
+  <!-- ARTICLE BODY -->
   <section class="py-14 sm:py-16">
     <Container class="max-w-[1120px]">
-      <article class="max-w-3xl space-y-12 sm:space-y-14">
+      <article class="fd-prose max-w-[44rem] space-y-12 sm:space-y-14">
         {post.sections.map((section) => (
           <section class="space-y-5">
-            <h2 class="font-display text-3xl sm:text-4xl">{section.heading}</h2>
+            <h2 class="font-display text-2xl font-bold tracking-[-0.02em] text-ice sm:text-3xl">{section.heading}</h2>
             {section.paragraphs?.map((paragraph) => (
-              <p class="text-base leading-relaxed text-mist">{paragraph}</p>
+              <p class="text-[1.0625rem] leading-[1.8] text-ice/75">{paragraph}</p>
             ))}
             {section.list && (
               <ul class="space-y-3">
                 {section.list.map((item) => (
-                  <li class="flex items-start gap-3 text-base leading-relaxed text-mist">
-                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-aqua/90"></span>
+                  <li class="flex items-start gap-3 text-[1.0625rem] leading-[1.75] text-ice/75">
+                    <span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-aqua shadow-[0_0_10px_1px_rgba(38,202,255,0.6)]"></span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -172,46 +182,74 @@ const nextStepLabel = 'Recommended next step';
 
   <div class="border-t border-white/10"></div>
 
-  <section class="py-12 sm:py-14">
+  <!-- RELATED + CTA -->
+  <section class="py-14 sm:py-16">
     <Container class="max-w-[1120px]">
       <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-        <div class="space-y-4">
-          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/85">{relatedHeading}</p>
+        <div class="space-y-5">
+          <p class="inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-mist">
+            <span class="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_2px_rgba(38,202,255,0.7)]"></span>
+            {relatedHeading}
+          </p>
           <p class="max-w-2xl text-sm text-mist sm:text-base">{relatedIntro}</p>
-          <div class="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/4">
+          <div class="grid gap-4">
             {relatedPosts.map((related) => (
-              <article class="p-4 sm:p-5">
-                <p class="text-[11px] uppercase tracking-[0.2em] text-aqua/80">
-                  {related.category} · {related.readingTime}
+              <article class="group rounded-3xl border border-white/10 bg-coal/50 p-5 transition duration-300 hover:-translate-y-1 hover:border-aqua/35 sm:p-6">
+                <p class="text-[11px] uppercase tracking-[0.22em] text-mist">
+                  <span class="text-aqua/90">{related.category}</span> · {related.readingTime}
                 </p>
-                <h3 class="mt-2 font-display text-xl">
-                  <a class="transition hover:text-aqua" href={`${localizePath('/blog', lang)}/${related.slug}`}>
+                <h3 class="mt-2 font-display text-lg font-bold tracking-[-0.02em] text-ice sm:text-xl">
+                  <a class="transition group-hover:text-aqua" href={`${localizePath('/blog', lang)}/${related.slug}`}>
                     {related.title}
                   </a>
                 </h3>
-                <p class="mt-2 text-sm text-mist">{related.excerpt}</p>
+                <p class="mt-2 text-sm leading-relaxed text-mist">{related.excerpt}</p>
                 <a
-                  class="mt-3 inline-flex text-sm font-semibold text-aqua transition hover:text-ice"
+                  class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-aqua transition group-hover:gap-2.5"
                   href={`${localizePath('/blog', lang)}/${related.slug}`}
                 >
-                  {readArticleLabel} →
+                  {readArticleLabel}
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
                 </a>
               </article>
             ))}
           </div>
         </div>
 
-        <aside class="card h-fit space-y-4 rounded-2xl">
-          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-aqua/85">{nextStepLabel}</p>
-          <h3 class="font-display text-2xl">{implementationTitle}</h3>
-          <p class="text-sm text-mist sm:text-base">{implementationText}</p>
-          <p class="text-sm font-semibold text-aqua/90">{focusLine}</p>
-          <div class="flex flex-wrap gap-3">
-            <a class="btn-primary" href={contactHref}>{contactLabel}</a>
-            <a class="btn-secondary" href={servicesHref}>{servicesLabel}</a>
+        <aside class="fd-cta-aside relative h-fit overflow-hidden rounded-[2rem] border border-aqua/25 p-7 sm:p-8">
+          <div class="fd-cta-aside-glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
+          <div class="relative space-y-4">
+            <p class="inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-aqua">
+              <span class="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_2px_rgba(38,202,255,0.8)]"></span>
+              {nextStepLabel}
+            </p>
+            <h3 class="font-display text-2xl font-bold leading-tight tracking-[-0.02em] text-ice">{implementationTitle}</h3>
+            <p class="text-sm leading-relaxed text-mist sm:text-base">{implementationText}</p>
+            <p class="text-sm font-semibold text-aqua/90">{focusLine}</p>
+            <div class="flex flex-wrap gap-3 pt-1">
+              <a class="btn-primary" href={contactHref}>{contactLabel}</a>
+              <a class="btn-secondary" href={servicesHref}>{servicesLabel}</a>
+            </div>
           </div>
         </aside>
       </div>
     </Container>
   </section>
+
+  <style>
+    .fd-cta-aside {
+      background:
+        radial-gradient(600px circle at 50% -10%, rgba(var(--color-aqua) / 0.16), transparent 60%),
+        linear-gradient(180deg, rgba(var(--color-coal) / 0.85), rgba(var(--color-night) / 0.9));
+      box-shadow: 0 0 0 1px rgba(var(--color-aqua) / 0.1), 0 40px 100px -50px rgba(38, 202, 255, 0.5);
+    }
+    .fd-cta-aside-glow {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: radial-gradient(500px circle at 50% 0%, #000, transparent 75%);
+      -webkit-mask-image: radial-gradient(500px circle at 50% 0%, #000, transparent 75%);
+    }
+  </style>
 </BaseLayout>

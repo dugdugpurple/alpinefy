@@ -1,16 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/sections/Hero.astro';
-import TrustBadges from '../../components/sections/TrustBadges.astro';
-import Services from '../../components/sections/Services.astro';
-import ValueProps from '../../components/sections/ValueProps.astro';
-import Capabilities from '../../components/sections/Capabilities.astro';
-import Partners from '../../components/sections/Partners.astro';
-import Process from '../../components/sections/Process.astro';
-import Faq from '../../components/sections/Faq.astro';
-import Cta from '../../components/sections/Cta.astro';
+import FdServicesHero from '../../components/sections/FdServicesHero.astro';
+import FdServicesDetailed from '../../components/sections/FdServicesDetailed.astro';
+import FdProcessHero from '../../components/sections/FdProcessHero.astro';
+import FdProcess from '../../components/sections/FdProcess.astro';
+import FdReferencesHero from '../../components/sections/FdReferencesHero.astro';
+import FdAboutHero from '../../components/sections/FdAboutHero.astro';
+import FdAbout from '../../components/sections/FdAbout.astro';
+import FdCapabilities from '../../components/sections/FdCapabilities.astro';
+import FdFaq from '../../components/sections/FdFaq.astro';
+import FdCta from '../../components/sections/FdCta.astro';
+import PricingCalculator from '../../components/sections/PricingCalculator.astro';
 import ReferencesShowcase from '../../components/sections/ReferencesShowcase.astro';
 import LegalContent from '../../components/pages/LegalContent.astro';
+import ContactView from '../../components/pages/ContactView.astro';
 import Container from '../../components/Container.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import { attributionFieldNames, getContactIntakeCopy } from '../../data/contact-intake';
@@ -78,7 +82,7 @@ const intake = getContactIntakeCopy(lang);
 <BaseLayout lang={lang} title={meta.title} description={meta.description}>
   {routeKey === 'services' && (
     <>
-      <Hero
+      <FdServicesHero
         lang={lang}
         eyebrow={copy.pages.services.hero.eyebrow}
         title={copy.pages.services.hero.title}
@@ -88,18 +92,16 @@ const intake = getContactIntakeCopy(lang);
         secondaryLabel={copy.pages.services.hero.secondaryLabel}
         secondaryHref={getRoutePath('process', lang)}
       />
-      <TrustBadges lang={lang} />
-      <Services lang={lang} mode="services" />
-      <Partners lang={lang} />
-      <Capabilities lang={lang} />
-      <ValueProps lang={lang} />
-      <Cta lang={lang} />
+      <FdServicesDetailed lang={lang} />
+      <PricingCalculator lang={lang} />
+      <FdCapabilities lang={lang} />
+      <FdCta lang={lang} />
     </>
   )}
 
   {routeKey === 'process' && (
     <>
-      <Hero
+      <FdProcessHero
         lang={lang}
         eyebrow={copy.pages.process.hero.eyebrow}
         title={copy.pages.process.hero.title}
@@ -109,15 +111,15 @@ const intake = getContactIntakeCopy(lang);
         secondaryLabel={copy.pages.process.hero.secondaryLabel}
         secondaryHref={getRoutePath('services', lang)}
       />
-      <Process lang={lang} />
-      <Faq lang={lang} />
-      <Cta lang={lang} />
+      <FdProcess lang={lang} />
+      <FdFaq lang={lang} />
+      <FdCta lang={lang} />
     </>
   )}
 
   {routeKey === 'references' && (
     <>
-      <Hero
+      <FdReferencesHero
         lang={lang}
         eyebrow={copy.pages.references.hero.eyebrow}
         title={copy.pages.references.hero.title}
@@ -128,13 +130,13 @@ const intake = getContactIntakeCopy(lang);
         secondaryHref={getRoutePath('process', lang)}
       />
       <ReferencesShowcase lang={lang} />
-      <Cta lang={lang} />
+      <FdCta lang={lang} />
     </>
   )}
 
   {routeKey === 'about' && (
     <>
-      <Hero
+      <FdAboutHero
         lang={lang}
         eyebrow={copy.pages.about.hero.eyebrow}
         title={copy.pages.about.hero.title}
@@ -144,198 +146,12 @@ const intake = getContactIntakeCopy(lang);
         secondaryLabel={copy.pages.about.hero.secondaryLabel}
         secondaryHref={getRoutePath('references', lang)}
       />
-
-      <section class="py-20 sm:py-24">
-        <Container class="space-y-12">
-          <SectionHeading
-            eyebrow={copy.pages.about.values.eyebrow}
-            title={copy.pages.about.values.title}
-            subtitle={copy.pages.about.values.subtitle}
-          />
-          <div class="grid gap-6 md:grid-cols-3">
-            {copy.pages.about.values.items.map((item) => (
-              <div class="card card-3d h-full">
-                <h3 class="font-display text-xl">{item.title}</h3>
-                <p class="mt-4 text-sm text-mist">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section class="py-20 sm:py-24">
-        <Container class="space-y-12">
-          <SectionHeading
-            eyebrow={copy.pages.about.team.eyebrow}
-            title={copy.pages.about.team.title}
-            subtitle={copy.pages.about.team.subtitle}
-          />
-          <div class="grid gap-6 md:grid-cols-3">
-            {copy.pages.about.team.items.map((item) => (
-              <div class="card card-3d h-full">
-                <p class="text-xs uppercase tracking-[0.3em] text-aqua/80">{item.label}</p>
-                <h3 class="mt-3 font-display text-xl">{item.title}</h3>
-                <p class="mt-4 text-sm text-mist">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <Cta lang={lang} />
+      <FdAbout lang={lang} />
+      <FdCta lang={lang} />
     </>
   )}
 
-  {routeKey === 'contact' && (
-    <>
-      <Hero
-        lang={lang}
-        eyebrow={copy.pages.contact.hero.eyebrow}
-        title={copy.pages.contact.hero.title}
-        subtitle={copy.pages.contact.hero.subtitle}
-        primaryLabel={copy.pages.contact.hero.primaryLabel}
-        primaryHref={`mailto:${site.email}`}
-        secondaryLabel={copy.pages.contact.hero.secondaryLabel}
-        secondaryHref={getRoutePath('services', lang)}
-      />
-
-      <section class="py-20 sm:py-24">
-        <Container class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-          <div class="space-y-8" id="kontakt-formular">
-            <SectionHeading
-              eyebrow={copy.pages.contact.formHeading.eyebrow}
-              title={copy.pages.contact.formHeading.title}
-              subtitle={copy.pages.contact.formHeading.subtitle}
-            />
-            <form
-              class="grid gap-4"
-              name={contactFormName}
-              method="POST"
-              netlify
-              netlify-honeypot="bot-field"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              data-capture-attribution="true"
-              action={`${getRoutePath('thankYou', lang)}?src=contact&lang=${lang}`}
-            >
-              <input type="hidden" name="form-name" value={contactFormName} />
-              <p class="hidden">
-                <label>
-                  Don’t fill this out if you’re human: <input name="bot-field" />
-                </label>
-              </p>
-              <input type="hidden" name="recipient" value={site.email} />
-              <input type="hidden" name="subject" value="New qualified contact inquiry" />
-              <input type="hidden" name="locale" value={lang} />
-              <input type="hidden" name="source_page" value={currentPath} />
-              {attributionFieldNames.map((field) => (
-                <input type="hidden" name={field} value="" data-attribution-field={field} />
-              ))}
-              <label class="grid gap-2 text-sm text-mist">
-                {copy.pages.contact.formLabels.name}
-                <input
-                  class="input-field"
-                  name="meno"
-                  placeholder={copy.pages.contact.formLabels.namePlaceholder}
-                  required
-                />
-              </label>
-              <label class="grid gap-2 text-sm text-mist">
-                {copy.pages.contact.formLabels.email}
-                <input
-                  class="input-field"
-                  name="email"
-                  type="email"
-                  placeholder={copy.pages.contact.formLabels.emailPlaceholder}
-                  required
-                />
-              </label>
-              <div class="grid gap-4 sm:grid-cols-2">
-                <label class="grid gap-2 text-sm text-mist">
-                  {intake.serviceLabel}
-                  <select class="input-field" name="service_interest" required>
-                    <option value="" selected disabled>{intake.servicePlaceholder}</option>
-                    {intake.serviceOptions.map((option) => (
-                      <option value={option.value}>{option.label}</option>
-                    ))}
-                  </select>
-                </label>
-                <label class="grid gap-2 text-sm text-mist">
-                  {intake.budgetLabel}
-                  <select class="input-field" name="budget_range" required>
-                    <option value="" selected disabled>{intake.budgetPlaceholder}</option>
-                    {intake.budgetOptions.map((option) => (
-                      <option value={option.value}>{option.label}</option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-              <label class="grid gap-2 text-sm text-mist">
-                {intake.timelineLabel}
-                <select class="input-field" name="timeline_preference" required>
-                  <option value="" selected disabled>{intake.timelinePlaceholder}</option>
-                  {intake.timelineOptions.map((option) => (
-                    <option value={option.value}>{option.label}</option>
-                  ))}
-                </select>
-              </label>
-              <label class="grid gap-2 text-sm text-mist">
-                {intake.websiteLabel}
-                <input
-                  class="input-field"
-                  name="current_website"
-                  type="url"
-                  inputmode="url"
-                  placeholder={intake.websitePlaceholder}
-                />
-              </label>
-              <label class="grid gap-2 text-sm text-mist">
-                {copy.pages.contact.formLabels.message}
-                <textarea
-                  class="input-field min-h-[140px]"
-                  name="sprava"
-                  placeholder={copy.pages.contact.formLabels.messagePlaceholder}
-                  required
-                ></textarea>
-              </label>
-              <button class="btn-primary w-full sm:w-auto" type="submit">
-                {copy.pages.contact.formLabels.submit}
-              </button>
-              <p class="text-xs text-mist">{copy.pages.contact.formLabels.consent}</p>
-            </form>
-          </div>
-
-          <div class="space-y-6">
-            <SectionHeading
-              eyebrow={copy.pages.contact.directHeading.eyebrow}
-              title={copy.pages.contact.directHeading.title}
-              subtitle={copy.pages.contact.directHeading.subtitle}
-            />
-            <div class="card space-y-4">
-              <div>
-                <p class="text-xs uppercase tracking-[0.3em] text-aqua/80">{copy.pages.contact.directLabels.email}</p>
-                <a class="mt-2 block text-lg text-ice" href={`mailto:${site.email}`}>{site.email}</a>
-              </div>
-              <div>
-                <p class="text-xs uppercase tracking-[0.3em] text-aqua/80">{copy.pages.contact.directLabels.phone}</p>
-                <a class="mt-2 block text-lg text-ice" href={`tel:${phoneDial}`}>
-                  {phoneLabel}
-                </a>
-              </div>
-              <div>
-                <p class="text-xs uppercase tracking-[0.3em] text-aqua/80">{copy.pages.contact.directLabels.location}</p>
-                <p class="mt-2 text-sm text-mist">{site.address}</p>
-              </div>
-            </div>
-            <div class="card">
-              <p class="text-xs uppercase tracking-[0.3em] text-aqua/80">{copy.pages.contact.directLabels.scope}</p>
-              <p class="mt-3 text-sm text-mist">{copy.pages.contact.directLabels.scopeText}</p>
-            </div>
-          </div>
-        </Container>
-      </section>
-    </>
-  )}
+  {routeKey === 'contact' && <ContactView lang={lang} />}
 
   {routeKey === 'privacy' && <LegalContent content={legal.privacy} />}
 

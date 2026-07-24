@@ -1,0 +1,23 @@
+---
+import Logo from '../Logo.astro';
+
+const { id = 'fd-badge-path', class: className = '' } = Astro.props;
+---
+
+<div class={`fd-badge relative grid place-items-center ${className}`}>
+  <svg
+    class="fd-badge-ring absolute inset-0 h-full w-full motion-safe:animate-[fdSpin_24s_linear_infinite]"
+    viewBox="0 0 200 200"
+    aria-hidden="true"
+  >
+    <defs>
+      <path id={id} fill="none" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"></path>
+    </defs>
+    <text class="fd-badge-text">
+      <textPath href={`#${id}`} startOffset="0" textLength="460" lengthAdjust="spacing">ALPINEFY · AI &amp; WEB STUDIO · ALPINEFY · AI &amp; WEB STUDIO · </textPath>
+    </text>
+  </svg>
+  <span class="logo-mark inline-flex h-24 w-24 items-center justify-center rounded-[1.6rem] motion-safe:animate-float">
+    <Logo class="h-12 w-12" />
+  </span>
+</div>

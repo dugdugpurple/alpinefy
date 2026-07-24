@@ -8,7 +8,20 @@ import { getCopy } from '../../i18n/copy';
 const { lang = defaultLang } = Astro.props;
 const { sections } = getCopy(lang);
 const testimonials = sections.socialProof.testimonials;
+const [featured, ...rest] = testimonials;
 const stars = Array.from({ length: 5 });
+
+const uiByLang = {
+  en: { reviews: 'verified reviews' },
+  de: { reviews: 'verifizierte Bewertungen' },
+  pl: { reviews: 'zweryfikowane opinie' },
+  cz: { reviews: 'ověřené recenze' },
+  sk: { reviews: 'overené recenzie' },
+};
+const ui = uiByLang[lang] ?? uiByLang.en;
+
+const starPath =
+  'M9.049 2.927a1 1 0 0 1 1.902 0l1.286 3.95a1 1 0 0 0 .95.69h4.153a1 1 0 0 1 .592 1.806l-3.36 2.442a1 1 0 0 0-.364 1.118l1.286 3.95a1 1 0 0 1-1.538 1.118l-3.36-2.442a1 1 0 0 0-1.176 0l-3.36 2.442a1 1 0 0 1-1.538-1.118l1.286-3.95a1 1 0 0 0-.364-1.118L2.07 9.373a1 1 0 0 1 .592-1.806h4.153a1 1 0 0 0 .95-.69l1.286-3.95Z';
 
 const initialsOf = (name: string) =>
   name
@@ -22,37 +35,88 @@ const initialsOf = (name: string) =>
 
 <section class="relative py-20 sm:py-24" id="referencie">
   <SectionMarks variant="big-b" />
-  <Container class="space-y-12">
+  <Container class="space-y-10">
     <SectionHeading
       eyebrow={sections.socialProof.eyebrow}
       title={sections.socialProof.title}
       subtitle={sections.socialProof.subtitle}
     />
 
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      {testimonials.map((item) => (
-        <article class="glass-card flex h-full flex-col">
-          <div class="flex gap-1 text-aqua" aria-hidden="true">
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-2 motion-safe:animate-fadeUp">
+      <div class="flex gap-1 text-aqua" aria-hidden="true">
+        {stars.map(() => (
+          <svg viewBox="0 0 20 20" class="h-4.5 w-4.5 fill-current">
+            <path d={starPath}></path>
+          </svg>
+        ))}
+      </div>
+      <p class="font-display text-lg font-bold leading-none tracking-[-0.02em] text-ice">5.0</p>
+      <span class="h-4 w-px bg-white/15" aria-hidden="true"></span>
+      <p class="text-sm text-mist">{testimonials.length} {ui.reviews}</p>
+    </div>
+
+    <div class="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] motion-safe:animate-fadeUp">
+      {featured && (
+        <article class="fd26-gborder fd26-spot relative flex h-full flex-col rounded-[2rem] bg-coal/60 p-8 sm:p-10">
+          <svg
+            viewBox="0 0 16 16"
+            class="pointer-events-none absolute -top-4 right-4 h-28 w-28 rotate-180 fill-current text-aqua opacity-[0.07] sm:h-36 sm:w-36"
+            aria-hidden="true"
+          >
+            <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"></path>
+          </svg>
+
+          <div class="flex gap-1.5 text-aqua" aria-hidden="true">
             {stars.map(() => (
-              <svg viewBox="0 0 20 20" class="h-4 w-4 fill-current">
-                <path d="M9.049 2.927a1 1 0 0 1 1.902 0l1.286 3.95a1 1 0 0 0 .95.69h4.153a1 1 0 0 1 .592 1.806l-3.36 2.442a1 1 0 0 0-.364 1.118l1.286 3.95a1 1 0 0 1-1.538 1.118l-3.36-2.442a1 1 0 0 0-1.176 0l-3.36 2.442a1 1 0 0 1-1.538-1.118l1.286-3.95a1 1 0 0 0-.364-1.118L2.07 9.373a1 1 0 0 1 .592-1.806h4.153a1 1 0 0 0 .95-.69l1.286-3.95Z"></path>
+              <svg viewBox="0 0 20 20" class="h-5 w-5 fill-current">
+                <path d={starPath}></path>
               </svg>
             ))}
           </div>
 
-          <p class="mt-4 flex-1 text-sm leading-relaxed text-ice/90">&ldquo;{item.quote}&rdquo;</p>
+          <div class="flex flex-1 items-center py-7">
+            <p class="font-display text-2xl font-medium leading-snug tracking-[-0.015em] text-ice sm:text-3xl">
+              &ldquo;{featured.quote}&rdquo;
+            </p>
+          </div>
 
-          <div class="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
-            <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-aqua/30 bg-aqua/10 text-sm font-semibold text-aqua">
-              {initialsOf(item.name)}
+          <div class="mt-8 flex items-center gap-4 border-t border-white/10 pt-6">
+            <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-aqua/30 bg-aqua/10 text-base font-semibold text-aqua">
+              {initialsOf(featured.name)}
             </span>
             <div class="min-w-0">
-              <p class="truncate font-semibold text-ice">{item.name}</p>
-              <p class="truncate text-xs text-mist">{item.role}</p>
+              <p class="truncate font-semibold text-ice">{featured.name}</p>
+              <p class="truncate text-sm text-mist">{featured.role}</p>
             </div>
           </div>
         </article>
-      ))}
+      )}
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+        {rest.map((item) => (
+          <article class="fd26-spot flex h-full flex-col rounded-3xl border border-white/10 bg-coal/50 p-6">
+            <div class="flex gap-1 text-aqua" aria-hidden="true">
+              {stars.map(() => (
+                <svg viewBox="0 0 20 20" class="h-4 w-4 fill-current">
+                  <path d={starPath}></path>
+                </svg>
+              ))}
+            </div>
+
+            <p class="mt-4 flex-1 text-sm leading-relaxed text-ice/90">&ldquo;{item.quote}&rdquo;</p>
+
+            <div class="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
+              <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-aqua/30 bg-aqua/10 text-xs font-semibold text-aqua">
+                {initialsOf(item.name)}
+              </span>
+              <div class="min-w-0">
+                <p class="truncate text-sm font-semibold text-ice">{item.name}</p>
+                <p class="truncate text-xs text-mist">{item.role}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   </Container>
 </section>

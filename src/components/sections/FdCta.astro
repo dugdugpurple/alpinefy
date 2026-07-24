@@ -1,0 +1,50 @@
+---
+import Container from '../Container.astro';
+import { site } from '../../data/site';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+import { getRoutePath } from '../../i18n/routes';
+
+const { lang = defaultLang } = Astro.props;
+const { sections } = getCopy(lang);
+const cta = sections.cta;
+const consultationHref = `${getRoutePath('contact', lang)}#kontakt-formular`;
+---
+
+<section class="relative py-20 sm:py-28">
+  <Container>
+    <div class="fd-cta relative overflow-hidden rounded-[2.5rem] border border-aqua/25 px-8 py-16 text-center sm:px-12 sm:py-20">
+      <div class="fd-cta-glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+      <div class="relative mx-auto max-w-3xl">
+        <span class="inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.32em] text-aqua">
+          <span class="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_2px_rgba(38,202,255,0.8)]"></span>
+          {cta.eyebrow}
+        </span>
+        <h2 class="mt-6 font-display text-4xl font-bold leading-[0.98] tracking-[-0.04em] text-ice sm:text-5xl lg:text-6xl">{cta.title}</h2>
+        <p class="mx-auto mt-6 max-w-xl text-base text-mist sm:text-lg">{cta.subtitle}</p>
+
+        <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a class="btn-primary" href={consultationHref}>{cta.primaryLabel}</a>
+          <a class="btn-secondary" href={`mailto:${site.email}`}>{cta.secondaryLabel}</a>
+        </div>
+        <p class="mt-6 text-xs text-mist">{cta.note}</p>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .fd-cta {
+    background:
+      radial-gradient(700px circle at 50% -10%, rgba(var(--color-aqua) / 0.16), transparent 60%),
+      linear-gradient(180deg, rgba(var(--color-coal) / 0.85), rgba(var(--color-night) / 0.9));
+    box-shadow: 0 0 0 1px rgba(var(--color-aqua) / 0.1), 0 40px 100px -50px rgba(38, 202, 255, 0.5);
+  }
+  .fd-cta-glow {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(600px circle at 50% 0%, #000, transparent 75%);
+    -webkit-mask-image: radial-gradient(600px circle at 50% 0%, #000, transparent 75%);
+  }
+</style>

@@ -1,0 +1,40 @@
+---
+// FD26 CRO: mobile-only sticky CTA bar. Appears after the visitor scrolls
+// past the hero; single primary action + reply-time trust note.
+import { defaultLang } from '../i18n/languages';
+import { getRoutePath } from '../i18n/routes';
+
+const { lang = defaultLang } = Astro.props;
+
+const labelsByLang = {
+  en: { cta: 'Get a free consultation', reply: 'Reply within 24h' },
+  de: { cta: 'Kostenloses Erstgespräch', reply: 'Antwort innerhalb von 24h' },
+  pl: { cta: 'Bezpłatna konsultacja', reply: 'Odpowiedź do 24h' },
+  cz: { cta: 'Bezplatná konzultace', reply: 'Odpověď do 24 hodin' },
+  sk: { cta: 'Bezplatná konzultácia', reply: 'Odpoveď do 24 hodín' },
+};
+const t = labelsByLang[lang] ?? labelsByLang.en;
+const href = `${getRoutePath('contact', lang)}#kontakt-formular`;
+---
+
+<div class="fd26-sticky-cta" data-sticky-cta data-show="false" aria-hidden="true">
+  <div class="flex items-center gap-3">
+    <a class="btn-primary min-w-0 flex-1 text-center" href={href}>{t.cta}</a>
+    <p class="shrink-0 text-[11px] leading-tight text-mist">{t.reply}</p>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const bar = document.querySelector('[data-sticky-cta]');
+    if (!bar || bar.dataset.ready === 'true') return;
+    bar.dataset.ready = 'true';
+    const onScroll = () => {
+      const show = window.scrollY > 640;
+      bar.dataset.show = String(show);
+      bar.setAttribute('aria-hidden', String(!show));
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>

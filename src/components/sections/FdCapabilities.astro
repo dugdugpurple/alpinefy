@@ -1,0 +1,49 @@
+---
+import Container from '../Container.astro';
+import SectionMarks from '../SectionMarks.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+
+const { lang = defaultLang } = Astro.props;
+const { sections } = getCopy(lang);
+const cap = sections.capabilities;
+---
+
+<section class="relative py-20 sm:py-28">
+  <SectionMarks variant="b" />
+  <Container>
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <!-- heading -->
+      <div class="lg:sticky lg:top-28 lg:self-start">
+        <span class="inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.32em] text-mist">
+          <span class="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_2px_rgba(38,202,255,0.7)]"></span>
+          {cap.eyebrow}
+        </span>
+        <h2 class="mt-5 font-display text-4xl font-bold leading-[0.98] tracking-[-0.04em] text-ice sm:text-5xl">{cap.title}</h2>
+        <p class="mt-5 max-w-md text-base leading-relaxed text-mist sm:text-lg">{cap.subtitle}</p>
+      </div>
+
+      <!-- checklist -->
+      <div class="overflow-hidden rounded-3xl border border-white/10 bg-coal/40">
+        <ul class="grid sm:grid-cols-2">
+          {cap.items.map((item) => (
+            <li class="fd-cap flex items-center gap-3.5 border-b border-white/[0.06] px-6 py-5 transition duration-300 sm:odd:border-r">
+              <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-aqua/25 bg-aqua/10 text-aqua">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </span>
+              <span class="text-sm font-medium text-ice/85">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .fd-cap:hover {
+    background: rgba(var(--color-aqua) / 0.05);
+  }
+</style>

@@ -1,10 +1,11 @@
 ---
 import Container from '../Container.astro';
 import SectionHeading from '../SectionHeading.astro';
-import { defaultLang } from '../../i18n/languages';
+import { defaultLang, type Lang } from '../../i18n/languages';
 import { getCopy } from '../../i18n/copy';
+import { getRoutePath } from '../../i18n/routes';
 
-const { lang = defaultLang } = Astro.props;
+const { lang = defaultLang } = Astro.props as { lang?: Lang };
 const { sections } = getCopy(lang);
 
 const icons = [
@@ -17,6 +18,24 @@ const icons = [
   // Room to grow — trending up
   'M23 6l-9.5 9.5-5-5L1 18M17 6h6v6',
 ];
+
+// Tiny decorative labels for the bento CTA tile only — all content copy stays in copy.ts.
+const uiByLang: Record<Lang, { label: string; cta: string }> = {
+  en: { label: 'Our process', cta: 'See how we work' },
+  de: { label: 'Unser Prozess', cta: 'So arbeiten wir' },
+  pl: { label: 'Nasz proces', cta: 'Zobacz, jak pracujemy' },
+  cz: { label: 'Náš proces', cta: 'Jak pracujeme' },
+  sk: { label: 'Náš proces', cta: 'Ako pracujeme' },
+};
+const ui = uiByLang[lang] ?? uiByLang[defaultLang];
+const processHref = getRoutePath('process', lang);
+
+const items = sections.valueProps.items;
+const featured = items[0];
+const rest = items.slice(1);
+
+const tileHoverShadow =
+  'hover:shadow-[0_0_0_1px_rgba(var(--color-aqua)/0.16),0_24px_60px_rgba(0,0,0,0.45)]';
 ---
 
 <section class="py-20 sm:py-24">
@@ -26,18 +45,75 @@ const icons = [
       title={sections.valueProps.title}
       subtitle={sections.valueProps.subtitle}
     />
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      {sections.valueProps.items.map((item, index) => (
-        <div class="card card-3d h-full">
-          <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white/8 text-aqua">
-            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d={icons[index]}></path>
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {/* 01 — featured bento tile */}
+      <div
+        class={`fd26-gborder fd26-spot group relative flex h-full flex-col overflow-hidden rounded-3xl bg-coal/60 p-8 transition duration-300 motion-safe:hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgba(var(--color-aqua)/0.3),0_24px_60px_rgba(0,0,0,0.45)] sm:col-span-2 sm:p-10 lg:min-h-[19rem]`}
+      >
+        <div
+          class="pointer-events-none absolute -right-24 -top-28 h-80 w-80 rounded-full bg-aqua/10 blur-3xl"
+          aria-hidden="true"
+        >
+        </div>
+        <div
+          class="pointer-events-none absolute -bottom-32 -left-24 h-72 w-72 rounded-full bg-lime/[0.06] blur-3xl"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="relative flex items-start justify-between gap-6">
+          <span class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-aqua/20 bg-aqua/10 text-aqua shadow-[0_8px_24px_-12px_rgba(var(--color-aqua)/0.65)]">
+            <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d={icons[0]}></path>
             </svg>
           </span>
-          <h3 class="mt-4 font-display text-xl">{item.title}</h3>
-          <p class="mt-3 text-sm text-mist">{item.description}</p>
+          <span class="text-gradient select-none font-display text-7xl font-bold leading-none tracking-[-0.04em] sm:text-8xl" aria-hidden="true">01</span>
+        </div>
+        <div class="relative mt-auto pt-10 sm:pt-12">
+          <h3 class="font-display text-2xl font-semibold tracking-[-0.02em] text-ice sm:text-3xl">
+            {featured.title}
+          </h3>
+          <p class="mt-3 max-w-xl text-base leading-relaxed text-mist">{featured.description}</p>
+        </div>
+      </div>
+
+      {/* 02–04 — compact bento tiles */}
+      {rest.map((item, index) => (
+        <div
+          class={`fd26-spot group relative flex h-full flex-col overflow-hidden rounded-3xl border border-ice/10 bg-coal/50 p-7 transition duration-300 hover:border-aqua/40 motion-safe:hover:-translate-y-1 ${tileHoverShadow}`}
+        >
+          <div class="flex items-start justify-between gap-4">
+            <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-aqua/20 bg-aqua/10 text-aqua shadow-[0_8px_24px_-12px_rgba(var(--color-aqua)/0.65)]">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d={icons[index + 1]}></path>
+              </svg>
+            </span>
+            <span class="text-gradient select-none font-display text-4xl font-bold leading-none tracking-[-0.03em]" aria-hidden="true">
+              {String(index + 2).padStart(2, '0')}
+            </span>
+          </div>
+          <h3 class="mt-6 font-display text-xl font-semibold text-ice">{item.title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-mist">{item.description}</p>
         </div>
       ))}
+
+      {/* 05 — compact CTA tile linking to the process page */}
+      <a
+        href={processHref}
+        class={`fd26-spot group relative flex h-full min-h-[11rem] flex-col justify-between overflow-hidden rounded-3xl border border-ice/10 bg-graphite/50 p-7 transition duration-300 hover:border-aqua/40 motion-safe:hover:-translate-y-1 ${tileHoverShadow}`}
+      >
+        <span class="flex items-center gap-2.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_2px_rgba(var(--color-aqua)/0.7)]"></span>
+          <span class="text-[11px] font-semibold uppercase tracking-[0.3em] text-mist">{ui.label}</span>
+        </span>
+        <span class="mt-8 flex items-end justify-between gap-4">
+          <span class="font-display text-xl font-semibold leading-snug text-ice">{ui.cta}</span>
+          <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-aqua/25 bg-aqua/10 text-aqua transition duration-300 motion-safe:group-hover:translate-x-1">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </span>
+        </span>
+      </a>
     </div>
   </Container>
 </section>

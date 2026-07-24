@@ -1,0 +1,48 @@
+---
+import Container from '../Container.astro';
+import FdHeading from './FdHeading.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+
+const { lang = defaultLang } = Astro.props;
+const { sections } = getCopy(lang);
+const faq = sections.faq;
+---
+
+<section class="relative py-20 sm:py-28" id="faq">
+  <Container>
+    <div class="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <div class="lg:sticky lg:top-28 lg:self-start">
+        <FdHeading eyebrow={faq.eyebrow} title={faq.title} subtitle={faq.subtitle} />
+      </div>
+
+      <div class="space-y-3">
+        {faq.items.map((item, i) => (
+          <details class="fd-faq group overflow-hidden rounded-2xl border border-white/10 bg-coal/40 transition duration-300" open={i === 0}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5">
+              <span class="font-display text-base font-semibold tracking-[-0.01em] text-ice sm:text-lg">{item.question}</span>
+              <span class="fd-faq-icon inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 text-mist transition duration-300 group-open:border-aqua/50 group-open:text-aqua">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform duration-300 group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6 pt-0">
+              <p class="text-sm leading-relaxed text-mist">{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .fd-faq[open] {
+    border-color: rgba(var(--color-aqua) / 0.3);
+    background: rgba(var(--color-coal) / 0.6);
+  }
+  .fd-faq:hover {
+    border-color: rgba(var(--color-aqua) / 0.25);
+  }
+</style>

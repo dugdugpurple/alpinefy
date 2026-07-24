@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/sections/Hero.astro';
-import Process from '../components/sections/Process.astro';
-import Faq from '../components/sections/Faq.astro';
-import Cta from '../components/sections/Cta.astro';
+import FdProcessHero from '../components/sections/FdProcessHero.astro';
+import FdProcess from '../components/sections/FdProcess.astro';
+import FdFaq from '../components/sections/FdFaq.astro';
+import FdCta from '../components/sections/FdCta.astro';
 import { defaultLang } from '../i18n/languages';
 import { getCopy } from '../i18n/copy';
 import { getRoutePath } from '../i18n/routes';
@@ -16,7 +16,7 @@ const copy = getCopy(lang);
   title={copy.pages.process.meta.title}
   description={copy.pages.process.meta.description}
 >
-  <Hero
+  <FdProcessHero
     lang={lang}
     eyebrow={copy.pages.process.hero.eyebrow}
     title={copy.pages.process.hero.title}
@@ -26,7 +26,7 @@ const copy = getCopy(lang);
     secondaryLabel={copy.pages.process.hero.secondaryLabel}
     secondaryHref={getRoutePath('services', lang)}
   />
-  <Process lang={lang} />
-  <Faq lang={lang} />
-  <Cta lang={lang} />
+  <FdProcess lang={lang} />
+  <FdFaq lang={lang} />
+  <FdCta lang={lang} />
 </BaseLayout>

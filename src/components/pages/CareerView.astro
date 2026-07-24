@@ -308,91 +308,85 @@ const jobPostingSchema = {
   <section class="pb-20 pt-32 sm:pb-24 sm:pt-36">
     <Container class="space-y-10">
       <div class="max-w-3xl space-y-5">
-        <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/90">{copy.eyebrow}</p>
-        <h1 class="font-display text-4xl leading-tight sm:text-5xl">{copy.title}</h1>
+        <div class="flex items-center gap-2.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-aqua"></span>
+          <p class="text-[11px] font-semibold uppercase tracking-[0.32em] text-mist">{copy.eyebrow}</p>
+        </div>
+        <h1 class="font-display text-4xl font-bold leading-[1.03] tracking-[-0.035em] sm:text-5xl">{copy.title}</h1>
         <p class="text-base text-mist sm:text-lg">{copy.subtitle}</p>
       </div>
 
-      <article class="card career-position-card max-w-6xl rounded-3xl p-6 sm:p-7">
-        <div class="career-retro-overlay" aria-hidden="true"></div>
-        <div class="career-position-content space-y-6">
-          <div class="career-retro-window">
-            <span class="career-retro-dot career-retro-dot-red"></span>
-            <span class="career-retro-dot career-retro-dot-yellow"></span>
-            <span class="career-retro-dot career-retro-dot-green"></span>
-            <span class="career-retro-window-label">{copy.retroWindowLabel}</span>
-            <span class="career-retro-status">{copy.retroStatus}</span>
-          </div>
-
-          <div class="flex flex-wrap items-center justify-between gap-3">
+      <article class="card max-w-6xl space-y-8 p-6 sm:p-8 lg:p-10">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
+          <div class="flex flex-wrap items-center gap-4">
             <span class="career-role-badge">{copy.roleBadge}</span>
-            <div class="flex flex-wrap items-center gap-2">
-              {copy.roleMeta.map((item, index) => (
-                <span class="tag career-meta-tag" style={`animation-delay:${index * 110}ms`}>{item}</span>
-              ))}
-            </div>
+            <span class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-lime">
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full rounded-full bg-lime/70 motion-safe:animate-ping"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-lime"></span>
+              </span>
+              {copy.retroStatus}
+            </span>
           </div>
-
-          <div class="career-retro-fun-row">
-            <div class="career-retro-counter">
-              <p class="career-retro-counter-label">{copy.retroCounterLabel}</p>
-              <p class="career-retro-counter-value" data-career-counter>{copy.retroCounterValue}</p>
-            </div>
-            <div class="career-retro-marquee">
-              <div class="career-retro-marquee-track">
-                <span>{copy.retroTicker}</span>
-                <span aria-hidden="true">{copy.retroTicker}</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="space-y-3">
-            <h2 class="font-display text-2xl sm:text-3xl">{copy.roleTitle}</h2>
-            <p class="text-sm text-mist sm:text-base">{copy.roleSummary}</p>
-          </div>
-
-          <div class="grid gap-4 md:grid-cols-2">
-            <div class="career-block career-reveal" style="animation-delay: 40ms">
-              <p class="career-block-title">{copy.sections.impact}</p>
-              <ul class="space-y-2">
-                {copy.impactItems.map((item, index) => (
-                  <li class="career-list-item" style={`animation-delay:${140 + index * 80}ms`}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div class="career-block career-reveal" style="animation-delay: 120ms">
-              <p class="career-block-title">{copy.sections.mustHave}</p>
-              <ul class="space-y-2">
-                {copy.mustHaveItems.map((item, index) => (
-                  <li class="career-list-item" style={`animation-delay:${180 + index * 80}ms`}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div class="career-block career-reveal" style="animation-delay: 200ms">
-              <p class="career-block-title">{copy.sections.stack}</p>
-              <ul class="space-y-2">
-                {copy.stackItems.map((item, index) => (
-                  <li class="career-list-item" style={`animation-delay:${220 + index * 80}ms`}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div class="career-block career-reveal" style="animation-delay: 280ms">
-              <p class="career-block-title">{copy.sections.benefits}</p>
-              <ul class="space-y-2">
-                {copy.benefitsItems.map((item, index) => (
-                  <li class="career-list-item" style={`animation-delay:${260 + index * 80}ms`}>{item}</li>
-                ))}
-              </ul>
-            </div>
+          <div class="text-left sm:text-right">
+            <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-mist">{copy.retroCounterLabel}</p>
+            <p class="mt-1 font-display text-2xl font-bold tabular-nums tracking-tight text-ice" data-career-counter>{copy.retroCounterValue}</p>
           </div>
         </div>
 
-        <div class="mt-6 space-y-4 border-t border-white/10 pt-6">
-          <div class="flex flex-wrap gap-3 pt-1">
-            <a class="btn-primary" href={getRoutePath('careerInquiry', lang)}>{copy.ctaPrimary}</a>
+        <div class="space-y-5">
+          <div class="space-y-3">
+            <h2 class="font-display text-2xl font-bold tracking-[-0.02em] sm:text-3xl">{copy.roleTitle}</h2>
+            <p class="max-w-3xl text-sm text-mist sm:text-base">{copy.roleSummary}</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {copy.roleMeta.map((item) => (
+              <span class="tag">{item}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="career-block career-reveal" style="animation-delay: 40ms">
+            <p class="career-block-title">{copy.sections.impact}</p>
+            <ul class="space-y-2.5">
+              {copy.impactItems.map((item, index) => (
+                <li class="career-list-item" style={`animation-delay:${140 + index * 80}ms`}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="career-block career-reveal" style="animation-delay: 120ms">
+            <p class="career-block-title">{copy.sections.mustHave}</p>
+            <ul class="space-y-2.5">
+              {copy.mustHaveItems.map((item, index) => (
+                <li class="career-list-item" style={`animation-delay:${180 + index * 80}ms`}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="career-block career-reveal" style="animation-delay: 200ms">
+            <p class="career-block-title">{copy.sections.stack}</p>
+            <ul class="space-y-2.5">
+              {copy.stackItems.map((item, index) => (
+                <li class="career-list-item" style={`animation-delay:${220 + index * 80}ms`}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="career-block career-reveal" style="animation-delay: 280ms">
+            <p class="career-block-title">{copy.sections.benefits}</p>
+            <ul class="space-y-2.5">
+              {copy.benefitsItems.map((item, index) => (
+                <li class="career-list-item" style={`animation-delay:${260 + index * 80}ms`}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="space-y-4 border-t border-white/10 pt-6">
+          <div class="flex flex-wrap gap-3">
+            <a class="btn-primary shadow-glow" href={getRoutePath('careerInquiry', lang)}>{copy.ctaPrimary}</a>
             <a class="btn-secondary" href={getRoutePath('services', lang)}>{copy.ctaSecondary}</a>
           </div>
           <p class="text-sm text-mist">

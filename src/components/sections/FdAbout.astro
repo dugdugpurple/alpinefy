@@ -1,0 +1,91 @@
+---
+import Container from '../Container.astro';
+import FdHeading from './FdHeading.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+
+const { lang = defaultLang } = Astro.props;
+const { about } = getCopy(lang).pages;
+const values = about.values;
+const team = about.team;
+
+const initialsOf = (value: string) =>
+  value
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase();
+---
+
+<!-- VALUES -->
+<section class="relative py-20 sm:py-28">
+  <Container class="space-y-14">
+    <FdHeading eyebrow={values.eyebrow} title={values.title} subtitle={values.subtitle} />
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {values.items.map((item, i) => (
+        <article class="fd-about-card group relative overflow-hidden rounded-3xl border border-white/10 bg-coal/50 p-8 transition duration-300">
+          <span class="bg-gradient-to-br from-aqua to-lime bg-clip-text font-display text-5xl font-bold tracking-[-0.04em] text-transparent">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <h3 class="mt-6 font-display text-xl font-bold tracking-[-0.02em] text-ice">{item.title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-mist">{item.description}</p>
+          <span class="fd-about-line pointer-events-none absolute inset-x-8 bottom-0 h-px bg-gradient-to-r from-aqua/70 to-transparent"></span>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<!-- TEAM -->
+<section class="relative py-20 sm:py-28">
+  <Container class="space-y-14">
+    <FdHeading eyebrow={team.eyebrow} title={team.title} subtitle={team.subtitle} />
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {team.items.map((item) => (
+        <article class="fd-about-card group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-coal/50 p-8 transition duration-300">
+          <div class="flex items-center gap-4">
+            <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-aqua/30 bg-gradient-to-br from-aqua/25 to-lime/15 font-display text-base font-bold text-ice">
+              {initialsOf(item.label)}
+            </span>
+            <span class="inline-flex items-center rounded-full border border-aqua/25 bg-aqua/[0.08] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-aqua/90">
+              {item.label}
+            </span>
+          </div>
+          <h3 class="mt-6 font-display text-xl font-bold tracking-[-0.02em] text-ice">{item.title}</h3>
+          <p class="mt-3 flex-1 text-sm leading-relaxed text-mist">{item.description}</p>
+          <span class="fd-about-line pointer-events-none absolute inset-x-8 bottom-0 h-px bg-gradient-to-r from-aqua/70 to-transparent"></span>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<style>
+  .fd-about-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .fd-about-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(var(--color-aqua) / 0.4);
+    box-shadow: 0 0 0 1px rgba(var(--color-aqua) / 0.2), 0 30px 60px -30px rgba(0, 0, 0, 0.8);
+  }
+  .fd-about-line {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .fd-about-card:hover .fd-about-line {
+    transform: scaleX(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fd-about-card,
+    .fd-about-line {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+</style>

@@ -1,0 +1,112 @@
+---
+import Container from '../Container.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  lang = defaultLang,
+} = Astro.props;
+
+const copy = getCopy(lang);
+const about = copy.pages.about;
+const team = about.team;
+const values = about.values;
+---
+
+<section class="relative overflow-hidden pb-16 pt-32 sm:pb-24 sm:pt-40">
+  <div
+    class="pointer-events-none absolute left-1/2 top-4 -z-10 h-72 w-[46rem] max-w-full -translate-x-1/2 rounded-full bg-aqua/10 blur-[130px]"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="pointer-events-none absolute left-[8%] top-28 -z-10 h-64 w-64 rounded-full bg-lime/[0.07] blur-[120px]"
+    aria-hidden="true"
+  ></div>
+
+  <Container class="relative">
+    <div class="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+      <!-- LEFT: people headline -->
+      <div class="relative z-10">
+        {eyebrow && (
+          <span class="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-mist motion-safe:animate-fadeUp">
+            <span class="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_2px_rgba(38,202,255,0.8)]"></span>
+            {eyebrow}
+          </span>
+        )}
+        <h1
+          class="mt-7 font-display text-5xl font-bold leading-[0.94] tracking-[-0.045em] text-ice sm:text-6xl lg:text-[4.75rem] motion-safe:animate-fadeUp"
+          style="animation-delay: 70ms;"
+        >
+          {title}
+        </h1>
+        <p
+          class="mt-7 max-w-xl text-lg leading-relaxed text-mist motion-safe:animate-fadeUp"
+          style="animation-delay: 140ms;"
+        >
+          {subtitle}
+        </p>
+
+        <div class="mt-9 flex flex-wrap items-center gap-3 motion-safe:animate-fadeUp" style="animation-delay: 210ms;">
+          {primaryLabel && <a class="btn-primary" href={primaryHref}>{primaryLabel}</a>}
+          {secondaryLabel && <a class="btn-secondary" href={secondaryHref}>{secondaryLabel}</a>}
+        </div>
+      </div>
+
+      <!-- RIGHT: team card -->
+      <div class="relative motion-safe:animate-fadeUp" style="animation-delay: 200ms;">
+        <div class="fd-team-card relative overflow-hidden rounded-[2rem] border border-white/10 p-8 sm:p-10">
+          <span class="text-[10px] font-semibold uppercase tracking-[0.32em] text-aqua/90">{team.eyebrow}</span>
+
+          <!-- single studio mark -->
+          <div class="mt-6 flex items-center">
+            <span
+              class="fd-avatar inline-flex h-14 w-14 items-center justify-center rounded-full border-2 border-night bg-gradient-to-br from-aqua to-lime ring-1 ring-aqua/30"
+              aria-hidden="true"
+            >
+              <svg width="24" height="24" viewBox="4 4 24 24" fill="rgb(6 14 22)"><path d="M7 25l9-18 9 18-9-5z"></path></svg>
+            </span>
+            <span class="ml-5 text-sm font-medium text-ice/85">{team.subtitle}</span>
+          </div>
+
+          <!-- values statement -->
+          <p class="mt-8 font-display text-2xl font-bold leading-tight tracking-[-0.03em] text-ice sm:text-[1.7rem]">
+            {values.title}
+          </p>
+
+          <!-- role chips -->
+          <ul class="mt-7 flex flex-wrap gap-2.5">
+            {team.items.map((item) => (
+              <li class="inline-flex items-center gap-2 rounded-full border border-aqua/20 bg-aqua/[0.06] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-aqua/90">
+                <span class="h-1.5 w-1.5 rounded-full bg-lime shadow-[0_0_10px_2px_rgba(71,247,183,0.55)]"></span>
+                {item.label}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .fd-team-card {
+    background:
+      radial-gradient(600px circle at 90% -12%, rgba(var(--color-aqua) / 0.16), transparent 52%),
+      radial-gradient(520px circle at -8% 120%, rgba(var(--color-lime) / 0.12), transparent 55%),
+      rgba(var(--color-coal) / 0.72);
+    box-shadow:
+      0 0 0 1px rgba(var(--color-aqua) / 0.08),
+      0 40px 110px -40px rgba(0, 0, 0, 0.9),
+      0 0 80px -30px rgba(var(--color-aqua) / 0.35);
+  }
+  .fd-avatar {
+    box-shadow: 0 8px 22px -8px rgba(var(--color-aqua) / 0.5);
+  }
+</style>

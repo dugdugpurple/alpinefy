@@ -216,18 +216,26 @@ const currentPath = Astro.url.pathname;
 <BaseLayout lang={lang} title={copy.metaTitle} description={copy.metaDescription} noindex={true}>
   <section class="py-20 sm:py-24">
     <Container class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-      <article class="h-fit space-y-5 rounded-3xl border border-white/12 bg-gradient-to-br from-white/8 to-white/[0.02] p-6 shadow-panel backdrop-blur">
-        <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/90">{copy.eyebrow}</p>
-        <h1 class="font-display text-3xl leading-tight sm:text-4xl">{copy.title}</h1>
-        <p class="text-sm text-mist sm:text-base">{copy.subtitle}</p>
+      <article class="h-fit space-y-6 rounded-3xl border border-white/10 bg-coal/70 p-6 shadow-panel sm:p-7">
+        <div class="flex items-center gap-2.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-aqua"></span>
+          <p class="text-[11px] font-semibold uppercase tracking-[0.32em] text-mist">{copy.eyebrow}</p>
+        </div>
+        <div class="space-y-4">
+          <h1 class="font-display text-3xl font-bold leading-[1.05] tracking-[-0.035em] sm:text-4xl">{copy.title}</h1>
+          <p class="text-sm text-mist sm:text-base">{copy.subtitle}</p>
+        </div>
 
-        <div class="rounded-2xl border border-white/12 bg-white/5 p-4">
-          <p class="text-xs uppercase tracking-[0.22em] text-aqua/85">{copy.focusLabel}</p>
-          <ul class="mt-3 space-y-2 text-sm text-mist">
+        <div class="rounded-2xl border border-white/10 bg-night/40 p-5">
+          <div class="flex items-center gap-2.5">
+            <span class="h-1.5 w-1.5 rounded-full bg-lime"></span>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-mist">{copy.focusLabel}</p>
+          </div>
+          <ul class="mt-4 space-y-3 text-sm text-mist">
             {copy.focusPoints.map((item) => (
-              <li class="flex items-start gap-2">
-                <span class="mt-1.5 inline-flex h-1.5 w-1.5 shrink-0 rounded-full bg-aqua/90"></span>
-                <span>{item}</span>
+              <li class="flex items-start gap-3">
+                <span class="mt-[7px] inline-flex h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-br from-aqua to-lime shadow-[0_0_10px_rgba(38,202,255,0.5)]"></span>
+                <span class="leading-relaxed">{item}</span>
               </li>
             ))}
           </ul>
@@ -236,9 +244,12 @@ const currentPath = Astro.url.pathname;
         <a class="btn-secondary w-full sm:w-auto" href={getRoutePath('career', lang)}>{copy.backLabel}</a>
       </article>
 
-      <article class="rounded-3xl border border-white/12 bg-gradient-to-br from-white/8 to-white/[0.02] p-6 shadow-panel backdrop-blur">
-        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-aqua/90">{copy.formTitle}</p>
-        <p class="mt-2 text-sm text-mist">{copy.formSubtitle}</p>
+      <article class="rounded-3xl border border-white/10 bg-coal/70 p-6 shadow-panel sm:p-8">
+        <div class="flex items-center gap-2.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-aqua"></span>
+          <p class="text-[11px] font-semibold uppercase tracking-[0.3em] text-mist">{copy.formTitle}</p>
+        </div>
+        <p class="mt-3 text-sm text-mist">{copy.formSubtitle}</p>
 
         <form
           class="mt-6 grid gap-4"
@@ -343,7 +354,7 @@ const currentPath = Astro.url.pathname;
             <span>{copy.consentLabel}</span>
           </label>
 
-          <button class="btn-primary w-full sm:w-auto" type="submit">{copy.submitLabel}</button>
+          <button class="btn-primary mt-2 w-full shadow-glow" type="submit">{copy.submitLabel}</button>
           <p class="text-xs text-mist">{copy.consentNote}</p>
         </form>
       </article>

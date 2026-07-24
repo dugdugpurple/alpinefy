@@ -1,0 +1,177 @@
+---
+import Container from '../Container.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+import { siShopify, siClaude } from 'simple-icons';
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  lang = defaultLang,
+} = Astro.props;
+
+const { sections } = getCopy(lang);
+const services = sections.services;
+
+// Indicative placeholder "from" prices, aligned with the pricing calculator
+// (lead / corporate / shopify / automation). Purely presentational teaser.
+const fromPrices = [900, 1900, 4000, 1500];
+
+// Decorative panel labels (the service content itself comes from copy.ts).
+const uiByLang = {
+  en: { overview: 'Service overview', fromPrices: 'Indicative from-prices', from: 'from', configure: 'Configure your estimate' },
+  de: { overview: 'Leistungsübersicht', fromPrices: 'Orientierungspreise', from: 'ab', configure: 'Schätzung konfigurieren' },
+  pl: { overview: 'Przegląd usług', fromPrices: 'Ceny orientacyjne', from: 'od', configure: 'Skonfiguruj wycenę' },
+  cz: { overview: 'Přehled služeb', fromPrices: 'Orientační ceny', from: 'od', configure: 'Sestavit odhad' },
+  sk: { overview: 'Prehľad služieb', fromPrices: 'Orientačné ceny', from: 'od', configure: 'Zostaviť odhad' },
+};
+const ui = uiByLang[lang] ?? uiByLang.en;
+
+// Per-service glyphs — line icons for generic services, brand marks for Shopify + Claude.
+const serviceIcons = [
+  { fill: false, inner: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/>' },
+  { fill: false, inner: '<path d="M4 21V8l6-4 6 4v13"/><path d="M2 21h20"/><path d="M9 21v-5h2v5"/><path d="M8 9h.5M13 9h.5M8 12.5h.5M13 12.5h.5"/>' },
+  { fill: true, inner: `<path d="${siShopify.path}"/>` },
+  { fill: true, inner: `<path d="${siClaude.path}"/>` },
+];
+---
+
+<section class="fd-shero relative overflow-hidden pb-16 pt-32 sm:pb-24 sm:pt-40">
+  <div class="fd-shero-glow" aria-hidden="true"></div>
+  <Container class="relative">
+    <div class="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+      <!-- LEFT: offer headline + CTA + service pills -->
+      <div class="relative z-10">
+        {eyebrow && (
+          <span class="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-mist motion-safe:animate-fadeUp">
+            <span class="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_2px_rgba(38,202,255,0.8)]"></span>
+            {eyebrow}
+          </span>
+        )}
+        <h1
+          class="mt-7 font-display text-5xl font-bold leading-[0.94] tracking-[-0.045em] text-ice sm:text-6xl lg:text-[4.75rem] motion-safe:animate-fadeUp"
+          style="animation-delay: 70ms;"
+        >
+          {title}
+        </h1>
+        <p
+          class="mt-7 max-w-xl text-lg leading-relaxed text-mist motion-safe:animate-fadeUp"
+          style="animation-delay: 140ms;"
+        >
+          {subtitle}
+        </p>
+
+        <div class="mt-9 flex flex-wrap items-center gap-3 motion-safe:animate-fadeUp" style="animation-delay: 210ms;">
+          {primaryLabel && <a class="btn-primary" href={primaryHref}>{primaryLabel}</a>}
+          {secondaryLabel && <a class="btn-secondary" href={secondaryHref}>{secondaryLabel}</a>}
+        </div>
+
+        <!-- row of service pills -->
+        <div class="mt-9 flex flex-wrap gap-2.5 motion-safe:animate-fadeUp" style="animation-delay: 280ms;">
+          {services.items.map((service) => (
+            <a
+              href="#sluzby"
+              class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-coal/50 px-3.5 py-1.5 text-xs font-medium text-ice/80 transition hover:border-aqua/45 hover:text-ice"
+            >
+              <span class="h-1.5 w-1.5 rounded-full bg-lime"></span>
+              {service.title}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- RIGHT: compact service overview with indicative "from €…" pricing -->
+      <div class="relative motion-safe:animate-fadeUp" style="animation-delay: 200ms;">
+        <div class="fd-shero-panel relative overflow-hidden rounded-[2rem] border border-white/10 p-2.5">
+          <div class="rounded-[1.6rem] border border-white/[0.06] bg-night/70 p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-3">
+              <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-aqua/90">{ui.overview}</p>
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[10px] tracking-wide text-mist">
+                <span class="h-1.5 w-1.5 rounded-full bg-lime"></span>
+                {ui.fromPrices}
+              </span>
+            </div>
+
+            <ul class="mt-5 space-y-2.5">
+              {services.items.map((service, index) => (
+                <li>
+                  <a
+                    href="#pricing"
+                    class="fd-shero-row group flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 transition"
+                  >
+                    <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-aqua/25 bg-aqua/10 text-aqua">
+                      <svg
+                        viewBox="0 0 24 24"
+                        class="h-5 w-5"
+                        fill={serviceIcons[index].fill ? 'currentColor' : 'none'}
+                        stroke={serviceIcons[index].fill ? 'none' : 'currentColor'}
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        set:html={serviceIcons[index].inner}
+                      ></svg>
+                    </span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block truncate text-sm font-semibold text-ice">{service.title}</span>
+                      <span class="mt-0.5 block text-[11px] uppercase tracking-[0.16em] text-mist">
+                        {ui.from} <span class="text-aqua/90">€{fromPrices[index].toLocaleString('en')}</span>
+                      </span>
+                    </span>
+                    <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0 text-mist transition group-hover:text-aqua" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <a href="#pricing" class="mt-5 flex items-center justify-center gap-2 rounded-2xl border border-aqua/25 bg-aqua/[0.06] px-4 py-3 text-sm font-semibold text-ice transition hover:border-aqua/50">
+              {ui.configure}
+              <svg viewBox="0 0 24 24" class="h-4 w-4 text-aqua" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .fd-shero-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(720px circle at 78% 12%, rgba(var(--color-aqua) / 0.16), transparent 55%),
+      radial-gradient(560px circle at 12% 8%, rgba(var(--color-lime) / 0.08), transparent 60%);
+  }
+
+  .fd-shero-panel {
+    background:
+      linear-gradient(155deg, rgba(var(--color-aqua) / 0.14), transparent 45%),
+      linear-gradient(320deg, rgba(var(--color-lime) / 0.1), transparent 42%),
+      rgba(var(--color-coal) / 0.7);
+    box-shadow:
+      0 0 0 1px rgba(var(--color-aqua) / 0.08),
+      0 40px 120px -40px rgba(0, 0, 0, 0.9),
+      0 0 90px -30px rgba(var(--color-aqua) / 0.4);
+  }
+
+  .fd-shero-row:hover {
+    border-color: rgba(var(--color-aqua) / 0.4);
+    background: rgba(var(--color-aqua) / 0.06);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fd-shero-row {
+      transition: none !important;
+    }
+  }
+</style>

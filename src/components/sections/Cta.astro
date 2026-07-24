@@ -12,19 +12,46 @@ const consultationHref = `${getRoutePath('contact', lang)}#kontakt-formular`;
 
 <section class="py-20 sm:py-24">
   <Container>
-    <div class="glass-card overflow-hidden rounded-3xl p-8 sm:p-10 lg:p-12">
-      <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.32em] text-aqua/90">{sections.cta.eyebrow}</p>
-          <h2 class="mt-4 font-display text-3xl sm:text-4xl">{sections.cta.title}</h2>
-          <p class="mt-4 max-w-2xl text-base text-mist">{sections.cta.subtitle}</p>
+    <div class="fd26-gborder relative isolate overflow-hidden rounded-[2.5rem] bg-coal/60 px-6 py-14 text-center sm:px-10 sm:py-20">
+      <div class="fd26-aurora" aria-hidden="true"></div>
+
+      <div class="cta-dots pointer-events-none absolute inset-0" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-aqua/50 to-transparent"></div>
+      <div class="pointer-events-none absolute -top-24 left-1/2 h-64 w-[40rem] max-w-full -translate-x-1/2 rounded-full bg-aqua/15 blur-[130px]"></div>
+
+      <svg
+        viewBox="4 4 24 24"
+        class="pointer-events-none absolute -bottom-24 -right-16 h-[22rem] w-[22rem] rotate-12 fill-current text-aqua opacity-[0.05] sm:-right-10"
+        aria-hidden="true"
+      >
+        <path d="M7 25l9-18 9 18-9-5z"></path>
+      </svg>
+
+      <div class="relative mx-auto max-w-2xl">
+        <div class="flex items-center justify-center gap-2.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_2px_rgba(38,202,255,0.7)]"></span>
+          <p class="text-[11px] font-semibold uppercase tracking-[0.32em] text-mist">{sections.cta.eyebrow}</p>
         </div>
-        <div class="flex flex-col gap-3">
-          <a class="btn-primary" href={consultationHref}>{sections.cta.primaryLabel}</a>
-          <a class="btn-secondary" href={`mailto:${site.email}`}>{sections.cta.secondaryLabel} {site.email}</a>
-          <p class="text-xs text-mist">{sections.cta.note}</p>
+
+        <h2 class="mt-6 font-display text-4xl font-bold leading-[1.03] tracking-[-0.035em] sm:text-5xl">{sections.cta.title}</h2>
+        <p class="mx-auto mt-5 max-w-xl text-base text-mist sm:text-lg">{sections.cta.subtitle}</p>
+
+        <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a class="btn-primary w-full sm:w-auto" href={consultationHref}>{sections.cta.primaryLabel}</a>
+          <a class="btn-secondary w-full sm:w-auto" href={`mailto:${site.email}`}>{sections.cta.secondaryLabel} {site.email}</a>
         </div>
+
+        <p class="mt-6 text-xs text-mist/80">{sections.cta.note}</p>
       </div>
     </div>
   </Container>
 </section>
+
+<style>
+  .cta-dots {
+    background-image: radial-gradient(rgba(var(--color-ice) / 0.06) 1.1px, transparent 1.1px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 70%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 70%);
+  }
+</style>

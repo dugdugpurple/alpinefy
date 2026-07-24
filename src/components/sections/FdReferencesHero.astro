@@ -1,0 +1,170 @@
+---
+import Container from '../Container.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  lang = defaultLang,
+} = Astro.props;
+
+const copy = getCopy(lang);
+const reviews = copy.pages.references.reviews;
+const allReviews = [...reviews.items, ...reviews.moreItems];
+const totalReviews = allReviews.length;
+
+// derive client wordmarks from review roles (company after the last comma, else full role)
+const clientNames = Array.from(
+  new Set(
+    allReviews
+      .map((r) => {
+        const idx = r.role.lastIndexOf(',');
+        return (idx >= 0 ? r.role.slice(idx + 1) : r.role).trim();
+      })
+      .filter(Boolean)
+  )
+);
+
+const stars = Array.from({ length: 5 });
+const starPath = 'M12 17.3l-5.4 3 1.4-6.1-4.7-4 6.2-.6L12 4l2.5 5.6 6.2.6-4.7 4 1.4 6.1z';
+const trustedLabel = {
+  en: 'Trusted by',
+  de: 'Vertraut von',
+  pl: 'Zaufali nam',
+  cz: 'Důvěřují nám',
+  sk: 'Dôverujú nám',
+}[lang] ?? 'Trusted by';
+const clientsLabel = {
+  en: 'happy clients',
+  de: 'zufriedene Kunden',
+  pl: 'zadowolonych klientów',
+  cz: 'spokojených klientů',
+  sk: 'spokojných klientov',
+}[lang] ?? 'happy clients';
+const basedOnLabel = {
+  en: `Based on ${totalReviews} verified reviews`,
+  de: `Auf Basis von ${totalReviews} verifizierten Bewertungen`,
+  pl: `Na podstawie ${totalReviews} zweryfikowanych opinii`,
+  cz: `Na základě ${totalReviews} ověřených recenzí`,
+  sk: `Na základe ${totalReviews} overených recenzií`,
+}[lang] ?? `Based on ${totalReviews} verified reviews`;
+---
+
+<section class="relative overflow-hidden pb-16 pt-32 sm:pb-24 sm:pt-40">
+  <div
+    class="pointer-events-none absolute left-1/2 top-4 -z-10 h-72 w-[46rem] max-w-full -translate-x-1/2 rounded-full bg-aqua/10 blur-[130px]"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="pointer-events-none absolute right-[6%] top-24 -z-10 h-64 w-64 rounded-full bg-lime/[0.07] blur-[120px]"
+    aria-hidden="true"
+  ></div>
+
+  <Container class="relative">
+    <div class="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+      <!-- LEFT: proof headline -->
+      <div class="relative z-10">
+        {eyebrow && (
+          <span class="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-mist motion-safe:animate-fadeUp">
+            <span class="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_2px_rgba(38,202,255,0.8)]"></span>
+            {eyebrow}
+          </span>
+        )}
+        <h1
+          class="mt-7 font-display text-5xl font-bold leading-[0.94] tracking-[-0.045em] text-ice sm:text-6xl lg:text-[4.75rem] motion-safe:animate-fadeUp"
+          style="animation-delay: 70ms;"
+        >
+          {title}
+        </h1>
+        <p
+          class="mt-7 max-w-xl text-lg leading-relaxed text-mist motion-safe:animate-fadeUp"
+          style="animation-delay: 140ms;"
+        >
+          {subtitle}
+        </p>
+
+        <!-- inline quick proof -->
+        <div
+          class="mt-8 flex flex-wrap items-center gap-4 motion-safe:animate-fadeUp"
+          style="animation-delay: 190ms;"
+        >
+          <span class="inline-flex items-center gap-1.5 text-aqua" aria-hidden="true">
+            {stars.map(() => (
+              <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current">
+                <path d={starPath}></path>
+              </svg>
+            ))}
+          </span>
+          <span class="text-sm text-mist">
+            <span class="font-semibold text-ice">5.0</span>
+            {' · '}
+            <span class="font-semibold text-ice">{totalReviews}+</span> {clientsLabel}
+          </span>
+        </div>
+
+        <div class="mt-9 flex flex-wrap items-center gap-3 motion-safe:animate-fadeUp" style="animation-delay: 240ms;">
+          {primaryLabel && <a class="btn-primary" href={primaryHref}>{primaryLabel}</a>}
+          {secondaryLabel && <a class="btn-secondary" href={secondaryHref}>{secondaryLabel}</a>}
+        </div>
+      </div>
+
+      <!-- RIGHT: rating proof panel -->
+      <div class="relative motion-safe:animate-fadeUp" style="animation-delay: 200ms;">
+        <div class="fd-proof relative overflow-hidden rounded-[2rem] border border-aqua/25 p-8 sm:p-10">
+          <span class="text-[10px] font-semibold uppercase tracking-[0.32em] text-aqua/90">{reviews.eyebrow}</span>
+
+          <div class="mt-6 flex items-end gap-5">
+            <p class="bg-gradient-to-br from-aqua to-lime bg-clip-text font-display text-7xl font-bold leading-none tracking-[-0.05em] text-transparent sm:text-8xl">
+              5.0
+            </p>
+            <div class="pb-2">
+              <span class="flex items-center gap-1 text-aqua" aria-hidden="true">
+                {stars.map(() => (
+                  <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current">
+                    <path d={starPath}></path>
+                  </svg>
+                ))}
+              </span>
+              <p class="mt-2 text-xs text-mist">{basedOnLabel}</p>
+            </div>
+          </div>
+
+          <div class="mt-8 h-px w-full bg-gradient-to-r from-aqua/40 via-white/10 to-transparent"></div>
+
+          <p class="mt-7 text-[10px] font-semibold uppercase tracking-[0.3em] text-mist">{trustedLabel}</p>
+          <ul class="mt-4 flex flex-wrap gap-2.5">
+            {clientNames.map((name) => (
+              <li class="fd-client inline-flex items-center gap-2 rounded-full border border-white/10 bg-coal/60 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-ice/70 transition-colors duration-300">
+                <span class="h-1.5 w-1.5 rounded-full bg-lime shadow-[0_0_10px_2px_rgba(71,247,183,0.55)]"></span>
+                {name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .fd-proof {
+    background:
+      radial-gradient(600px circle at 12% -10%, rgba(var(--color-aqua) / 0.18), transparent 52%),
+      radial-gradient(520px circle at 108% 118%, rgba(var(--color-lime) / 0.12), transparent 55%),
+      rgba(var(--color-coal) / 0.72);
+    box-shadow:
+      0 0 0 1px rgba(var(--color-aqua) / 0.1),
+      0 40px 110px -40px rgba(0, 0, 0, 0.9),
+      0 0 80px -30px rgba(var(--color-aqua) / 0.4);
+  }
+  .fd-client:hover {
+    border-color: rgba(var(--color-aqua) / 0.4);
+    color: rgb(var(--color-ice));
+  }
+</style>

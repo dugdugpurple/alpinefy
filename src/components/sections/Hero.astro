@@ -1,5 +1,6 @@
 ---
 import Container from '../Container.astro';
+import HeroBadge from './HeroBadge.astro';
 import { defaultLang } from '../../i18n/languages';
 import { getCopy } from '../../i18n/copy';
 import {
@@ -27,7 +28,6 @@ const {
 } = Astro.props;
 
 const { sections } = getCopy(lang);
-const heroSide = sections.heroSide;
 
 const heroBrands = [
   { name: 'Google', icon: siGoogle },
@@ -48,88 +48,100 @@ const ecosystemLabel = {
   cz: 'Nástroje, se kterými stavíme a které propojujeme',
   sk: 'Nástroje, s ktorými staviame a ktoré prepájame',
 };
+
+// FD26: highlight the last word of the headline with the brand gradient.
+const titleWords = String(title ?? '').trim().split(' ');
+const titleLead = titleWords.slice(0, -1).join(' ');
+const titleLast = titleWords.at(-1) ?? '';
+
+// FD26 CRO: friction-killing microcopy + social proof directly under the CTAs.
+const trustByLang = {
+  en: { note: 'Free 30-min intro call — no obligation', clients: '4+ happy clients', reply: 'Reply within 24h' },
+  de: { note: 'Kostenloses 30-Min-Erstgespräch — unverbindlich', clients: '4+ zufriedene Kunden', reply: 'Antwort innerhalb von 24h' },
+  pl: { note: 'Bezpłatna 30-min rozmowa — bez zobowiązań', clients: '4+ zadowolonych klientów', reply: 'Odpowiedź do 24h' },
+  cz: { note: 'Bezplatný 30min úvodní hovor — nezávazně', clients: '4+ spokojených klientů', reply: 'Odpověď do 24 hodin' },
+  sk: { note: 'Bezplatný 30-min úvodný hovor — nezáväzne', clients: '4+ spokojných klientov', reply: 'Odpoveď do 24 hodín' },
+};
+const trust = trustByLang[lang] ?? trustByLang.en;
+const starPath = 'M12 17.3l-5.4 3 1.4-6.1-4.7-4 6.2-.6L12 4l2.5 5.6 6.2.6-4.7 4 1.4 6.1z';
 ---
 
-<section class="relative overflow-hidden px-0 pb-20 pt-32 sm:pb-24 sm:pt-36">
-  <div class="hero-grid-overlay absolute inset-0 -z-20" aria-hidden="true"></div>
-  <div class="hero-scan-layer absolute inset-0 -z-10" aria-hidden="true">
-    <span class="hero-scan hero-scan-1"></span>
-    <span class="hero-scan hero-scan-2"></span>
-    <span class="hero-scan hero-scan-3"></span>
-  </div>
-  <div class="pointer-events-none absolute -top-24 left-4 -z-10 h-64 w-64 rounded-full bg-aqua/20 blur-3xl motion-safe:animate-pulseSoft"></div>
-  <div class="pointer-events-none absolute right-0 top-10 -z-10 h-80 w-80 rounded-full bg-lime/18 blur-3xl motion-safe:animate-pulseSoft"></div>
-
-  <Container class="relative space-y-12">
-    <div class="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+<section class="relative overflow-hidden px-0 pb-20 pt-32 sm:pb-24 sm:pt-40">
+  <div class="fd26-aurora" aria-hidden="true"></div>
+  <Container class="relative space-y-16">
+    <div class="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
       <div>
         {eyebrow && (
-          <p class="text-xs font-semibold uppercase tracking-[0.35em] text-aqua/85 motion-safe:animate-fadeUp">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.4em] text-mist motion-safe:animate-fadeUp">
             {eyebrow}
           </p>
         )}
-        <h1 class="mt-5 font-display text-4xl leading-[1.02] sm:text-5xl lg:text-6xl motion-safe:animate-fadeUp" style="animation-delay: 70ms;">
-          {title}
+        <h1
+          class="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-7xl motion-safe:animate-fadeUp"
+          style="animation-delay: 70ms;"
+        >
+          {titleLead} <span class="text-gradient">{titleLast}</span>
         </h1>
-        <p class="mt-6 max-w-2xl text-lg text-mist motion-safe:animate-fadeUp" style="animation-delay: 140ms;">
+        <p
+          class="mt-7 max-w-xl text-lg leading-relaxed text-mist motion-safe:animate-fadeUp"
+          style="animation-delay: 140ms;"
+        >
           {subtitle}
         </p>
 
-        <div class="mt-8 flex flex-wrap gap-3 motion-safe:animate-fadeUp" style="animation-delay: 210ms;">
-          {primaryLabel && (
-            <a class="btn-primary" href={primaryHref}>{primaryLabel}</a>
-          )}
-          {secondaryLabel && (
-            <a class="btn-secondary" href={secondaryHref}>{secondaryLabel}</a>
-          )}
+        <HeroBadge
+          id="fd-badge-mobile"
+          class="mx-auto my-10 h-64 w-64 sm:h-72 sm:w-72 lg:hidden motion-safe:animate-fadeUp"
+        />
+
+        <div class="mt-9 flex flex-wrap gap-3 motion-safe:animate-fadeUp" style="animation-delay: 210ms;">
+          {primaryLabel && <a class="btn-primary" href={primaryHref}>{primaryLabel}</a>}
+          {secondaryLabel && <a class="btn-secondary" href={secondaryHref}>{secondaryLabel}</a>}
+        </div>
+
+        <div class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 motion-safe:animate-fadeUp" style="animation-delay: 250ms;">
+          <p class="text-xs text-mist">{trust.note}</p>
+          <span class="hidden h-3 w-px bg-white/15 sm:block" aria-hidden="true"></span>
+          <span class="inline-flex items-center gap-1.5" aria-label="5.0 rating">
+            <span class="flex gap-0.5" aria-hidden="true">
+              {Array.from({ length: 5 }).map(() => (
+                <svg viewBox="0 0 24 24" class="fd26-trust-star"><path d={starPath}></path></svg>
+              ))}
+            </span>
+            <span class="text-xs font-semibold text-ice">5.0</span>
+            <span class="text-xs text-mist">· {trust.clients}</span>
+          </span>
         </div>
 
         {stats.length > 0 && (
-          <div class="mt-10 grid gap-4 sm:grid-cols-3 motion-safe:animate-fadeUp" style="animation-delay: 280ms;">
+          <div class="mt-12 grid max-w-lg grid-cols-3 gap-x-6 gap-y-6 sm:gap-x-10 motion-safe:animate-fadeUp" style="animation-delay: 280ms;">
             {stats.map((stat) => (
-              <div class="glass-card rounded-2xl p-4">
-                <p class="text-2xl font-semibold text-ice">{stat.value}</p>
-                <p class="text-sm text-mist">{stat.label}</p>
+              <div class="min-w-0">
+                <p class="text-gradient font-display text-3xl font-bold tracking-[-0.03em]">{stat.value}</p>
+                <p class="mt-1 text-[11px] uppercase tracking-[0.2em] text-mist">{stat.label}</p>
               </div>
             ))}
           </div>
         )}
       </div>
 
-      <div class="space-y-5">
-        <div class="glass-card motion-safe:animate-float">
-          <p class="text-xs uppercase tracking-[0.3em] text-aqua/90">{heroSide.eyebrow}</p>
-          <p class="mt-4 font-display text-2xl font-semibold">{heroSide.title}</p>
-          <p class="mt-3 text-sm text-mist">{heroSide.subtitle}</p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            {heroSide.badges.map((badge) => (
-              <span class="badge">{badge}</span>
-            ))}
-          </div>
-        </div>
-        <div class="grid gap-4 sm:grid-cols-2">
-          {heroSide.cards.map((card) => (
-            <div class="card p-5">
-              <p class="text-xs uppercase tracking-[0.24em] text-mist">{card.label}</p>
-              <p class="mt-2 text-lg font-semibold">{card.value}</p>
-            </div>
-          ))}
-        </div>
+      <div class="hidden justify-self-center lg:block">
+        <HeroBadge id="fd-badge-desktop" class="h-[19rem] w-[19rem]" />
       </div>
     </div>
 
-    <div class="rounded-3xl border border-white/12 bg-coal/55 p-4 sm:p-5">
-      <p class="text-xs uppercase tracking-[0.28em] text-mist">
+    <div class="pt-4">
+      <p class="mb-5 text-[11px] uppercase tracking-[0.28em] text-mist/80">
         {ecosystemLabel[lang] ?? ecosystemLabel.en}
       </p>
-      <div class="mask-fade mt-4 overflow-hidden">
+      <div class="mask-fade overflow-hidden">
         <div class="marquee-track marquee-track-slower motion-safe:animate-marquee">
           {brandLoop.map((brand) => (
-            <div class="inline-flex min-w-[160px] items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3" style={`--brand:#${brand.icon.hex}`}>
-              <svg viewBox="0 0 24 24" class="h-5 w-5 text-[var(--brand)]" fill="currentColor" aria-hidden="true">
+            <div class="inline-flex items-center gap-2.5 px-8 text-ice/55 transition hover:text-ice">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
                 <path d={brand.icon.path}></path>
               </svg>
-              <span class="text-sm text-ice/90">{brand.name}</span>
+              <span class="text-sm font-medium tracking-tight">{brand.name}</span>
             </div>
           ))}
         </div>

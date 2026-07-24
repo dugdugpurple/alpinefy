@@ -1,0 +1,37 @@
+---
+import Container from '../Container.astro';
+import FdHeading from './FdHeading.astro';
+import SectionMarks from '../SectionMarks.astro';
+import { defaultLang } from '../../i18n/languages';
+import { getCopy } from '../../i18n/copy';
+
+const { lang = defaultLang } = Astro.props;
+const { sections } = getCopy(lang);
+const proc = sections.process;
+---
+
+<section class="relative py-20 sm:py-28" id="proces">
+  <SectionMarks variant="big-a" />
+  <Container class="space-y-16">
+    <FdHeading eyebrow={proc.eyebrow} title={proc.title} subtitle={proc.subtitle} />
+
+    <div class="relative">
+      <!-- connecting line (desktop) -->
+      <div class="pointer-events-none absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-aqua/50 via-lime/40 to-transparent lg:block" aria-hidden="true"></div>
+
+      <ol class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        {proc.steps.map((step, i) => (
+          <li class="relative">
+            <div class="flex items-center gap-4 lg:block">
+              <span class="relative z-10 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-aqua/30 bg-night shadow-[0_0_30px_-8px_rgba(38,202,255,0.6)]">
+                <span class="bg-gradient-to-br from-aqua to-lime bg-clip-text font-display text-xl font-bold text-transparent">{String(i + 1).padStart(2, '0')}</span>
+              </span>
+              <h3 class="font-display text-xl font-bold tracking-[-0.02em] text-ice lg:mt-6">{step.title}</h3>
+            </div>
+            <p class="mt-4 text-sm leading-relaxed text-mist lg:pr-4">{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </Container>
+</section>

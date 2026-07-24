@@ -1,0 +1,376 @@
+---
+import Container from '../Container.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { getRoutePath } from '../../i18n/routes';
+
+interface Props {
+  lang?: string;
+}
+const { lang = 'en' } = Astro.props;
+
+// Indicative prices — the final quote is always individual.
+const INCLUDED_PAGES = 5;
+const PAGE_PRICE = 120;
+const LANG_PRICE = 220;
+const MAINT_PRICE = 90;
+const BASES = { lead: 900, corporate: 1900, shopify: 4000, automation: 1500 };
+const ADDON_PRICES = { cms: 350, seo: 400, blog: 300, ecom: 700, crm: 500, copy: 450, analytics: 200 };
+
+type Dict = {
+  eyebrow: string; title: string; subtitle: string;
+  step1: string; step2: string;
+  types: Record<'lead' | 'corporate' | 'shopify' | 'automation', { label: string; desc: string }>;
+  from: string;
+  pages: string; pagesHint: string; langs: string; langsHint: string;
+  addons: Record<'cms' | 'seo' | 'blog' | 'ecom' | 'crm' | 'copy' | 'analytics', string>;
+  maintenance: string; perMo: string; maintWord: string;
+  estimated: string; cta: string; note: string;
+  baseLabel: string; extraPages: string; extraLangs: string;
+};
+
+const dict: Record<string, Dict> = {
+  en: {
+    eyebrow: 'Pricing',
+    title: 'Estimate your project in a minute',
+    subtitle: 'Pick what you need and see a ballpark instantly. The final quote is always individual — this is just a starting point.',
+    step1: '1 · Project type', step2: '2 · Add-ons',
+    types: {
+      lead: { label: 'Lead website', desc: 'Landing page built to convert' },
+      corporate: { label: 'Corporate website', desc: 'Full company presence' },
+      shopify: { label: 'E-shop (Shopify)', desc: 'Online store, ready to sell' },
+      automation: { label: 'Automation & AI', desc: 'Workflows, assistants, dashboards' },
+    },
+    from: 'from €',
+    pages: 'Pages', pagesHint: `${INCLUDED_PAGES} included, then €${PAGE_PRICE} each`,
+    langs: 'Languages', langsHint: `1 included, then €${LANG_PRICE} each`,
+    addons: { cms: 'Editable content (CMS)', seo: 'SEO setup', blog: 'Blog', ecom: 'Payments & checkout', crm: 'CRM & integrations', copy: 'Copywriting', analytics: 'Analytics & tracking' },
+    maintenance: 'Maintenance', perMo: '/mo', maintWord: 'maintenance',
+    estimated: 'Estimated one-time', cta: 'Get an exact quote',
+    note: 'Indicative prices · the final quote is always individual',
+    baseLabel: 'Base ·', extraPages: 'Extra pages', extraLangs: 'Extra languages',
+  },
+  de: {
+    eyebrow: 'Preise',
+    title: 'Schätze dein Projekt in einer Minute',
+    subtitle: 'Wähle, was du brauchst, und sieh sofort eine grobe Zahl. Das finale Angebot ist immer individuell — das hier ist nur ein Ausgangspunkt.',
+    step1: '1 · Projekttyp', step2: '2 · Zusatzoptionen',
+    types: {
+      lead: { label: 'Lead-Website', desc: 'Landingpage, die konvertiert' },
+      corporate: { label: 'Unternehmenswebsite', desc: 'Kompletter Firmenauftritt' },
+      shopify: { label: 'E-Shop (Shopify)', desc: 'Online-Shop, bereit zum Verkaufen' },
+      automation: { label: 'Automatisierung & KI', desc: 'Workflows, Assistenten, Dashboards' },
+    },
+    from: 'ab €',
+    pages: 'Seiten', pagesHint: `${INCLUDED_PAGES} inklusive, dann €${PAGE_PRICE} pro Seite`,
+    langs: 'Sprachen', langsHint: `1 inklusive, dann €${LANG_PRICE} pro Sprache`,
+    addons: { cms: 'Redigierbare Inhalte (CMS)', seo: 'SEO-Einrichtung', blog: 'Blog', ecom: 'Zahlungen & Checkout', crm: 'CRM & Integrationen', copy: 'Copywriting', analytics: 'Analytics & Tracking' },
+    maintenance: 'Wartung', perMo: '/Mon.', maintWord: 'Wartung',
+    estimated: 'Geschätzt einmalig', cta: 'Genaues Angebot anfordern',
+    note: 'Richtpreise · das finale Angebot ist immer individuell',
+    baseLabel: 'Basis ·', extraPages: 'Zusätzliche Seiten', extraLangs: 'Zusätzliche Sprachen',
+  },
+  pl: {
+    eyebrow: 'Cennik',
+    title: 'Oszacuj swój projekt w minutę',
+    subtitle: 'Wybierz, czego potrzebujesz, i od razu zobacz orientacyjną kwotę. Ostateczna wycena jest zawsze indywidualna — to tylko punkt wyjścia.',
+    step1: '1 · Typ projektu', step2: '2 · Dodatki',
+    types: {
+      lead: { label: 'Strona pozyskująca leady', desc: 'Landing page nastawiony na konwersję' },
+      corporate: { label: 'Strona firmowa', desc: 'Pełna obecność firmy' },
+      shopify: { label: 'Sklep (Shopify)', desc: 'Sklep online gotowy do sprzedaży' },
+      automation: { label: 'Automatyzacja i AI', desc: 'Workflowy, asystenci, dashboardy' },
+    },
+    from: 'od €',
+    pages: 'Strony', pagesHint: `${INCLUDED_PAGES} w cenie, potem €${PAGE_PRICE} za stronę`,
+    langs: 'Języki', langsHint: `1 w cenie, potem €${LANG_PRICE} za język`,
+    addons: { cms: 'Edytowalna treść (CMS)', seo: 'Konfiguracja SEO', blog: 'Blog', ecom: 'Płatności i checkout', crm: 'CRM i integracje', copy: 'Copywriting', analytics: 'Analityka i śledzenie' },
+    maintenance: 'Utrzymanie', perMo: '/mies.', maintWord: 'utrzymanie',
+    estimated: 'Szacunkowo jednorazowo', cta: 'Poproś o dokładną wycenę',
+    note: 'Ceny orientacyjne · ostateczna wycena jest zawsze indywidualna',
+    baseLabel: 'Podstawa ·', extraPages: 'Dodatkowe strony', extraLangs: 'Dodatkowe języki',
+  },
+  cz: {
+    eyebrow: 'Ceník',
+    title: 'Odhadni svůj projekt za minutu',
+    subtitle: 'Vyber si, co potřebuješ, a hned uvidíš orientační částku. Finální nabídka je vždy individuální — tohle je jen výchozí bod.',
+    step1: '1 · Typ projektu', step2: '2 · Doplňky',
+    types: {
+      lead: { label: 'Web na získávání leadů', desc: 'Landing page pro konverze' },
+      corporate: { label: 'Firemní web', desc: 'Kompletní firemní prezentace' },
+      shopify: { label: 'E-shop (Shopify)', desc: 'Online obchod připravený prodávat' },
+      automation: { label: 'Automatizace a AI', desc: 'Workflow, asistenti, dashboardy' },
+    },
+    from: 'od €',
+    pages: 'Stránky', pagesHint: `${INCLUDED_PAGES} v ceně, pak €${PAGE_PRICE} za stránku`,
+    langs: 'Jazyky', langsHint: `1 v ceně, pak €${LANG_PRICE} za jazyk`,
+    addons: { cms: 'Editovatelný obsah (CMS)', seo: 'Nastavení SEO', blog: 'Blog', ecom: 'Platby a checkout', crm: 'CRM a integrace', copy: 'Copywriting', analytics: 'Analytika a měření' },
+    maintenance: 'Údržba', perMo: '/měs.', maintWord: 'údržba',
+    estimated: 'Odhad jednorázově', cta: 'Získat přesnou nabídku',
+    note: 'Orientační ceny · finální nabídka je vždy individuální',
+    baseLabel: 'Základ ·', extraPages: 'Stránky navíc', extraLangs: 'Jazyky navíc',
+  },
+  sk: {
+    eyebrow: 'Cenník',
+    title: 'Odhadni svoj projekt za minútu',
+    subtitle: 'Vyber si, čo potrebuješ, a hneď uvidíš orientačnú sumu. Finálna ponuka je vždy individuálna — toto je len východiskový bod.',
+    step1: '1 · Typ projektu', step2: '2 · Doplnky',
+    types: {
+      lead: { label: 'Web na získavanie leadov', desc: 'Landing page pre konverzie' },
+      corporate: { label: 'Firemný web', desc: 'Kompletná firemná prezentácia' },
+      shopify: { label: 'E-shop (Shopify)', desc: 'Online obchod pripravený predávať' },
+      automation: { label: 'Automatizácia a AI', desc: 'Workflowy, asistenti, dashboardy' },
+    },
+    from: 'od €',
+    pages: 'Stránky', pagesHint: `${INCLUDED_PAGES} v cene, potom €${PAGE_PRICE} za stránku`,
+    langs: 'Jazyky', langsHint: `1 v cene, potom €${LANG_PRICE} za jazyk`,
+    addons: { cms: 'Editovateľný obsah (CMS)', seo: 'Nastavenie SEO', blog: 'Blog', ecom: 'Platby a checkout', crm: 'CRM a integrácie', copy: 'Copywriting', analytics: 'Analytika a meranie' },
+    maintenance: 'Údržba', perMo: '/mes.', maintWord: 'údržba',
+    estimated: 'Odhad jednorazovo', cta: 'Získať presnú ponuku',
+    note: 'Orientačné ceny · finálna ponuka je vždy individuálna',
+    baseLabel: 'Základ ·', extraPages: 'Stránky navyše', extraLangs: 'Jazyky navyše',
+  },
+};
+
+const t = dict[lang] ?? dict.en;
+const contactHref = `${getRoutePath('contact', lang)}#kontakt-formular`;
+
+const projectTypes = [
+  { id: 'lead', label: t.types.lead.label, desc: t.types.lead.desc, base: BASES.lead },
+  { id: 'corporate', label: t.types.corporate.label, desc: t.types.corporate.desc, base: BASES.corporate },
+  { id: 'shopify', label: t.types.shopify.label, desc: t.types.shopify.desc, base: BASES.shopify },
+  { id: 'automation', label: t.types.automation.label, desc: t.types.automation.desc, base: BASES.automation },
+];
+const addons = [
+  { id: 'cms', label: t.addons.cms, price: ADDON_PRICES.cms },
+  { id: 'seo', label: t.addons.seo, price: ADDON_PRICES.seo },
+  { id: 'blog', label: t.addons.blog, price: ADDON_PRICES.blog },
+  { id: 'ecom', label: t.addons.ecom, price: ADDON_PRICES.ecom },
+  { id: 'crm', label: t.addons.crm, price: ADDON_PRICES.crm },
+  { id: 'copy', label: t.addons.copy, price: ADDON_PRICES.copy },
+  { id: 'analytics', label: t.addons.analytics, price: ADDON_PRICES.analytics },
+];
+---
+
+<section class="relative py-20 sm:py-28" id="pricing">
+  <Container class="space-y-12">
+    <SectionHeading eyebrow={t.eyebrow} title={t.title} subtitle={t.subtitle} />
+
+    <div
+      class="grid gap-6 lg:grid-cols-[1.4fr_0.85fr] lg:gap-8"
+      data-calc
+      data-included-pages={INCLUDED_PAGES}
+      data-page-price={PAGE_PRICE}
+      data-lang-price={LANG_PRICE}
+      data-label-base={t.baseLabel}
+      data-label-pages={t.extraPages}
+      data-label-langs={t.extraLangs}
+    >
+      <!-- configurator -->
+      <div class="space-y-8">
+        <!-- project type -->
+        <div>
+          <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-mist">{t.step1}</p>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {projectTypes.map((tp, i) => (
+              <button
+                type="button"
+                class={`calc-type flex flex-col items-start rounded-2xl border p-5 text-left transition ${i === 0 ? 'is-selected' : ''}`}
+                data-type
+                data-price={tp.base}
+              >
+                <span class="font-semibold text-ice">{tp.label}</span>
+                <span class="mt-1 text-sm text-mist">{tp.desc}</span>
+                <span class="mt-3 text-xs uppercase tracking-[0.16em] text-aqua/90">{t.from}{tp.base.toLocaleString('en').replace(/,/g, ' ')}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- steppers -->
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-coal/50 p-5">
+            <div>
+              <p class="font-medium text-ice">{t.pages}</p>
+              <p class="text-xs text-mist">{t.pagesHint}</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button type="button" class="calc-step" data-step="pages" data-dir="-1" aria-label={t.pages}>−</button>
+              <span class="w-6 text-center font-display text-lg font-bold text-ice" data-value="pages">{INCLUDED_PAGES}</span>
+              <button type="button" class="calc-step" data-step="pages" data-dir="1" aria-label={t.pages}>+</button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-coal/50 p-5">
+            <div>
+              <p class="font-medium text-ice">{t.langs}</p>
+              <p class="text-xs text-mist">{t.langsHint}</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button type="button" class="calc-step" data-step="langs" data-dir="-1" aria-label={t.langs}>−</button>
+              <span class="w-6 text-center font-display text-lg font-bold text-ice" data-value="langs">1</span>
+              <button type="button" class="calc-step" data-step="langs" data-dir="1" aria-label={t.langs}>+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- add-ons -->
+        <div>
+          <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-mist">{t.step2}</p>
+          <div class="flex flex-wrap gap-2.5">
+            {addons.map((a) => (
+              <button type="button" class="calc-addon" data-addon data-price={a.price}>
+                <span>{a.label}</span>
+                <span class="text-aqua/90">+€{a.price}</span>
+              </button>
+            ))}
+            <button type="button" class="calc-addon" data-addon data-price={MAINT_PRICE} data-monthly="true">
+              <span>{t.maintenance}</span>
+              <span class="text-lime/90">+€{MAINT_PRICE}{t.perMo}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- estimate panel -->
+      <div class="lg:sticky lg:top-28">
+        <div class="rounded-3xl border border-aqua/25 bg-coal/60 p-7">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-mist">{t.estimated}</p>
+          <p class="mt-2 font-display text-4xl font-bold tracking-[-0.03em] sm:text-5xl">
+            <span class="bg-gradient-to-r from-aqua to-lime bg-clip-text text-transparent" data-estimate-from>€900</span>
+            <span class="text-ice/40"> – </span>
+            <span class="text-ice" data-estimate-to>€1 300</span>
+          </p>
+          <p class="mt-2 text-sm text-mist" data-maint-line style="display:none">
+            + <span data-estimate-maint>€90</span>{t.perMo} {t.maintWord}
+          </p>
+
+          <div class="mt-6 space-y-2 border-t border-white/10 pt-6 text-sm" data-breakdown></div>
+
+          <a class="btn-primary mt-7 w-full" href={contactHref}>{t.cta}</a>
+          <p class="mt-3 text-center text-xs text-mist">{t.note}</p>
+        </div>
+      </div>
+    </div>
+  </Container>
+
+  <script is:inline>
+    (() => {
+      const root = document.querySelector('[data-calc]');
+      if (!root) return;
+      const includedPages = +root.dataset.includedPages;
+      const pagePrice = +root.dataset.pagePrice;
+      const langPrice = +root.dataset.langPrice;
+      const L = { base: root.dataset.labelBase, pages: root.dataset.labelPages, langs: root.dataset.labelLangs };
+      const fmt = (n) => '€' + Math.round(n).toLocaleString('en').replace(/,/g, ' ');
+      const val = (k) => +root.querySelector('[data-value="' + k + '"]').textContent;
+
+      const calc = () => {
+        const typeEl = root.querySelector('[data-type].is-selected');
+        const base = typeEl ? +typeEl.dataset.price : 0;
+        const typeLabel = typeEl ? typeEl.querySelector('span').textContent : '—';
+        const pages = val('pages');
+        const langs = val('langs');
+        const extraPages = Math.max(0, pages - includedPages);
+        const extraLangs = Math.max(0, langs - 1);
+        let sum = base + extraPages * pagePrice + extraLangs * langPrice;
+        let monthly = 0;
+        const rows = [
+          [L.base + ' ' + typeLabel, base],
+        ];
+        if (extraPages) rows.push([L.pages + ' (' + extraPages + ')', extraPages * pagePrice]);
+        if (extraLangs) rows.push([L.langs + ' (' + extraLangs + ')', extraLangs * langPrice]);
+        root.querySelectorAll('[data-addon].is-on').forEach((a) => {
+          const p = +a.dataset.price;
+          const label = a.querySelector('span').textContent;
+          if (a.dataset.monthly) { monthly += p; }
+          else { sum += p; rows.push([label, p]); }
+        });
+        const to = Math.round((sum * 1.4) / 50) * 50;
+        root.querySelector('[data-estimate-from]').textContent = fmt(sum);
+        root.querySelector('[data-estimate-to]').textContent = fmt(to);
+        const maintLine = root.querySelector('[data-maint-line]');
+        if (monthly > 0) { maintLine.style.display = ''; root.querySelector('[data-estimate-maint]').textContent = fmt(monthly); }
+        else { maintLine.style.display = 'none'; }
+        root.querySelector('[data-breakdown]').innerHTML = rows
+          .map((r) => '<div class="flex justify-between text-mist"><span>' + r[0] + '</span><span class="text-ice/85">' + fmt(r[1]) + '</span></div>')
+          .join('');
+      };
+
+      root.querySelectorAll('[data-type]').forEach((b) =>
+        b.addEventListener('click', () => {
+          root.querySelectorAll('[data-type]').forEach((x) => x.classList.remove('is-selected'));
+          b.classList.add('is-selected');
+          calc();
+        })
+      );
+      root.querySelectorAll('[data-step]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const key = b.dataset.step;
+          const el = root.querySelector('[data-value="' + key + '"]');
+          const min = key === 'langs' ? 1 : 1;
+          const next = Math.max(min, +el.textContent + +b.dataset.dir);
+          el.textContent = next;
+          calc();
+        })
+      );
+      root.querySelectorAll('[data-addon]').forEach((b) =>
+        b.addEventListener('click', () => {
+          b.classList.toggle('is-on');
+          calc();
+        })
+      );
+      calc();
+    })();
+  </script>
+
+  <style>
+    .calc-type {
+      border-color: rgba(var(--color-ice) / 0.1);
+      background: rgba(var(--color-coal) / 0.5);
+    }
+    .calc-type:hover {
+      border-color: rgba(var(--color-aqua) / 0.4);
+    }
+    .calc-type.is-selected {
+      border-color: rgba(var(--color-aqua) / 0.7);
+      background: rgba(var(--color-aqua) / 0.07);
+      box-shadow: 0 0 0 1px rgba(var(--color-aqua) / 0.35), 0 0 44px -14px rgba(var(--color-aqua) / 0.55);
+    }
+    .calc-step {
+      display: inline-flex;
+      height: 2rem;
+      width: 2rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--color-ice) / 0.16);
+      color: rgb(var(--color-ice));
+      font-size: 1.15rem;
+      line-height: 1;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .calc-step:hover {
+      border-color: rgba(var(--color-aqua) / 0.5);
+      background: rgba(var(--color-aqua) / 0.08);
+    }
+    .calc-addon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--color-ice) / 0.14);
+      background: rgba(var(--color-ice) / 0.04);
+      padding: 0.55rem 1rem;
+      font-size: 0.85rem;
+      color: rgba(var(--color-ice) / 0.85);
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .calc-addon:hover {
+      border-color: rgba(var(--color-aqua) / 0.4);
+    }
+    .calc-addon.is-on {
+      border-color: rgba(var(--color-aqua) / 0.7);
+      background: rgba(var(--color-aqua) / 0.12);
+      color: rgb(var(--color-ice));
+    }
+  </style>
+</section>
