@@ -316,7 +316,7 @@ export const copy: Record<Lang, Copy> = {
         items: [
           {
             title: 'Lead websites',
-            description: 'Landing pages that convert. Clear structure and fast iterations.',
+            description: 'Landing pages that convert — built to bring you inquiries from day one.',
             tags: ['Campaigns', 'Conversions', 'Fast launch'],
           },
           {
@@ -326,7 +326,7 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             title: 'E-shops (Shopify)',
-            description: 'Shopify e-commerce stores with clean catalog structure, conversion-focused checkout and basic invoicing setup.',
+            description: 'Shopify stores with a clean catalog, conversion-focused checkout and everything ready to sell.',
             tags: ['Shopify', 'E-commerce', 'Payments'],
           },
           {
@@ -394,12 +394,12 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'How much does a corporate website cost?',
             answer:
-              'The price of a corporate website is always individual and depends on project scope. After the intro call, we prepare a precise, transparent and private quote.',
+              'Lead websites start from €900, corporate websites from €1,900 and Shopify stores from €4,000. The exact price depends on scope — the calculator on the Services page gives you a quick estimate, and after a free intro call you get a fixed, transparent quote.',
           },
           {
             question: 'How quickly can you deliver a website?',
             answer:
-              'Lead and marketing websites can be delivered within a few days to one week. We are highly efficient because we use modern delivery methods and technologies that let us shorten timelines to the minimum practical range. For more complex work, timing depends mainly on feature scope, number of integrations and how ready the source materials are.',
+              'Lead and marketing websites are typically live within a few days to one week. For larger projects the timeline depends on scope, integrations and how ready your materials are — you always get a concrete launch date in the proposal.',
           },
           {
             question: 'Can I edit the content myself?',
@@ -427,7 +427,7 @@ export const copy: Record<Lang, Copy> = {
         eyebrow: 'Next step',
         title: 'Let’s talk about your website',
         subtitle: 'No long presentations. 30‑minute call and a clear next step proposal.',
-        primaryLabel: 'Book a consultation',
+        primaryLabel: 'Book a free consultation',
         secondaryLabel: 'Email us',
         note: 'During business days, we reply within 24 hours.',
       },
@@ -506,8 +506,8 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Alpinefy — AI & Web Studio',
           title: 'Websites that turn visitors into customers',
           subtitle:
-            'We design and build fast, clear websites and online stores that bring you more inquiries and sales — from first strategy to launch and beyond.',
-          primaryLabel: 'Get a consultation',
+            'We design and build fast, clear websites and online stores that bring you more inquiries and sales — and you work directly with the person doing the work.',
+          primaryLabel: 'Get a free consultation',
           secondaryLabel: 'View services',
         },
       },
@@ -535,7 +535,7 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Process',
           title: 'A defined process without chaos',
           subtitle: 'You know what happens in each step. From analysis to optimization.',
-          primaryLabel: 'Schedule intro call',
+          primaryLabel: 'Schedule a free intro call',
           secondaryLabel: 'View services',
         },
       },
@@ -717,7 +717,7 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Contact',
           title: 'Tell us what you need',
           subtitle: 'We reply within 24 hours. First call is short and to the point.',
-          primaryLabel: 'Send email',
+          primaryLabel: 'Fill in the brief (2 min)',
           secondaryLabel: 'View services',
         },
         formHeading: {
@@ -732,7 +732,7 @@ export const copy: Record<Lang, Copy> = {
           namePlaceholder: 'Your name, company',
           emailPlaceholder: 'you@email.com',
           messagePlaceholder: 'Briefly describe the project, goal and timeline.',
-          submit: 'Send',
+          submit: 'Send — reply within 24h',
           consent: 'By submitting you agree to processing of data for contact purposes.',
         },
         directHeading: {
@@ -746,7 +746,7 @@ export const copy: Record<Lang, Copy> = {
           location: 'Location',
           scope: 'Scope',
           scopeText:
-            'Minimum scope: a simple corporate site or lead page. Larger projects by request.',
+            'From one-page lead sites to complete websites and Shopify stores — most projects start with a free intro call.',
         },
       },
     },
@@ -824,7 +824,7 @@ export const copy: Record<Lang, Copy> = {
         items: [
           {
             title: 'Lead-Websites',
-            description: 'Landingpages, die konvertieren. Klare Struktur, schnelle Iteration.',
+            description: 'Landingpages, die konvertieren — gebaut, um vom ersten Tag an Anfragen zu bringen.',
             tags: ['Kampagnen', 'Conversion', 'Schneller Launch'],
           },
           {
@@ -834,7 +834,7 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             title: 'E-Shops (Shopify)',
-            description: 'Shopify-Shops mit sauberer Struktur, Payments, Basis-Fakturierung und Conversion-Fokus.',
+            description: 'Shopify‑Shops mit sauberer Struktur, Payments und Conversion‑Fokus — bereit zum Verkaufen.',
             tags: ['Shopify', 'E-Commerce', 'Payments'],
           },
           {
@@ -902,12 +902,12 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'Was kostet eine Unternehmenswebsite?',
             answer:
-              'Der Preis für eine Unternehmenswebsite ist immer individuell und hängt vom Projektumfang ab. Nach dem Erstgespräch erstellen wir ein präzises, transparentes und nicht öffentliches Angebot.',
+              'Lead‑Websites starten ab €900, Unternehmenswebsites ab €1.900 und Shopify‑Shops ab €4.000. Der genaue Preis hängt vom Umfang ab — der Rechner auf der Leistungsseite liefert eine schnelle Schätzung, und nach einem kostenlosen Erstgespräch erhalten Sie ein fixes, transparentes Angebot.',
           },
           {
             question: 'Wie schnell könnt ihr eine Website liefern?',
             answer:
-              'Lead- und Marketing-Websites liefern wir in wenigen Tagen bis etwa einer Woche. Wir arbeiten sehr effizient, weil wir moderne Vorgehensweisen und Technologien nutzen, mit denen wir die Lieferzeit auf das sinnvoll mögliche Minimum verkürzen. Bei komplexeren Projekten hängt der Termin vor allem vom Funktionsumfang, der Zahl der Integrationen und der Qualität der gelieferten Unterlagen ab.',
+              'Lead- und Marketing-Websites sind in der Regel innerhalb weniger Tage bis etwa einer Woche live. Bei größeren Projekten hängt der Zeitplan von Umfang, Integrationen und der Bereitschaft Ihrer Unterlagen ab — im Angebot erhalten Sie immer einen konkreten Launch-Termin.',
           },
           {
             question: 'Kann ich Inhalte selbst bearbeiten?',
@@ -935,7 +935,7 @@ export const copy: Record<Lang, Copy> = {
         eyebrow: 'Nächster Schritt',
         title: 'Lassen Sie uns über Ihre Website sprechen',
         subtitle: '30‑Minuten‑Call und ein klarer Vorschlag für die nächsten Schritte.',
-        primaryLabel: 'Beratung buchen',
+        primaryLabel: 'Kostenlose Beratung buchen',
         secondaryLabel: 'E‑Mail schreiben',
         note: 'An Werktagen antworten wir innerhalb von 24 Stunden.',
       },
@@ -1014,8 +1014,8 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Alpinefy — AI & Web Studio',
           title: 'Websites, die Besucher zu Kunden machen',
           subtitle:
-            'Wir gestalten und entwickeln schnelle, klare Websites und Onlineshops, die Ihnen mehr Anfragen und Umsatz bringen — von der ersten Strategie über den Launch hinaus.',
-          primaryLabel: 'Beratung anfragen',
+            'Wir gestalten und entwickeln schnelle, klare Websites und Onlineshops, die Ihnen mehr Anfragen und Umsatz bringen — und Sie arbeiten direkt mit der Person, die die Arbeit macht.',
+          primaryLabel: 'Kostenlose Beratung anfragen',
           secondaryLabel: 'Leistungen ansehen',
         },
       },
@@ -1043,7 +1043,7 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Prozess',
           title: 'Ein definierter Prozess ohne Chaos',
           subtitle: 'Sie wissen, was in jedem Schritt passiert.',
-          primaryLabel: 'Intro‑Call buchen',
+          primaryLabel: 'Kostenlosen Intro‑Call buchen',
           secondaryLabel: 'Leistungen ansehen',
         },
       },
@@ -1122,7 +1122,7 @@ export const copy: Record<Lang, Copy> = {
           },
           modalAdd: {
             title: 'Bewertung hinzufügen',
-            subtitle: 'Teile deine Erfahrung in wenigen Sätzen.',
+            subtitle: 'Teilen Sie Ihre Erfahrung in wenigen Sätzen.',
           },
           form: {
             name: 'Name',
@@ -1147,7 +1147,7 @@ export const copy: Record<Lang, Copy> = {
         hero: {
           eyebrow: 'Über uns',
           title: 'Ein unabhängiges Studio für performante Websites',
-          subtitle: 'Ich gestalte und entwickle schnelle, ästhetische und wartbare Websites — du arbeitest direkt mit der Person, die die Arbeit macht.',
+          subtitle: 'Ich gestalte und entwickle schnelle, ästhetische und wartbare Websites — Sie arbeiten direkt mit der Person, die die Arbeit macht.',
           primaryLabel: 'Kontakt aufnehmen',
           secondaryLabel: 'Referenzen ansehen',
         },
@@ -1173,7 +1173,7 @@ export const copy: Record<Lang, Copy> = {
         team: {
           eyebrow: 'Team',
           title: 'Erfahrung aus Agenturen und Produkten',
-          subtitle: 'Du arbeitest direkt mit mir — keine Übergaben, keine Junior‑Experimente.',
+          subtitle: 'Sie arbeiten direkt mit mir — keine Übergaben, keine Junior‑Experimente.',
           items: [
             {
               label: 'Design',
@@ -1224,7 +1224,7 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Kontakt',
           title: 'Sagen Sie uns, was Sie brauchen',
           subtitle: 'Antwort innerhalb von 24 Stunden. Kurzer, klarer Erst‑Call.',
-          primaryLabel: 'E‑Mail schreiben',
+          primaryLabel: 'Formular ausfüllen (2 Min.)',
           secondaryLabel: 'Leistungen ansehen',
         },
         formHeading: {
@@ -1239,7 +1239,7 @@ export const copy: Record<Lang, Copy> = {
           namePlaceholder: 'Ihr Name, Firma',
           emailPlaceholder: 'sie@email.com',
           messagePlaceholder: 'Kurz Projekt, Ziel und Zeitplan.',
-          submit: 'Senden',
+          submit: 'Senden — Antwort in 24 h',
           consent: 'Mit dem Absenden stimmen Sie der Datenverarbeitung zu.',
         },
         directHeading: {
@@ -1252,7 +1252,7 @@ export const copy: Record<Lang, Copy> = {
           phone: 'Telefon',
           location: 'Standort',
           scope: 'Umfang',
-          scopeText: 'Minimum: einfache Firmenwebsite oder Lead‑Seite. Größere Projekte nach Absprache.',
+          scopeText: 'Von der Lead‑Seite bis zur kompletten Website oder dem Shopify‑Shop — die meisten Projekte starten mit einem kostenlosen Erstgespräch.',
         },
       },
     },
@@ -1330,7 +1330,7 @@ export const copy: Record<Lang, Copy> = {
         items: [
           {
             title: 'Strony leadowe',
-            description: 'Landing page, które konwertują. Jasna struktura i szybkie iteracje.',
+            description: 'Landing page, które konwertują — zbudowane tak, by przynosić zapytania od pierwszego dnia.',
             tags: ['Kampanie', 'Konwersje', 'Szybki start'],
           },
           {
@@ -1340,7 +1340,7 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             title: 'Sklepy (Shopify)',
-            description: 'Sklepy Shopify z czystą strukturą, płatnościami, podstawową fakturacją i naciskiem na konwersję.',
+            description: 'Sklepy Shopify z czystą strukturą, płatnościami i naciskiem na konwersję — gotowe do sprzedaży.',
             tags: ['Shopify', 'E-commerce', 'Płatności'],
           },
           {
@@ -1408,12 +1408,12 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'Ile kosztuje strona firmowa?',
             answer:
-              'Cena strony firmowej jest zawsze ustalana indywidualnie i zależy od zakresu projektu. Po callu przygotowujemy precyzyjną, transparentną i prywatną ofertę.',
+              'Strony leadowe zaczynają się od €900, strony firmowe od €1 900, a sklepy Shopify od €4 000. Dokładna cena zależy od zakresu — kalkulator na stronie Usług da Ci szybki szacunek, a po bezpłatnej rozmowie wstępnej otrzymasz stałą, transparentną ofertę.',
           },
           {
             question: 'Jak szybko możecie dostarczyć stronę?',
             answer:
-              'Strony leadowe i marketingowe możemy dostarczyć w kilka dni do około tygodnia. Działamy bardzo efektywnie, bo korzystamy z nowoczesnych procesów i technologii, które skracają czas realizacji do praktycznego minimum. Przy bardziej złożonych projektach termin zależy głównie od zakresu funkcji, liczby integracji i gotowości materiałów.',
+              'Strony leadowe i marketingowe są zwykle gotowe w kilka dni do tygodnia. Przy większych projektach termin zależy od zakresu, integracji i gotowości materiałów — w ofercie zawsze otrzymujesz konkretną datę startu.',
           },
           {
             question: 'Czy mogę edytować treści?',
@@ -1441,7 +1441,7 @@ export const copy: Record<Lang, Copy> = {
         eyebrow: 'Następny krok',
         title: 'Porozmawiajmy o Twojej stronie',
         subtitle: '30‑min call i jasny plan kolejnych kroków.',
-        primaryLabel: 'Umów konsultację',
+        primaryLabel: 'Umów bezpłatną konsultację',
         secondaryLabel: 'Napisz do nas',
         note: 'W dni robocze odpowiadamy w ciągu 24 godzin.',
       },
@@ -1520,8 +1520,8 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Alpinefy — AI & Web Studio',
           title: 'Strony, które zamieniają odwiedzających w klientów',
           subtitle:
-            'Projektujemy i budujemy szybkie, przejrzyste strony i sklepy internetowe, które przynoszą Ci więcej zapytań i sprzedaży — od pierwszej strategii po wdrożenie i dalej.',
-          primaryLabel: 'Umów konsultację',
+            'Projektujemy i budujemy szybkie, przejrzyste strony i sklepy internetowe, które przynoszą Ci więcej zapytań i sprzedaży — a pracujesz bezpośrednio z osobą, która wykonuje pracę.',
+          primaryLabel: 'Umów bezpłatną konsultację',
           secondaryLabel: 'Zobacz usługi',
         },
       },
@@ -1549,7 +1549,7 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Proces',
           title: 'Jasno zdefiniowany proces, bez chaosu',
           subtitle: 'Wiesz, co się dzieje na każdym etapie.',
-          primaryLabel: 'Umów intro call',
+          primaryLabel: 'Umów bezpłatny intro call',
           secondaryLabel: 'Zobacz usługi',
         },
       },
@@ -1730,7 +1730,7 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Kontakt',
           title: 'Powiedz, czego potrzebujesz',
           subtitle: 'Odpowiadamy w 24h. Pierwszy call jest krótki i rzeczowy.',
-          primaryLabel: 'Napisz email',
+          primaryLabel: 'Wypełnij brief (2 min)',
           secondaryLabel: 'Zobacz usługi',
         },
         formHeading: {
@@ -1745,7 +1745,7 @@ export const copy: Record<Lang, Copy> = {
           namePlaceholder: 'Twoje imię, firma',
           emailPlaceholder: 'ty@email.com',
           messagePlaceholder: 'Krótko opisz projekt, cel i termin.',
-          submit: 'Wyślij',
+          submit: 'Wyślij — odpowiedź w 24 h',
           consent: 'Wysyłając zgadzasz się na przetwarzanie danych.',
         },
         directHeading: {
@@ -1759,7 +1759,7 @@ export const copy: Record<Lang, Copy> = {
           location: 'Lokalizacja',
           scope: 'Zakres',
           scopeText:
-            'Min. zakres: prosta strona firmowa lub lead. Większe projekty wg ustaleń.',
+            'Od prostych stron leadowych po kompletne strony i sklepy Shopify — większość projektów zaczyna się od bezpłatnej rozmowy.',
         },
       },
     },
@@ -1837,7 +1837,7 @@ export const copy: Record<Lang, Copy> = {
         items: [
           {
             title: 'Lead weby',
-            description: 'Landing stránky, které konvertují. Jasná struktura.',
+            description: 'Landing stránky, které konvertují — postavené tak, aby přinášely poptávky od prvního dne.',
             tags: ['Kampaně', 'Konverze', 'Rychlé nasazení'],
           },
           {
@@ -1847,7 +1847,7 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             title: 'E-shopy (Shopify)',
-            description: 'Shopify e-shopy s čistou strukturou, platbami, základní fakturací a důrazem na konverze.',
+            description: 'Shopify e-shopy s čistou strukturou, platbami a důrazem na konverze — připravené prodávat.',
             tags: ['Shopify', 'E-commerce', 'Platby'],
           },
           {
@@ -1915,12 +1915,12 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'Kolik stojí firemní web?',
             answer:
-              'Cena je individuální a závisí na rozsahu. Po úvodním callu pošleme přesnou, neveřejnou nabídku.',
+              'Lead weby začínají od €900, firemní weby od €1 900 a Shopify e-shopy od €4 000. Přesná cena závisí na rozsahu — kalkulačka na stránce Služby vám dá rychlý odhad a po nezávazném úvodním callu dostanete pevnou, transparentní nabídku.',
           },
           {
             question: 'Jak rychle dodáte web?',
             answer:
-              'Lead a marketing weby umíme dodat v horizontu několika dnů až jednoho týdne. Jsme velmi efektivní, protože používáme moderní postupy a technologie, které nám umožňují zkrátit dodání na nejkratší rozumný čas. U komplexnějších projektů termín závisí hlavně na rozsahu funkcionality, počtu integrací a připravenosti podkladů.',
+              'Lead a marketing weby jsou obvykle hotové během několika dnů až jednoho týdne. U větších projektů závisí termín na rozsahu, integracích a připravenosti podkladů — v nabídce vždy dostanete konkrétní datum spuštění.',
           },
           {
             question: 'Budu si umět upravovat obsah?',
@@ -1948,7 +1948,7 @@ export const copy: Record<Lang, Copy> = {
         eyebrow: 'Další krok',
         title: 'Pojďme probrat váš web',
         subtitle: '30min call a jasný návrh dalších kroků.',
-        primaryLabel: 'Rezervovat konzultaci',
+        primaryLabel: 'Rezervovat konzultaci zdarma',
         secondaryLabel: 'Napsat email',
         note: 'V pracovních dnech odpovídáme do 24 hodin.',
       },
@@ -2027,8 +2027,8 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Alpinefy — AI & Web Studio',
           title: 'Weby, které mění návštěvníky v zákazníky',
           subtitle:
-            'Navrhujeme a stavíme rychlé a přehledné weby a e-shopy, které vám přinášejí více poptávek a prodejů — od první strategie přes spuštění a dál.',
-          primaryLabel: 'Získat konzultaci',
+            'Navrhujeme a stavíme rychlé a přehledné weby a e-shopy, které vám přinášejí více poptávek a prodejů — a pracujete přímo s člověkem, který dělá práci.',
+          primaryLabel: 'Získat konzultaci zdarma',
           secondaryLabel: 'Zobrazit služby',
         },
       },
@@ -2056,7 +2056,7 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Proces',
           title: 'Jasně definovaný postup bez chaosu',
           subtitle: 'Víte, co se děje v každém kroku.',
-          primaryLabel: 'Naplánovat intro call',
+          primaryLabel: 'Naplánovat intro call zdarma',
           secondaryLabel: 'Zobrazit služby',
         },
       },
@@ -2237,7 +2237,7 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Kontakt',
           title: 'Řekněte nám, co potřebujete',
           subtitle: 'Odpovídáme do 24 hodin. První call je krátký a věcný.',
-          primaryLabel: 'Napsat email',
+          primaryLabel: 'Vyplnit brief (2 min)',
           secondaryLabel: 'Zobrazit služby',
         },
         formHeading: {
@@ -2252,7 +2252,7 @@ export const copy: Record<Lang, Copy> = {
           namePlaceholder: 'Vaše jméno, firma',
           emailPlaceholder: 'vas@email.cz',
           messagePlaceholder: 'Stručně popište projekt, cíl a termín.',
-          submit: 'Odeslat',
+          submit: 'Odeslat — odpověď do 24 h',
           consent: 'Odesláním souhlasíte se zpracováním údajů.',
         },
         directHeading: {
@@ -2266,7 +2266,7 @@ export const copy: Record<Lang, Copy> = {
           location: 'Lokalita',
           scope: 'Rozsah',
           scopeText:
-            'Min. rozsah: jednoduchý firemní web nebo lead stránka. Větší projekty dle zadání.',
+            'Od jednoduchých lead stránek po kompletní weby a Shopify e-shopy — většina projektů začíná nezávazným úvodním callem.',
         },
       },
     },
@@ -2344,7 +2344,7 @@ export const copy: Record<Lang, Copy> = {
         items: [
           {
             title: 'Lead weby',
-            description: 'Landing stránky, ktoré konvertujú. Jasná štruktúra, rýchle iterácie.',
+            description: 'Landing stránky, ktoré konvertujú — postavené tak, aby prinášali dopyty od prvého dňa.',
             tags: ['Kampane', 'Konverzie', 'Rýchle nasadenie'],
           },
           {
@@ -2354,7 +2354,7 @@ export const copy: Record<Lang, Copy> = {
           },
           {
             title: 'E-shopy (Shopify)',
-            description: 'Shopify e-shopy s čistou štruktúrou katalógu, platbami, základnou fakturáciou a dôrazom na konverzie.',
+            description: 'Shopify e-shopy s čistou štruktúrou katalógu, platbami a dôrazom na konverzie — pripravené predávať.',
             tags: ['Shopify', 'E-commerce', 'Platby'],
           },
           {
@@ -2422,12 +2422,12 @@ export const copy: Record<Lang, Copy> = {
           {
             question: 'Koľko stojí firemný web?',
             answer:
-              'Cena je individuálna a závisí od rozsahu. Po úvodnom call-e posielame presnú, neverejnú ponuku.',
+              'Lead weby začínajú od €900, firemné weby od €1 900 a Shopify e-shopy od €4 000. Presná cena závisí od rozsahu — kalkulačka na stránke Služby vám dá rýchly odhad a po nezáväznom úvodnom calle dostanete pevnú, transparentnú ponuku.',
           },
           {
             question: 'Ako rýchlo viete dodať web?',
             answer:
-              'Lead a marketing weby vieme dodať v priebehu pár dní až jedného týždňa. Sme extrémne efektívni, pretože používame moderné postupy a technológie, čo nám umožňuje skrátiť dodanie na najkratší možný čas. Pri komplexnejších zadaniach termín závisí najmä od rozsahu funkcionality, počtu integrácií a pripravenosti podkladov.',
+              'Lead a marketing weby sú zvyčajne hotové v priebehu pár dní až jedného týždňa. Pri väčších projektoch závisí termín od rozsahu, integrácií a pripravenosti podkladov — v ponuke vždy dostanete konkrétny dátum spustenia.',
           },
           {
             question: 'Budem si vedieť upravovať obsah?',
@@ -2455,7 +2455,7 @@ export const copy: Record<Lang, Copy> = {
         eyebrow: 'Ďalší krok',
         title: 'Poďme sa porozprávať o vašom webe',
         subtitle: '30-minútový call a rýchly návrh ďalších krokov.',
-        primaryLabel: 'Rezervovať konzultáciu',
+        primaryLabel: 'Rezervovať konzultáciu zadarmo',
         secondaryLabel: 'Napísať email',
         note: 'Počas pracovných dní odpovedáme do 24 hodín.',
       },
@@ -2534,8 +2534,8 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Alpinefy — AI & Web Studio',
           title: 'Weby, ktoré menia návštevníkov na zákazníkov',
           subtitle:
-            'Navrhujeme a staviame rýchle a prehľadné weby a e-shopy, ktoré vám prinášajú viac dopytov a predajov — od prvej stratégie cez spustenie a ďalej.',
-          primaryLabel: 'Získať konzultáciu',
+            'Navrhujeme a staviame rýchle a prehľadné weby a e-shopy, ktoré vám prinášajú viac dopytov a predajov — a pracujete priamo s človekom, ktorý robí prácu.',
+          primaryLabel: 'Získať konzultáciu zadarmo',
           secondaryLabel: 'Pozrieť služby',
         },
       },
@@ -2563,7 +2563,7 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Proces',
           title: 'Jasne definovaný postup, bez chaosu',
           subtitle: 'Viete, čo sa bude diať v každom kroku.',
-          primaryLabel: 'Naplánovať úvodný call',
+          primaryLabel: 'Naplánovať úvodný call zadarmo',
           secondaryLabel: 'Pozrieť služby',
         },
       },
@@ -2744,7 +2744,7 @@ export const copy: Record<Lang, Copy> = {
           eyebrow: 'Kontakt',
           title: 'Povedzte nám, čo potrebujete',
           subtitle: 'Odpovedáme do 24 hodín. Prvý call je krátky a vecný.',
-          primaryLabel: 'Napísať email',
+          primaryLabel: 'Vyplniť brief (2 min)',
           secondaryLabel: 'Pozrieť služby',
         },
         formHeading: {
@@ -2759,7 +2759,7 @@ export const copy: Record<Lang, Copy> = {
           namePlaceholder: 'Vaše meno, firma',
           emailPlaceholder: 'vas@email.sk',
           messagePlaceholder: 'Stručne popíšte projekt, cieľ a termín.',
-          submit: 'Odoslať',
+          submit: 'Odoslať — odpoveď do 24 h',
           consent: 'Odoslaním súhlasíte so spracovaním údajov.',
         },
         directHeading: {
@@ -2773,7 +2773,7 @@ export const copy: Record<Lang, Copy> = {
           location: 'Lokalita',
           scope: 'Rozsah',
           scopeText:
-            'Min. rozsah: jednoduchý firemný web alebo lead stránka. Väčšie projekty podľa zadania.',
+            'Od jednoduchých lead stránok po kompletné weby a Shopify e-shopy — väčšina projektov začína nezáväzným úvodným callom.',
         },
       },
     },
