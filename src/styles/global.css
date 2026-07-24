@@ -1383,6 +1383,9 @@
     overflow: hidden;
     pointer-events: none;
   }
+  /* No filter:blur here — iOS Safari clips filtered layers square inside
+     overflow-hidden rounded panels, and big blurs are expensive on mobile.
+     Soft multi-stop radial gradients give the same haze for free. */
   .fd26-aurora::before,
   .fd26-aurora::after {
     content: '';
@@ -1390,19 +1393,28 @@
     width: 58rem;
     height: 58rem;
     border-radius: 50%;
-    filter: blur(90px);
     opacity: 0.15;
   }
   .fd26-aurora::before {
     top: -26rem;
     left: -12rem;
-    background: radial-gradient(circle, rgba(var(--color-aqua) / 0.85), transparent 62%);
+    background: radial-gradient(
+      circle,
+      rgba(var(--color-aqua) / 0.8) 0%,
+      rgba(var(--color-aqua) / 0.35) 38%,
+      transparent 68%
+    );
     animation: fd26Drift 26s ease-in-out infinite alternate;
   }
   .fd26-aurora::after {
     top: -18rem;
     right: -16rem;
-    background: radial-gradient(circle, rgba(var(--color-lime) / 0.7), transparent 62%);
+    background: radial-gradient(
+      circle,
+      rgba(var(--color-lime) / 0.65) 0%,
+      rgba(var(--color-lime) / 0.28) 38%,
+      transparent 68%
+    );
     animation: fd26Drift 34s ease-in-out infinite alternate-reverse;
   }
 
@@ -1451,6 +1463,8 @@
   .fd26-spot {
     position: relative;
     overflow: hidden;
+    /* own compositing context so Safari clips inner layers to the rounded box */
+    isolation: isolate;
   }
   .fd26-spot::after {
     content: '';
