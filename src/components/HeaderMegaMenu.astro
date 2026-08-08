@@ -1,0 +1,247 @@
+---
+import { defaultLang, type Lang } from '../i18n/languages';
+import { getCopy } from '../i18n/copy';
+import { getRoutePath } from '../i18n/routes';
+import { getServiceAnchor, getServiceKeyByIndex } from '../data/services-funnel';
+import { serviceIcons, megaMenuLinkIcons } from '../data/service-icons';
+
+// Mega-menu pod položkou Services — dropdown so 4 službami a rýchlymi odkazmi.
+const { lang = defaultLang, normalizedPath = '' } = Astro.props as {
+  lang?: Lang;
+  normalizedPath?: string;
+};
+
+const copy = getCopy(lang);
+const servicesHref = getRoutePath('services', lang);
+const isActive = normalizedPath === servicesHref;
+
+// Ľavý stĺpec: 4 služby s anchorom na detail v stránke služieb.
+const serviceRows = copy.sections.services.items.map((service, index) => ({
+  title: service.title,
+  description: copy.megaMenu.serviceDesc[index],
+  href: `${servicesHref}#${getServiceAnchor(getServiceKeyByIndex(index)).id}`,
+  icon: serviceIcons[index],
+}));
+
+// Pravý stĺpec: kalkulačka + proces + referencie.
+const quickLinks = [
+  {
+    title: copy.megaMenu.calculator,
+    description: copy.megaMenu.calculatorDesc,
+    href: `${servicesHref}#pricing`,
+    icon: megaMenuLinkIcons.calculator,
+  },
+  {
+    title: copy.nav.process,
+    description: copy.megaMenu.processDesc,
+    href: getRoutePath('process', lang),
+    icon: megaMenuLinkIcons.process,
+  },
+  {
+    title: copy.nav.references,
+    description: copy.megaMenu.referencesDesc,
+    href: getRoutePath('references', lang),
+    icon: megaMenuLinkIcons.references,
+  },
+];
+---
+
+<div class="mega-menu relative" data-mega-menu data-open="false">
+  <button
+    type="button"
+    class={`nav-link flex cursor-pointer items-center gap-1.5 ${isActive ? 'is-active' : ''}`}
+    data-mega-trigger
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="mega-panel-services"
+  >
+    {copy.nav.services}
+    <svg
+      viewBox="0 0 24 24"
+      class="h-3.5 w-3.5 transition-transform duration-200"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+      data-mega-arrow
+    >
+      <path d="m6 9 6 6 6-6"></path>
+    </svg>
+  </button>
+
+  <div
+    id="mega-panel-services"
+    class="mega-panel absolute left-1/2 top-full z-50 w-[34rem] -translate-x-1/2 pt-5 lg:w-[40rem]"
+    data-mega-panel
+    hidden
+  >
+    <div class="fd26-gborder rounded-3xl border border-white/12 bg-coal/95 p-4 shadow-2xl backdrop-blur-xl lg:p-5">
+      <div class="grid gap-1 sm:grid-cols-[1.15fr_1fr] sm:gap-x-3">
+        <div class="grid content-start gap-1">
+          {serviceRows.map((row) => (
+            <a href={row.href} class="mega-row group flex items-center gap-3.5 rounded-2xl p-3 transition hover:bg-white/5">
+              <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-aqua/20 bg-aqua/10 text-aqua shadow-[0_8px_24px_-12px_rgba(38,202,255,0.65)]">
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-5 w-5"
+                  fill={row.icon.fill ? 'currentColor' : 'none'}
+                  stroke={row.icon.fill ? 'none' : 'currentColor'}
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  set:html={row.icon.inner}
+                ></svg>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm font-semibold text-ice">{row.title}</span>
+                <span class="mt-0.5 block truncate text-xs text-mist">{row.description}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+        <div class="mt-2 grid content-start gap-1 border-t border-white/10 pt-3 sm:mt-0 sm:border-l sm:border-t-0 sm:pl-3 sm:pt-0">
+          {quickLinks.map((row) => (
+            <a href={row.href} class="mega-row group flex items-center gap-3.5 rounded-2xl p-3 transition hover:bg-white/5">
+              <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-lime/20 bg-lime/10 text-lime shadow-[0_8px_24px_-12px_rgba(71,247,183,0.5)]">
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-5 w-5"
+                  fill={row.icon.fill ? 'currentColor' : 'none'}
+                  stroke={row.icon.fill ? 'none' : 'currentColor'}
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  set:html={row.icon.inner}
+                ></svg>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm font-semibold text-ice">{row.title}</span>
+                <span class="mt-0.5 block truncate text-xs text-mist">{row.description}</span>
+              </span>
+            </a>
+          ))}
+          <a
+            href={servicesHref}
+            class="group mt-1 flex items-center gap-2 rounded-2xl p-3 text-sm font-semibold text-aqua transition hover:bg-white/5"
+          >
+            {copy.megaMenu.allServices}
+            <svg
+              viewBox="0 0 24 24"
+              class="h-4 w-4 transition-transform duration-300 motion-safe:group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const HOVER_OPEN_DELAY = 80;
+    const HOVER_CLOSE_DELAY = 180;
+
+    const setMegaMenuOpen = (menu, isOpen) => {
+      const trigger = menu.querySelector('[data-mega-trigger]');
+      const panel = menu.querySelector('[data-mega-panel]');
+      const arrow = menu.querySelector('[data-mega-arrow]');
+      if (!trigger || !panel) return;
+      menu.dataset.open = String(isOpen);
+      trigger.setAttribute('aria-expanded', String(isOpen));
+      trigger.classList.toggle('is-open', isOpen);
+      if (arrow) {
+        arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
+      if (isOpen) {
+        panel.removeAttribute('hidden');
+      } else {
+        panel.setAttribute('hidden', '');
+      }
+    };
+
+    const closeAllMegaMenus = () => {
+      document
+        .querySelectorAll('[data-mega-menu]')
+        .forEach((menu) => setMegaMenuOpen(menu, false));
+    };
+
+    const initMegaMenus = () => {
+      // Hover otvára len na zariadeniach so skutočným kurzorom.
+      const canHover = window.matchMedia('(hover: hover)').matches;
+
+      document.querySelectorAll('[data-mega-menu]').forEach((menu) => {
+        if (menu.dataset.ready === 'true') return;
+        menu.dataset.ready = 'true';
+        const trigger = menu.querySelector('[data-mega-trigger]');
+        if (!trigger) return;
+
+        let openTimer;
+        let closeTimer;
+
+        trigger.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          setMegaMenuOpen(menu, menu.dataset.open !== 'true');
+        });
+
+        if (canHover) {
+          menu.addEventListener('mouseenter', () => {
+            clearTimeout(closeTimer);
+            openTimer = setTimeout(() => setMegaMenuOpen(menu, true), HOVER_OPEN_DELAY);
+          });
+          menu.addEventListener('mouseleave', () => {
+            clearTimeout(openTimer);
+            closeTimer = setTimeout(() => setMegaMenuOpen(menu, false), HOVER_CLOSE_DELAY);
+          });
+        }
+
+        // Keď fokus odíde mimo menu (Tab von), panel sa zatvorí.
+        menu.addEventListener('focusout', (event) => {
+          if (event.relatedTarget instanceof Node && menu.contains(event.relatedTarget)) return;
+          setMegaMenuOpen(menu, false);
+        });
+
+        menu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => setMegaMenuOpen(menu, false));
+        });
+      });
+
+      if (window.__megaMenuGlobalReady) return;
+      window.__megaMenuGlobalReady = true;
+
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.closest('[data-mega-menu]')) return;
+        closeAllMegaMenus();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        const openMenu = document.querySelector('[data-mega-menu][data-open="true"]');
+        if (!openMenu) return;
+        closeAllMegaMenus();
+        const trigger = openMenu.querySelector('[data-mega-trigger]');
+        if (trigger) trigger.focus();
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMegaMenus);
+    } else {
+      initMegaMenus();
+    }
+
+    document.addEventListener('astro:page-load', initMegaMenus);
+  })();
+</script>

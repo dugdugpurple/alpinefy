@@ -2,12 +2,14 @@
 import Container from './Container.astro';
 import Logo from './Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import HeaderMegaMenu from './HeaderMegaMenu.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import SocialIcons from './SocialIcons.astro';
 import { site } from '../data/site';
 import { defaultLang } from '../i18n/languages';
 import { getCopy, navItems } from '../i18n/copy';
 import { getRoutePath } from '../i18n/routes';
+import { getServiceAnchor, getServiceKeyByIndex } from '../data/services-funnel';
 
 const { lang = defaultLang } = Astro.props;
 const currentPath = Astro.url.pathname;
@@ -17,6 +19,13 @@ const copy = getCopy(lang);
 const consultationHref = `${getRoutePath('contact', lang)}#kontakt-formular`;
 // Career lives only in the footer — keep it out of the header nav.
 const headerNavItems = navItems.filter((link) => link.key !== 'career');
+// Services má vlastné mega-menu, v plochom zozname sa preskočí.
+const flatNavItems = headerNavItems.filter((link) => link.key !== 'services');
+const servicesHref = getRoutePath('services', lang);
+const megaServiceLinks = copy.sections.services.items.map((service, index) => ({
+  title: service.title,
+  href: `${servicesHref}#${getServiceAnchor(getServiceKeyByIndex(index)).id}`,
+}));
 
 // Cookie-settings label for the mobile menu (mirrors CookieBanner's reopen label);
 // on mobile the floating dock button is hidden and this menu item reopens it.
@@ -44,7 +53,8 @@ const cookieLabel = cookieLabelByLang[lang] ?? cookieLabelByLang.en;
       </a>
 
       <nav class="hidden items-center gap-7 md:flex">
-        {headerNavItems.map((link) => {
+        <HeaderMegaMenu lang={lang} normalizedPath={normalizedPath} />
+        {flatNavItems.map((link) => {
           const href = getRoutePath(link.route, lang);
           return (
             <a href={href} class={`nav-link ${normalizedPath === href ? 'is-active' : ''}`}>
@@ -101,7 +111,49 @@ const cookieLabel = cookieLabelByLang[lang] ?? cookieLabelByLang.en;
         </div>
 
         <nav class="grid gap-2 text-base">
-          {headerNavItems.map((link) => (
+          <div>
+            <button
+              type="button"
+              class="flex w-full items-center justify-between rounded-2xl border border-transparent px-4 py-3 text-left text-ice/85 transition hover:border-white/15 hover:bg-white/5 hover:text-ice"
+              data-m-acc-trigger
+              aria-expanded="false"
+              aria-controls="mobile-acc-services"
+            >
+              {copy.nav.services}
+              <svg
+                viewBox="0 0 24 24"
+                class="h-4 w-4 transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                data-m-acc-arrow
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <div id="mobile-acc-services" class="grid gap-1 pb-1 pl-3 pt-1" data-m-acc-panel hidden>
+              {megaServiceLinks.map((link) => (
+                <a
+                  href={link.href}
+                  class="rounded-xl px-4 py-2.5 text-sm text-ice/75 transition hover:bg-white/5 hover:text-ice"
+                  data-menu-close
+                >
+                  {link.title}
+                </a>
+              ))}
+              <a
+                href={`${servicesHref}#pricing`}
+                class="rounded-xl px-4 py-2.5 text-sm text-aqua transition hover:bg-white/5"
+                data-menu-close
+              >
+                {copy.megaMenu.calculator}
+              </a>
+            </div>
+          </div>
+          {flatNavItems.map((link) => (
             <a
               href={getRoutePath(link.route, lang)}
               class="rounded-2xl border border-transparent px-4 py-3 text-ice/85 transition hover:border-white/15 hover:bg-white/5 hover:text-ice"
@@ -146,6 +198,29 @@ const cookieLabel = cookieLabelByLang[lang] ?? cookieLabelByLang.en;
         menu.dataset.ready = 'true';
 
         const closeButtons = menu.querySelectorAll('[data-menu-close]');
+        const accTrigger = menu.querySelector('[data-m-acc-trigger]');
+        const accPanel = menu.querySelector('[data-m-acc-panel]');
+        const accArrow = menu.querySelector('[data-m-acc-arrow]');
+
+        // Akordeón Services v mobilnom menu.
+        const setAccOpen = (isOpen) => {
+          if (!accTrigger || !accPanel) return;
+          accTrigger.setAttribute('aria-expanded', String(isOpen));
+          if (accArrow) {
+            accArrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+          }
+          if (isOpen) {
+            accPanel.removeAttribute('hidden');
+          } else {
+            accPanel.setAttribute('hidden', '');
+          }
+        };
+
+        if (accTrigger) {
+          accTrigger.addEventListener('click', () => {
+            setAccOpen(accTrigger.getAttribute('aria-expanded') !== 'true');
+          });
+        }
 
         const setMenuOpen = (isOpen) => {
           menu.setAttribute('data-open', String(isOpen));
@@ -160,6 +235,8 @@ const cookieLabel = cookieLabelByLang[lang] ?? cookieLabelByLang.en;
           openButton.classList.toggle('opacity-0', isOpen);
           openButton.classList.toggle('pointer-events-none', isOpen);
           document.body.style.overflow = isOpen ? 'hidden' : '';
+          // Po zavretí menu sa akordeón zloží, nabudúce sa otvorí čistý.
+          if (!isOpen) setAccOpen(false);
         };
 
         openButton.addEventListener('click', () => setMenuOpen(true));

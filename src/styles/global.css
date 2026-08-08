@@ -397,6 +397,15 @@
     transform: scaleX(1);
   }
 
+  /* Otvorené mega-menu drží trigger v zvýraznenom stave ako hover. */
+  .nav-link.is-open {
+    color: rgb(var(--color-ice));
+  }
+
+  .nav-link.is-open::after {
+    transform: scaleX(1);
+  }
+
   .menu-button .menu-line {
     transition: transform 260ms ease, opacity 260ms ease;
     transform-origin: center;

@@ -10,25 +10,13 @@ import {
   getServiceInquiryPath,
   getServiceKeyByIndex,
 } from '../../data/services-funnel';
-import { siShopify, siClaude } from 'simple-icons';
+import { serviceIcons } from '../../data/service-icons';
 import SectionMarks from '../SectionMarks.astro';
 
 const { lang = defaultLang, mode = 'home' } = Astro.props as { lang?: Lang; mode?: 'home' | 'services' };
 const { sections } = getCopy(lang);
 const funnelCopy = getServiceFunnelCopy(lang);
 const isServicesMode = mode === 'services';
-
-// Per-service icon: line glyphs for the two generic services, brand marks (fill) for Shopify + Claude.
-const serviceIcons = [
-  // Lead websites — target / aim at conversions
-  { fill: false, inner: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/>' },
-  // Corporate websites — building
-  { fill: false, inner: '<path d="M4 21V8l6-4 6 4v13"/><path d="M2 21h20"/><path d="M9 21v-5h2v5"/><path d="M8 9h.5M13 9h.5M8 12.5h.5M13 12.5h.5"/>' },
-  // E-shops — Shopify brand mark
-  { fill: true, inner: `<path d="${siShopify.path}"/>` },
-  // Automation & AI — Claude brand mark
-  { fill: true, inner: `<path d="${siClaude.path}"/>` },
-];
 
 ---
 

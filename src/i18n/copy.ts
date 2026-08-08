@@ -13,6 +13,14 @@ export const navItems = [
 type Copy = {
   site: { tagline: string; description: string };
   nav: Record<string, string>;
+  megaMenu: {
+    serviceDesc: string[];
+    calculator: string;
+    calculatorDesc: string;
+    processDesc: string;
+    referencesDesc: string;
+    allServices: string;
+  };
   menu: {
     openLabel: string;
     closeLabel: string;
@@ -257,6 +265,19 @@ export const copy: Record<Lang, Copy> = {
       about: 'About',
       blog: 'Blog',
       contact: 'Contact',
+    },
+    megaMenu: {
+      serviceDesc: [
+        'Landing pages built to convert',
+        'A company site that builds trust',
+        'Shopify stores ready to sell',
+        'AI and automation that save time',
+      ],
+      calculator: 'Pricing calculator',
+      calculatorDesc: 'Get an instant price estimate',
+      processDesc: 'How we work, step by step',
+      referencesDesc: 'Results and client reviews',
+      allServices: 'All services',
     },
     menu: {
       openLabel: 'Open menu',
@@ -766,6 +787,19 @@ export const copy: Record<Lang, Copy> = {
       blog: 'Blog',
       contact: 'Kontakt',
     },
+    megaMenu: {
+      serviceDesc: [
+        'Landingpages, die konvertieren',
+        'Firmenwebsites, die Vertrauen schaffen',
+        'Shopify-Shops, bereit zum Verkaufen',
+        'KI und Automatisierung, die Zeit sparen',
+      ],
+      calculator: 'Preisrechner',
+      calculatorDesc: 'Sofort eine Preisschätzung erhalten',
+      processDesc: 'So arbeiten wir, Schritt für Schritt',
+      referencesDesc: 'Ergebnisse und Kundenstimmen',
+      allServices: 'Alle Leistungen',
+    },
     menu: {
       openLabel: 'Menü öffnen',
       closeLabel: 'Schließen',
@@ -1271,6 +1305,19 @@ export const copy: Record<Lang, Copy> = {
       about: 'O nas',
       blog: 'Blog',
       contact: 'Kontakt',
+    },
+    megaMenu: {
+      serviceDesc: [
+        'Landing page, które konwertują',
+        'Strony firmowe budujące zaufanie',
+        'Sklepy Shopify gotowe do sprzedaży',
+        'AI i automatyzacje, które oszczędzają czas',
+      ],
+      calculator: 'Kalkulator ceny',
+      calculatorDesc: 'Szybka orientacyjna wycena',
+      processDesc: 'Jak pracujemy, krok po kroku',
+      referencesDesc: 'Wyniki i opinie klientów',
+      allServices: 'Wszystkie usługi',
     },
     menu: {
       openLabel: 'Otwórz menu',
@@ -1779,6 +1826,19 @@ export const copy: Record<Lang, Copy> = {
       blog: 'Blog',
       contact: 'Kontakt',
     },
+    megaMenu: {
+      serviceDesc: [
+        'Landing pages, které konvertují',
+        'Firemní weby, které budují důvěru',
+        'Shopify e-shopy připravené prodávat',
+        'AI a automatizace, které šetří čas',
+      ],
+      calculator: 'Cenová kalkulačka',
+      calculatorDesc: 'Okamžitý orientační odhad ceny',
+      processDesc: 'Jak pracujeme, krok za krokem',
+      referencesDesc: 'Výsledky a reference klientů',
+      allServices: 'Všechny služby',
+    },
     menu: {
       openLabel: 'Otevřít menu',
       closeLabel: 'Zavřít',
@@ -2285,6 +2345,19 @@ export const copy: Record<Lang, Copy> = {
       about: 'O nás',
       blog: 'Blog',
       contact: 'Kontakt',
+    },
+    megaMenu: {
+      serviceDesc: [
+        'Landing pages, ktoré konvertujú',
+        'Firemné weby, ktoré budujú dôveru',
+        'Shopify e-shopy pripravené predávať',
+        'AI a automatizácie, ktoré šetria čas',
+      ],
+      calculator: 'Cenová kalkulačka',
+      calculatorDesc: 'Okamžitý orientačný odhad ceny',
+      processDesc: 'Ako pracujeme, krok za krokom',
+      referencesDesc: 'Výsledky a recenzie klientov',
+      allServices: 'Všetky služby',
     },
     menu: {
       openLabel: 'Otvoriť menu',
