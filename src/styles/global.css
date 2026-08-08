@@ -406,6 +406,59 @@
     transform: scaleX(1);
   }
 
+  /* Mega-menu panel: plynulý fade + posun; visibility drží zatvorený panel mimo tabov. */
+  .mega-panel {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, 10px);
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease,
+      visibility 0s linear 160ms;
+  }
+
+  [data-mega-menu][data-open='true'] .mega-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+    transition:
+      opacity 200ms ease,
+      transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s;
+  }
+
+  /* Mobilný akordeón: výška sa animuje cez grid-template-rows. */
+  .m-acc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition:
+      grid-template-rows 260ms ease,
+      visibility 0s linear 260ms;
+  }
+
+  .m-acc-panel[data-open='true'] {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition:
+      grid-template-rows 260ms ease,
+      visibility 0s;
+  }
+
+  .m-acc-panel > div {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mega-panel,
+    .m-acc-panel {
+      transition: none;
+    }
+  }
+
   .menu-button .menu-line {
     transition: transform 260ms ease, opacity 260ms ease;
     transform-origin: center;

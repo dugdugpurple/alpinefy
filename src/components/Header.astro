@@ -134,23 +134,25 @@ const cookieLabel = cookieLabelByLang[lang] ?? cookieLabelByLang.en;
                 <path d="m6 9 6 6 6-6"></path>
               </svg>
             </button>
-            <div id="mobile-acc-services" class="grid gap-1 pb-1 pl-3 pt-1" data-m-acc-panel hidden>
-              {megaServiceLinks.map((link) => (
+            <div id="mobile-acc-services" class="m-acc-panel" data-m-acc-panel data-open="false">
+              <div class="grid gap-1 pb-1 pl-3 pt-1">
+                {megaServiceLinks.map((link) => (
+                  <a
+                    href={link.href}
+                    class="rounded-xl px-4 py-2.5 text-sm text-ice/75 transition hover:bg-white/5 hover:text-ice"
+                    data-menu-close
+                  >
+                    {link.title}
+                  </a>
+                ))}
                 <a
-                  href={link.href}
-                  class="rounded-xl px-4 py-2.5 text-sm text-ice/75 transition hover:bg-white/5 hover:text-ice"
+                  href={`${servicesHref}#pricing`}
+                  class="rounded-xl px-4 py-2.5 text-sm text-aqua transition hover:bg-white/5"
                   data-menu-close
                 >
-                  {link.title}
+                  {copy.megaMenu.calculator}
                 </a>
-              ))}
-              <a
-                href={`${servicesHref}#pricing`}
-                class="rounded-xl px-4 py-2.5 text-sm text-aqua transition hover:bg-white/5"
-                data-menu-close
-              >
-                {copy.megaMenu.calculator}
-              </a>
+              </div>
             </div>
           </div>
           {flatNavItems.map((link) => (
@@ -209,11 +211,8 @@ const cookieLabel = cookieLabelByLang[lang] ?? cookieLabelByLang.en;
           if (accArrow) {
             accArrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
           }
-          if (isOpen) {
-            accPanel.removeAttribute('hidden');
-          } else {
-            accPanel.setAttribute('hidden', '');
-          }
+          // Výšku animuje CSS cez data-open (grid-template-rows).
+          accPanel.setAttribute('data-open', String(isOpen));
         };
 
         if (accTrigger) {
